@@ -68,12 +68,14 @@
     "webpack": "^2.2.1",
     "webpack-blocks-happypack": "^0.1.0",
     "webpack-blocks-split-vendor": "^0.1.2",
-    "webpack-dev-server": "^2.3.0",
+    "webpack-dev-server": "^2.11.5",
     "webpack-md5-hash": "^0.0.5"
   },
   "dependencies": {
     "babel-polyfill": "^6.20.0",
+    "core-js": "^3.0.1",
     "history": "3.0.0",
+    "js-yaml": "^3.13.1",
     "lodash": "^4.17.4",
     "normalizr": "^3.0.1",
     "query-string": "^4.3.2",
