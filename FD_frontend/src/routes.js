@@ -5,13 +5,13 @@ import App from 'components/App'
 import { HomePage, SignUpPage } from 'components'
 
 const routes = (
-  <div>
+  <div>/
   <Route path="/" component={App}>
-    <IndexRoute component={HomePage} />
-  </Route>
-  <Route path="/signup" component={App}>
     <IndexRoute component={SignUpPage} />
   </Route>
+  /*<Route path="/signup" component={App}>
+    <IndexRoute component={HomePage} />
+  </Route>*/
   </div>
 )
 

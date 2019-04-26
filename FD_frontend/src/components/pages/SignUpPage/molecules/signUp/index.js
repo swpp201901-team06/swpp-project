@@ -9,7 +9,8 @@ const Wrapper = styled.div`
   color: ${palette('grayscale', 0)};
 `
 
-export const signUp = ({ children, ...props }) => {
+export const signUp = ({ statefunction }) => {
+    console.log("start loading page");
     let email, pw, confirmpw, nickname;
 
     const onECheck = () => {
@@ -40,4 +41,4 @@ signUp.propTypes = {
   children: PropTypes.node,
 }
 
-export default signUp
+//export default signUp

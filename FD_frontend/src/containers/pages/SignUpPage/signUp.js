@@ -1,14 +1,17 @@
 import { connect } from 'react-redux'
-import { signUp } from '../components/pages/SignUpPage/molecules/signUp'
-import { } from '../store/SignUpPage/actions'
+import { signUp } from '../../../components/pages/SignUpPage/molecules/signUp'
 
-const mapStateToProps = (state) =: {
+const mapStateToProps = (state) => {
+  console.log("a");
    return {
   statefunction: state
    }
 }
 
 const mapDispatchToProps = (dispatch) => {
+  console.log("b");
     return {
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(signUp)
