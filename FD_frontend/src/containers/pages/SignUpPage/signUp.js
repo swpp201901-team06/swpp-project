@@ -1,17 +1,27 @@
 import { connect } from 'react-redux'
 import { signUp } from '../../../components/pages/SignUpPage/molecules/signUp'
+import { emailCheck, nicknameCheck, signUpSubmit } from '../../../store/SignUpPage/actions'
 
 const mapStateToProps = (state) => {
-  console.log("a");
+console.log("state");
    return {
   statefunction: state
    }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  console.log("b");
-    return {
+console.log("dispatch");
+      return {
+    onECheck: (email) => {
+        dispatch(emailCheck(email))
+    },
+    onNCheck: (nickname) => {
+        dispatch(nicknameCheck(nickname))
+    },
+    onSignUpSubmit: (email, pw, confirmpw, nickname) => {
+        dispatch(signUpSubmit(email, pw, confirmpw, nickname))
     }
+      }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(signUp)
