@@ -8,7 +8,11 @@ console.log("components/pages/SignInPage/index 2")
 const SignInPage = () => {
   return (
     <div>
-      Sign in Page
+      <h>
+        Sign in Page
+      </h>
+      <br/>
+      <SignIn/>
     </div>
   )
 }
