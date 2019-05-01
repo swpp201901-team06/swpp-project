@@ -12,7 +12,10 @@ const Wrapper = styled.div`
 
 export const signUp = ({ statefunction, onEmailCheck, onNicknameCheck, onSignUpSubmit }) => {
     console.log("start loading page");
-    let email, pw, confirmpw, nickname;
+    let email;
+    let pw;
+    let confirmpw;
+    let nickname;
 
     const onECheck = () => {
       onEmailCheck(email.value);
@@ -26,13 +29,18 @@ export const signUp = ({ statefunction, onEmailCheck, onNicknameCheck, onSignUpS
   console.log("asdf");
   return (
     <div>
-      <input ref={node => {email = node;}} />
-      <input ref={node => {pw = node;}} />
-      <input ref={node => {confirmpw = node;}} />
-      <input ref={node => {nickname = node;}} />
-      <Button type="submit" onClick={onECheck}>ID Check</Button>
-      <Button type="submit" onClick={onNCheck}>Nickname Check</Button>
-      <Button type="submit" onClick={onSubmit}>Submit</Button>
+      <h4>Email{' '} 
+      <input ref={node => {email = node;}} />{'  '}
+      <Button type="submit" onClick={onECheck}>Email Check</Button> </h4>
+      <h4>Password{' '}
+      <input ref={node => {pw = node;}} /></h4>
+      <h4>Confirm Password{' '}
+      <input ref={node => {confirmpw = node;}} /></h4>
+      <h4>Nickname{' '}
+      <input ref={node => {nickname = node;}} />{'  '}
+      <Button type="submit" onClick={onNCheck}>Nickname Check</Button></h4>
+      <h4>
+      <Button type="submit" onClick={onSubmit}>Submit</Button></h4>
     </div>
   );
 };
@@ -42,4 +50,4 @@ signUp.propTypes = {
   children: PropTypes.node,
 }
 
-//export default signUp
+/*export default signUp*/
