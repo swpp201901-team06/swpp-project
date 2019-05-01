@@ -1,8 +1,6 @@
-import {initialState} from 'store/signInPage/selectors'
+import {initialState} from './selectors'
 
-console.log("store/signInPage/reducer 0")
 console.log(initialState)
-console.log("store/signInPage/reducer 0.1")
 
 const signInReducer = (state = initialState, action) => {
   switch (action.type) {
