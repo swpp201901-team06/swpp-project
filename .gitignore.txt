@@ -1,0 +1,5 @@
+FD_backend/db.sqlite3
+FD_backend/FD_backend/__pycache__
+FD_backend/FooDa/__pycache__
+FD_backend/users/__pycache__
+FD_backend/api/__pycache__
