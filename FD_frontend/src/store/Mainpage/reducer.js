@@ -1,7 +1,7 @@
 import { initialState } from './selectors'
 import { Redirect } from 'react-router'
 
-const MainPage_reducer = (state = initialState, action) => {
+const MainPage = (state = initialState, action) => {
     switch(action.type){
         case 'GO_TO_SIGNIN':
             <Redirect to = "/signin"></Redirect>
@@ -11,3 +11,5 @@ const MainPage_reducer = (state = initialState, action) => {
             return state
     }
 }
+
+export default MainPage
