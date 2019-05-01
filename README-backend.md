@@ -1,4 +1,4 @@
-# swpp-project
+# swpp-project - BackEnd
 
 First, you should type makemigrations and migrate ( dbsqlite is not exist )
 
