@@ -1,11 +1,11 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import button from '.'
+import { SignIn } from 'components'
 
-storiesOf('button', module)
+storiesOf('SignIn', module)
   .add('default', () => (
-    <button>Hello</button>
+    <SignIn>Hello</SignIn>
   ))
   .add('reverse', () => (
-    <button reverse>Hello</button>
+    <SignIn reverse>Hello</SignIn>
   ))

@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   color: ${palette('grayscale', 0)};
 `
 
-const signIn = ({ children, ...props }) => {
+const SignIn = ({ children, ...props }) => {
   return (
     <Wrapper {...props}>
       {children}
@@ -15,9 +15,9 @@ const signIn = ({ children, ...props }) => {
   )
 }
 
-signIn.propTypes = {
+SignIn.propTypes = {
   reverse: PropTypes.bool,
   children: PropTypes.node,
 }
 
-export default signIn
+export default SignIn

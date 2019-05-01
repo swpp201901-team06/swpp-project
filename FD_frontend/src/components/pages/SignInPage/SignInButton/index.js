@@ -2,18 +2,18 @@ import { PropTypes } from 'react'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
 
-const button = styled.span`
+const SignInButton = styled.span`
   font-family: ${font('primary')};
   color: ${palette({ grayscale: 0 }, 1)};
 `
 
-button.propTypes = {
+SignInButton.propTypes = {
   palette: PropTypes.string,
   reverse: PropTypes.bool,
 }
 
-button.defaultProps = {
+SignInButton.defaultProps = {
   palette: 'grayscale',
 }
 
-export default button
+export default SignInButton
