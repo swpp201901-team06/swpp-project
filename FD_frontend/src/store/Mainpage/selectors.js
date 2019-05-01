@@ -1,1 +1,1 @@
-export const initialstate = []
+export const initialState = []
