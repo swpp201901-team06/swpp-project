@@ -9,20 +9,16 @@ http://127.0.0.1:8000/api/users/
 
 *first method
 -Login Logout
-http://127.0.0.1:8000/api/rest-auth/
-+ login/
-+ logout/
+http://127.0.0.1:8000/api/rest-auth/login/
+http://127.0.0.1:8000/api/rest-auth/logout/
 
 -Sign up
-http://127.0.0.1:8000/api/rest-auth/
-+ registration/
+http://127.0.0.1:8000/api/rest-auth/registration/
 
 *Second Method
 -Login Logout
-http://127.0.0.1:8000/api/accounts/
-+ login/
-+ logout/
+http://127.0.0.1:8000/api/accounts/login/
+http://127.0.0.1:8000/api/accounts/logout/
 
 -Sign up
-http://127.0.0.1:8000/api/accounts/
-+ signup/
+http://127.0.0.1:8000/api/accounts/signup/
