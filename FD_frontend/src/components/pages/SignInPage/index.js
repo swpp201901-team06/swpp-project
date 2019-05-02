@@ -6,6 +6,7 @@ console.log(SignIn)
 console.log("components/pages/SignInPage/index 2")
 
 const SignInPage = () => {
+  console.log("components/pages/SignInPage/index SignInPage 1")
   return (
     <div>
       <h>
