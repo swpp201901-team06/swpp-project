@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(gotoSignUp())
     },
     onClickSignIn: (id, password) => {
-      requestSignIn(id, password)
+      dispatch(requestSignIn(id, password))
     }
   }
 }
