@@ -5,14 +5,14 @@ export const gotoSignUp = () => {
   }
 }
 
-export const requestSignIn = (id, password) => {
+export const requestSignIn = (email, password) => {
   console.log("store/SignInPage/actions requestSignIn 1")
-  console.log(id)
+  console.log(email)
   console.log(password)
   console.log("store/SignInPage/actions requestSignIn 2")
   return {
     type: 'REQUEST_SIGN_IN',
-    id: id,
+    email: email,
     password: password,
   }
 }

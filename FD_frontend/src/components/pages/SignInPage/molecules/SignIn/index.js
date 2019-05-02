@@ -14,7 +14,7 @@ const SignIn = ({onClickSignUp, onClickSignIn}) => {
   console.log(onClickSignUp)
   console.log(onClickSignIn)
   console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 2")
-  let idField
+  let emailField
   let passwordField
 
   const onClickSignUpButton = () => {
@@ -24,28 +24,28 @@ const SignIn = ({onClickSignUp, onClickSignIn}) => {
 
   const onClickSignInButton = () => {
     console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignInButton 1")
-    console.log(idField)
-    console.log(idField.value)
+    console.log(emailField)
+    console.log(emailField.value)
     console.log(passwordField)
     console.log(passwordField.value)
     console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignInButton 2")
-    if (idField !== undefined && idField.value !== '' &&
+    if (emailField !== undefined && emailField.value !== '' &&
       passwordField !== undefined && passwordField.value !== '') {
 
       console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignInButton 3")
-      onClickSignIn(idField.value, passwordField.value)
+      onClickSignIn(emailField.value, passwordField.value)
     }
   }
 
   console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 3")
   return (
     <div>
-      ID
+      Email address
       <input ref={node => {
         console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 4")
         console.log(node)
         console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 5")
-        idField = node
+        emailField = node
       }}/>
       <br/>
       Password

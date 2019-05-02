@@ -1,4 +1,6 @@
-export const initialState = [
+export const initialState = {
+  email: '',
+  password: '',
   signInFailed: false,
   token: '',
-]
+}
