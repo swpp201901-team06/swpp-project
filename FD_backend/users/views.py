@@ -15,9 +15,7 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
 
-class UserEmailExist(APIView):
-    renderer_classes = (JSONRenderer, )
-
+class UserEmailExist(generics.RetrieveAPIView):
     def get(self, request, email):
         user = models.CustomUser.objects.filter(email = email)
         if user:
@@ -25,9 +23,7 @@ class UserEmailExist(APIView):
         else:
             return Response("not exist")
 
-class UserNameExist(APIView):
-    renderer_classes = (JSONRenderer, )
-
+class UserNameExist(generics.RetrieveAPIView):
     def get(self, request, username):
         user = models.CustomUser.objects.filter(username = username)
         if user:
