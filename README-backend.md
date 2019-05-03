@@ -43,6 +43,8 @@ http://127.0.0.1:8000/api/accounts/signup/
 _________________________________________________________________
 
 -Check Existence of Username & Email
+
 http://127.0.0.1:8000/api/users/exists/username/[username]
+
 http://127.0.0.1:8000/api/users/exists/email/[email@email.com]
 
