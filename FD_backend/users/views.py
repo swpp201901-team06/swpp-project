@@ -1,26 +1,36 @@
 from rest_framework import generics, permissions
-
+from django.http import HttpResponse
+from rest_framework.renderers import JSONRenderer
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from . import models
 from . import serializers
 
-class UserListView(generics.ListCreateAPIView):
+class UserListView(generics.ListAPIView):
     queryset = models.CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
 
-class UpdateUsernicknamePublicStatus(generics.UpdateAPIView):
+class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
-    permission_classes = (permissions.IsAuthenticated,)
 
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        instance.nickname = request.data.get("nickname")
-        instance.publicStatus = request.data.get("publicStatus")
-        instance.save()
+class UserEmailExist(APIView):
+    renderer_classes = (JSONRenderer, )
 
-        serializer = self.get_serializer(instance)
-        serializer.is_valid(raise_exception = True)
-        self.perform_update(serializer)
+    def get(self, request, email):
+        user = models.CustomUser.objects.filter(email = email)
+        if user:
+            return Response("exist")
+        else:
+            return Response("not exist")
 
-        return Response(serializer.data)
+class UserNameExist(APIView):
+    renderer_classes = (JSONRenderer, )
+
+    def get(self, request, username):
+        user = models.CustomUser.objects.filter(username = username)
+        if user:
+            return Response("exist")
+        else:
+            return Response("not exist")

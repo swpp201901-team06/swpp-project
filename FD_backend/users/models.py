@@ -2,9 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
-    name = models.CharField(blank = True, max_length = 255)
-    email = models.EmailField(blank = False)
-    nickname = models.CharField(blank = True, max_length = 20)
+    id = models.AutoField(primary_key = True)
+    username = models.CharField(blank = False, max_length = 20, unique = True)
+    email = models.EmailField(blank = False, unique = True)
     publicStatus = models.BooleanField(default = False)
     is_admin = models.BooleanField(default = False)
 
