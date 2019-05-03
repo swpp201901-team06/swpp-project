@@ -39,3 +39,9 @@ http://127.0.0.1:8000/api/accounts/logout/
 -Sign up
 
 http://127.0.0.1:8000/api/accounts/signup/
+
+_________________________________________________________________
+
+http://127.0.0.1:8000/api/users/exists/username/[username]
+http://127.0.0.1:8000/api/users/exists/email/[email@email.com]
+
