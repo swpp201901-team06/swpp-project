@@ -3,6 +3,8 @@ import api from 'services/api'
 import * as actions from '../actions'
 import * as ACTIONTYPES from './actionTypes'
 
+const signInPath = "http://127.0.0.1:8000/api/rest-auth/login/"
+
 export function* signInAsync({email, password}) {
   console.log('store/SignInPage/sagas signInAsync 1')
   console.log(email)
@@ -18,7 +20,7 @@ export function* signInAsync({email, password}) {
     console.log('store/SignInPage/sagas signInAsync 4')
     console.log(data)
     console.log('store/SignInPage/sagas signInAsync 5')
-    const response = yield call(api.post, "http://127.0.0.1:8000/api/rest-auth/login/", data)
+    const response = yield call(api.post, signInPath, data)
     console.log('store/SignInPage/sagas signInAsync 6')
     console.log(response)
     console.log('store/SignInPage/sagas signInAsync 7')
