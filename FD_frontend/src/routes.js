@@ -12,6 +12,9 @@ const routes = (
     <Route path="/signin" component={App}>
       <IndexRoute component={SignInPage} />
     </Route>
+    <Route path="/signup" component={App}>
+      <IndexRoute component={HomePage} />
+    </Route>
   </div>
 )
 

@@ -1,4 +1,5 @@
 import {initialState} from './selectors'
+//import {baseHistory} from '../../index'
 
 console.log("store/SignInPage/reducer 1")
 console.log(initialState)

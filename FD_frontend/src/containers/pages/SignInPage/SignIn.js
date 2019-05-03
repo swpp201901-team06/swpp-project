@@ -1,6 +1,7 @@
 import {connect} from 'react-redux'
 import {gotoSignUp, requestSignIn} from '../../../store/SignInPage/actions'
 import SignIn from '../../../components/pages/SignInPage/molecules/SignIn'
+import {baseHistory} from '../../../index'
 
 const mapStateToProps = (state) => {
   console.log("containers/pages/SignInPage/SignIn mapStateToProps 1")
@@ -16,6 +17,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onClickSignUp: () => {
       console.log("containers/pages/SignInPage/SignIn mapDispatchToProps onClickSignUp 1")
+      baseHistory.push('/signup')
       dispatch(gotoSignUp())
     },
     onClickSignIn: (email, password) => {
