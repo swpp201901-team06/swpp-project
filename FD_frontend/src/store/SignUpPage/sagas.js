@@ -16,6 +16,27 @@ export function* watchSubmitRequest() {
   }
 }
 
+export function* duplicateCheck({ key, value }) {
+  let data;
+  try {
+      data = yield call(api.get, dcUrl+key+'/'+value);
+  }
+  catch (err) {
+      yield put(checkDataFailure(err));
+      return;
+  }
+  yield put(checkDataSuccess(data));
+  yield put(push('/'));
+}
+
+export function* watchDCRequest() {
+  while(true) {
+    const { key, value } = yield take(actions.DUPLICATE_CHECK_REQUEST)
+    yield call(duplicateCheck, { key, value })
+  }
+}
+
 export default function* () {
   yield fork(watchSubmitRequest)
+  yield fork(watchDCRequest)
 }
