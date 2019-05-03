@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { signUp } from '../../../components/pages/SignUpPage/molecules/signUp'
-import { emailCheck, nicknameCheck, signUpSubmit } from '../../../store/SignUpPage/actions'
+import { duplicateCheck, signUpSubmit } from '../../../store/SignUpPage/actions'
 
 const mapStateToProps = (state) => { 
     return {
@@ -10,11 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-    	onECheck: (email) => {
-        	dispatch(emailCheck(email))
-    	},
-    	onNCheck: (nickname) => {
-        	dispatch(nicknameCheck(nickname))
+    	onDuplicateCheck: (key, value) => {
+        	dispatch(duplicateCheck(key, value))
     	},
     	onSignUpSubmit: (email, pw, confirmpw, nickname) => {
         	dispatch(signUpSubmit(email, pw, confirmpw, nickname))

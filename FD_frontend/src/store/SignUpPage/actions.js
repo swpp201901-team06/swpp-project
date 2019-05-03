@@ -1,19 +1,13 @@
-let nextTodoId = 0
-export const EMAIL_CHECK_REQUEST = 'EMAIL_CHECK_REQUEST'
-export const NICKNAME_CHECK_REQUEST = 'NICKNAME_CHECK_REQUEST'
+export const DUPLICATE_CHECK_REQUEST = 'DUPLICATE_CHECK_REQUEST'
 export const SIGNUP_SUBMIT_REQUEST = 'SIGNUP_SUBMIT_REQUEST'
+export const CHECK_DATA_SUCCESS = 'CHECK_DATA_SUCESS'
+export const CHECK_DATA_FAILURE = 'CHECK_DATA_FAILURE'
 
-export const emailCheck = (email) => {
+export const duplicateCheck = (key, value) => {
     return {
-  type: EMAIL_CHECK_REQUEST,
-  email
-    }
-}
-
-export const nicknameCheck = (nickname) => {
-    return {
-  type: NICKNAME_CHECK_REQUEST,
-  nickname
+  type: DUPLICATE_CHECK_REQUEST,
+  key,
+  value
     }
 }
 
@@ -24,5 +18,20 @@ export const signUpSubmit = (email, pw, confirmpw, nickname) => {
     pw,
     confirmpw,
     nickname
+    }
+}
+
+export const checkDataSuccess = user => {
+    return {
+      type: CHECK_DATA_SUCCESS,
+      payload: user,
+    }
+}
+
+export const checkDataFailure = err => {
+    return {
+      type: CHECK_DATA_FAILTURE,
+      payload: err,
+      error: true,
     }
 }

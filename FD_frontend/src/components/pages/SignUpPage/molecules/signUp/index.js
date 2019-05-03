@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   color: ${palette('grayscale', 0)};
 `
 
-export const signUp = ({ statefunction, onEmailCheck, onNicknameCheck, onSignUpSubmit }) => {
+export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit }) => {
     console.log("start loading page");
     let email;
     let pw;
@@ -18,10 +18,10 @@ export const signUp = ({ statefunction, onEmailCheck, onNicknameCheck, onSignUpS
     let nickname;
 
     const onECheck = () => {
-      onEmailCheck(email.value);
+      onDuplicateCheck('email', email.value);
     };
     const onNCheck = () => {
-      onNicknameCheck(nickname.value);
+      onDuplicateCheck('nickname', nickname.value);
     };
     const onSubmit = () => {
       onSignUpSubmit(email.value, pw.value, confirmpw.value, nickname.value); 
@@ -31,16 +31,16 @@ export const signUp = ({ statefunction, onEmailCheck, onNicknameCheck, onSignUpS
     <div>
       <h4>Email{' '} 
       <input ref={node => {email = node;}} />{'  '}
-      <Button type="submit" onClick={onECheck}>Email Check</Button> </h4>
+      <DCButton type="submit" onClick={onECheck}>Email Check</DCButton> </h4>
       <h4>Password{' '}
       <input ref={node => {pw = node;}} /></h4>
       <h4>Confirm Password{' '}
       <input ref={node => {confirmpw = node;}} /></h4>
       <h4>Nickname{' '}
       <input ref={node => {nickname = node;}} />{'  '}
-      <Button type="submit" onClick={onNCheck}>Nickname Check</Button></h4>
+      <DCButton type="submit" onClick={onNCheck}>Nickname Check</DCButton></h4>
       <h4>
-      <Button type="submit" onClick={onSubmit}>Submit</Button></h4>
+      <SubmitButton type="submit" onClick={onSubmit}>Submit</SubmitButton></h4>
     </div>
   );
 };
