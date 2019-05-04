@@ -1,19 +1,25 @@
 from rest_framework import generics, permissions
 from FooDa.permissions import UserOnlyAccess,UserArchiveAccess
 
+from django.db.models import Count
+
+from django.http import Http404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
 from . import models
 from . import serializers
 
 class ReviewListView(generics.ListCreateAPIView):
-    queryset = models.Review.objects.all()
-    serializer_class = serializers.ReviewSerializer
-
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    serializer_class = serializers.ReviewSerializer
+    queryset = models.Review.objects.all()
 
     def perform_create(self, serializer):
         serializer.save(archive = self.request.user.Archive)
 
-
+        
 
 class ReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Review.objects.all()
@@ -21,6 +27,22 @@ class ReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                       UserArchiveAccess,)
+
+#TODO : this view should be modified because this view access db two time, and hits can be increased just push F5 button
+class ReviewHitsIncreaseView(generics.RetrieveUpdateAPIView):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                      )
+    serializer_class = serializers.ReviewSerializer
+    queryset = models.Review.objects.all()
+
+    def put(self, request, pk):
+        review = models.Review.objects.get(id = pk)
+        review.hits = review.hits + 1
+        serializer = serializers.ReviewSerializer(review, data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 #
 class ArchiveListView(generics.ListCreateAPIView):
@@ -32,12 +54,12 @@ class ArchiveListView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)
 
-class ArchiveDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = models.Archive.objects.all()
+class ArchiveVisitorIncreaseView(generics.UpdateAPIView):
     serializer_class = serializers.ArchiveSerializer
 
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-                      UserOnlyAccess,)
+                      )
+
 
 #Restaurant
 class RestaurantListView(generics.ListCreateAPIView):

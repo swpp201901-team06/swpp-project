@@ -4,9 +4,11 @@ from . import views
 urlpatterns = [
     path('reviewlist/', views.ReviewListView.as_view(), name = 'reviewlist'),
     path('reviewdetail/<int:pk>/', views.ReviewDetailView.as_view(), name = 'reviewdetail'),
+    path('reviewhit/<int:pk>/', views.ReviewHitsIncreaseView.as_view(), name = 'reviewhit'),
+
 
     path('archivelist/', views.ArchiveListView.as_view(), name = 'archivelist'),
-    path('archivedetail/<int:pk>/', views.ArchiveDetailView.as_view(), name = 'archivedetail'),
+    path('archivedetail/<str:username>/', views.ArchiveVisitorIncreaseView.as_view(), name = 'archivedetail'),
 
     path('restaurantlist/', views.RestaurantListView.as_view(), name = 'restaurantlist'),
     path('restaurantdetail/<int:pk>/', views.RestaurantDetailView.as_view(), name = 'restaurantdetail'),
