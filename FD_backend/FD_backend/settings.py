@@ -51,8 +51,8 @@ INSTALLED_APPS = [
 
     'users',
     'api',
-    'FooDa',
 
+    'FooDa',
     'hitcount',
 ]
 
@@ -79,10 +79,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_WHITElIST = [
+CORS_ORIGIN_WHITELIST = [
     'localhost:80',
     'localhost:8000',
-    '127.0.0.1:8000',
+    '127.0.0.1:8000'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
