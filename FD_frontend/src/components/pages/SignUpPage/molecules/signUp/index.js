@@ -21,7 +21,7 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit }) => {
       onDuplicateCheck('email', email.value);
     };
     const onNCheck = () => {
-      onDuplicateCheck('nickname', nickname.value);
+      onDuplicateCheck('username', nickname.value);
     };
     const onSubmit = () => {
       onSignUpSubmit(email.value, pw.value, confirmpw.value, nickname.value); 

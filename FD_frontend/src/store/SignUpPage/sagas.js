@@ -4,7 +4,7 @@ import api from 'services/api'
 import * as actions from './actions'
 
 const signUpUrl = 'http://127.0.0.1:8000/api/rest-auth/registration/'
-const dcUrl = 'http://127.0.0.1:8000/exists/'
+const dcUrl = 'http://127.0.0.1:8000/api/users/exists/'
 
 export function* submit({email, pw, confirmpw, nickname}) {
   console.log(email, pw, confirmpw, nickname)
@@ -20,7 +20,8 @@ export function* submit({email, pw, confirmpw, nickname}) {
   catch(err) {
     console.log(err);
   }
-  yield put(push('/'));
+  console.log("success!");
+  /*yield put(push('/'));*/
 }
 
 export function* watchSubmitRequest() {
@@ -35,7 +36,7 @@ export function* duplicateCheck({ key, value }) {
         value: value,
     }
     console.log("sending DC request");
-    const response = yield call(api.get, dcUrl+key+'/'+value+'/');
+    const response = yield call(api.get, dcUrl+key+'/'+value);
     console.log("checked!");
     yield put(actions.checkDataSuccess(data));
 
@@ -46,7 +47,6 @@ export function* duplicateCheck({ key, value }) {
   catch (err) {
     console.log("free to use");
     yield put(actions.checkDataFailure(err));
-    yield put(push('/'));
     return;
   }
 }
