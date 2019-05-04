@@ -30,7 +30,7 @@ export const checkDataSuccess = user => {
 
 export const checkDataFailure = err => {
     return {
-      type: CHECK_DATA_FAILTURE,
+      type: CHECK_DATA_FAILURE,
       payload: err,
       error: true,
     }
