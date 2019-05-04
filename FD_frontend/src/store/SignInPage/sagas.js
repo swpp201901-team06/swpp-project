@@ -4,7 +4,8 @@ import * as actions from '../actions'
 import * as ACTIONTYPES from './actionTypes'
 import {baseHistory} from '../../index'
 
-const signInPath = "http://127.0.0.1:8000/api/rest-auth/login/"
+const signInPath = 'http://127.0.0.1:8000/api/rest-auth/login/'
+const getNicknamePath = 'http://127.0.0.1:8000/api/users/get-nickname/'
 
 export function* signInAsync({email, password}) {
   console.log('store/SignInPage/sagas signInAsync 1')
@@ -26,9 +27,13 @@ export function* signInAsync({email, password}) {
     console.log(response)
     console.log(response.key)
     console.log('store/SignInPage/sagas signInAsync 7')
+    const nicknameResponse = yield call(api.post, getNicknamePath + email)
+    console.log('store/SignInPage/sagas signInAsync 7.1')
+    console.log(nicknameResponse)
+    console.log('store/SignInPage/sagas signInAsync 7.2')
     // TODO: push archive page link to baseHistory
     baseHistory.push('/signup')
-    yield put(actions.signInSuccess(response.key, email))
+    yield put(actions.signInSuccess(response.key, email, nicknameResponse.username))
     console.log('store/SignInPage/sagas signInAsync 8')
   } catch(e) {
     console.log('store/SignInPage/sagas signInAsync 9')

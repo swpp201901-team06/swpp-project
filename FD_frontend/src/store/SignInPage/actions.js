@@ -26,7 +26,7 @@ export const signInFailed = () => {
   }
 }
 
-export const signInSuccess = (token, email) => {
+export const signInSuccess = (token, email, nickname) => {
   console.log("store/SignInPage/actions signInSuccess 1")
   console.log(token)
   console.log("store/SignInPage/actions signInSuccess 2")
@@ -34,5 +34,6 @@ export const signInSuccess = (token, email) => {
     type: ACTIONTYPES.SIGN_IN_SUCCESS,
     token: token,
     email: email,
+    nickname: nickname,
   }
 }

@@ -26,6 +26,7 @@ const signInReducer = (state = initialState, action) => {
         ...state,
         email: action.email,
         token: action.token,
+        nickname: action.nickname,
         signInFailed: false,
         isLoggedIn: true,
       }
