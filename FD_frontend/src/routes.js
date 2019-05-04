@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
 import App from 'components/App'
-import { HomePage, SignInPage } from 'components'
+import { HomePage, SignInPage, ArchivePage } from 'components'
 
 // TODO: need to process link for archive page
 const routes = (
@@ -11,6 +11,7 @@ const routes = (
       <IndexRoute component={HomePage} />
       <Route path="signin" component={SignInPage} />
       <Route path="signup" component={HomePage} />
+      <Route path=":nickname/archive" component={ArchivePage} />
     </Route>
   </div>
 )

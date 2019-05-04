@@ -1,13 +1,13 @@
 import React from 'react'
+import TempMolecule from '../../../containers/pages/ArchivePage/TempMolecule'
 
-const ArchivePage = ({nickname}) => {
-  console.log("components/pages/ArchivePage/index 1")
-  console.log(nickname)
-  console.log("components/pages/ArchivePage/index 2")
+const ArchivePage = ({ownProps}) => {
+  console.log('components/pages/ArchivePage/index ArchivePage 1')
+  console.log(ownProps)
+  console.log('components/pages/ArchivePage/index ArchivePage 2')
   return (
     <div>
-      {nickname}
-      '\'s Archive'
+      <TempMolecule />
     </div>
   )
 }
