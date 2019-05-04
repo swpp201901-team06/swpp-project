@@ -16,12 +16,11 @@ export function* submit({email, pw, confirmpw, nickname}) {
       nickname: nickname,
     }
     const response = yield call(api.post, signUpUrl, {email: email, password1: pw, password2: confirmpw, username: nickname})
+    yield put(push('/'));
   }
   catch(err) {
     console.log(err);
   }
-  console.log("success!");
-  /*yield put(push('/'));*/
 }
 
 export function* watchSubmitRequest() {
