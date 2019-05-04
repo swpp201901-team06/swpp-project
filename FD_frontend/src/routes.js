@@ -9,12 +9,9 @@ const routes = (
   <div>
     <Route path="/" component={App}>
       <IndexRoute component={HomePage} />
-    </Route>
-    <Route path="/signin" component={App}>
-      <IndexRoute component={SignInPage} />
-    </Route>
-    <Route path="/signup" component={App}>
-      <IndexRoute component={HomePage} />
+      <Route path="signin" component={SignInPage} />
+      <Route path="signup" component={HomePage} />
+
     </Route>
   </div>
 )
