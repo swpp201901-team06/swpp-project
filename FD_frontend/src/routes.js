@@ -11,7 +11,6 @@ const routes = (
       <IndexRoute component={HomePage} />
       <Route path="signin" component={SignInPage} />
       <Route path="signup" component={HomePage} />
-
     </Route>
   </div>
 )
