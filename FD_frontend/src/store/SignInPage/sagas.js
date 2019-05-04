@@ -2,6 +2,7 @@ import { takeEvery, all, take, put, call, fork } from 'redux-saga/effects'
 import api from 'services/api'
 import * as actions from '../actions'
 import * as ACTIONTYPES from './actionTypes'
+import {baseHistory} from '../../index'
 
 const signInPath = "http://127.0.0.1:8000/api/rest-auth/login/"
 
@@ -23,8 +24,11 @@ export function* signInAsync({email, password}) {
     const response = yield call(api.post, signInPath, data)
     console.log('store/SignInPage/sagas signInAsync 6')
     console.log(response)
+    console.log(response.key)
     console.log('store/SignInPage/sagas signInAsync 7')
-    yield put(actions.signInSuccess("test_token"))
+    // TODO: push archive page link to baseHistory
+    // baseHistory.push(link)
+    yield put(actions.signInSuccess(response.key, email))
     console.log('store/SignInPage/sagas signInAsync 8')
   } catch(e) {
     console.log('store/SignInPage/sagas signInAsync 9')

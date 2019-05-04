@@ -26,12 +26,13 @@ export const signInFailed = () => {
   }
 }
 
-export const signInSuccess = (token) => {
+export const signInSuccess = (token, email) => {
   console.log("store/SignInPage/actions signInSuccess 1")
   console.log(token)
   console.log("store/SignInPage/actions signInSuccess 2")
   return {
     type: ACTIONTYPES.SIGN_IN_SUCCESS,
     token: token,
+    email: email,
   }
 }
