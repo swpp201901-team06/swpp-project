@@ -11,69 +11,43 @@ const Wrapper = styled.div`
 `
 
 const SignIn = ({isLoggedIn, signInFailed, nickname, onClickSignUp, onClickSignIn}) => {
-  console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 1")
-  console.log(isLoggedIn)
-  console.log(signInFailed)
-  console.log(onClickSignUp)
-  console.log(onClickSignIn)
-  console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 2")
   let emailField
   let passwordField
 
   const onClickSignUpButton = () => {
-    console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignUpButton 1")
     baseHistory.push('/signup')
     onClickSignUp()
   }
 
   const onClickSignInButton = () => {
-    console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignInButton 1")
-    console.log(emailField)
-    console.log(emailField.value)
-    console.log(passwordField)
-    console.log(passwordField.value)
-    console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignInButton 2")
     if (emailField !== undefined && emailField.value !== '' &&
       passwordField !== undefined && passwordField.value !== '') {
 
-      console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignInButton 3")
       onClickSignIn(emailField.value, passwordField.value)
     } else {
-      console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignInButton 4")
       if (emailField == undefined || emailField.value == '') {
-        console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignInButton 5")
         alert('Please enter your email address.')
       }
       else if (passwordField == undefined || passwordField.value == '') {
-        console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignInButton 6")
         alert('Please enter your password.')
       }
     }
   }
 
-  console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 3")
   if (isLoggedIn) {
-    console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 3.1")
     baseHistory.push('/' + nickname + '/archive')
     return (<div/>)
   }
-  console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 3.2")
   // TODO: use `SignInButton` and `SignUpButton` instead of `button`
   return (
     <div>
       Email address
       <input ref={node => {
-        console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 4")
-        console.log(node)
-        console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 5")
         emailField = node
       }}/>
       <br/>
       Password
       <input ref={node => {
-        console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 6")
-        console.log(node)
-        console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 7")
         passwordField = node
       }}/>
       <br/>
