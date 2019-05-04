@@ -38,6 +38,16 @@ const SignIn = ({isLoggedIn, signInFailed, onClickSignUp, onClickSignIn}) => {
 
       console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignInButton 3")
       onClickSignIn(emailField.value, passwordField.value)
+    } else {
+      console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignInButton 4")
+      if (emailField == undefined || emailField.value == '') {
+        console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignInButton 5")
+        alert('Please enter your email address.')
+      }
+      else if (passwordField == undefined || passwordField.value == '') {
+        console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignInButton 6")
+        alert('Please enter your password.')
+      }
     }
   }
 
@@ -48,6 +58,7 @@ const SignIn = ({isLoggedIn, signInFailed, onClickSignUp, onClickSignIn}) => {
     return (<div/>)
   }
   console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 3.2")
+  // TODO: use `SignInButton` and `SignUpButton` instead of `button`
   return (
     <div>
       Email address
@@ -66,8 +77,8 @@ const SignIn = ({isLoggedIn, signInFailed, onClickSignUp, onClickSignIn}) => {
         passwordField = node
       }}/>
       <br/>
-      <SignUpButton type="submit" onClick={onClickSignUpButton}>(Sign Up)</SignUpButton>
-      <SignInButton type="submit" onClick={onClickSignInButton}>(Sign In)</SignInButton>
+      <button type="submit" onClick={onClickSignUpButton}>Sign Up</button>
+      <button type="submit" onClick={onClickSignInButton}>Sign In</button>
       <br />
       {signInFailed ? 'Sign in Failed' : ''}
     </div>
