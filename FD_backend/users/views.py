@@ -1,26 +1,41 @@
 from rest_framework import generics, permissions
-
+from django.http import HttpResponse
+from rest_framework.renderers import JSONRenderer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 
 from . import models
 from . import serializers
 
-class UserListView(generics.ListCreateAPIView):
+class UserListView(generics.ListAPIView):
     queryset = models.CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
 
-class UpdateUsernicknamePublicStatus(generics.UpdateAPIView):
+class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
-    permission_classes = (permissions.IsAuthenticated,)
 
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        instance.nickname = request.data.get("nickname")
-        instance.publicStatus = request.data.get("publicStatus")
-        instance.save()
+class GetUserName(APIView):
+    def get(self, request, email):
+        user = get_object_or_404(models.CustomUser, email = email)
+        content = {'username' : user.username}
+        return Response(content)
 
-        serializer = self.get_serializer(instance)
-        serializer.is_valid(raise_exception = True)
-        self.perform_update(serializer)
+class UserEmailExist(generics.RetrieveAPIView):
+    renderer_classes = (JSONRenderer, )
 
-        return Response(serializer.data)
+    def get(self, request, email):
+        user = models.CustomUser.objects.filter(email = email)
+        if user:
+            return Response("exist")
+        else:
+            return Response("not exist")
+
+class UserNameExist(generics.RetrieveAPIView):
+    def get(self, request, username):
+        user = models.CustomUser.objects.filter(username = username)
+        if user:
+            return Response("exist")
+        else:
+            return Response("not exist")
