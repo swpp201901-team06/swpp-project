@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   color: ${palette('grayscale', 0)};
 `
 
-const SignIn = ({isLoggedIn, signInFailed, onClickSignUp, onClickSignIn}) => {
+const SignIn = ({isLoggedIn, signInFailed, nickname, onClickSignUp, onClickSignIn}) => {
   console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 1")
   console.log(isLoggedIn)
   console.log(signInFailed)
@@ -54,7 +54,7 @@ const SignIn = ({isLoggedIn, signInFailed, onClickSignUp, onClickSignIn}) => {
   console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 3")
   if (isLoggedIn) {
     console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 3.1")
-    baseHistory.push('/signup') // TODO: must redirect to archivepage
+    baseHistory.push('/' + nickname + '/archive')
     return (<div/>)
   }
   console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 3.2")

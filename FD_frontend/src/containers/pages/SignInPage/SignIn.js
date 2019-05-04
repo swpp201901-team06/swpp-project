@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.SignInPage.isLoggedIn,
     signInFailed: state.SignInPage.signInFailed,
+    nickname: state.SignInPage.nickname,
   }
 }
 

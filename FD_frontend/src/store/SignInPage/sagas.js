@@ -31,8 +31,7 @@ export function* signInAsync({email, password}) {
     console.log('store/SignInPage/sagas signInAsync 7.1')
     console.log(nicknameResponse)
     console.log('store/SignInPage/sagas signInAsync 7.2')
-    // TODO: push archive page link to baseHistory
-    baseHistory.push('/signup')
+    baseHistory.push('/' + nicknameResponse.username + '/archive')
     yield put(actions.signInSuccess(response.key, email, nicknameResponse.username))
     console.log('store/SignInPage/sagas signInAsync 8')
   } catch(e) {
