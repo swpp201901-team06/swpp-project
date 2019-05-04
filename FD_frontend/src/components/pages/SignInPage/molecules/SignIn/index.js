@@ -3,14 +3,17 @@ import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
 import SignInButton from '../../atoms/SignInButton/index'
 import SignUpButton from '../../atoms/SignUpButton/index'
+import {baseHistory} from '../../../../../index'
 
 const Wrapper = styled.div`
   font-family: ${font('primary')};
   color: ${palette('grayscale', 0)};
 `
 
-const SignIn = ({onClickSignUp, onClickSignIn}) => {
+const SignIn = ({isLoggedIn, signInFailed, onClickSignUp, onClickSignIn}) => {
   console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 1")
+  console.log(isLoggedIn)
+  console.log(signInFailed)
   console.log(onClickSignUp)
   console.log(onClickSignIn)
   console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 2")
@@ -19,6 +22,7 @@ const SignIn = ({onClickSignUp, onClickSignIn}) => {
 
   const onClickSignUpButton = () => {
     console.log("components/pages/SignInPage/molecules/SignIn/index SignIn onClickSignUpButton 1")
+    baseHistory.push('/signup')
     onClickSignUp()
   }
 
@@ -38,6 +42,12 @@ const SignIn = ({onClickSignUp, onClickSignIn}) => {
   }
 
   console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 3")
+  if (isLoggedIn) {
+    console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 3.1")
+    baseHistory.push('/signup') // TODO: must redirect to archivepage
+    return (<div/>)
+  }
+  console.log("components/pages/SignInPage/molecules/SignIn/index SignIn 3.2")
   return (
     <div>
       Email address
@@ -58,6 +68,8 @@ const SignIn = ({onClickSignUp, onClickSignIn}) => {
       <br/>
       <SignUpButton type="submit" onClick={onClickSignUpButton}>(Sign Up)</SignUpButton>
       <SignInButton type="submit" onClick={onClickSignInButton}>(Sign In)</SignInButton>
+      <br />
+      {signInFailed ? 'Sign in Failed' : ''}
     </div>
   )
 }

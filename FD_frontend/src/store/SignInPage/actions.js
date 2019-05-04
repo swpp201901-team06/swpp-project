@@ -22,7 +22,7 @@ export const requestSignIn = (email, password) => {
 export const signInFailed = () => {
   console.log("store/SignInPage/actions signInFailed 1")
   return {
-    return: ACTIONTYPES.SIGN_IN_FAILED,
+    type: ACTIONTYPES.SIGN_IN_FAILED,
   }
 }
 

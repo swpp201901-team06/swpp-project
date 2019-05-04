@@ -6,8 +6,12 @@ import {baseHistory} from '../../../index'
 const mapStateToProps = (state) => {
   console.log("containers/pages/SignInPage/SignIn mapStateToProps 1")
   console.log(state)
+  console.log(state.SignInPage)
   console.log("containers/pages/SignInPage/SignIn mapStateToProps 2")
-  return {}
+  return {
+    isLoggedIn: state.SignInPage.isLoggedIn,
+    signInFailed: state.SignInPage.signInFailed,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -17,7 +21,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onClickSignUp: () => {
       console.log("containers/pages/SignInPage/SignIn mapDispatchToProps onClickSignUp 1")
-      baseHistory.push('/signup')
       dispatch(gotoSignUp())
     },
     onClickSignIn: (email, password) => {
