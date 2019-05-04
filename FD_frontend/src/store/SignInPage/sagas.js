@@ -27,7 +27,7 @@ export function* signInAsync({email, password}) {
     console.log(response)
     console.log(response.key)
     console.log('store/SignInPage/sagas signInAsync 7')
-    const nicknameResponse = yield call(api.post, getNicknamePath + email)
+    const nicknameResponse = yield call(api.get, getNicknamePath + email)
     console.log('store/SignInPage/sagas signInAsync 7.1')
     console.log(nicknameResponse)
     console.log('store/SignInPage/sagas signInAsync 7.2')
