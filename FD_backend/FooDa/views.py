@@ -8,8 +8,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+from rest_framework.renderers import JSONRenderer
+from django.shortcuts import get_object_or_404
+
 from . import models
 from . import serializers
+from users.models import CustomUser
+
 
 class ReviewListView(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
@@ -19,7 +24,7 @@ class ReviewListView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(archive = self.request.user.Archive)
 
-        
+
 
 class ReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Review.objects.all()
@@ -27,6 +32,17 @@ class ReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                       UserArchiveAccess,)
+
+#TODO : this view should be modified becauser this view access db too much, you should using related
+class myReviewList(APIView):
+    def get(self, request, username) :
+        user = get_object_or_404(CustomUser, username = username)
+        archive = get_object_or_404(models.Archive, user = user)
+        queryset = archive.review_archive.all()
+        serializer_class = serializers.ReviewSerializer(queryset, many = True)
+        return Response(serializer_class.data)
+
+
 
 #TODO : this view should be modified because this view access db two time, and hits can be increased just push F5 button
 class ReviewHitsIncreaseView(generics.RetrieveUpdateAPIView):
