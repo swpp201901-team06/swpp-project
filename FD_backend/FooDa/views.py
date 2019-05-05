@@ -8,9 +8,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+#tag
+from tagging.models import Tag, TaggedItem
+
+
 from rest_framework.renderers import JSONRenderer
 from django.shortcuts import get_object_or_404
 
+#custom
 from . import models
 from . import serializers
 from users.models import CustomUser
@@ -88,13 +93,24 @@ class RestaurantDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.RestaurantSerializer
 
 #Tag
-class TagListView(generics.ListCreateAPIView):
-    queryset = models.Tag.objects.all()
+
+class TagList(generics.ListCreateAPIView):
+    queryset = Tag.objects.all()
     serializer_class = serializers.TagSerializer
 
-class TagDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = models.Tag.objects.all()
-    serializer_class = serializers.TagSerializer
+class TaggedItemList(generics.ListCreateAPIView):
+    queryset = TaggedItem.objects.all()
+    serializer_class = serializers.TaggedItemSerializer
+
+class TagFilter(APIView):
+    def get(self, request, tag_id):
+        tag = get_object_or_404(Tag, pk = tag_id)
+        review_list = models.Review.objects.all() \
+                        .filter(tags__iregex=r'\b%s\b' % tag)
+
+        serializer = serializers.ReviewSerializer(review_list, many = True)
+
+        return Response(serializer.data)
 
 #GuestComment
 class GuestCommentListView(generics.ListCreateAPIView):
@@ -121,12 +137,3 @@ class WeeklyRankingListView(generics.ListCreateAPIView):
 class WeeklyRankingDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.WeeklyRanking.objects.all()
     serializer_class = serializers.WeeklyRankingSerializer
-
-#TagReview
-#class TagReviewListView(generics.ListCreateAPIView):
-#    queryset = models.TagReview.objects.all()
-#    serializer_class = serializers.TagReviewSerializer
-
-#class TagReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
-#    queryset = models.TagReview.objects.all()
-#    serializer_class = serializers.TagReviewSerializer

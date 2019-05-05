@@ -1,16 +1,23 @@
 from rest_framework import serializers
 from . import models
 
+from tagging.models import Tag, TaggedItem
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = '__all__'
+
+class TaggedItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TaggedItem
+        fields = '__all__'
+
 
 class ReviewSerializer(serializers.ModelSerializer):
     archive = serializers.ReadOnlyField(source='archive.user.username') #source?
     hits = serializers.ReadOnlyField() #source?
-
-    tags = serializers.SlugRelatedField(
-        many = True,
-        queryset = models.Tag.objects.all(),
-        slug_field = 'tagName',
-    )
 
     class Meta:
         model = models.Review
@@ -32,17 +39,6 @@ class RestaurantSerializer(serializers.ModelSerializer):
         model = models.Restaurant
         fields = ('rName', 'rAddress')
 
-
-class TagSerializer(serializers.ModelSerializer):
-    reviews = serializers.SlugRelatedField(
-        many = True,
-        read_only = True,
-        slug_field = 'slug',
-    )
-    class Meta:
-        model = models.Tag
-        fields = ('tagName', 'referedCount', 'reviews')
-
 class GuestCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.GuestComment
@@ -53,8 +49,3 @@ class WeeklyRankingSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.WeeklyRanking
         fields = ('week', 'users', 'reviews', 'tags')
-
-#class TagReviewSerializer(serializers.ModelSerializer):
-#    class Meta:
-#        model = models.TagReview
-#        fields = ('tagName', 'ReviewId')
