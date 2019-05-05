@@ -2,18 +2,16 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
 import App from 'components/App'
-import { MainPage,SigninPage,GuestPage } from 'components'
+import { MainPage, SignInPage, GuestPage, ArchivePage } from 'components'
 
 const routes = (
   <div>
     <Route path="/" component={App}>
       <IndexRoute component={MainPage} />
-    </Route>
-    <Route path="/signin" component={App}>
-      <IndexRoute component={SigninPage} />
-    </Route>
-    <Route path="/guest" component={App}>
-      <IndexRoute component={GuestPage} />
+      <Route path="guest" component={GuestPage}>
+      <Route path="signin" component={SignInPage} />
+      <Route path="signup" component={HomePage} />
+      <Route path=":nickname/archive" component={ArchivePage} />
     </Route>
   </div>
 )

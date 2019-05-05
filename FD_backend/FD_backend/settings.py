@@ -37,9 +37,39 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+
+
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'rest_auth.registration',
+
+    'users',
+    'api',
+
+    'FooDa',
+    'hitcount',
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SITE_ID = 1
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+
+REST_AUTH_SERIALIZERS = {
+'USER_DETAILS_SERIALIZER':'users.serializers.UserSerializer',
+}
+
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,6 +78,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = [
+    'localhost:80',
+    'localhost:8000',
+    '127.0.0.1:8000'
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'FD_backend.urls'
 
@@ -118,3 +156,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/api/accounts/logout/'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/api/accounts/login/'
+
+AUTHENTICATION_BACKENDS = (
+
+    "django.contrib.auth.backends.ModelBackend",
+
+    "allauth.account.auth_backends.AuthenticationBackend",
+
+)
+
+
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
