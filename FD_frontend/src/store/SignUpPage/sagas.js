@@ -36,16 +36,22 @@ export function* duplicateCheck({ key, value }) {
     }
     console.log("sending DC request");
     const response = yield call(api.get, dcUrl+key+'/'+value);
-    console.log("checked!");
-    yield put(actions.checkDataSuccess(data));
 
     if(response == "exist"){
-    console.log("already exists");
+      console.log("already exists");
+      yield put(actions.duplicateFound(key));
+      return;
+    }
+    else if(response == "not exist"){
+      console.log("does not exist");
+      yield put(actions.noDuplicateFound(key));
+      return;
     }
   }
   catch (err) {
     console.log("free to use");
-    yield put(actions.checkDataFailure(err));
+    /*yield put(actions.checkDataFailure(err));*/
+    yield put(actions.noDuplicateFound(key));
     return;
   }
 }

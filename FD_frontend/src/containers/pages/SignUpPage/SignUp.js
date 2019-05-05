@@ -15,7 +15,10 @@ const mapDispatchToProps = (dispatch) => {
     	},
     	onSignUpSubmit: (email, pw, confirmpw, nickname) => {
         	dispatch(signUpSubmit(email, pw, confirmpw, nickname))
-    	}
+    	},
+      handleChange: (key, value) => {
+        dispatch(duplicateCheck(key, value))
+      }
     }
 }
 
