@@ -12,12 +12,10 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) => {
     return {
         onClickSignin: () => {
-            console.log("si")
             baseHistory.push('/signin')
             dispatch(goToSignin())
         },
         onClickGuest: () => {
-            console.log("gu")
             baseHistory.push('/guest')
             dispatch(goToGuest())
         }
