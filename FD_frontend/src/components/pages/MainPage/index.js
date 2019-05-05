@@ -1,5 +1,5 @@
 import React from 'react'
-import Main from './Molecules/Main'
+import Main from '../../../containers/MainPage/Main'
 
 import { PageTemplate, Header, Hero, Footer, FeatureList } from 'components'
 

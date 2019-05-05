@@ -8,18 +8,24 @@ const Wrapper = styled.div`
   color: ${palette('grayscale', 0)};
 `
 
-const Main = ({ statefunction, onClickSignIn, onClickGuest }) => {
+export const Main = ({ statefunction, onClickSignin, onClickGuest }) => {
+  const onSignin = () => {
+    console.log("si_mol");
+    onClickSignin();
+  };
+  const onGuest = () => {
+    console.log("gu_mol");
+    onClickGuest();
+  };
   return (
     <div>
-      <MainButton type="signin" onClick={onClickSignIn}>로그인</MainButton>
-      <MainButton type="guest" onClick={onClickGuest}>게스트</MainButton>
+      <MainButton type="signin" onClick={onSignin}>로그인</MainButton>
+      <MainButton type="guest" onClick={onGuest}>게스트</MainButton>
     </div>
-  )
+  );
 }
 
 Main.propTypes = {
   reverse: PropTypes.bool,
   children: PropTypes.node,
 }
-
-export default Main
