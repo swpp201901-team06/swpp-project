@@ -1,58 +1,63 @@
 from django.db import models
 from users.models import CustomUser
+import re
 
 class Archive(models.Model):
-    user = models.OneToOneField(CustomUser, related_name = 'Archive', on_delete = models.CASCADE)
-    visitorCount = models.IntegerField()
+    user = models.OneToOneField(CustomUser, related_name = 'Archive', primary_key = True, on_delete = models.CASCADE)
+    visitorCount = models.IntegerField(default = 0)
 
 class Restaurant(models.Model):
+    id = models.AutoField(primary_key = True)
     rName = models.CharField(max_length = 20)
     rAddress = models.TextField()
 
 class Tag(models.Model):
-    tagName = models.CharField(max_length = 10, unique = True, null = False)
-    referedCount = models.IntegerField()
+    tagName = models.CharField(max_length = 10, unique = True, null = False, primary_key = True)
+    referedCount = models.IntegerField(default = 0)
+
+    def __str__(self):
+        return 'Tag[tagName : {tagName}]'.format(tagName = self.tagName)
 
 
 class GuestComment(models.Model):
     user = models.OneToOneField(CustomUser, related_name = 'guest_user', on_delete = models.CASCADE)
-    createdTime = models.DateTimeField()
+    createdTime = models.DateTimeField(auto_now_add = True)
     content = models.TextField()
+    id = models.AutoField(primary_key = True)
 
 
 class Review(models.Model):
+    slug = models.SlugField(unique = True)
+    url = models.URLField()
     content = models.TextField()
-    eatWhen = models.DateTimeField()
+    eatWhen = models.DateTimeField(blank = True,)
     postTime = models.DateTimeField(auto_now_add = True)
     publicStatus = models.BooleanField(default = False)
-    score = models.IntegerField()
+    score = models.IntegerField(blank = True,)
     restaurantId = models.ForeignKey(Restaurant, on_delete = models.CASCADE)
     archive = models.ForeignKey(Archive, related_name = 'review_archive', on_delete = models.CASCADE)
-    hits = models.IntegerField()
-    tag1 = models.ForeignKey(Tag, related_name = 'review_tag1', on_delete = models.CASCADE, default = -1)
-    tag2 = models.ForeignKey(Tag, related_name = 'review_tag2', on_delete = models.CASCADE, default = -1)
-    tag3 = models.ForeignKey(Tag, related_name = 'review_tag3', on_delete = models.CASCADE, default = -1)
-    tag4 = models.ForeignKey(Tag, related_name = 'review_tag4', on_delete = models.CASCADE, default = -1)
-    tag5 = models.ForeignKey(Tag, related_name = 'review_tag5', on_delete = models.CASCADE, default = -1)
+    hits = models.IntegerField(default = 0)
+    tags = models.ManyToManyField(Tag, blank = True, related_name = 'review_tags', default = -1)
+    id = models.AutoField(primary_key = True)
 
+    def tag_save(self):
+        tag_list = re.findall(r'#(\w+)\b', self.content)
 
+        if not tag_list:
+            return
+
+        for t in tag_list:
+            tag, tag_created = Tag.objects.get_or_create(name = t)
+            self.tags.add(tag)
 
 class WeeklyRanking(models.Model):
-    week = models.IntegerField()
-    user1 = models.ForeignKey(CustomUser, related_name = 'ranking_user1', on_delete = models.CASCADE)
-    user3 = models.ForeignKey(CustomUser, related_name = 'ranking_user2', on_delete = models.CASCADE)
-    user2 = models.ForeignKey(CustomUser, related_name = 'ranking_user3', on_delete = models.CASCADE)
-    user4 = models.ForeignKey(CustomUser, related_name = 'ranking_user4', on_delete = models.CASCADE)
-    user5 = models.ForeignKey(CustomUser, related_name = 'ranking_user5', on_delete = models.CASCADE)
-    review1 = models.ForeignKey(Review, related_name = 'ranking_review1', on_delete = models.CASCADE)
-    review2 = models.ForeignKey(Review, related_name = 'ranking_review2', on_delete = models.CASCADE)
-    review3 = models.ForeignKey(Review, related_name = 'ranking_review3', on_delete = models.CASCADE)
-    tag1 = models.ForeignKey(Tag, related_name = 'ranking_tag1', on_delete = models.CASCADE)
-    tag2 = models.ForeignKey(Tag, related_name = 'ranking_tag2', on_delete = models.CASCADE)
-    tag3 = models.ForeignKey(Tag, related_name = 'ranking_tag3', on_delete = models.CASCADE)
-    tag4 = models.ForeignKey(Tag, related_name = 'ranking_tag4', on_delete = models.CASCADE)
+    week = models.IntegerField(primary_key = True)
+    users = models.ManyToManyField(CustomUser, related_name = 'ranking_users')
+    reviews = models.ManyToManyField(Review, related_name = 'ranking_reviews')
+    tags = models.ManyToManyField(Tag, related_name = 'ranking_tags')
 
 
-class TagReview(models.Model):
-    TagName = models.OneToOneField(Tag, related_name = 'Tagname_tag', on_delete = models.CASCADE)
-    ReviewId = models.OneToOneField(Review, related_name = 'ReviewId_review', on_delete = models.CASCADE)
+#class TagReview(models.Model):
+#    TagName = models.OneToOneField(Tag, related_name = 'Tagname_tag', on_delete = models.CASCADE)
+#    ReviewId = models.OneToOneField(Review, related_name = 'ReviewId_review', on_delete = models.CASCADE)
+#    id = models.AutoField(primary_key = True) #temp
