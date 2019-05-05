@@ -15,12 +15,10 @@ const signUpReducer = (state = initialState, action) => {
         }
       }
       else if(dataType == 'username'){
-        return [
+        return {
                 ...state,
-                {
-                  usernameText: 'Username is already in use.'
-                }
-        ]
+                usernameText: 'Username is already in use.'
+        }
       }
     case 'DUPLICATE_NONEXISTENCE':
       if(dataType == 'email'){
@@ -30,12 +28,10 @@ const signUpReducer = (state = initialState, action) => {
         }
       }
       else if(dataType == 'username'){
-        return [
+        return {
                 ...state,
-                {
-                  usernameText: 'Username is free to use.'
-                }
-        ]
+                usernameText: 'Username is free to use.'
+        }
       }
     default:
         return state
