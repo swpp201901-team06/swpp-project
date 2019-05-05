@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
-import {gotoSignUp, requestSignIn} from '../../../store/SignInPage/actions'
-import SignIn from '../../../components/pages/SignInPage/molecules/SignIn'
-import {baseHistory} from '../../../index'
+import {gotoSignUp, requestSignIn} from '../../store/SignInPage/actions'
+import SignIn from '../../components/pages/SignInPage/molecules/SignIn'
+import {baseHistory} from '../../index'
 
 const mapStateToProps = (state) => {
   return {
