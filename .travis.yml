@@ -2,6 +2,7 @@ dist: xenial
 language : python
 
 before_script:
+        - cd FD_backend
         - python3 manage.py makemigrations users
         - python3 manage.py makemigrations FooDa
         - python3 manage.py migrate
@@ -11,11 +12,11 @@ install:
         - pip install djangorestframework
         - pip install coverage
         - pip install requests
-        - pip install taggit
-        - pip install hitcount  
-        - pip install tagging 
-        - pip install allauth  
-
+        - pip install django-cors-headers
+        - pip install django-tagging
+        - pip install django-hitcount
+        - pip install django-rest-auth
+        - pip install django-allauth  
 script :
         - python3 manage.py runserver&
         - sleep 3
