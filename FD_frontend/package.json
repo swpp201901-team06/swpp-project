@@ -7,6 +7,7 @@
     "env:dev": "cross-env NODE_ENV=development",
     "env:prod": "cross-env NODE_ENV=production",
     "test": "jest",
+    "test:watch": "npm test -- --watch",
     "coverage": "npm test -- --coverage",
     "postcoverage": "opn coverage/lcov-report/index.html",
     "lint": "eslint src src-clean test .storybook webpack.config.js",
@@ -31,11 +32,16 @@
       "^(store|\\.\\.)\\/selectors$": "<rootDir>/test/selectorsMock.js",
       "^(store|\\.\\.)\\/actions$": "<rootDir>/test/actionsMock.js"
     },
-    "setupFiles": ["jest-localstorage-mock"]
+    "setupFiles": [
+      "./__setups__/localstorage.js",
+      "jest-localstorage-mock"
+    ]
   },
   "devDependencies": {
+    "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
     "@kadira/storybook": "^2.35.2",
     "@webpack-blocks/dev-server2": "^0.4.0",
     "@webpack-blocks/webpack2": "^0.4.0",
@@ -62,7 +68,7 @@
     "happypack": "^3.0.3",
     "html-webpack-plugin": "^2.26.0",
     "jest": "^24.8.0",
-    "jest-cli": "^19.0.0",
+    "jest-cli": "^24.8.0",
     "jest-localstorage-mock": "^2.4.0",
     "opn-cli": "^3.1.0",
     "raw-loader": "^0.5.1",

@@ -1,4 +1,5 @@
-import 'jest-localstorage-mock'
+import React from 'react'
+require('jest-localstorage-mock')
 
 test('should save to localStorage', () => {
   const KEY = 'test_key'
