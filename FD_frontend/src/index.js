@@ -12,7 +12,7 @@ import routes from 'routes'
 
 export const baseHistory = useRouterHistory(createHistory)({ basename: process.env.PUBLIC_PATH })
 const store = configureStore({}, baseHistory)
-const history = syncHistoryWithStore(baseHistory, store)
+export const history = syncHistoryWithStore(baseHistory, store)
 const root = document.getElementById('app')
 
 const renderApp = () => (

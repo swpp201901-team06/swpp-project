@@ -11,6 +11,7 @@ const signInReducer = (state = initialState, action) => {
     case ACTIONTYPES.SIGN_IN_SUCCESS:
       localStorage.setItem('token', JSON.stringify(action.token))
       localStorage.setItem('email', JSON.stringify(action.email))
+      localStorage.setItem('nickname', JSON.stringify(action.nickname))
       return {
         ...state,
         email: action.email,
