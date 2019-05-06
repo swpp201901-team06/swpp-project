@@ -24,29 +24,6 @@ export const signUpSubmit = (email, pw, confirmpw, nickname) => {
     }
 }
 
-export const handleChange = (key, value) => {
-  return {
-    type: HANDLE_CHANGE,
-    key,
-    value
-  }
-}
-
-export const checkDataSuccess = user => {
-    return {
-      type: CHECK_DATA_SUCCESS,
-      payload: user,
-    }
-}
-
-export const checkDataFailure = err => {
-    return {
-      type: CHECK_DATA_FAILURE,
-      payload: err,
-      error: true,
-    }
-}
-
 export const noDuplicateFound = (key) => {
   return {
     type: DUPLICATE_NONEXISTENCE,
