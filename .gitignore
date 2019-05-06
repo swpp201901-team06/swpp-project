@@ -10,6 +10,7 @@ FD_backend/users/__pycache__/
 FD_backend/api/__pycache__/
 FD_backend/FooDa/migrations/
 FD_backend/users/migrations/
+FD_backend/.coverage/
 
 # virtual environment
 env/
