@@ -2,9 +2,9 @@ dist: xenial
 language : python
 
 before_script:
-        - python3 manage.py makemigrations users
-        - python3 manage.py makemigrations FooDa
-        - python3 manage.py migrate
+        - python3 FD_backend/manage.py makemigrations users
+        - python3 FD_backend/manage.py makemigrations FooDa
+        - python3 FD_backend/manage.py migrate
 
 install:
         - pip install django
@@ -17,9 +17,9 @@ install:
         - pip install allauth  
 
 script :
-        - python3 manage.py runserver&
+        - python3 FD_backend/manage.py runserver&
         - sleep 3
-        - coverage run --source='.' manage.py test
+        - coverage run --source='.' FD_backend/manage.py test
         - coverage report
 
           
