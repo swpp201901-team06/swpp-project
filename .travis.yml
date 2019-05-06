@@ -12,7 +12,6 @@ install:
         - pip install djangorestframework
         - pip install coverage
         - pip install requests
-        - pip install hitcount    
 script :
         - python3 manage.py runserver&
         - sleep 3
