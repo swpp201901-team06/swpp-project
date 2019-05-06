@@ -34,3 +34,16 @@ it('renders Link when to is passed in', () => {
   const wrapper = wrap({ to: 'test' }).dive()
   expect(wrapper.find('Link')).toHaveLength(1)
 })
+
+describe('<SubmitButton />', () => {
+  describe('onClick()', () => {
+    test('succesfully calls the onClick handler', () => {
+      const mockOnClick = jest.fn();
+      const wrapper = shallow(<SubmitButton onClick = {mockOnClick} />);
+      const component = wrapper.dive();
+      component.find('button').simulate('click');
+      expect(mockOnClick.mock.calls.length).toEqual(1);
+    });
+  });
+});
+
