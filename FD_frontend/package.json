@@ -38,22 +38,9 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.3.3",
     "@kadira/storybook": "^2.35.2",
     "@webpack-blocks/dev-server2": "^0.4.0",
     "@webpack-blocks/webpack2": "^0.4.0",
-    "babel-core": "^6.21.0",
-    "babel-eslint": "^7.1.1",
-    "babel-jest": "^24.8.0",
-    "babel-loader": "^6.2.10",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.23.0",
-    "babel-plugin-transform-react-remove-prop-types": "^0.3.0",
-    "babel-preset-env": "^1.2.0",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-1": "^6.16.0",
     "copyfiles": "^1.0.0",
     "cross-env": "^4.0.0",
     "enzyme": "^3.9.0",
@@ -85,7 +72,6 @@
     "webpack-md5-hash": "^0.0.5"
   },
   "dependencies": {
-    "babel-polyfill": "^6.20.0",
     "core-js": "^3.0.1",
     "history": "3.0.0",
     "js-yaml": "^3.13.1",
