@@ -12,6 +12,9 @@ install:
         - pip install djangorestframework
         - pip install coverage
         - pip install requests
+        - pip install django-cors-headers
+        - pip install django-tagging
+        - pip install django-hitcount  
 script :
         - python3 manage.py runserver&
         - sleep 3

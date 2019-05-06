@@ -54,8 +54,6 @@ INSTALLED_APPS = [
 
     'FooDa',
     'hitcount',
-    'taggit',
-    'taggit_serializer',
     'tagging.apps.TaggingConfig',
 ]
 
