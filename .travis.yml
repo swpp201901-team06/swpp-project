@@ -14,7 +14,9 @@ install:
         - pip install requests
         - pip install django-cors-headers
         - pip install django-tagging
-        - pip install django-hitcount  
+        - pip install django-hitcount
+        - pip install django-rest-auth
+        - pip install django-allauth  
 script :
         - python3 manage.py runserver&
         - sleep 3
