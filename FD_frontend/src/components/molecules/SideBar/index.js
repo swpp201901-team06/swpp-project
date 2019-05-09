@@ -11,20 +11,14 @@ export const SideBar = ({ statefunction, }) => {
 	const onClickLogout = () => {
 		onLogout();
 	}
-	if(statefunction.LoggedIn)
-	{
-		return (
-			<div>
-				<Button type="submit" onClick={onClickLogout}>{'Logout'}</Button>
-				<Button component={Link} raised to="/archive/"+usertoken>{'My Archive'}</Button>
-				<Button component={Link} raised to="/account/"+usertoken>{'My Account'}</Button>
-			</div>
-		)
-	}
-	
 	return (
-		<Button component={Link} raised to="/">{'Sign In'}</Button>
-	);
+    {statefunction.SignInPage.isLoggedIn ?
+		<div>
+			<Button type="submit" onClick={onClickLogout}>{'Logout'}</Button>
+			<Button component={Link} raised to="/archive/"+usertoken>{'My Archive'}</Button>
+			<Button component={Link} raised to="/account/"+usertoken>{'My Account'}</Button>
+		</div> : <Button component={Link} raised to="/signin">{'Sign In'}</Button>}
+	)
 };
 
 const SideBar = ({ children, ...props }) => {
