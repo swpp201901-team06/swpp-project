@@ -15,8 +15,8 @@ export const SideBar = ({ statefunction, }) => {
     {statefunction.SignInPage.isLoggedIn ?
 		<div>
 			<Button type="submit" onClick={onClickLogout}>{'Logout'}</Button>
-			<Button component={Link} raised to="/archive/"+usertoken>{'My Archive'}</Button>
-			<Button component={Link} raised to="/account/"+usertoken>{'My Account'}</Button>
+			<Button component={Link} raised to="/"+statefunction.SignUpPage.nickname+"/archive">{'My Archive'}</Button>
+			<Button component={Link} raised to="/"+statefunction.SignUpPage.nickname+"/account">{'My Account'}</Button>
 		</div> : <Button component={Link} raised to="/signin">{'Sign In'}</Button>}
 	)
 };

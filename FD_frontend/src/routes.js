@@ -12,6 +12,7 @@ const routes = (
       <Route path="signin" component={SignInPage} />
       <Route path="signup" component={SignUpPage} />
       <Route path=":nickname/archive" component={ArchivePage} />
+      <Route path=":nickname/account" component={AccountPage} />
     </Route>
   </div>
 )
