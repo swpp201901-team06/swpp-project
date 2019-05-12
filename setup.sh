@@ -1,3 +1,4 @@
+#!/bin/bash
 sudo apt install -y virtualenv
 virtualenv env
 source ./env/bin/activate
