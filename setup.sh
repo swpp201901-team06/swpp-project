@@ -2,15 +2,15 @@ sudo apt install -y virtualenv
 virtualenv env
 source ./env/bin/activate
 
-sudo pip install django
-sudo pip install djangorestframework
-sudo pip install coverage
-sudo pip install requests
-sudo pip install django-cors-headers
-sudo pip install django-tagging
-sudo pip install django-hitcount
-sudo pip install django-rest-auth
-sudo pip install django-allauth
+sudo pip3 install django==2.2.1
+sudo pip3 install djangorestframework==3.9.3
+sudo pip3 install coverage==4.5.3
+sudo pip3 install requests==2.21.0
+sudo pip3 install django-cors-headers==2.5.3
+sudo pip3 install django-tagging==0.4.6
+sudo pip3 install django-hitcount==1.3.0
+sudo pip3 install django-rest-auth==0.9.5
+sudo pip3 install django-allauth==0.39.1
 
 cd FD_backend
 python3 manage.py makemigrations users
