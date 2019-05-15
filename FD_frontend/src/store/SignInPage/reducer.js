@@ -1,5 +1,5 @@
-import {initialState} from './selectors'
-import * as actionTypes from "./actionTypes"
+import { initialState } from './selectors'
+import * as actionTypes from './actionTypes'
 
 
 const signInReducer = (state = initialState, action) => {

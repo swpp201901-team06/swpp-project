@@ -8,5 +8,5 @@ export const initialState = {
   password: '',
   signInFailed: false,
   isLoggedIn: localStorage.hasOwnProperty('token') ? true : false,
-  token: JSON.parse(localStorage.getItem('token'))
+  token: JSON.parse(localStorage.getItem('token')),
 }
