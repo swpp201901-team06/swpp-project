@@ -1,14 +1,14 @@
 import {initialState} from './selectors'
-import * as ACTIONTYPES from "./actionTypes"
+import * as actionTypes from "./actionTypes"
 
 
 const signInReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ACTIONTYPES.GOTO_SIGN_UP:
+    case actionTypes.GOTO_SIGN_UP:
       return state
-    case ACTIONTYPES.REQUEST_SIGN_IN:
+    case actionTypes.REQUEST_SIGN_IN:
       return state
-    case ACTIONTYPES.SIGN_IN_SUCCESS:
+    case actionTypes.SIGN_IN_SUCCESS:
       localStorage.setItem('token', JSON.stringify(action.token))
       localStorage.setItem('email', JSON.stringify(action.email))
       localStorage.setItem('nickname', JSON.stringify(action.nickname))
@@ -20,7 +20,7 @@ const signInReducer = (state = initialState, action) => {
         signInFailed: false,
         isLoggedIn: true,
       }
-    case ACTIONTYPES.SIGN_IN_FAILED:
+    case actionTypes.SIGN_IN_FAILED:
       return {
         ...state,
         signInFailed: true,
