@@ -1,30 +1,30 @@
-import * as ACTIONTYPES from "./actionTypes"
+import * as actionTypes from "./actionTypes"
 
 export const gotoSignUp = () => {
   return {
-    type: ACTIONTYPES.GOTO_SIGN_UP,
+    type: actionTypes.GOTO_SIGN_UP,
   }
 }
 
 export const requestSignIn = (email, password) => {
   return {
-    type: ACTIONTYPES.REQUEST_SIGN_IN,
-    email: email,
-    password: password,
+    type: actionTypes.REQUEST_SIGN_IN,
+    email,
+    password,
   }
 }
 
 export const signInFailed = () => {
   return {
-    type: ACTIONTYPES.SIGN_IN_FAILED,
+    type: actionTypes.SIGN_IN_FAILED,
   }
 }
 
 export const signInSuccess = (token, email, nickname) => {
   return {
-    type: ACTIONTYPES.SIGN_IN_SUCCESS,
-    token: token,
-    email: email,
-    nickname: nickname,
+    type: actionTypes.SIGN_IN_SUCCESS,
+    token,
+    email,
+    nickname,
   }
 }

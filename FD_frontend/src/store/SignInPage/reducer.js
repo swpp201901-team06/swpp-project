@@ -2,17 +2,17 @@ import * as actionTypes from './actionTypes'
 
 
 const signInReducer = (state, action) => {
-  console.log("signInReducer 1")
-  console.log(localStorage)
-  console.log(localStorage.getItem('email'))
   if (!state) {
     state = {
+      email: '',
+      nickname: '',
       password: '',
+      token: '',
       signInFailed: false,
       isLoggedIn: localStorage.hasOwnProperty('token'),
-      token: localStorage.getItem('token'),
     }
-    if (state.token) {
+    if (state.isLoggedIn) {
+      state.token = localStorage.getItem('token')
       state.email = localStorage.getItem('email')
       state.nickname = localStorage.getItem('nickname')
     }
