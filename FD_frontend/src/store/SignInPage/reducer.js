@@ -1,8 +1,22 @@
-import { initialState } from './selectors'
 import * as actionTypes from './actionTypes'
 
 
-const signInReducer = (state = initialState, action) => {
+const signInReducer = (state, action) => {
+  console.log("signInReducer 1")
+  console.log(localStorage)
+  console.log(localStorage.getItem('email'))
+  if (!state) {
+    state = {
+      password: '',
+      signInFailed: false,
+      isLoggedIn: localStorage.hasOwnProperty('token'),
+      token: localStorage.getItem('token'),
+    }
+    if (state.token) {
+      state.email = localStorage.getItem('email')
+      state.nickname = localStorage.getItem('nickname')
+    }
+  }
   switch (action.type) {
     case actionTypes.GOTO_SIGN_UP:
       return state

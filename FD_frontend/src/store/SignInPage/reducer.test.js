@@ -2,9 +2,6 @@ import * as actionTypes from './actionTypes'
 import signInReducer from './reducer'
 
 // require('jest-localstorage-mock')
-var localStorageMock = (() => {
-  setItem: (key, val) => Object.assign(localStorageMock, {[key]: val}),
-})
 
 describe('test signin reducer', () => {
   beforeEach(() => {
@@ -17,6 +14,10 @@ describe('test signin reducer', () => {
     }
     signInReducer(undefined, testAction)
     expect(localStorage.getItem).toHaveBeenCalledWith('token')
+  })
+
+  test('initialize state with token unset', () => {
+    
   })
 
   test('initialize state with token set', () => {
