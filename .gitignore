@@ -1,6 +1,8 @@
 # IDE-specific setting files
 .idea
 .vscode
+FD_frontend/.editorconfig
+FD_frontend/.eslintrc
 
 # backend cache/database/migration files
 FD_backend/db.sqlite3
