@@ -54,11 +54,6 @@ const SignIn = ({ isLoggedIn, signInFailed, nickname, onClickSignUp, onClickSign
 
 SignIn.propTypes = {
   reverse: PropTypes.bool,
-  isLoggedIn: PropTypes.bool,
-  signInFailed: PropTypes.bool,
-  nickname: PropTypes.string,
-  onClickSignUp: PropTypes.func,
-  onClickSignIn: PropTypes.func,
 }
 
 export default SignIn
