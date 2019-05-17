@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { Main } from '../../components/pages/MainPage/Molecules/Main/index'
+import Main from '../../components/pages/MainPage/Molecules/Main/index'
 import { goToSignin, goToGuest } from '../../store/MainPage/actions'
 
 const mapStateToProps = (state) =>{
