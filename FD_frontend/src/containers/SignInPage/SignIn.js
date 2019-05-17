@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { gotoSignUp, requestSignIn } from '../../store/SignInPage/actions'
+import { gotoSignUp, requestSignIn, gotoArchive } from '../../store/SignInPage/actions'
 import SignIn from '../../components/pages/SignInPage/molecules/SignIn'
 
 const mapStateToProps = (state) => {
@@ -17,6 +17,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onClickSignIn: (email, password) => {
       dispatch(requestSignIn(email, password))
+    },
+    dispatchGotoArchive: (nickname) => {
+      dispatch(gotoArchive(nickname))
     },
   }
 }

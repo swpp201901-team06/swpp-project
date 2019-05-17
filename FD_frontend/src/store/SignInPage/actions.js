@@ -28,3 +28,10 @@ export const signInSuccess = (token, email, nickname) => {
     nickname,
   }
 }
+
+export const gotoArchive = (nickname) => {
+  return {
+    type: actionTypes.GOTO_ARCHIVE,
+    nickname,
+  }
+}

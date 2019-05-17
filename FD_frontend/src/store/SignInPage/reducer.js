@@ -41,6 +41,8 @@ const signInReducer = (state, action) => {
         signInFailed: true,
         isLoggedIn: false,
       }
+    case actionTypes.GOTO_ARCHIVE:
+      return nextState
     default:
       return nextState
   }

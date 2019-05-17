@@ -1,7 +1,7 @@
 import { takeEvery, all, take, put, call, fork } from 'redux-saga/effects'
 import api from 'services/api'
 import * as actions from '../actions'
-import * as ACTIONTYPES from './actionTypes'
+import * as actionTypes from './actionTypes'
 import {baseHistory} from '../../index'
 
 const signInPath = 'http://127.0.0.1:8000/api/rest-auth/login/'
@@ -18,16 +18,33 @@ export function* signInAsync({email, password}) {
     const nicknameResponse = yield call(api.get, getNicknamePath + email)
     baseHistory.push('/' + nicknameResponse.username + '/archive')
     yield put(actions.signInSuccess(response.key, email, nicknameResponse.username))
-  } catch(e) {
+  } catch (e) {
     console.error(e)
     yield put(actions.signInFailed())
   }
 }
 
 export function* watchRequestSignIn() {
-  yield takeEvery(ACTIONTYPES.REQUEST_SIGN_IN, signInAsync)
+  yield takeEvery(actionTypes.REQUEST_SIGN_IN, signInAsync)
+}
+
+export function* watchGotoSignUp() {
+  while (true) {
+    yield take(actionTypes.GOTO_SIGN_UP)
+    console.log("store/SignInPage/sagas watchGotoSignUp")
+    baseHistory.push('/signup')
+  }
+}
+
+export function* watchGotoArchive() {
+  while (true) {
+    const { nickname } = yield take(actionTypes.GOTO_ARCHIVE)
+    baseHistory.push('/' + nickname + '/archive')
+  }
 }
 
 export default function* () {
   yield fork(watchRequestSignIn)
+  yield fork(watchGotoSignUp)
+  yield fork(watchGotoArchive)
 }

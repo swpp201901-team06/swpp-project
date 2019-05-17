@@ -3,19 +3,19 @@ import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
 import SignInButton from '../../atoms/SignInButton/index'
 import SignUpButton from '../../atoms/SignUpButton/index'
-import { baseHistory } from '../../../../../index'
+// import { baseHistory } from '../../../../../index'
 
 const Wrapper = styled.div`
   font-family: ${font('primary')};
   color: ${palette('grayscale', 0)};
 `
 
-const SignIn = ({ isLoggedIn, signInFailed, nickname, onClickSignUp, onClickSignIn }) => {
+const SignIn = ({ isLoggedIn, signInFailed, nickname,
+                  onClickSignUp, onClickSignIn, dispatchGotoArchive }) => {
   let emailField
   let passwordField
 
   const onClickSignUpButton = () => {
-    baseHistory.push('/signup')
     onClickSignUp()
   }
 
@@ -32,7 +32,8 @@ const SignIn = ({ isLoggedIn, signInFailed, nickname, onClickSignUp, onClickSign
   }
 
   if (isLoggedIn) {
-    baseHistory.push('/' + nickname + '/archive')
+    // baseHistory.push('/' + nickname + '/archive')
+    dispatchGotoArchive(nickname)
     return (<div />)
   }
   // TODO: use `SignInButton` and `SignUpButton` instead of `button`
@@ -54,11 +55,6 @@ const SignIn = ({ isLoggedIn, signInFailed, nickname, onClickSignUp, onClickSign
 
 SignIn.propTypes = {
   reverse: PropTypes.bool,
-  isLoggedIn: PropTypes.bool,
-  signInFailed: PropTypes.bool,
-  nickname: PropTypes.string,
-  onClickSignUp: PropTypes.func,
-  onClickSignIn: PropTypes.func,
 }
 
 export default SignIn
