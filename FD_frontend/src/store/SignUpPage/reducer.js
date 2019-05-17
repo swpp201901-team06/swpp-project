@@ -1,8 +1,6 @@
 import { initialState } from './selectors'
 import * as actions from '../actions'
 
-import { takeEvery, all, take, put, call, fork } from 'redux-saga/effects'
-
 const signUpReducer = (state = initialState, action) => {
   const dataType = action.key;
 

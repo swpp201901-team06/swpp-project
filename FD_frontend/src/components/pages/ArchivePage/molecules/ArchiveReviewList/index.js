@@ -7,11 +7,13 @@ const Wrapper = styled.div`
   color: ${palette('grayscale', 0)};
 `
 
-const ArchiveReviewList = ({ children, ...props }) => {
+const ArchiveReviewList = ({ statefunction, children, ...props }) => {
+	reviewstate = statefunction.PostPage
   return (
     <Wrapper>
       {reviewstate.map(review => <ArchiveReview key={review.id}
-      {...review}/>
+      {...review}
+			onClick={() => onReviewClick(review.id)}/>
       )}
     </Wrapper>
   )
