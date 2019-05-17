@@ -6,7 +6,7 @@ import { PageTemplate, Header, Hero, Footer, FeatureList } from 'components'
 const MainPage = () => {
   return (
     <div>
-        <Main/>
+      <Main />
     </div>
   )
 }
