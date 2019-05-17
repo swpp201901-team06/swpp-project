@@ -1,23 +1,191 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import SignIn from '.'
-import { isIterable } from 'core-js';
 
 const wrap = (props = {}) => shallow(<SignIn {...props} />)
+const onClickSignUp = jest.fn()
+const onClickSignIn = jest.fn()
+const dispatchGotoArchive = jest.fn()
 
-it('test', () => {
-  console.log('test test')
-  expect(1).toBe(1)
-})
+describe('SignIn molecule test', () => {
+  beforeEach(() => {
+    onClickSignUp.mockReset()
+    onClickSignIn.mockReset()
+    dispatchGotoArchive.mockReset()
+  })
 
-/*
-it('renders children when passed in', () => {
-  const wrapper = wrap({ children: 'test' })
-  expect(wrapper.contains('test')).toBe(true)
-})
+  test('render normal signin page', () => {
+    const isLoggedIn = false
+    const signInFailed = false
+    const nickname = ''
+    const props = {
+      isLoggedIn,
+      signInFailed,
+      nickname,
+      onClickSignUp,
+      onClickSignIn,
+      dispatchGotoArchive,
+    }
+    const renderOutput = wrap(props)
+    expect(renderOutput.find('input')).toHaveLength(2)
+    expect(renderOutput.find('button')).toHaveLength(2)
+    expect(renderOutput.find('div')).toHaveLength(1)
+    expect(renderOutput.text()).toMatch('Email address')
+    expect(renderOutput.text()).toMatch('Password')
+    expect(renderOutput.text()).toMatch('Sign Up')
+    expect(renderOutput.text()).toMatch('Sign In')
+    expect(renderOutput.text()).not.toMatch('Sign in Failed')
+  })
 
-it('renders props when passed in', () => {
-  const wrapper = wrap({ id: 'foo' })
-  expect(wrapper.find({ id: 'foo' })).toHaveLength(1)
+  test('render failed signin attempt', () => {
+    const isLoggedIn = false
+    const signInFailed = true
+    const nickname = ''
+    const props = {
+      isLoggedIn,
+      signInFailed,
+      nickname,
+      onClickSignUp,
+      onClickSignIn,
+      dispatchGotoArchive,
+    }
+    const renderOutput = wrap(props)
+    expect(renderOutput.find('input')).toHaveLength(2)
+    expect(renderOutput.find('button')).toHaveLength(2)
+    expect(renderOutput.find('div')).toHaveLength(1)
+    expect(renderOutput.text()).toMatch('Email address')
+    expect(renderOutput.text()).toMatch('Password')
+    expect(renderOutput.text()).toMatch('Sign Up')
+    expect(renderOutput.text()).toMatch('Sign In')
+    expect(renderOutput.text()).toMatch('Sign in Failed')
+  })
+
+  test('do not call onClickSignIn if email is not typed', () => {
+    const isLoggedIn = false
+    const signInFailed = true
+    const nickname = ''
+    const props = {
+      isLoggedIn,
+      signInFailed,
+      nickname,
+      onClickSignUp,
+      onClickSignIn,
+      dispatchGotoArchive,
+    }
+    const renderOutput = wrap(props)
+
+    const email = ''
+    const password = 'some_password'
+    const emailField = renderOutput.find('input').at(0).getElement()
+    emailField.ref({ value: email })
+    const passwordField = renderOutput.find('input').at(1).getElement()
+    passwordField.ref({ value: password })
+    renderOutput.find('button').at(1).simulate('click')
+    expect(onClickSignIn).not.toHaveBeenCalled()
+  })
+
+  test('do not call onClickSignIn if password is not typed', () => {
+    const isLoggedIn = false
+    const signInFailed = true
+    const nickname = ''
+    const props = {
+      isLoggedIn,
+      signInFailed,
+      nickname,
+      onClickSignUp,
+      onClickSignIn,
+      dispatchGotoArchive,
+    }
+    const renderOutput = wrap(props)
+
+    const email = 'some_email@github.com'
+    const password = ''
+    const emailField = renderOutput.find('input').at(0).getElement()
+    emailField.ref({ value: email })
+    const passwordField = renderOutput.find('input').at(1).getElement()
+    passwordField.ref({ value: password })
+    renderOutput.find('button').at(1).simulate('click')
+    expect(onClickSignIn).not.toHaveBeenCalled()
+  })
+
+  test('do not call onClickSignIn if neither email nor password is typed', () => {
+    const isLoggedIn = false
+    const signInFailed = true
+    const nickname = ''
+    const props = {
+      isLoggedIn,
+      signInFailed,
+      nickname,
+      onClickSignUp,
+      onClickSignIn,
+      dispatchGotoArchive,
+    }
+    const renderOutput = wrap(props)
+
+    const email = ''
+    const password = ''
+    const emailField = renderOutput.find('input').at(0).getElement()
+    emailField.ref({ value: email })
+    const passwordField = renderOutput.find('input').at(1).getElement()
+    passwordField.ref({ value: password })
+    renderOutput.find('button').at(1).simulate('click')
+    expect(onClickSignIn).not.toHaveBeenCalled()
+  })
+
+  test('button click with both credentials typed', () => {
+    const isLoggedIn = false
+    const signInFailed = true
+    const nickname = ''
+    const props = {
+      isLoggedIn,
+      signInFailed,
+      nickname,
+      onClickSignUp,
+      onClickSignIn,
+      dispatchGotoArchive,
+    }
+    const renderOutput = wrap(props)
+
+    const email = 'some_email@github.com'
+    const password = 'some_password'
+    const emailField = renderOutput.find('input').at(0).getElement()
+    emailField.ref({ value: email })
+    const passwordField = renderOutput.find('input').at(1).getElement()
+    passwordField.ref({ value: password })
+    renderOutput.find('button').at(1).simulate('click')
+    expect(onClickSignIn).toHaveBeenCalled()
+  })
+
+  test('call onClickSignUp when signup button is clicked', () => {
+    const isLoggedIn = false
+    const signInFailed = true
+    const nickname = ''
+    const props = {
+      isLoggedIn,
+      signInFailed,
+      nickname,
+      onClickSignUp,
+      onClickSignIn,
+      dispatchGotoArchive,
+    }
+    const renderOutput = wrap(props)
+    renderOutput.find('button').at(0).simulate('click')
+    expect(onClickSignUp).toHaveBeenCalled()
+  })
+
+  test('go to archive when already logged in', () => {
+    const isLoggedIn = true
+    const signInFailed = false
+    const nickname = 'test_nickname'
+    const props = {
+      isLoggedIn,
+      signInFailed,
+      nickname,
+      onClickSignUp,
+      onClickSignIn,
+      dispatchGotoArchive,
+    }
+    wrap(props)
+    expect(dispatchGotoArchive).toHaveBeenCalled()
+  })
 })
-*/

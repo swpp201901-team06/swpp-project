@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
 import SignInButton from '../../atoms/SignInButton/index'
 import SignUpButton from '../../atoms/SignUpButton/index'
-// import { baseHistory } from '../../../../../index'
 
 const Wrapper = styled.div`
   font-family: ${font('primary')};
@@ -30,9 +29,7 @@ const SignIn = ({ isLoggedIn, signInFailed, nickname,
       alert('Please enter your password.')
     }
   }
-
   if (isLoggedIn) {
-    // baseHistory.push('/' + nickname + '/archive')
     dispatchGotoArchive(nickname)
     return (<div />)
   }
