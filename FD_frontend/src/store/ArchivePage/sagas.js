@@ -1,5 +1,5 @@
 import { takeEvery, put, call, fork } from 'redux-saga/effects'
-import { push } rom 'react-router-redux'
+import { push } from 'react-router-redux'
 import api from 'services/api'
 import * as actions from './actions'
 
@@ -21,6 +21,11 @@ export function* watchReviewDetailRequest() {
 export function* deleteReview({review}) {
 	try {
 		const response = yield call(api.delete, reviewDetailUrl, {id: id})
+  }
+  catch(err) {
+    console.log(err);
+  }
+}
 
 export function* watchDeleteReviewRequest() {
 	yield takeEvery(actions.DELETE_REVIEW_REQUEST, deleteReview);
