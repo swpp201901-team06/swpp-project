@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { signUp } from '../../../components/pages/SignUpPage/molecules/signUp'
-import { duplicateCheck, signUpSubmit } from '../../../store/SignUpPage/actions'
+import { signUp } from '../../components/pages/SignUpPage/molecules/signUp'
+import { duplicateCheck, signUpSubmit } from '../../store/SignUpPage/actions'
 
 const mapStateToProps = (state) => { 
     return {
