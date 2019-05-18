@@ -32,7 +32,7 @@ export const SideBar = ({ statefunction }) => {
     </Link>
   );
   return (
-    {statefunction.SignInPage.isLoggedIn ? loggedInDisplay : notLoggedInDisplay}
+    statefunction.SignInPage.isLoggedIn ? loggedInDisplay : notLoggedInDisplay
 	);
 };
 
