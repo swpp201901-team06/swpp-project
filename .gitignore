@@ -21,3 +21,4 @@ out.txt
 
 # temporary backup files
 *.swp
+*.swo
