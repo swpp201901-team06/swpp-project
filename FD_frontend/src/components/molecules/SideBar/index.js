@@ -32,7 +32,7 @@ export const SideBar = ({ statefunction }) => {
     </Link>
   );
   return (
-    {statefunction.SignInPage.isLoggedIn ? loggedInDisplay : notLoggedInDisplay}
+    statefunction.SignInPage.isLoggedIn ? loggedInDisplay : notLoggedInDisplay
 	);
 };
 
@@ -41,4 +41,4 @@ SideBar.propTypes = {
   children: PropTypes.node,
 }
 
-export default SideBar
+/*export default SideBar*/
