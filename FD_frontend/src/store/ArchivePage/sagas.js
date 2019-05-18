@@ -3,7 +3,7 @@ import { push } from 'react-router-redux'
 import api from 'services/api'
 import * as actions from './actions'
 
-reviewDetailUrls = '/'
+const reviewDetailUrls = '/'
 
 export function* getReviewDetail({id}) {
   try {
