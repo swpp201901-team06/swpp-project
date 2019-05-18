@@ -23,8 +23,6 @@ class GetUserName(APIView):
         return Response(content)
 
 class UserEmailExist(generics.RetrieveAPIView):
-    renderer_classes = (JSONRenderer, )
-
     def get(self, request, email):
         user = models.CustomUser.objects.filter(email = email)
         if user:

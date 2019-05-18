@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 
     'FooDa',
     'hitcount',
+    'tagging.apps.TaggingConfig',
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

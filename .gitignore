@@ -1,5 +1,6 @@
 # IDE-specific setting files
 .idea
+.vscode
 
 # backend cache/database/migration files
 FD_backend/db.sqlite3
@@ -10,6 +11,13 @@ FD_backend/users/__pycache__/
 FD_backend/api/__pycache__/
 FD_backend/FooDa/migrations/
 FD_backend/users/migrations/
+FD_backend/.coverage/
 
 # virtual environment
 env/
+
+# test output
+out.txt
+
+# temporary backup files
+*.swp
