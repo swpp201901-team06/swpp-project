@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   color: ${palette('grayscale', 0)};
 `
 
-export const Main = ({ statefunction, onClickSignin, onClickGuest }) => {
+const Main = ({ statefunction, onClickSignin, onClickGuest }) => {
   const onSignin = () => {
     console.log("si_mol");
     onClickSignin();
@@ -29,3 +29,5 @@ Main.propTypes = {
   reverse: PropTypes.bool,
   children: PropTypes.node,
 }
+
+export default Main

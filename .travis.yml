@@ -1,23 +1,34 @@
 dist: xenial
 language : python
 
-before_script:
+matrix:
+  include:
+    - language: node
+      node: "12.2.0"
+      before_install:
+        - cd FD_frontend
+      install:
+        - npm install
+      script:
+        - npm test -- --coverage
+
+    - language: python        
+      before_script:
         - cd FD_backend
         - python3 manage.py makemigrations users
         - python3 manage.py makemigrations FooDa
         - python3 manage.py migrate
-
-install:
-        - pip install django
-        - pip install djangorestframework
-        - pip install coverage
-        - pip install requests
-        - pip install django-cors-headers
-        - pip install django-tagging
-        - pip install django-hitcount
-        - pip install django-rest-auth
-        - pip install django-allauth  
-script :
+      install:
+        - pip install django==2.2.1
+        - pip install djangorestframework==3.9.3
+        - pip install coverage==4.5.3
+        - pip install requests==2.21.0
+        - pip install django-cors-headers==2.5.3
+        - pip install django-tagging==0.4.6
+        - pip install django-hitcount==1.3.0
+        - pip install django-rest-auth==0.9.5
+        - pip install django-allauth==0.39.1
+      script:
         - python3 manage.py runserver&
         - sleep 3
         - coverage run --source='.' manage.py test

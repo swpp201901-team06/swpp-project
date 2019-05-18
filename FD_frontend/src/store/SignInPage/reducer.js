@@ -1,33 +1,50 @@
-import {initialState} from './selectors'
-import * as ACTIONTYPES from "./actionTypes"
+import * as actionTypes from './actionTypes'
 
 
-const signInReducer = (state = initialState, action) => {
+const signInReducer = (state, action) => {
+  let nextState = state
+  if (!nextState) {
+    nextState = {
+      email: '',
+      nickname: '',
+      password: '',
+      token: '',
+      signInFailed: false,
+      isLoggedIn: localStorage.hasOwnProperty('token'),
+    }
+    if (nextState.isLoggedIn) {
+      nextState.token = localStorage.getItem('token')
+      nextState.email = localStorage.getItem('email')
+      nextState.nickname = localStorage.getItem('nickname')
+    }
+  }
   switch (action.type) {
-    case ACTIONTYPES.GOTO_SIGN_UP:
-      return state
-    case ACTIONTYPES.REQUEST_SIGN_IN:
-      return state
-    case ACTIONTYPES.SIGN_IN_SUCCESS:
+    case actionTypes.GOTO_SIGN_UP:
+      return nextState
+    case actionTypes.REQUEST_SIGN_IN:
+      return nextState
+    case actionTypes.SIGN_IN_SUCCESS:
       localStorage.setItem('token', JSON.stringify(action.token))
       localStorage.setItem('email', JSON.stringify(action.email))
       localStorage.setItem('nickname', JSON.stringify(action.nickname))
       return {
-        ...state,
+        ...nextState,
         email: action.email,
         token: action.token,
         nickname: action.nickname,
         signInFailed: false,
         isLoggedIn: true,
       }
-    case ACTIONTYPES.SIGN_IN_FAILED:
+    case actionTypes.SIGN_IN_FAILED:
       return {
-        ...state,
+        ...nextState,
         signInFailed: true,
         isLoggedIn: false,
       }
+    case actionTypes.GOTO_ARCHIVE:
+      return nextState
     default:
-      return state
+      return nextState
   }
 }
 
