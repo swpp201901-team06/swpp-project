@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import { HomePage } from 'components'
+import { SignInPage } from 'components'
 
-storiesOf('HomePage', module)
+storiesOf('SignInPage', module)
   .add('default', () => (
-    <HomePage />
+    <SignInPage />
   ))
