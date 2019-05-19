@@ -6,8 +6,5 @@ django-cors-headers==2.5.3
 django-tagging==0.4.6
 django-hitcount==1.3.0
 django-rest-auth==0.9.5
-<<<<<<< HEAD
 django-allauth==0.39.1
-=======
-django-allauth==0.39.1
->>>>>>> 76127e8a13af22163ba1ce74bbc8b154be19a2b5
+Pillow==6.0.0
