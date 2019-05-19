@@ -10,7 +10,6 @@ const signInReducer = (state, action) => {
       token: null,
       isLoggedIn: localStorage.hasOwnProperty('token'),
       sortMethod: null,
-      publicStatus: null,
       reviews: [],
       selectedReviewId: null,
       selectedReviewObj: null,
@@ -29,8 +28,6 @@ const signInReducer = (state, action) => {
 
     case actions.GET_REVIEW_LIST_SUCCESS:
       nextState.reviews = action.reviewList
-      nextState.sortMethod = action.sortMethod
-      nextState.publicStatus = action.publicStatus
       return nextState
 
     case actions.GET_REVIEW_LIST_FAILED:

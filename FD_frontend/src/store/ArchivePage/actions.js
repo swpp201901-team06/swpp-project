@@ -21,12 +21,10 @@ export const getReviewList = (archiveOwnerNickname) => {
   }
 }
 
-export const getReviewListSuccess = (reviewList, sortMethod, publicStatus) => {
+export const getReviewListSuccess = (reviewList) => {
   return {
     type: GET_REVIEW_LIST_SUCCESS,
     reviewList,
-    sortMethod,
-    publicStatus,
   }
 }
 
