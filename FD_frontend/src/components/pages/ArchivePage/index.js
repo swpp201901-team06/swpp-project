@@ -10,7 +10,7 @@ const ArchivePage = React.createClass({
         {this.props.params.nickname}
         's archive page
         <h1>{' '}</h1>
-        <SideBar/>
+        <SideBar />
         <h1>{' '}</h1>
         <Link to='/post'>
           <PostButton>Post Review</PostButton>

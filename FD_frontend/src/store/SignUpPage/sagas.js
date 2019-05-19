@@ -4,7 +4,6 @@ import api from 'services/api'
 import * as actions from './actions'
 import { requestSignIn } from '../SignInPage/actions'
 import { SIGN_IN_SUCCESS } from '../SignInPage/actionTypes'
-import { signInAsync } from '../SignInPage/sagas'
 
 const signUpUrl = 'http://127.0.0.1:8000/api/rest-auth/registration/'
 const dcUrl = 'http://127.0.0.1:8000/api/users/exists/'

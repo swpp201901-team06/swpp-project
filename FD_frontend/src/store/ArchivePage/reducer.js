@@ -73,6 +73,7 @@ const signInReducer = (state, action) => {
       return nextState
 
     case actions.GOTO_EDIT_REVIEW:
+      nextState.selectedReviewId = action.reviewId
       return nextState
 
     case actions.GOTO_POST_REVIEW:
