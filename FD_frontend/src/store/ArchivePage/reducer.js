@@ -21,6 +21,7 @@ const signInReducer = (state, action) => {
     }
   }
 
+  // TODO: use localStorage to temporarily save sortMethod
   switch (action.type) {
     case actions.GET_REVIEW_LIST_REQUEST:
       nextState.archiveOwnerNickname = action.archiveOwnerNickname
