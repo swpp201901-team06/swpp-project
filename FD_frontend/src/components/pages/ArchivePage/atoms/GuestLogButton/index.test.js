@@ -1,8 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import GoogleMapPanel from '.'
+import GuestLogButton from '.'
 
-const wrap = (props = {}) => shallow(<GoogleMapPanel {...props} />)
+const wrap = (props = {}) => shallow(<GuestLogButton {...props} />)
 
 it('renders children when passed in', () => {
   const wrapper = wrap({ children: 'test' })
