@@ -7,6 +7,36 @@ const backendUrl = 'http://127.0.0.1:8000/'
 const reviewListUrl = `${backendUrl}FooDa/myreviewlist/`
 const reviewDetailUrl = `${backendUrl}FooDa/reviewdetail/`
 
+export function* callUrl(method, url, data) {
+  if (localStorage.hasOwnProperty('token')) {
+    const email = localStorage.getItem('email')
+    const password = localStorage.getItem('password')
+    const credentials = new Buffer(`${email}:${password}`).toString('base64')
+    return yield call(
+      fetch,
+      url,
+      {
+        method,
+        headers: {
+          Authorization: `Basic ${credentials}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...data,
+        }),
+      }
+    )
+  } else if (method === 'GET') {
+    return yield call(api.get, url, data)
+  } else if (method === 'POST') {
+    return yield call(api.post, url, data)
+  } else if (method === 'PUT') {
+    return yield call(api.put, url, data)
+  } else if (method === 'DELETE') {
+    return yield call(api.delete, url, data)
+  }
+  return null
+}
 
 export function* getReviewList({ archiveOwnerNickname }) {
   try {

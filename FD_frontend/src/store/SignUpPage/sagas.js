@@ -20,7 +20,7 @@ export function* submit({ email, pw, confirmpw, nickname }) {
     archiveInstance.setToken(JSON.parse(localStorage.getItem('token')))
     console.log(archiveInstance)
     console.log(JSON.parse(localStorage.getItem('token')))
-    //const response2 = yield call([archiveInstance, archiveInstance.post], archiveUrl)
+    // const response2 = yield call([archiveInstance, archiveInstance.post], archiveUrl)
     const credentials = new Buffer(`${email}:${pw}`).toString('base64')
     const response2 = yield call(
       fetch,
