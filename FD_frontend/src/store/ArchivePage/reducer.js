@@ -1,7 +1,7 @@
 import * as actions from './actions'
 
 
-const signInReducer = (state, action) => {
+const archiveReducer = (state, action) => {
   let nextState = state
   if (!nextState) {
     nextState = {
@@ -84,4 +84,4 @@ const signInReducer = (state, action) => {
   }
 }
 
-export default signInReducer
+export default archiveReducer
