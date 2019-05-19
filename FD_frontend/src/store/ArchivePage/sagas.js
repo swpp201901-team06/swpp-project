@@ -14,6 +14,19 @@ export function* callUrl(method, url, data = {}) {
       const email = localStorage.getItem('email')
       const password = localStorage.getItem('password')
       const credentials = new Buffer(`${email}:${password}`).toString('base64')
+      if (method === 'GET') {
+        return yield call(
+          fetch,
+          url,
+          {
+            method,
+            headers: {
+              Authorization: `Basic ${credentials}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        )
+      }
       return yield call(
         fetch,
         url,
@@ -45,6 +58,7 @@ export function* callUrl(method, url, data = {}) {
 
 export function* getReviewList({ archiveOwnerNickname }) {
   try {
+    console.log('getReviewList')
     const reviewList = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
     yield put(actions.getReviewListSuccess(reviewList))
   } catch (err) {
