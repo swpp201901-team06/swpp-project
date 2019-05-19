@@ -35,10 +35,11 @@ export const getReviewListFailed = () => {
   }
 }
 
-export const getReviewDetail = (reviewId) => {
+export const getReviewDetail = (reviewId, archiveOwnerNickname) => {
   return {
     type: GET_REVIEW_DETAIL_REQUEST,
     reviewId,
+    archiveOwnerNickname,
   }
 }
 

@@ -10,8 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onReviewClick: (reviewId) => {
-      dispatch(getReviewDetail(reviewId))
+    onReviewClick: (reviewId, archiveOwnerNickname) => {
+      dispatch(getReviewDetail(reviewId, archiveOwnerNickname))
     },
   }
 }
