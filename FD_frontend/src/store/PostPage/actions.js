@@ -32,11 +32,12 @@ export const getPostReviewDetailFailed = () => {
   }
 }
 
-export const postReview = (reviewId, restId, eatWhen, tags, score,
+export const postReview = (reviewId, nickname, restId, eatWhen, tags, score,
   content, photo, publicStatus) => {
   return {
     type: POST_REVIEW_REQUEST,
     reviewId,
+    nickname,
     restId,
     eatWhen,
     tags,
