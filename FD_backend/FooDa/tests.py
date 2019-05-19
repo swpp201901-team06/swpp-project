@@ -81,7 +81,7 @@ class ReviewTests(TestCase):
 
 #update number every test
     def delete_review(self):
-        link = self.link + "reviewdetail/1"
+        link = self.link + "reviewdetail/1/"
         response = requests.delete(link, auth = ("qwer-1@qwer.qwer", "qwer!@#$"))
         self.assertEqual(int(response.status_code/100), 2)
 
@@ -118,7 +118,7 @@ class ReviewTests(TestCase):
         self.assertEqual(int(response.status_code/100), 2)
 
     def get_restdetail(self):
-        link = self.link + "restaurantdetail/1"
+        link = self.link + "restaurantdetail/1/"
         response = requests.get(link)
         self.assertEqual(int(response.status_code/100), 2)
 
@@ -133,7 +133,7 @@ class ReviewTests(TestCase):
 
 #update number every test
     def delete_rest(self):
-        link = self.link + "restaurantdetail/1"
+        link = self.link + "restaurantdetail/1/"
         response = requests.delete(link)
         self.assertEqual(int(response.status_code/100), 2)
 
@@ -190,7 +190,7 @@ class TagTests(TestCase):
         self.assertEqual(int(response.status_code/100), 2)
 
     def get_tagfilter(self):
-        link = self.link + "tagfilter/1"
+        link = self.link + "tagfilter/1/"
         response = requests.get(link)
         self.assertEqual(int(response.status_code/100), 2)
 
