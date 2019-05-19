@@ -4,6 +4,7 @@ import api from 'services/api'
 import * as actions from './actions'
 import { requestSignIn } from '../SignInPage/actions'
 import { SIGN_IN_SUCCESS } from '../SignInPage/actionTypes'
+import { signInAsync } from '../SignInPage/sagas'
 
 const signUpUrl = 'http://127.0.0.1:8000/api/rest-auth/registration/'
 const dcUrl = 'http://127.0.0.1:8000/api/users/exists/'
@@ -19,7 +20,23 @@ export function* submit({email, pw, confirmpw, nickname}) {
     console.log("post call to archivelist")
     archiveInstance.setToken(JSON.parse(localStorage.getItem('token')))
     console.log(archiveInstance)
-    const response2 = yield call([archiveInstance, archiveInstance.post], archiveUrl)
+    console.log(JSON.parse(localStorage.getItem('token')))
+    //const response2 = yield call([archiveInstance, archiveInstance.post], archiveUrl)
+    const credentials = new Buffer(`${email}:${pw}`).toString('base64')
+    const response2 = yield call(
+      fetch,
+      archiveUrl,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Basic ${credentials}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+        }),
+      }
+    )
+    console.log(response2)
     yield put(push('/'));
   }
   catch(err) {
