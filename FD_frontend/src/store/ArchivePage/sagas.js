@@ -15,7 +15,7 @@ export function* getReviewDetail({id}) {
 }
 
 export function* watchReviewDetailRequest() {
-  yield takeEvery(actions.REVIEW_DETAIL_REQUEST, getReviewDetail);
+  yield takeEvery(actions.GET_REVIEW_DETAIL_REQUEST, getReviewDetail);
 }
 
 export function* deleteReview({review}) {

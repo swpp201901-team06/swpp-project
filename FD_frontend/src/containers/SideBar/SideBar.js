@@ -1,8 +1,9 @@
 import { connect } from 'react-redux'
 import { SideBar } from '../../components/molecules/SideBar'
-import * as actions from '../../store/SideBar/actions'
+import { logOut } from '../../store/SideBar/actions'
 
 const mapStateToProps = (state) =>{
+  console.log(state)
   return {
     statefunction: state
   }
@@ -10,7 +11,7 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLogOut: () => {
+    onLogout: () => {
       dispatch(logOut())
     }
   }

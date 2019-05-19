@@ -29,6 +29,7 @@ const sideBarReducer = (state, action) => {
         nickname: null,
         isLoggedIn: false,
       }
+      window.location.reload()
       return nextState
     default:
       return nextState
