@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getReviewDetail } from '../../store/ArchivePage/actions'
+import { getReviewDetail, getReviewList } from '../../store/ArchivePage/actions'
 import ArchiveReviewList from '../../components/pages/ArchivePage/molecules/ArchiveReviewList'
 
 const mapStateToProps = (state) => {
@@ -13,6 +13,9 @@ const mapDispatchToProps = (dispatch) => {
     onReviewClick: (reviewId, archiveOwnerNickname) => {
       dispatch(getReviewDetail(reviewId, archiveOwnerNickname))
     },
+    requestReviews: (archiveOwnerNickname) => {
+      dispatch(getReviewList(archiveOwnerNickname))
+    }
   }
 }
 

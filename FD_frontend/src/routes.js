@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-
 import App from 'components/App'
 import { MainPage, SignInPage, GuestPage, SignUpPage, ArchivePage, AccountPage, PostPage } from 'components'
 

@@ -7,9 +7,18 @@ const Wrapper = styled.div`
   color: ${palette('grayscale', 0)};
 `
 
-const ReviewPostDetail = ({ children, ...props }) => {
+export const ReviewPostDetail = ({ children, ...props }) => {
+
+/*  const onImageUpload = image => {
+    const files = Array.from(image.target.files)
+    const formData = new FormData()
+    files.forEach((file, i) => {
+      formData.append(i, file)
+    })*/
   return (
     <Wrapper {...props}>
+      <img refs={imgElement => image = imgElement}/>
+      <input type='file' multiple/>
       {children}
     </Wrapper>
   )
@@ -20,4 +29,4 @@ ReviewPostDetail.propTypes = {
   children: PropTypes.node,
 }
 
-export default ReviewPostDetail
+/*export default ReviewPostDetail*/
