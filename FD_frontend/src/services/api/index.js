@@ -56,7 +56,7 @@ api.create = (settings = {}) => ({
   setToken(token) {
     this.settings.headers = {
       ...this.settings.headers,
-      Authorization: `Token ${token}`,
+      Authorization: `Basic ${token}`,
     }
   },
 
