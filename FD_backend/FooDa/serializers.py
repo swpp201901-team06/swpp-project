@@ -18,12 +18,13 @@ class TaggedItemSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     archive = serializers.ReadOnlyField(source='archive.user.username') #source?
     hits = serializers.ReadOnlyField() #source?
+    photo = serializers.ImageField(use_url = True, allow_empty_file = True, required = False)
 
     class Meta:
         model = models.Review
         fields = ('content', 'eatWhen', 'publicStatus', 'postTime',
          'publicStatus', 'score', 'restaurantId', 'archive', 'hits',
-         'tags', 'id')
+         'tags', 'photo', 'id')
 
 
 class ArchiveSerializer(serializers.ModelSerializer):
