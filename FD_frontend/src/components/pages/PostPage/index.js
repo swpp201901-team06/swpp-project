@@ -2,7 +2,7 @@ import React from 'react'
 
 const PostPage = () => {
   return (
-    <div>Generic Page</div>
+    <div>Post Page</div>
   )
 }
 
