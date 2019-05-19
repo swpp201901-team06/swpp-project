@@ -23,7 +23,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = models.Review
         fields = ('content', 'eatWhen', 'publicStatus', 'postTime',
          'publicStatus', 'score', 'restaurantId', 'archive', 'hits',
-         'tags')
+         'tags', 'id')
 
 
 class ArchiveSerializer(serializers.ModelSerializer):

@@ -1,5 +1,5 @@
 from rest_framework import generics, permissions
-from FooDa.permissions import UserOnlyAccess,UserArchiveAccess
+from FooDa.permissions import UserOnlyAccess,IsOwnerOrReadOnly
 
 from django.db.models import Count
 
@@ -32,18 +32,24 @@ class ReviewListView(generics.ListCreateAPIView):
 
 
 class ReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsOwnerOrReadOnly,)
     queryset = models.Review.objects.all()
     serializer_class = serializers.ReviewSerializer
 
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-                      UserArchiveAccess,)
+
+
 
 #TODO : this view should be modified becauser this view access db too much, you should using related
 class myReviewList(APIView):
     def get(self, request, username) :
         user = get_object_or_404(CustomUser, username = username)
         archive = get_object_or_404(models.Archive, user = user)
-        queryset = archive.review_archive.all()
+        if request.user == user:
+                queryset = archive.review_archive.all()
+                serializer_class = serializers.ReviewSerializer(queryset, many = True)
+                return Response(serializer_class.data)
+
+        queryset = archive.review_archive.filter(publicStatus = True)
         serializer_class = serializers.ReviewSerializer(queryset, many = True)
         return Response(serializer_class.data)
 
