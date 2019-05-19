@@ -53,6 +53,19 @@ class myReviewList(APIView):
         serializer_class = serializers.ReviewSerializer(queryset, many = True)
         return Response(serializer_class.data)
 
+#TODO : this view should be modified becauser this view access db too much, you should using related
+class mySortedReviewList(APIView):
+    def get(self, request, username, sortopt) :
+        user = get_object_or_404(CustomUser, username = username)
+        archive = get_object_or_404(models.Archive, user = user)
+        if request.user == user:
+                queryset = archive.review_archive.all().order_by(sortopt)
+                serializer_class = serializers.ReviewSerializer(queryset, many = True)
+                return Response(serializer_class.data)
+
+        queryset = archive.review_archive.filter(publicStatus = True).order_by(sortopt)
+        serializer_class = serializers.ReviewSerializer(queryset, many = True)
+        return Response(serializer_class.data)
 
 
 #TODO : this view should be modified because this view access db two time, and hits can be increased just push F5 button

@@ -10,6 +10,7 @@ urlpatterns = [
     path('reviewhit/<int:pk>/', views.ReviewHitsIncreaseView.as_view(), name = 'reviewhit'),
 
     path('myreviewlist/<str:username>', views.myReviewList.as_view(), name = 'myreviewlist'),
+    path('myreviewlist/<str:username>/<str:sortopt>', views.mySortedReviewList.as_view(), name = 'mysortedreviewlist'),
 
 
     path('archivelist/', views.ArchiveListView.as_view(), name = 'archivelist'),
