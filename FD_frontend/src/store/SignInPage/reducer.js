@@ -27,6 +27,7 @@ const signInReducer = (state, action) => {
       localStorage.setItem('token', JSON.stringify(action.token))
       localStorage.setItem('email', JSON.stringify(action.email))
       localStorage.setItem('nickname', JSON.stringify(action.nickname))
+      console.log(action.nickname)
       return {
         ...nextState,
         email: action.email,
