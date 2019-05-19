@@ -5,7 +5,7 @@ import re
 from tagging.fields import TagField
 from tagging.models import Tag, TaggedItem
 
-
+#TODO : modify sort option : sort option should have only (content|eatWhen|postTime|score|....)
 class Archive(models.Model):
     user = models.OneToOneField(CustomUser, related_name = 'Archive', primary_key = True, on_delete = models.CASCADE)
     visitorCount = models.IntegerField(default = 0)
@@ -34,6 +34,8 @@ class Review(models.Model):
     archive = models.ForeignKey(Archive, related_name = 'review_archive', on_delete = models.CASCADE)
     hits = models.IntegerField(default = 0)
     id = models.AutoField(primary_key = True)
+
+    photo = models.ImageField(blank = True, null = True)
 
     tags = TagField()
 
