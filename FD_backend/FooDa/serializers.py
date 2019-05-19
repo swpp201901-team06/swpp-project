@@ -29,10 +29,11 @@ class ReviewSerializer(serializers.ModelSerializer):
 class ArchiveSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username') #source?
     visitorCount = serializers.ReadOnlyField()
+    sortOption = serializers.ReadOnlyField()
 
     class Meta:
         model = models.Archive
-        fields = ('visitorCount','user')
+        fields = ('visitorCount','user', 'sortOption')
 
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:

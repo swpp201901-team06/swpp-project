@@ -9,6 +9,7 @@ from tagging.models import Tag, TaggedItem
 class Archive(models.Model):
     user = models.OneToOneField(CustomUser, related_name = 'Archive', primary_key = True, on_delete = models.CASCADE)
     visitorCount = models.IntegerField(default = 0)
+    sortOption = models.CharField(max_length = 20, default = 'id')
 
 #TODO : connect with googlemap
 class Restaurant(models.Model):
