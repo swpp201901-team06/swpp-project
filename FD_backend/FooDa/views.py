@@ -60,7 +60,6 @@ class mySortedReviewList(APIView):
         archive = get_object_or_404(models.Archive, user = user)
         if request.user == user:
             queryset = archive.review_archive.all().order_by(sortopt)
-            print(archive.sortOption)
             archive.sortOption = sortopt
 
             archiveData = {
