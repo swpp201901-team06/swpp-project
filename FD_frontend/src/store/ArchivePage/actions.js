@@ -14,10 +14,9 @@ export const GOTO_EDIT_REVIEW = 'GOTO_EDIT_REVIEW'
 export const GOTO_POST_REVIEW = 'GOTO_POST_REVIEW'
 export const GOTO_GUEST_LOG = 'GOTO_GUEST_LOG'
 
-export const getReviewList = (userNickname, archiveOwnerNickname) => {
+export const getReviewList = (archiveOwnerNickname) => {
   return {
     type: GET_REVIEW_LIST_REQUEST,
-    userNickname,
     archiveOwnerNickname,
   }
 }
