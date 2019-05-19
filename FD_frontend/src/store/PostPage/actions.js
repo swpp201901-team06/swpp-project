@@ -14,7 +14,6 @@ export const getPostReviewDetail = (reviewId) => {
 
 export const getPostReviewDetailSuccess = (restId, eatWhen, tags, score,
   content, photo, publicStatus) => {
-
   return {
     type: GET_POST_REVIEW_DETAIL_SUCCESS,
     restId,
@@ -33,11 +32,11 @@ export const getPostReviewDetailFailed = () => {
   }
 }
 
-export const postReview = (restId, eatWhen, tags, score,
+export const postReview = (reviewId, restId, eatWhen, tags, score,
   content, photo, publicStatus) => {
-
   return {
     type: POST_REVIEW_REQUEST,
+    reviewId,
     restId,
     eatWhen,
     tags,

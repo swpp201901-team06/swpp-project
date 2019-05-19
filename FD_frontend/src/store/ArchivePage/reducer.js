@@ -16,7 +16,7 @@ const archiveReducer = (state, action) => {
     }
     if (nextState.isLoggedIn) {
       nextState.token = localStorage.getItem('token')
-      nextState.nickname = localStorage.getItem('nickname')
+      nextState.userNickname = localStorage.getItem('nickname')
     }
   }
 
