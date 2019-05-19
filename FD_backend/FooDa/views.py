@@ -49,7 +49,7 @@ class myReviewList(APIView):
                 serializer_class = serializers.ReviewSerializer(queryset, many = True)
                 return Response(serializer_class.data)
 
-        queryset = archive.review_archive.filter(publicStatus = True)
+        queryset = archive.review_archive.filter(publicStatus = True).order_by(archive.sortOption)
         serializer_class = serializers.ReviewSerializer(queryset, many = True)
         return Response(serializer_class.data)
 
@@ -60,7 +60,6 @@ class mySortedReviewList(APIView):
         archive = get_object_or_404(models.Archive, user = user)
         if request.user == user:
             queryset = archive.review_archive.all().order_by(sortopt)
-            print(archive.sortOption)
             archive.sortOption = sortopt
 
             archiveData = {
@@ -71,10 +70,8 @@ class mySortedReviewList(APIView):
 
             serializer = serializers.ArchiveSerializer(archive, data = archiveData)
             if serializer.is_valid():
-                print('valid')
                 serializer.save()
 
-            print(archive.sortOption)
             serializer_class = serializers.ReviewSerializer(queryset, many = True)
             return Response(serializer_class.data)
 
