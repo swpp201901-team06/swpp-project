@@ -35,7 +35,7 @@ class CustomUserModelTests(TestCase):
         self.assertEqual(int(response.status_code/100), 2)
 
     def get_detail(self):
-        link = self.link + "detail/qwer-2"
+        link = self.link + "detail/qwer-2/"
         response = requests.get(link)
         self.assertEqual(int(response.status_code/100), 2)
 
@@ -45,17 +45,17 @@ class CustomUserModelTests(TestCase):
         self.assertEqual(int(response.status_code/100), 2)
 
     def get_nickname(self):
-        link = self.link + "get-nickname/qwer-2@qwer.qwer"
+        link = self.link + "get-nickname/qwer-2@qwer.qwer/"
         response = requests.get(link)
         self.assertEqual(int(response.status_code/100), 2)
 
     def get_exist_email(self):
-        link = self.link + "exists/email/qwer-2@qwer.qwer"
+        link = self.link + "exists/email/qwer-2@qwer.qwer/"
         response = requests.get(link)
         self.assertEqual(int(response.status_code/100), 2)
 
     def get_exist_username(self):
-        link = self.link + "exists/username/qwer-2"
+        link = self.link + "exists/username/qwer-2/"
         response = requests.get(link)
         self.assertEqual(int(response.status_code/100), 2)
 
