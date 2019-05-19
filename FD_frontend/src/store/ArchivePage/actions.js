@@ -57,9 +57,10 @@ export const getReviewDetailFailed = () => {
   }
 }
 
-export const updateSortMethod = (sortMethod) => {
+export const updateSortMethod = (archiveOwnerNickname, sortMethod) => {
   return {
     type: UPDATE_SORT_METHOD_REQUEST,
+    archiveOwnerNickname,
     sortMethod,
   }
 }

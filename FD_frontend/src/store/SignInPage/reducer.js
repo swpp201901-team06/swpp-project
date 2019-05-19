@@ -15,6 +15,7 @@ const signInReducer = (state, action) => {
     if (nextState.isLoggedIn) {
       nextState.token = localStorage.getItem('token')
       nextState.email = localStorage.getItem('email')
+      nextState.password = localStorage.getItem('password')
       nextState.nickname = localStorage.getItem('nickname')
     }
   }

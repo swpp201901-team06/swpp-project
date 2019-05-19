@@ -3,7 +3,10 @@ import { push } from 'react-router-redux'
 import api from 'services/api'
 import * as actions from './actions'
 
-const reviewDetailUrls = '/'
+const backendUrl = 'http://127.0.0.1:8000/'
+const reviewListUrl = `${backendUrl}FooDa/myreviewlist/`
+const reviewDetailUrl = `${backendUrl}FooDa/reviewdetail/`
+
 
 export function* getReviewList({ archiveOwnerNickname }) {
   try {
@@ -30,7 +33,7 @@ export function* watchGetReviewDetailRequest() {
   yield takeEvery(actions.GET_REVIEW_DETAIL_REQUEST, getReviewDetail)
 }
 
-export function* updateSortMethod({ sortMethod }) {
+export function* updateSortMethod({ archiveOwnerNickname, sortMethod }) {
   try {
     // TODO
   } catch (err) {
@@ -42,10 +45,9 @@ export function* watchUpdateSortMethodRequest() {
   yield takeEvery(actions.UPDATE_SORT_METHOD_REQUEST, updateSortMethod)
 }
 
-export function* deleteReview({ sortMethod, reviewId }) {
+export function* deleteReview({ reviewId }) {
   try {
     // TODO
-    // const response = yield call(api.delete, reviewDetailUrl, {id: id})
   } catch (err) {
     console.log(err)
   }
