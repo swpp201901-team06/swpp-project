@@ -21,10 +21,12 @@ export const getReviewList = (archiveOwnerNickname) => {
   }
 }
 
-export const getReviewListSuccess = (reviewList) => {
+export const getReviewListSuccess = (reviewList, sortMethod, publicStatus) => {
   return {
     type: GET_REVIEW_LIST_SUCCESS,
     reviewList,
+    sortMethod,
+    publicStatus,
   }
 }
 
@@ -62,9 +64,10 @@ export const updateSortMethod = (sortMethod) => {
   }
 }
 
-export const updateSortMethodSuccess = (sortMethod) => {
+export const updateSortMethodSuccess = (reviewList, sortMethod) => {
   return {
     type: UPDATE_SORT_METHOD_SUCCESS,
+    reviewList,
     sortMethod,
   }
 }
@@ -82,10 +85,10 @@ export const deleteReview = (reviewId) => {
   }
 }
 
-export const deleteReviewSuccess = (reviewId) => {
+export const deleteReviewSuccess = (reviewList) => {
   return {
     type: DELETE_REVIEW_SUCCESS,
-    reviewId,
+    reviewList,
   }
 }
 
