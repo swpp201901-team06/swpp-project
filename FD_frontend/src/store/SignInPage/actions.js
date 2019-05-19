@@ -20,12 +20,13 @@ export const signInFailed = () => {
   }
 }
 
-export const signInSuccess = (token, email, nickname) => {
+export const signInSuccess = (token, email, password, nickname) => {
   console.log('sign in success!')
   return {
     type: actionTypes.SIGN_IN_SUCCESS,
     token,
     email,
+    password,
     nickname,
   }
 }

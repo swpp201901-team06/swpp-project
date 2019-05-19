@@ -1,4 +1,5 @@
 import { takeEvery, take, put, call, fork } from 'redux-saga/effects'
+import { push } from 'react-router-redux'
 import api from 'services/api'
 import * as actions from '../actions'
 import * as actionTypes from './actionTypes'
@@ -7,7 +8,7 @@ import { baseHistory } from '../../index'
 const signInPath = 'http://127.0.0.1:8000/api/rest-auth/login/'
 const getNicknamePath = 'http://127.0.0.1:8000/api/users/get-nickname/'
 
-export function* signInAsync({email, password}) {
+export function* signInAsync({ email, password }) {
   try {
     const data = {
       username: 'test_username',
@@ -16,8 +17,8 @@ export function* signInAsync({email, password}) {
     }
     const response = yield call(api.post, signInPath, data)
     const nicknameResponse = yield call(api.get, getNicknamePath + email)
-    baseHistory.push('/' + nicknameResponse.username + '/archive')
-    yield put(actions.signInSuccess(response.key, email, nicknameResponse.username))
+    yield put(push('/' + nicknameResponse.username + '/archive'))
+    yield put(actions.signInSuccess(response.key, email, password, nicknameResponse.username))
   } catch (e) {
     console.error(e)
     yield put(actions.signInFailed())
@@ -39,7 +40,7 @@ export function* watchGotoSignUp() {
 export function* watchGotoArchive() {
   while (true) {
     const { nickname } = yield take(actionTypes.GOTO_ARCHIVE)
-    baseHistory.push('/' + nickname + '/archive')
+    yield put(push('/' + nickname + '/archive'))
   }
 }
 

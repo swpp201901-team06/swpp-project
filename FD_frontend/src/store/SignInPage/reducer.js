@@ -5,10 +5,10 @@ const signInReducer = (state, action) => {
   let nextState = state
   if (!nextState) {
     nextState = {
-      email: '',
-      nickname: '',
-      password: '',
-      token: '',
+      email: null,
+      nickname: null,
+      password: null,
+      token: null,
       signInFailed: false,
       isLoggedIn: localStorage.hasOwnProperty('token'),
     }
@@ -26,6 +26,7 @@ const signInReducer = (state, action) => {
     case actionTypes.SIGN_IN_SUCCESS:
       localStorage.setItem('token', JSON.stringify(action.token))
       localStorage.setItem('email', JSON.stringify(action.email))
+      localStorage.setItem('password', JSON.stringify(action.password))
       localStorage.setItem('nickname', JSON.stringify(action.nickname))
       console.log(action.nickname)
       return {
@@ -33,6 +34,7 @@ const signInReducer = (state, action) => {
         email: action.email,
         token: action.token,
         nickname: action.nickname,
+        password: action.password,
         signInFailed: false,
         isLoggedIn: true,
       }

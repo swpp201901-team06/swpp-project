@@ -10,7 +10,7 @@ const dcUrl = 'http://127.0.0.1:8000/api/users/exists/'
 const archiveUrl = 'http://127.0.0.1:8000/FooDa/archivelist/'
 const archiveInstance = api.create()
 
-export function* submit({email, pw, confirmpw, nickname}) {
+export function* submit({ email, pw, confirmpw, nickname }) {
   console.log(email, pw, confirmpw, nickname)
   try {
     const response = yield call(api.post, signUpUrl, {email: email, password1: pw, password2: confirmpw, username: nickname})
@@ -28,8 +28,8 @@ export function* submit({email, pw, confirmpw, nickname}) {
       {
         method: 'POST',
         headers: {
-          'Authorization': `Basic ${credentials}`,
-          'Content-Type': 'application/json'
+          Authorization: `Basic ${credentials}`,
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
         }),
