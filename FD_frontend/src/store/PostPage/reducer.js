@@ -49,10 +49,18 @@ const postReducer = (state, action) => {
       return nextState
 
 		case actions.CHANGE_PUBLIC_STATUS:
-			return {
-							...nextState,
-							pubStatusText: action.publicStatus
-			}
+      if(action.publicStatus == 'public'){
+			  return {
+							  ...nextState,
+							  publicStatus: 'private'
+			  }
+      }
+      else if(action.publicStatus == 'private'){
+        return {
+                ...nextState,
+                publicStatus: 'public'
+        }
+      }
     default:
       return nextState
   }

@@ -34,6 +34,7 @@ export const getPostReviewDetailFailed = () => {
 }
 
 export const changePublicStatus = (publicStatus) => {
+  console.log(publicStatus)
 	return {
 		type: CHANGE_PUBLIC_STATUS,
 		publicStatus
