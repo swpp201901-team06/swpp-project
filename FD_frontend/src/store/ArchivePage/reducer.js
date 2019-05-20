@@ -15,8 +15,8 @@ const archiveReducer = (state, action) => {
       selectedReviewObj: null,
     }
     if (nextState.isLoggedIn) {
-      nextState.token = localStorage.getItem('token')
-      nextState.userNickname = localStorage.getItem('nickname')
+      nextState.token = JSON.parse(localStorage.getItem('token'))
+      nextState.userNickname = JSON.parse(localStorage.getItem('nickname'))
     }
   }
 

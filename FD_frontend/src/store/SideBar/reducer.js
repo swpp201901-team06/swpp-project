@@ -12,9 +12,9 @@ const sideBarReducer = (state, action) => {
       isLoggedIn: localStorage.hasOwnProperty('token'),
     }
     if (nextState.isLoggedIn) {
-      nextState.token = localStorage.getItem('token')
-      nextState.email = localStorage.getItem('email')
-      nextState.nickname = localStorage.getItem('nickname')
+      nextState.token = JSON.parselocalStorage.getItem('token'))
+      nextState.email = JSON.parselocalStorage.getItem('email'))
+      nextState.nickname = JSON.parselocalStorage.getItem('nickname'))
     }
   }
   switch (action.type) {

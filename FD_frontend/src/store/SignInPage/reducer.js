@@ -13,10 +13,10 @@ const signInReducer = (state, action) => {
       isLoggedIn: localStorage.hasOwnProperty('token'),
     }
     if (nextState.isLoggedIn) {
-      nextState.token = localStorage.getItem('token')
-      nextState.email = localStorage.getItem('email')
-      nextState.password = localStorage.getItem('password')
-      nextState.nickname = localStorage.getItem('nickname')
+      nextState.token = JSON.parse(localStorage.getItem('token'))
+      nextState.email = JSON.parse(localStorage.getItem('email'))
+      nextState.password = JSON.parse(localStorage.getItem('password'))
+      nextState.nickname = JSON.parse(localStorage.getItem('nickname'))
     }
   }
   switch (action.type) {
