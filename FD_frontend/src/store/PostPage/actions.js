@@ -4,6 +4,7 @@ export const GET_POST_REVIEW_DETAIL_FAILED = 'GET_POST_REVIEW_DETAIL_FAILED'
 export const POST_REVIEW_REQUEST = 'POST_REVIEW_REQUEST'
 export const POST_REVIEW_SUCCESS = 'POST_REVIEW_SUCCESS'
 export const POST_REVIEW_FAILED = 'POST_REVIEW_FAILED'
+export const CHANGE_PUBLIC_STATUS = 'CHANGE_PUBLIC_STATUS'
 
 export const getPostReviewDetail = (reviewId) => {
   return {
@@ -30,6 +31,13 @@ export const getPostReviewDetailFailed = () => {
   return {
     type: GET_POST_REVIEW_DETAIL_FAILED,
   }
+}
+
+export const changePublicStatus = (publicStatus) => {
+	return {
+		type: CHANGE_PUBLIC_STATUS,
+		publicStatus
+	}
 }
 
 export const postReview = (reviewId, nickname, restId, eatWhen, tags, score,

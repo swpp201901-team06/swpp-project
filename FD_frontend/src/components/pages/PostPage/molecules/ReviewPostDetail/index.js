@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
 import ImageUpload from '../../atoms/ImageUpload'
+import PubStatusButton from '../../atoms/PubStatusButton'
 
 const Wrapper = styled.div`
   font-family: ${font('primary')};
@@ -9,33 +10,48 @@ const Wrapper = styled.div`
 `
 
 class ReviewPostDetail extends React.Component {
-
-/*  const onImageUpload = image => {
-    const files = Array.from(image.target.files)
-    const formData = new FormData()
-    files.forEach((file, i) => {
-      formData.append(i, file)
-    })*/
+  constructor(props) {
+    super(props)
+  }
   componentDidMount() {
-  	if(this.props.children != undefined) {
+  	if(this.props.children != 'default') {
   		this.props.requestPostReview(this.props.children)
   	}
+  }
+  
   render() {
+  	let date;
+  	let score;
+  	let content;
+  	let tag;
+  	let pubStatus;
+  	
+  	const onPubStatusChange = () => {
+  		if(pubStatus == 'public'){
+  			pubStatus = 'private'
+  		}
+  		else if(pubStatus == 'private'){
+  			pubStatus = 'public'
+  		}
+  		this.props.PubStatusChange(pubStatus);
+  	}
+  	
 		return (
 			<div>
 				<h4>Date{' '}
-				<input ref={node => {date = node;}} /><h4>
+				<input ref={node => {date = node;}} /></h4>
 				<h4>Image{' '}
 				<ImageUpload /></h4>
 				<h4>Score{' '}
 		    <input ref={node => {score = node;}} /></h4>
 		    <h4>Content{' '}
 		    <input ref={node => {content = node;}} /></h4>
-		    <h4>Nickname{' '}
-				{input ref={node => {tag = node;}} /></h4>
-				<pubStatusButton onClick={onPubStatusChange}
+		    <h4>Tag{' '}
+				<input ref={node => {tag = node;}} /></h4>
+				<h4><PubStatusButton onClick={onPubStatusChange}>Public Status</PubStatusButton>{'  '}{this.props.statefunction.PostPage.pubStatusText}</h4>
+			</div>
 		)
-	}
+	};
 }
 
 ReviewPostDetail.propTypes = {

@@ -1,14 +1,21 @@
 import React from 'react'
-import { ReviewPostDetail } from './molecules/ReviewPostDetail'
+import ReviewPostDetail from '../../../containers/PostPage/ReviewPost'
 
-const PostPage = () => {
-  return (
-    <div>Post Page
-      <ReviewPostDetail>
-				{this.props.params.reviewId}
-			</ReviewPostDetail>
-    </div>
-  )
+class PostPage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    let review;
+    review = this.props.params.reviewId;
+    return (
+      <div><h4>{'Post Page'}</h4>
+        <ReviewPostDetail>
+				  {review}
+			  </ReviewPostDetail>
+      </div>
+    )
+  }
 }
 
 export default PostPage

@@ -10,7 +10,7 @@ const routes = (
       <Route path="guest" component={GuestPage} />
       <Route path="signin" component={SignInPage} />
       <Route path="signup" component={SignUpPage} />
-      <Route path="post" component={PostPage} />
+      <Route path="post/:reviewId" component={PostPage} />
       <Route path=":nickname/archive" component={ArchivePage} />
       <Route path=":nickname/account" component={AccountPage} />
     </Route>
