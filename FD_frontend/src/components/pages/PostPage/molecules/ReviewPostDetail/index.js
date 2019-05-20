@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
 import ImageUpload from '../../atoms/ImageUpload'
 import PubStatusButton from '../../atoms/PubStatusButton'
+import PostSubmitButton from '../../atoms/PostSubmitButton'
 
 const Wrapper = styled.div`
   font-family: ${font('primary')};
@@ -10,53 +12,82 @@ const Wrapper = styled.div`
 `
 
 class ReviewPostDetail extends React.Component {
+  /*
   constructor(props) {
     super(props)
   }
+  */
+
   componentDidMount() {
-  	if(this.props.children != 'default') {
-  		this.props.requestPostReview(this.props.children)
-  	}
-  }
-  
-  render() {
-  	let date;
-  	let score;
-  	let content;
-  	let tag;
-    let publicStatusText;
-  	if(this.props.statefunction.PostPage.publicStatus) {
-      publicStatusText = this.props.statefunction.PostPage.publicStatus;
+    console.log('component did mount')
+    if (this.props.children !== 'default') {
+      console.log('not default')
+      console.log(this.props.children)
+      this.props.onLoad(this.props.children)
     }
-    else{
-      publicStatusText = 'private';
+  }
+
+  render() {
+    let date
+    let score
+    let content
+    let tag
+    let publicStatusText
+    let restId
+    if (this.props.statefunction.PostPage.publicStatus) {
+      publicStatusText = this.props.statefunction.PostPage.publicStatus
+    } else {
+      publicStatusText = 'private'
     }
 
-  	const onPubStatusChange = () => {
-      if(this.props.statefunction.PostPage.publicStatus) {
-  		  this.props.PubStatusChange(this.props.statefunction.PostPage.publicStatus);
+    const onPubStatusChange = () => {
+      if (this.props.statefunction.PostPage.publicStatus) {
+        this.props.PubStatusChange(this.props.statefunction.PostPage.publicStatus)
+      } else {
+        this.props.PubStatusChange('private')
       }
-      else{
-        this.props.PubStatusChange('private');
+      console.log(this.props.statefunction)
+    }
+
+    const onClickPostSubmit = () => {
+      if (restId.value && date.value && score.value && content.value) {
+        this.props.onPostSubmit(
+          this.props.children,
+          this.props.statefunction.PostPage.nickname,
+          restId.value,
+          date.value,
+          tag.value,
+          score.value,
+          content.value,
+          photo,       // TODO: fill in with correct value
+          this.props.statefunction.PostPage.publicStatus
+        )
       }
-      console.log(this.props.statefunction);
-  	}
-		return (
-			<div>
-				<h4>Date{' '}
-				<input ref={node => {date = node;}} /></h4>
-				<h4>Image{' '}
-				<ImageUpload /></h4>
-				<h4>Score{' '}
-		    <input ref={node => {score = node;}} /></h4>
-		    <h4>Content{' '}
-		    <input ref={node => {content = node;}} /></h4>
-		    <h4>Tag{' '}
-				<input ref={node => {tag = node;}} /></h4>
-				<h4><PubStatusButton onClick={onPubStatusChange}>Public Status</PubStatusButton>{'  '}{publicStatusText}</h4>
-			</div>
-		)
-	};
+    }
+
+    return (
+      <div>
+        <h4>Date{' '}<input ref={node => {date = node;}} /></h4>
+        <h4>Restaurant ID{' '}<input ref={node => {restId = node}} /></h4>
+        <h4>Image{' '}<ImageUpload /></h4>
+        <h4>Score{' '}<input ref={node => {score = node}} /></h4>
+        <h4>Content{' '}<input ref={node => {content = node}} /></h4>
+        <h4>Tag{' '}<input ref={node => {tag = node}} /></h4>
+        <h4>
+          <PubStatusButton onClick={onPubStatusChange}>
+            Public Status
+          </PubStatusButton>
+          {'  '}
+          {publicStatusText}
+        </h4>
+        <h4>
+          <PostSubmitButton onClick={onClickPostSubmit}>
+            Submit
+          </PostSubmitButton>
+        </h4>
+      </div>
+    )
+  }
 }
 
 ReviewPostDetail.propTypes = {

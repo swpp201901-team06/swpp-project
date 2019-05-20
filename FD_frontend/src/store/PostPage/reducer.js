@@ -17,7 +17,7 @@ const postReducer = (state, action) => {
       publicStatus: false,
     }
     if (nextState.isLoggedIn) {
-      nextState.nickname = localStorage.getItem('nickname')
+      nextState.nickname = JSON.parse(localStorage.getItem('nickname'))
     }
   }
 
@@ -34,6 +34,8 @@ const postReducer = (state, action) => {
       nextState.score = action.score
       nextState.photo = action.photo
       nextState.publicState = action.publicStatus
+      console.log('reducer get post review detail success')
+      console.log(nextState)
       return nextState
 
     case actions.GET_POST_REVIEW_DETAIL_FAILED:
