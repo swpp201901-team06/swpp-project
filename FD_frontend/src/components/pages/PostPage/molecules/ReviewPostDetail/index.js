@@ -14,49 +14,48 @@ class ReviewPostDetail extends React.Component {
     super(props)
   }
   componentDidMount() {
-  	if(this.props.children != 'default') {
-  		this.props.requestPostReview(this.props.children)
-  	}
-  }
-  
-  render() {
-  	let date;
-  	let score;
-  	let content;
-  	let tag;
-    let publicStatusText;
-  	if(this.props.statefunction.PostPage.publicStatus) {
-      publicStatusText = this.props.statefunction.PostPage.publicStatus;
+    if (this.props.children !== 'default') {
+      this.props.requestPostReview(this.props.children)
     }
-    else{
-      publicStatusText = 'private';
+  }
+
+  render() {
+    let date;
+    let score;
+    let content;
+    let tag;
+    let publicStatusText;
+    if (this.props.statefunction.PostPage.publicStatus) {
+      publicStatusText = this.props.statefunction.PostPage.publicStatus
+    } else {
+      publicStatusText = 'private'
     }
 
-  	const onPubStatusChange = () => {
-      if(this.props.statefunction.PostPage.publicStatus) {
-  		  this.props.PubStatusChange(this.props.statefunction.PostPage.publicStatus);
+    const onPubStatusChange = () => {
+      if (this.props.statefunction.PostPage.publicStatus) {
+        this.props.PubStatusChange(this.props.statefunction.PostPage.publicStatus)
+      } else {
+        this.props.PubStatusChange('private')
       }
-      else{
-        this.props.PubStatusChange('private');
-      }
-      console.log(this.props.statefunction);
-  	}
-		return (
-			<div>
-				<h4>Date{' '}
-				<input ref={node => {date = node;}} /></h4>
-				<h4>Image{' '}
-				<ImageUpload /></h4>
-				<h4>Score{' '}
-		    <input ref={node => {score = node;}} /></h4>
-		    <h4>Content{' '}
-		    <input ref={node => {content = node;}} /></h4>
-		    <h4>Tag{' '}
-				<input ref={node => {tag = node;}} /></h4>
-				<h4><PubStatusButton onClick={onPubStatusChange}>Public Status</PubStatusButton>{'  '}{publicStatusText}</h4>
-			</div>
-		)
-	};
+      console.log(this.props.statefunction)
+    }
+    return (
+      <div>
+        <h4>Date{' '}<input ref={node => {date = node;}} /></h4>
+        <h4>Image{' '}<ImageUpload /></h4>
+        <h4>Score{' '}<input ref={node => {score = node}} /></h4>
+        <h4>Content{' '}<input ref={node => {content = node}} /></h4>
+        <h4>Tag{' '}<input ref={node => {tag = node}} /></h4>
+        <h4>
+          <PubStatusButton onClick={onPubStatusChange}>
+            Public Status
+          </PubStatusButton>
+          {'  '}
+          {publicStatusText}
+        </h4>
+      </div>
+    )
+  }
 }
 
 ReviewPostDetail.propTypes = {
