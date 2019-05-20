@@ -16,13 +16,13 @@ class ArchiveTests(TestCase):
             "password2": "asdf!@#$"
         }
         response = requests.post(link, data = data)
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 201)
 
 
     def get_archive_list(self):
         link = self.link + "archivelist/"
         response = requests.get(link)
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 200)
 
 #update number every test
 #u should change auth email with who don't have archive
@@ -30,7 +30,7 @@ class ArchiveTests(TestCase):
         link = self.link + "archivelist/"
         data = {}
         response = requests.post(link, data = data, auth = ("asdf-4@asdf.asdf", "asdf!@#$"))
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 201)
 
     def test_total_archive(self):
         self.sign_up()
@@ -50,18 +50,18 @@ class ReviewTests(TestCase):
             "password2": "qwer!@#$"
         }
         response = requests.post(link, data = data)
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 201)
 
     def archive_post(self):
         link = self.link + "archivelist/"
         data = {}
         response = requests.post(link, data = data, auth = ("qwer-1@qwer.qwer", "qwer!@#$"))
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 201)
 
     def get_review_list(self):
         link = self.link + "reviewlist/"
         response = requests.get(link)
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 200)
 
     def post_review_list(self):
         link = self.link + "reviewlist/"
@@ -77,13 +77,13 @@ class ReviewTests(TestCase):
             "tags": "new tag1, new tag2"
         }
         response = requests.post(link, data = data, auth = ("qwer-1@qwer.qwer", "qwer!@#$"))
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 201)
 
 #update number every test
     def delete_review(self):
         link = self.link + "reviewdetail/1/"
         response = requests.delete(link, auth = ("qwer-1@qwer.qwer", "qwer!@#$"))
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 204)
 
     def put_review(self):
         link = self.link + "reviewdetail/1/"
@@ -99,13 +99,13 @@ class ReviewTests(TestCase):
             "tags": "new tag1, new tag2"
         }
         response = requests.put(link, data = data, auth = ("qwer-1@qwer.qwer", "qwer!@#$"))
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 200)
 
 ###############resturant
     def get_restlist(self):
         link = self.link + "restaurantlist/"
         response = requests.get(link)
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 200)
 
 #update number every test
     def post_restaurant(self):
@@ -115,12 +115,12 @@ class ReviewTests(TestCase):
             "rAddress": "test_rest_add"
         }
         response = requests.post(link, data = data)
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 201)
 
     def get_restdetail(self):
         link = self.link + "restaurantdetail/1/"
         response = requests.get(link)
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 200)
 
     def put_restdetail(self):
         link = self.link + "restaurantdetail/1/"
@@ -129,13 +129,13 @@ class ReviewTests(TestCase):
             "rAddress": "restadd"
         }
         response = requests.put(link, data = data)
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 200)
 
 #update number every test
     def delete_rest(self):
         link = self.link + "restaurantdetail/1/"
         response = requests.delete(link)
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 204)
 
     def test_total_review(self):
         self.sign_up()
@@ -161,7 +161,7 @@ class TagTests(TestCase):
     def get_tag(self):
         link = self.link + "tagging/"
         response = requests.get(link)
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 200)
 
 #update number every test
     def post_tag(self):
@@ -170,12 +170,12 @@ class TagTests(TestCase):
             "name": "test tag1"
         }
         response = requests.post(link, data = data)
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 201)
 
     def get_taggeditem(self):
         link = self.link + "taggeditem/"
         response = requests.get(link)
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 200)
 
 #update object_id every test
 # in real case u shouldn't do post
@@ -187,12 +187,12 @@ class TagTests(TestCase):
             "content_type": 17
         }
         response = requests.post(link, data = data)
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 201)
 
     def get_tagfilter(self):
         link = self.link + "tagfilter/1/"
         response = requests.get(link)
-        self.assertEqual(int(response.status_code/100), 2)
+        self.assertEqual(response.status_code, 200)
 
     def test_total_tag(self):
         self.post_tag()
