@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ReviewPostDetail from '../../components/pages/PostPage/molecules/ReviewPostDetail'
-import { changePubStatus } from '../../store/PostPage/actions'
+import { changePublicStatus } from '../../store/PostPage/actions'
 
 const mapStateToProps = (state) => {
   return {

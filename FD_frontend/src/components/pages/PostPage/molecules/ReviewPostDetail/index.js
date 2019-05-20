@@ -24,18 +24,23 @@ class ReviewPostDetail extends React.Component {
   	let score;
   	let content;
   	let tag;
-  	let pubStatus;
-  	
+    let publicStatusText;
+  	if(this.props.statefunction.PostPage.publicStatus) {
+      publicStatusText = this.props.statefunction.PostPage.publicStatus;
+    }
+    else{
+      publicStatusText = 'private';
+    }
+
   	const onPubStatusChange = () => {
-  		if(pubStatus == 'public'){
-  			pubStatus = 'private'
-  		}
-  		else if(pubStatus == 'private'){
-  			pubStatus = 'public'
-  		}
-  		this.props.PubStatusChange(pubStatus);
+      if(this.props.statefunction.PostPage.publicStatus) {
+  		  this.props.PubStatusChange(this.props.statefunction.PostPage.publicStatus);
+      }
+      else{
+        this.props.PubStatusChange('private');
+      }
+      console.log(this.props.statefunction);
   	}
-  	
 		return (
 			<div>
 				<h4>Date{' '}
@@ -48,7 +53,7 @@ class ReviewPostDetail extends React.Component {
 		    <input ref={node => {content = node;}} /></h4>
 		    <h4>Tag{' '}
 				<input ref={node => {tag = node;}} /></h4>
-				<h4><PubStatusButton onClick={onPubStatusChange}>Public Status</PubStatusButton>{'  '}{this.props.statefunction.PostPage.pubStatusText}</h4>
+				<h4><PubStatusButton onClick={onPubStatusChange}>Public Status</PubStatusButton>{'  '}{publicStatusText}</h4>
 			</div>
 		)
 	};
