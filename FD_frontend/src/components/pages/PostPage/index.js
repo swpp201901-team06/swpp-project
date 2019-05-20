@@ -4,7 +4,9 @@ import { ReviewPostDetail } from './molecules/ReviewPostDetail'
 const PostPage = () => {
   return (
     <div>Post Page
-      <ReviewPostDetail />
+      <ReviewPostDetail>
+				{this.props.params.reviewId}
+			</ReviewPostDetail>
     </div>
   )
 }
