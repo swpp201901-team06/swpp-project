@@ -64,7 +64,7 @@ export function* deleteReview({ reviewId }) {
 export function* watchDeleteReviewRequest() {
   yield takeEvery(actions.DELETE_REVIEW_REQUEST, deleteReview)
 }
-
+/*
 export function* watchGotoEditReview() {
   while (true) {
     const { reviewId } = yield take(actions.GOTO_EDIT_REVIEW)
@@ -72,6 +72,7 @@ export function* watchGotoEditReview() {
     yield put(push(editReviewLink))
   }
 }
+*/
 
 export function* watchGotoPostReview() {
   while (true) {
@@ -94,7 +95,7 @@ export default function* () {
   yield fork(watchGetReviewDetailRequest)
   yield fork(watchUpdateSortMethodRequest)
   yield fork(watchDeleteReviewRequest)
-  yield fork(watchGotoEditReview)
+  // yield fork(watchGotoEditReview)
   yield fork(watchGotoPostReview)
   yield fork(watchGotoGuestLog)
 }

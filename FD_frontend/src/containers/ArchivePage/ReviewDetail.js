@@ -17,9 +17,11 @@ const mapDispatchToProps = (dispatch) => {
     onDeleteReview: (reviewId) => {
       dispatch(deleteReview(reviewId))
     },
+    /*
     onEditReview: (reviewId) => {
       dispatch(gotoEditReview(reviewId))
     },
+    */
   }
 }
 

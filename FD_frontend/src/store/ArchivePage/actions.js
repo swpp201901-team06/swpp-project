@@ -10,7 +10,7 @@ export const UPDATE_SORT_METHOD_FAILED = 'UPDATE_SORT_METHOD_FAILED'
 export const DELETE_REVIEW_REQUEST = 'DELETE_REVIEW_REQUEST'
 export const DELETE_REVIEW_SUCCESS = 'DELETE_REVIEW_SUCCESS'
 export const DELETE_REVIEW_FAILED = 'DELETE_REVIEW_FAILED'
-export const GOTO_EDIT_REVIEW = 'GOTO_EDIT_REVIEW'
+// export const GOTO_EDIT_REVIEW = 'GOTO_EDIT_REVIEW'
 export const GOTO_POST_REVIEW = 'GOTO_POST_REVIEW'
 export const GOTO_GUEST_LOG = 'GOTO_GUEST_LOG'
 
@@ -97,12 +97,14 @@ export const deleteReviewFailed = () => {
   }
 }
 
+/*
 export const gotoEditReview = (reviewId) => {
   return {
     type: GOTO_EDIT_REVIEW,
     reviewId,
   }
 }
+*/
 
 export const gotoPostReview = () => {
   return {

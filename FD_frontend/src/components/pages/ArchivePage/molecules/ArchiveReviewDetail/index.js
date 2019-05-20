@@ -11,10 +11,7 @@ const Wrapper = styled.div`
 `
 
 const ArchiveReviewDetail = ({ reviewId, reviewObj, isLoggedIn,
-  userNickname, archiveOwnerNickname, onEditReview, onDeleteReview }) => {
-  const editReview = () => {
-    onEditReview(reviewId)
-  }
+  userNickname, archiveOwnerNickname, onDeleteReview }) => {
 
   const deleteReview = () => {
     onDeleteReview(reviewId)
@@ -30,7 +27,9 @@ const ArchiveReviewDetail = ({ reviewId, reviewObj, isLoggedIn,
         (!isLoggedIn || (userNickname === archiveOwnerNickname)) ? (
           <div>
             <DetailButton onClick={deleteReview}>Delete</DetailButton>
-            <DetailButton component={editReview}>Edit</DetailButton>
+            <Link to={`/post/${reviewId}`}>
+              <DetailButton>Edit</DetailButton>
+            </Link>
           </div>
         ) : (<div />)
       }
