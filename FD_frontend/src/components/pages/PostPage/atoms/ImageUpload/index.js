@@ -24,6 +24,7 @@ class ImageUpload extends React.Component {
         file: file,
         imagePreviewUrl: reader.result,
       });
+      this.props.passImageToState(file);
     }
 
     reader.readAsDataURL(file)
@@ -44,9 +45,6 @@ class ImageUpload extends React.Component {
           <input className="fileInput" 
             type="file" 
             onChange={(e)=>this._handleImageChange(e)} />
-          <button className="submitButton" 
-            type="submit" 
-            onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
         </form>
         <div className="imgPreview">
           {$imagePreview}
