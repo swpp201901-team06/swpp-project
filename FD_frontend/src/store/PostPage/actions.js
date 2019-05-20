@@ -5,6 +5,7 @@ export const POST_REVIEW_REQUEST = 'POST_REVIEW_REQUEST'
 export const POST_REVIEW_SUCCESS = 'POST_REVIEW_SUCCESS'
 export const POST_REVIEW_FAILED = 'POST_REVIEW_FAILED'
 export const CHANGE_PUBLIC_STATUS = 'CHANGE_PUBLIC_STATUS'
+export const UPLOAD_IMAGE = 'UPLOAD_IMAGE'
 
 export const getPostReviewDetail = (reviewId) => {
   return {
@@ -32,6 +33,13 @@ export const getPostReviewDetailSuccess = (restId, eatWhen, tags, score,
 export const getPostReviewDetailFailed = () => {
   return {
     type: GET_POST_REVIEW_DETAIL_FAILED,
+  }
+}
+
+export const uploadImage = (file) => {
+  return {
+    type: UPLOAD_IMAGE,
+    file
   }
 }
 

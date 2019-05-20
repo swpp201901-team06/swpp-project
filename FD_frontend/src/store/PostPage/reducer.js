@@ -41,6 +41,11 @@ const postReducer = (state, action) => {
     case actions.GET_POST_REVIEW_DETAIL_FAILED:
       return nextState
 
+    case actions.UPLOAD_IMAGE:
+      return {
+              ...nextState,
+              photo: action.file
+      }
     case actions.POST_REVIEW_REQUEST:
       return nextState
 

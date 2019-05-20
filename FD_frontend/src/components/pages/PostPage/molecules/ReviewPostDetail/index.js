@@ -2,7 +2,7 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
-import ImageUpload from '../../atoms/ImageUpload'
+import ImageUpload from '../../../../../containers/PostPage/ImageUpload'
 import PubStatusButton from '../../atoms/PubStatusButton'
 import PostSubmitButton from '../../atoms/PostSubmitButton'
 
@@ -59,7 +59,7 @@ class ReviewPostDetail extends React.Component {
           tag.value,
           score.value,
           content.value,
-          photo,       // TODO: fill in with correct value
+          this.props.statefunction.PostPage.photo,
           this.props.statefunction.PostPage.publicStatus
         )
       }

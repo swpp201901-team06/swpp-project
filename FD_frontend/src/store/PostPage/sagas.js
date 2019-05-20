@@ -10,7 +10,7 @@ const reviewDetailUrl = `${backendUrl}FooDa/reviewdetail/`
 
 export function* getPostReviewDetail({ reviewId }) {
   try {
-    if (reviewId === null) { // post new review
+    if (reviewId === 'default') { // post new review
       yield put(actions.getPostReviewDetailSuccess(null, null, null, null,
         null, null, false))
     }
@@ -49,15 +49,18 @@ export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
       photo,
       publicStatus,
     }
-    if (reviewId === null) { // post new review
-      yield callUrl('POST', reviewListUrl, data)
+    if (reviewId == 'default') { // post new review
+      yield callUrl('POST', reviewListUrl, {content: content, eatWhen: eatWhen, publicStatus: publicStatus, score: score, restaurantId: restId, photo: photo, tags: tags})
     } else { // edit existing review
-      yield callUrl('POST', `${reviewDetailUrl}${reviewId}/`, data)
+      yield callUrl('PUT', `${reviewDetailUrl}${reviewId}/`, {content: content, eatWhen: eatWhen, publicStatus: publicStatus, score: score, restaurantId: restId, photo: photo, tags: tags})
     }
     yield put(push(`/${nickname}/archive`))
     yield put(actions.postReviewSuccess())
-    yield put(getReviewDetail(reviewId, nickname))
-  } catch (err) {
+    if(reviewId != 'default'){
+      yield put(getReviewDetail(reviewId, nickname))
+    }
+  }
+  catch (err) {
     console.log(err)
     yield put(actions.postReviewFailed())
   }
