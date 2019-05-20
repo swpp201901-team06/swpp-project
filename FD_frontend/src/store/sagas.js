@@ -32,6 +32,7 @@ export function* callUrl(method, url, data = {}) {
           }
         )
       }
+      console.log('callUrl POST, PUT')
       return yield call(
         fetch,
         url,
@@ -41,9 +42,7 @@ export function* callUrl(method, url, data = {}) {
             Authorization: `Basic ${credentials}`,
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            ...data,
-          }),
+          body: JSON.stringify(data),
         }
       )
     } else if (method === 'GET') {

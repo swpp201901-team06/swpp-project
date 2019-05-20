@@ -14,8 +14,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onDeleteReview: (reviewId) => {
-      dispatch(deleteReview(reviewId))
+    onDeleteReview: (reviewId, archiveOwnerNickname) => {
+      dispatch(deleteReview(reviewId, archiveOwnerNickname))
     },
     /*
     onEditReview: (reviewId) => {

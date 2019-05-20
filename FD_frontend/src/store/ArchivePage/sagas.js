@@ -10,7 +10,9 @@ const reviewDetailUrl = `${backendUrl}FooDa/reviewdetail/`
 export function* getReviewList({ archiveOwnerNickname }) {
   try {
     console.log('getReviewList')
-    const reviewList = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
+    const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
+    const reviewList = yield response.json()
+    // TODO: make sure reviewList is in the right format
     yield put(actions.getReviewListSuccess(reviewList))
   } catch (err) {
     console.log(err)
@@ -24,7 +26,9 @@ export function* watchGetReviewListRequest() {
 
 export function* getReviewDetail({ reviewId }) {
   try {
-    const reviewDetail = yield callUrl('GET', `${reviewDetailUrl}${reviewId}/`)
+    const response = yield callUrl('GET', `${reviewDetailUrl}${reviewId}/`)
+    const reviewDetail = yield response.json()
+    // TODO: make sure reviewDetail is in the right format
     yield put(actions.getReviewDetailSuccess(reviewDetail))
   } catch (err) {
     console.log(err)
@@ -38,7 +42,9 @@ export function* watchGetReviewDetailRequest() {
 
 export function* updateSortMethod({ archiveOwnerNickname, sortMethod }) {
   try {
-    const reviewList = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/${sortMethod}/`)
+    const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/${sortMethod}/`)
+    const reviewList = yield response.json()
+    // TODO: make sure reviewList is in the right format
     yield put(actions.updateSortMethodSuccess(reviewList, sortMethod))
   } catch (err) {
     console.log(err)
@@ -50,10 +56,12 @@ export function* watchUpdateSortMethodRequest() {
   yield takeEvery(actions.UPDATE_SORT_METHOD_REQUEST, updateSortMethod)
 }
 
-export function* deleteReview({ reviewId }) {
+export function* deleteReview({ reviewId, archiveOwnerNickname }) {
   try {
     yield callUrl('DELETE', `${reviewDetailUrl}${reviewId}/`)
-    const reviewList = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
+    // TODO: archiveOwnerNickname undefined
+    const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
+    const reviewList = yield response.json()
     yield put(actions.deleteReviewSuccess(reviewList))
   } catch (err) {
     console.log(err)

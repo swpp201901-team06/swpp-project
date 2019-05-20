@@ -14,7 +14,7 @@ const ArchiveReviewDetail = ({ reviewId, reviewObj, isLoggedIn,
   userNickname, archiveOwnerNickname, onDeleteReview }) => {
 
   const deleteReview = () => {
-    onDeleteReview(reviewId)
+    onDeleteReview(reviewId, archiveOwnerNickname)
   }
 
   if (reviewId === null) {

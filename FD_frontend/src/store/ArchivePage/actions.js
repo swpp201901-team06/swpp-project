@@ -77,10 +77,11 @@ export const updateSortMethodFailed = () => {
   }
 }
 
-export const deleteReview = (reviewId) => {
+export const deleteReview = (reviewId, archiveOwnerNickname) => {
   return {
     type: DELETE_REVIEW_REQUEST,
     reviewId,
+    archiveOwnerNickname,
   }
 }
 
