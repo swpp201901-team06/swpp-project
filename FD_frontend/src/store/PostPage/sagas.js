@@ -15,12 +15,19 @@ export function* getPostReviewDetail({ reviewId }) {
         null, null, false))
     }
     else { // edit existing review
+      console.log('get post review detail saga')
+      console.log(`${reviewDetailUrl}${reviewId}/`)
       const reviewDetail = yield callUrl('GET', `${reviewDetailUrl}${reviewId}/`)
-      const { restId, eatWhen, tags, score, content, photo, publicStatus } = reviewDetail
+      console.log('after getting')
+      const jsonData = yield reviewDetail.json()
+      console.log(reviewDetail)
+      console.log(jsonData)
+      const { restId, eatWhen, tags, score, content, photo, publicStatus } = jsonData
       yield put(actions.getPostReviewDetailSuccess(restId, eatWhen, tags, score,
         content, photo, publicStatus))
     }
   } catch (err) {
+    console.log('get post review detail error')
     console.log(err)
     yield put(actions.getPostReviewDetailFailed())
   }
@@ -57,7 +64,7 @@ export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
 }
 
 export function* watchPostMeetingRequest() {
-  yield takeEvery(actions.GET_POST_REVIEW_DETAIL_REQUEST, postReview)
+  yield takeEvery(actions.POST_REVIEW_REQUEST, postReview)
 }
 
 export default function* () {

@@ -4,11 +4,21 @@ import api from 'services/api'
 const req = require.context('.', true, /\.\/.+\/sagas\.js$/)
 
 export function* callUrl(method, url, data = {}) {
+  console.log('callUrl')
+  console.log(method)
+  console.log(url)
+  console.log(data)
+  console.log(localStorage)
   try {
     if (localStorage.hasOwnProperty('token')) {
-      const email = localStorage.getItem('email')
-      const password = localStorage.getItem('password')
+      const email = JSON.parse(localStorage.getItem('email'))
+      const password = JSON.parse(localStorage.getItem('password'))
+      console.log('logged in callUrl')
+      console.log(email)
+      console.log(password)
       const credentials = new Buffer(`${email}:${password}`).toString('base64')
+      console.log('print credentials')
+      console.log(credentials)
       if (method === 'GET' || method === 'DELETE') {
         return yield call(
           fetch,
