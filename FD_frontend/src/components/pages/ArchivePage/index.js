@@ -3,6 +3,8 @@ import SideBar from '../../../containers/SideBar/SideBar'
 import { Link } from 'react-router'
 import PostButton from './atoms/PostButton'
 import ArchiveReviewList from '../../../containers/ArchivePage/ReviewList'
+import ArchiveReviewDetail from '../../../containers/ArchivePage/ReviewDetail'
+
 
 const ArchivePage = React.createClass({
   render () {
@@ -18,6 +20,8 @@ const ArchivePage = React.createClass({
         <Link to='/post/default'>
           <PostButton>Post Review</PostButton>
         </Link>
+        <h1>{' '}</h1>
+        <ArchiveReviewDetail />
       </div>
     )
   }

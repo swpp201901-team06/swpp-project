@@ -2,7 +2,7 @@ import { PropTypes } from 'react'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
 
-const Styledli = stled.li`
+const Styledli = styled.li`
   font-family: ${font('primary')};
 `
 

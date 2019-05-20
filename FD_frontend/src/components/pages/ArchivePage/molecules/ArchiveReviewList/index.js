@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
+import ArchiveReview from '../../atoms/ArchiveReview'
 
 const Wrapper = styled.div`
   font-family: ${font('primary')};
@@ -16,7 +17,7 @@ class ArchiveReviewList extends React.Component {
   };
 
   render() {
-    console.log(this.props)
+    console.log(this.props.statefunction.ArchivePage.reviews)
     const reviewstate = this.props.statefunction.ArchivePage.reviews
     return (
       <div>

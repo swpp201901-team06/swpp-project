@@ -49,16 +49,24 @@ export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
       photo,
       publicStatus,
     }
+
+		let bPublicStatus;
+		if(publicStatus == 'public'){
+			bPublicStatus = 'True'
+		}
+		else{
+			bPublicStatus = 'False'
+		}
     if (reviewId == 'default') { // post new review
-      yield callUrl('POST', reviewListUrl, {content: content, eatWhen: eatWhen, publicStatus: publicStatus, score: score, restaurantId: restId, photo: photo, tags: tags})
+      yield callUrl('POST', reviewListUrl, {content: content, eatWhen: eatWhen, publicStatus: bPublicStatus, score: score, restaurantId: restId, tags: tags})
     } else { // edit existing review
-      yield callUrl('PUT', `${reviewDetailUrl}${reviewId}/`, {content: content, eatWhen: eatWhen, publicStatus: publicStatus, score: score, restaurantId: restId, photo: photo, tags: tags})
+      yield callUrl('PUT', `${reviewDetailUrl}${reviewId}/`, {content: content, eatWhen: eatWhen, publicStatus: bPublicStatus, score: score, restaurantId: restId, tags: tags})
     }
-    yield put(push(`/${nickname}/archive`))
     yield put(actions.postReviewSuccess())
-    if(reviewId != 'default'){
+    yield put(push('/'+nickname+'/archive'))
+    /*if(reviewId != 'default'){
       yield put(getReviewDetail(reviewId, nickname))
-    }
+    }*/
   }
   catch (err) {
     console.log(err)
