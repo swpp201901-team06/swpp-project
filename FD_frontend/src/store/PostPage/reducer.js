@@ -48,6 +48,11 @@ const postReducer = (state, action) => {
     case actions.POST_REVIEW_FAILED:
       return nextState
 
+		case actions.CHANGE_PUBLIC_STATUS:
+			return {
+							...nextState,
+							pubStatusText: action.publicStatus
+			}
     default:
       return nextState
   }
