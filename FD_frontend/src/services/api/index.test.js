@@ -107,7 +107,7 @@ describe('api', () => {
       expect(obj.settings).toEqual({
         headers: {
           foo: 'bar',
-          Authorization: 'Bearer token',
+          Authorization: 'Basic token',
         },
       })
     })
@@ -116,7 +116,7 @@ describe('api', () => {
       const obj = api.create({
         headers: {
           foo: 'bar',
-          Authorization: 'Bearer token',
+          Authorization: 'Basic token',
         },
       })
       obj.unsetToken()
