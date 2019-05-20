@@ -6,12 +6,13 @@ const Styledli = styled.li`
   font-family: ${font('primary')};
 `
 
-const ArchiveReview = ({ review }) => {
+const ArchiveReview = () => {
 	return (
 		<div>
-			{review.id}
-			{review.content}
-			{review.eatWhen}
+			<h4>{props.eatWhen}{'   '}</h4>
+			<h4>{props.restaurantId}{'   '}
+			{props.score}</h4>
+			<img src={props.photo} />
   	</div>
   )
 }

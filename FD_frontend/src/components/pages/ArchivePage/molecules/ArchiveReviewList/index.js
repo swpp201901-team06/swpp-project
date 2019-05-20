@@ -29,10 +29,12 @@ class ArchiveReviewList extends React.Component {
 							{review.restaurantId}{'   '}
 							{review.score}{'   '}
 							{review.content}</h4>
+							<img src={review.photo} />
 						</div>
 					)}
-        <h4>{this.props.statefunction.SignInPage.nickname} {'`s review list'}</h4>
-      </div>
+			</div>
+			      	/*{reviewstate.map(( review ) => <ArchiveReview key={review.id} eatWhen={review.eatWhen} restaurantId={review.restaurantId} score={review.score} content={review.content} photo={review.photo} />)}
+     	</div>*/
     )
   }
 }
