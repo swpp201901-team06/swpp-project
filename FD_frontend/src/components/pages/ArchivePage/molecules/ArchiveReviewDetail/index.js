@@ -1,27 +1,51 @@
+/* eslint-disable react/prop-types */
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
+import { Link } from 'react-router'
+import DetailButton from '../../atoms/DetailButton/index'
 
 const Wrapper = styled.div`
   font-family: ${font('primary')};
   color: ${palette('grayscale', 0)};
 `
 
-export const ArchiveReviewDetail = ({ review }) => {
-	const deleteReview = () =>{
-		onDeleteReview(review)
-	}
-	
+const ArchiveReviewDetail = ({ reviewId, reviewObj, isLoggedIn,
+  userNickname, archiveOwnerNickname, onEditReview, onDeleteReview }) => {
+  const editReview = () => {
+    onEditReview(reviewId)
+  }
+
+  const deleteReview = () => {
+    onDeleteReview(reviewId)
+  }
+
+  if (reviewId === null) {
+    return null
+  }
+
   return (
-    <Wrapper {...props}>
-    	{review.eatWhen}
-    	{review.tags}
-    	{review.score}
-    	{review.comment}
-    	{review.photo}
-    	<DetailButton onClick={deleteReview}>Delete</DetailButton>
-    	<DetailButton component={Link} raised to="/post">Edit</DetailButton>
-    </Wrapper>
+    <div>
+      {
+        (!isLoggedIn || (userNickname === archiveOwnerNickname)) ? (
+          <div>
+            <DetailButton onClick={deleteReview}>Delete</DetailButton>
+            <DetailButton component={editReview}>Edit</DetailButton>
+          </div>
+        ) : (<div />)
+      }
+      Restaurant: {reviewObj.restId}
+      <br />
+      Date: {reviewObj.eatWhen}
+      <br />
+      Tags: {reviewObj.tags}
+      <br />
+      Score: {reviewObj.score}
+      <br />
+      Content: {reviewObj.content}
+      <br />
+      Photo: {reviewObj.photo}
+    </div>
   )
 }
 

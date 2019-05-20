@@ -67,8 +67,8 @@ export function* watchDeleteReviewRequest() {
 
 export function* watchGotoEditReview() {
   while (true) {
-    yield take(actions.GOTO_EDIT_REVIEW)
-    const editReviewLink = '/post'
+    const { reviewId } = yield take(actions.GOTO_EDIT_REVIEW)
+    const editReviewLink = `/post/${reviewId}`
     yield put(push(editReviewLink))
   }
 }
