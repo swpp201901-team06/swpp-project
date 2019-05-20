@@ -12,7 +12,6 @@ const Wrapper = styled.div`
 `
 
 export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handleChange }) => {
-    console.log("start loading page");
     let email;
     let pw;
     let confirmpw;

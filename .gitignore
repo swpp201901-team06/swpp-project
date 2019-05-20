@@ -19,3 +19,7 @@ env/
 
 # test output
 out.txt
+
+# temporary backup files
+*.swp
+*.swo

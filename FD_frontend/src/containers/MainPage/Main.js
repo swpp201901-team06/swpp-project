@@ -1,22 +1,21 @@
 import { connect } from 'react-redux'
-import { Main } from '../../components/pages/MainPage/Molecules/Main'
-import { goToSignin, goToGuest } from '../../store/Mainpage/actions'
-import { baseHistory } from '../../index'
+import Main from '../../components/pages/MainPage/Molecules/Main/index'
+import { goToSignin, goToGuest } from '../../store/MainPage/actions'
 
 const mapStateToProps = (state) =>{
     return {
-        statefunction : state
+        statefunction : state,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         onClickSignin: () => {
-            baseHistory.push('/signin')
+            //baseHistory.push('/signin')
             dispatch(goToSignin())
         },
         onClickGuest: () => {
-            baseHistory.push('/guest')
+            //baseHistory.push('/guest')
             dispatch(goToGuest())
         }
     }

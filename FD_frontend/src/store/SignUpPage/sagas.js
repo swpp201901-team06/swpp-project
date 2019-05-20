@@ -2,20 +2,40 @@ import { takeEvery, take, put, call, fork } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 import api from 'services/api'
 import * as actions from './actions'
+import { requestSignIn } from '../SignInPage/actions'
+import { SIGN_IN_SUCCESS } from '../SignInPage/actionTypes'
 
 const signUpUrl = 'http://127.0.0.1:8000/api/rest-auth/registration/'
 const dcUrl = 'http://127.0.0.1:8000/api/users/exists/'
+const archiveUrl = 'http://127.0.0.1:8000/FooDa/archivelist/'
+const archiveInstance = api.create()
 
-export function* submit({email, pw, confirmpw, nickname}) {
+export function* submit({ email, pw, confirmpw, nickname }) {
   console.log(email, pw, confirmpw, nickname)
   try {
-    const data = {
-      email: email,
-      pw: pw,
-      confirmpw: confirmpw,
-      nickname: nickname,
-    }
     const response = yield call(api.post, signUpUrl, {email: email, password1: pw, password2: confirmpw, username: nickname})
+    yield put(requestSignIn(email, pw))
+    yield take(SIGN_IN_SUCCESS)
+    console.log("post call to archivelist")
+    archiveInstance.setToken(JSON.parse(localStorage.getItem('token')))
+    console.log(archiveInstance)
+    console.log(JSON.parse(localStorage.getItem('token')))
+    // const response2 = yield call([archiveInstance, archiveInstance.post], archiveUrl)
+    const credentials = new Buffer(`${email}:${pw}`).toString('base64')
+    const response2 = yield call(
+      fetch,
+      archiveUrl,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Basic ${credentials}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+        }),
+      }
+    )
+    console.log(response2)
     yield put(push('/'));
   }
   catch(err) {
