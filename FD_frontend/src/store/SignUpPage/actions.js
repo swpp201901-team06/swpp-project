@@ -7,33 +7,33 @@ export const DUPLICATE_EXISTENCE = 'DUPLICATE_EXISTENCE'
 export const DUPLICATE_NONEXISTENCE = 'DUPLICATE_NONEXISTENCE'
 
 export const duplicateCheck = (key, value) => {
-    return {
-  type: DUPLICATE_CHECK_REQUEST,
-  key,
-  value
-    }
+  return {
+    type: DUPLICATE_CHECK_REQUEST,
+    key,
+    value,
+  }
 }
 
 export const signUpSubmit = (email, pw, confirmpw, nickname) => {
-    return {
-  type: SIGNUP_SUBMIT_REQUEST,
+  return {
+    type: SIGNUP_SUBMIT_REQUEST,
     email,
     pw,
     confirmpw,
-    nickname
-    }
+    nickname,
+  }
 }
 
 export const noDuplicateFound = (key) => {
   return {
     type: DUPLICATE_NONEXISTENCE,
-    key
+    key,
   }
 }
 
 export const duplicateFound = (key) => {
   return {
     type: DUPLICATE_EXISTENCE,
-    key
+    key,
   }
 }
