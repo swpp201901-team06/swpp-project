@@ -6,12 +6,14 @@ const Styledli = styled.li`
   font-family: ${font('primary')};
 `
 
-const ArchiveReview = ({ eatWhen, score, tags, reviewId, restName, publicStatus }) => {
-  <Styledli>
-  {eatWhen}
-  {restName}
-  {score}
-  </Styledli>
+const ArchiveReview = ({ review }) => {
+	return (
+		<div>
+			{review.id}
+			{review.content}
+			{review.eatWhen}
+  	</div>
+  )
 }
 
 ArchiveReview.propTypes = {

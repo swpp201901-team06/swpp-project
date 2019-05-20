@@ -11,7 +11,7 @@ export function* getReviewList({ archiveOwnerNickname }) {
   try {
     console.log('getReviewList')
     const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
-    const reviewList = yield response.json()
+    const reviewList = yield response.json();
     // TODO: make sure reviewList is in the right format
     yield put(actions.getReviewListSuccess(reviewList))
   } catch (err) {
