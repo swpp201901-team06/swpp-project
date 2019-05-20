@@ -22,6 +22,8 @@ export const getReviewList = (archiveOwnerNickname) => {
 }
 
 export const getReviewListSuccess = (reviewList) => {
+console.log('review list!')
+console.log(reviewList)
   return {
     type: GET_REVIEW_LIST_SUCCESS,
     reviewList,
