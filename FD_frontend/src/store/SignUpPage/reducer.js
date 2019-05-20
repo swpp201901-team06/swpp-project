@@ -22,12 +22,15 @@ const signUpReducer = (state = initialState, action) => {
       }
       return state
     case actions.DUPLICATE_NONEXISTENCE:
+      console.log('sign up reducer duplicate nonexistence')
       if (dataType === 'email') {
+        console.log('not duplicate email')
         return {
           ...state,
           emailText: 'Email is free to use.',
         }
       } else if (dataType === 'username') {
+        console.log('not duplicate password')
         return {
           ...state,
           usernameText: 'Username is free to use.',

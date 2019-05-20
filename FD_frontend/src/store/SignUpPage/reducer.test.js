@@ -44,6 +44,35 @@ describe('test signup reducer', () => {
     expect(reducerOutput).toEqual(expectedOutput)
   })
 
+  test('handle non-duplicate email case', () => {
+    const testState = {
+      emailText: 'some_email_text',
+      usernameText: 'some_username_text',
+    }
+    const testAction = actions.noDuplicateFound('email')
+    const reducerOutput = signUpReducer(testState, testAction)
+    const expectedOutput = {
+      emailText: 'Email is free to use.',
+      usernameText: 'some_username_text',
+    }
+    expect(reducerOutput).toEqual(expectedOutput)
+  })
+
+
+  test('handle non-duplicate password case', () => {
+    const testState = {
+      emailText: 'some_email_text',
+      usernameText: 'some_username_text',
+    }
+    const testAction = actions.noDuplicateFound('password')
+    const reducerOutput = signUpReducer(testState, testAction)
+    const expectedOutput = {
+      emailText: 'some_email_text',
+      usernameText: 'Username is free to use.',
+    }
+    expect(reducerOutput).toEqual(expectedOutput)
+  })
+
   test('handle duplicate check request', () => {
     const testState = {
       emailText: 'some_email_text',
