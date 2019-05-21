@@ -54,6 +54,37 @@ const postReducer = (state, action) => {
               ...nextState,
               photo: action.file
       }
+
+    case actions.CHANGE_INPUT:
+      switch(action.key) {
+        case "date":
+          return {
+              ...nextState,
+              eatWhen: action.value
+          }
+        case "restId":
+          return {
+              ...nextState,
+              restId: action.value
+          }
+        case "score":
+          return {
+              ...nextState,
+              score: action.value
+          }
+        case "content":
+          return {
+              ...nextState,
+              content: action.value
+          }
+        case "tag":
+          return {
+              ...nextState,
+              tags: action.value
+          }
+        default:
+          return nextState
+        }
     case actions.POST_REVIEW_REQUEST:
       return nextState
 

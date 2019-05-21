@@ -25,10 +25,6 @@ class ReviewPostDetail extends React.Component {
       this.props.onLoad(this.props.children)
     }
   }
-  
-  onChange(e) {
-    this.setState({[e.target.name]: e.target.value})
-   }
 
   render() {
     if (this.props.children != 'default') {
@@ -52,16 +48,16 @@ class ReviewPostDetail extends React.Component {
     } else {
       publicStatusText = 'Private'
     }
-
-    if(this.props.statefunction.PostPage.eatWhen){
-      this.setState({date: this.props.statefunction.PostPage.eatWhen})
-    }
-    else{
-      this.setState({date: ''})
+    
+    const onInputChange = (e) => {
+      this.props.onChangeInput(e.target.name, e.target.value)
     }
     
-    const onDateChange = (e) => {
-      date = e.target.value
+    if(this.props.statefunction.PostPage.eatWhen){
+      dateText = this.props.statefunction.PostPage.eatWhen
+    }
+    else{
+      dateText = ''
     }    
     
     if(this.props.statefunction.PostPage.restId){
@@ -102,15 +98,15 @@ class ReviewPostDetail extends React.Component {
     }
 
     const onClickPostSubmit = () => {
-      if (restId.value && date.value && score.value && content.value) {
+      if (this.refs.restId.value && this.refs.date.value && this.refs.score.value && this.refs.content.value) {
         this.props.onPostSubmit(
           this.props.children,
           this.props.statefunction.PostPage.nickname,
-          restId.value,
+          this.refs.restId.value,
           this.refs.date.value,
-          tag.value,
-          score.value,
-          content.value,
+          this.refs.tag.value,
+          this.refs.score.value,
+          this.refs.content.value,
           this.props.statefunction.PostPage.photo,
           this.props.statefunction.PostPage.publicStatus
         )
@@ -119,12 +115,12 @@ class ReviewPostDetail extends React.Component {
     
     return (
       <div>
-	      <h4>Date{' '}<input value = {this.state.date} onChange = {(e) => this.onChange(e)} name="date" ref="date" /></h4>
-        <h4>Restaurant ID{' '}<input value = {restIdText} ref={node => {restId = node}} /></h4>
+	      <h4>Date{' '}<input value = {dateText} onChange = {(e) => onInputChange(e)} name="date" ref="date" /></h4>
+        <h4>Restaurant ID{' '}<input value = {restIdText} onChange = {(e) => onInputChange(e)} name="restId" ref="restId" /></h4>
         <h4>Image{' '}<ImageUpload /></h4>
-        <h4>Score{' '}<input value = {scoreText} ref={node => {score = node}} /></h4>
-        <h4>Content{' '}<input value = {contentText} ref={node => {content = node}} /></h4>
-        <h4>Tag{' '}<input value = {tagText} ref={node => {tag = node}} /></h4>
+        <h4>Score{' '}<input value = {scoreText} onChange = {(e) => onInputChange(e)} name="score" ref="score" /></h4>
+        <h4>Content{' '}<input value = {contentText} onChange = {(e) => onInputChange(e)} name="content" ref="content" /></h4>
+        <h4>Tag{' '}<input value = {tagText} onChange = {(e) => onInputChange(e)} name="tag" ref="tag" /></h4>
         <h4>
           <PubStatusButton onClick={onPubStatusChange}>
             Public Status

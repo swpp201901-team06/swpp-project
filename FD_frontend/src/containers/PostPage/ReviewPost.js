@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ReviewPostDetail from '../../components/pages/PostPage/molecules/ReviewPostDetail'
-import { getPostReviewDetail, postReview, changePublicStatus } from '../../store/PostPage/actions'
+import { getPostReviewDetail, postReview, changePublicStatus, changeInput } from '../../store/PostPage/actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -15,6 +15,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onLoad: (reviewId) => {
       dispatch(getPostReviewDetail(reviewId))
+    },
+    onChangeInput: (key, value) => {
+      dispatch(changeInput(key, value))
     },
     onPostSubmit: (reviewId, nickname, restId, eatWhen, tags, score,
       content, photo, publicStatus) => {

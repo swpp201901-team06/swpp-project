@@ -64,7 +64,7 @@ export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
     if (reviewId == 'default') { // post new review
       const response=yield callUrlImg('POST', reviewListUrl, review_data)
     } else { // edit existing review
-      const response=yield callUrl('PUT', `${reviewDetailUrl}${reviewId}/`, {content: content, eatWhen: eatWhen, publicStatus: bPublicStatus, score: score, restaurantId: restId, tags: tags})
+      const response=yield callUrlImg('PUT', `${reviewDetailUrl}${reviewId}/`, review_data)
     }
     yield put(actions.postReviewSuccess())
     yield put(push('/'+nickname+'/archive'))
