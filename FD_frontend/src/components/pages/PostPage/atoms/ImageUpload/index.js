@@ -8,6 +8,10 @@ class ImageUpload extends React.Component {
     this.state = {file: '',imagePreviewUrl: ''};
   }
 
+  componentDidMount() {
+    this.props.passImageToState(this.state.file)
+  }
+
   _handleSubmit(e) {
     e.preventDefault();
     console.log('handle uploading-', this.state.file);
@@ -24,7 +28,7 @@ class ImageUpload extends React.Component {
         file: file,
         imagePreviewUrl: reader.result,
       });
-      this.props.passImageToState(file);
+      this.props.passImageToState(this.state.file);
     }
 
     reader.readAsDataURL(file)

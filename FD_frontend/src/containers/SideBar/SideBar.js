@@ -3,7 +3,6 @@ import { SideBar } from '../../components/molecules/SideBar'
 import { logOut } from '../../store/SideBar/actions'
 
 const mapStateToProps = (state) =>{
-  console.log(state)
   return {
     statefunction: state
   }

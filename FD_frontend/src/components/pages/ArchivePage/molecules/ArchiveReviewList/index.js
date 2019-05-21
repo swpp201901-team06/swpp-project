@@ -28,8 +28,9 @@ class ArchiveReviewList extends React.Component {
 							{review.eatWhen}{'   '}
 							{review.restaurantId}{'   '}
 							{review.score}{'   '}
-							{review.content}</h4>
-							<img src={review.photo} />
+							{review.content}{'  '}
+              {review.photo}</h4>
+							<img src={'http://localhost:8000'+review.photo} width="400" height="400"/>
 						</div>
 					)}
 			</div>

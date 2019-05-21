@@ -1,6 +1,6 @@
 import { takeEvery, take, put, fork } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import { callUrl } from '../sagas'
+import { callUrl, callUrlImg } from '../sagas'
 import * as actions from './actions'
 import { getReviewDetail } from '../ArchivePage/actions'
 
@@ -49,7 +49,8 @@ export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
       photo,
       publicStatus,
     }
-
+    console.log('photo!')
+    console.log(photo)
 		let bPublicStatus;
 		if(publicStatus == 'public'){
 			bPublicStatus = 'True'
@@ -57,10 +58,24 @@ export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
 		else{
 			bPublicStatus = 'False'
 		}
+
+    let review_data = new FormData();
+    review_data.append('content',content)
+    review_data.append('eatWhen',eatWhen)
+    review_data.append('publicStatus',bPublicStatus)
+    review_data.append('score', score)
+    review_data.append('restaurantId', restId)
+    review_data.append('photo', photo, photo.name)
+    review_data.append('tags',tags)
+    
+    console.log('photo!')
+    console.log(photo)
+    console.log(photo.name)
+
     if (reviewId == 'default') { // post new review
-      yield callUrl('POST', reviewListUrl, {content: content, eatWhen: eatWhen, publicStatus: bPublicStatus, score: score, restaurantId: restId, tags: tags})
+      const response=yield callUrlImg('POST', reviewListUrl, review_data)
     } else { // edit existing review
-      yield callUrl('PUT', `${reviewDetailUrl}${reviewId}/`, {content: content, eatWhen: eatWhen, publicStatus: bPublicStatus, score: score, restaurantId: restId, tags: tags})
+      const response=yield callUrl('PUT', `${reviewDetailUrl}${reviewId}/`, {content: content, eatWhen: eatWhen, publicStatus: bPublicStatus, score: score, restaurantId: restId, tags: tags})
     }
     yield put(actions.postReviewSuccess())
     yield put(push('/'+nickname+'/archive'))
