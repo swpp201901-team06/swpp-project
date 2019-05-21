@@ -5,7 +5,7 @@ import { font, palette } from 'styled-theme'
 class ImageUpload extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {file: '',imagePreviewUrl: ''};
+    this.state = {file: null,imagePreviewUrl: ''};
   }
 
   componentDidMount() {

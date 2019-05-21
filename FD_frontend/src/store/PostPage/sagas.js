@@ -22,8 +22,8 @@ export function* getPostReviewDetail({ reviewId }) {
       const jsonData = yield reviewDetail.json()
       console.log(reviewDetail)
       console.log(jsonData)
-      const { restId, eatWhen, tags, score, content, photo, publicStatus } = jsonData
-      yield put(actions.getPostReviewDetailSuccess(restId, eatWhen, tags, score,
+      const { restaurantId, eatWhen, tags, score, content, photo, publicStatus } = jsonData
+      yield put(actions.getPostReviewDetailSuccess(restaurantId, eatWhen, tags, score,
         content, photo, publicStatus))
     }
   } catch (err) {
@@ -49,28 +49,17 @@ export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
       photo,
       publicStatus,
     }
-    console.log('photo!')
-    console.log(photo)
-		let bPublicStatus;
-		if(publicStatus == 'public'){
-			bPublicStatus = 'True'
-		}
-		else{
-			bPublicStatus = 'False'
-		}
 
     let review_data = new FormData();
     review_data.append('content',content)
     review_data.append('eatWhen',eatWhen)
-    review_data.append('publicStatus',bPublicStatus)
+    review_data.append('publicStatus',publicStatus)
     review_data.append('score', score)
     review_data.append('restaurantId', restId)
-    review_data.append('photo', photo, photo.name)
+    if(photo != null){
+      review_data.append('photo', photo)
+    }
     review_data.append('tags',tags)
-    
-    console.log('photo!')
-    console.log(photo)
-    console.log(photo.name)
 
     if (reviewId == 'default') { // post new review
       const response=yield callUrlImg('POST', reviewListUrl, review_data)

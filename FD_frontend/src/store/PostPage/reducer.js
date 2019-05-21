@@ -14,7 +14,7 @@ const postReducer = (state, action) => {
       score: null,
       content: null,
       photo: null,
-      publicStatus: false,
+      publicStatus: 'False',
     }
     if (nextState.isLoggedIn) {
       nextState.nickname = JSON.parse(localStorage.getItem('nickname'))
@@ -28,15 +28,23 @@ const postReducer = (state, action) => {
       return nextState
 
     case actions.GET_POST_REVIEW_DETAIL_SUCCESS:
-      nextState.restId = action.restId
-      nextState.eatWhen = action.eatWhen
-      nextState.tags = action.tags
-      nextState.score = action.score
-      nextState.photo = action.photo
-      nextState.publicState = action.publicStatus
-      console.log('reducer get post review detail success')
-      console.log(nextState)
-      return nextState
+      let bPublicStatus
+      if(action.publicStatus == false){
+        bPublicStatus = 'False'
+      }
+      else{
+        bPublicStatus = 'True'
+      }
+      return {
+              ...nextState,
+              restId: action.restId,
+              tags: action.tags,
+              score: action.score,
+              photo: action.photo,
+              publicStatus: bPublicStatus,
+              eatWhen: action.eatWhen,
+              content: action.content
+      }
 
     case actions.GET_POST_REVIEW_DETAIL_FAILED:
       return nextState
@@ -56,16 +64,16 @@ const postReducer = (state, action) => {
       return nextState
 
 		case actions.CHANGE_PUBLIC_STATUS:
-      if(action.publicStatus == 'public'){
+      if(action.publicStatus == 'True'){
 			  return {
 							  ...nextState,
-							  publicStatus: 'private'
+							  publicStatus: 'False'
 			  }
       }
-      else if(action.publicStatus == 'private'){
+      else if(action.publicStatus == 'False'){
         return {
                 ...nextState,
-                publicStatus: 'public'
+                publicStatus: 'True'
         }
       }
     default:

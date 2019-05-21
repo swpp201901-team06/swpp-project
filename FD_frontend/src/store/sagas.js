@@ -69,7 +69,7 @@ export function* callUrlImg(method, url, data = {}) {
             method,
             headers: {
               Authorization: `Basic ${credentials}`,
-              'Content-Type': 'multipart/form-data',
+              'content-Type': 'multipart/form-data',
             },
           }
         )
@@ -82,9 +82,8 @@ export function* callUrlImg(method, url, data = {}) {
           method,
           headers: {
             Authorization: `Basic ${credentials}`,
-            'Content-Type': 'multipart/form-data',
           },
-          body: JSON.stringify(data),
+          body: data,
         }
       )
     } else if (method === 'GET') {
