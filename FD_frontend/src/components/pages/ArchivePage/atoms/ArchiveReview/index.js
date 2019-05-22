@@ -25,7 +25,7 @@ const backendUrl = 'http://localhost:8000/'
 
 class ArchiveReview extends React.Component {
   render() {
-    const reviewId = this.props.key
+    const reviewId = this.props.reviewId
     const eatWhen = this.props.eatWhen
     const restaurantId = this.props.restaurantId
     const score = this.props.score
@@ -34,6 +34,8 @@ class ArchiveReview extends React.Component {
     const onReviewClick = this.props.onReviewClick
     const archiveOwnerNickname = this.props.archiveOwnerNickname
     const onClickThis = () => {
+      console.log('ArchiveReview onClickThis')
+      console.log(reviewId)
       onReviewClick(reviewId, archiveOwnerNickname)
     }
 

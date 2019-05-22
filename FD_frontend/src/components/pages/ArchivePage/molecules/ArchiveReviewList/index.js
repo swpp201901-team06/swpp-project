@@ -47,6 +47,7 @@ class ArchiveReviewList extends React.Component {
         {reviewstate.map((review) =>
           <ArchiveReview
             key={review.id}
+            reviewId={review.id}
             eatWhen={review.eatWhen}
             restaurantId={review.restaurantId}
             score={review.score}
