@@ -3,10 +3,9 @@ import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
 import MainButton from '../../Atoms/MainButton'
 
-const Wrapper = styled.div`
-  font-family: ${font('primary')};
-  color: ${palette('grayscale', 0)};
-`
+const margin = {
+  margin : 10
+}
 
 const Main = ({ statefunction, onClickSignin, onClickGuest }) => {
   const onSignin = () => {
@@ -19,8 +18,8 @@ const Main = ({ statefunction, onClickSignin, onClickGuest }) => {
   };
   return (
     <div>
-      <MainButton type="signin" onClick={onSignin}>로그인</MainButton>
-      <MainButton type="guest" onClick={onGuest}>게스트</MainButton>
+      <MainButton type="signin" onClick={onSignin} style={margin}>Login</MainButton>
+      <MainButton type="guest" onClick={onGuest} style={margin}>Guest</MainButton>
     </div>
   );
 }
