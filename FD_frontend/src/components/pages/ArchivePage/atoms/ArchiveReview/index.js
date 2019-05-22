@@ -34,11 +34,11 @@ class ArchiveReview extends React.Component {
     const onReviewClick = this.props.onReviewClick
     const archiveOwnerNickname = this.props.archiveOwnerNickname
     const onClickThis = () => {
-      this.props.onReviewClick(reviewId, archiveOwnerNickname)
+      onReviewClick(reviewId, archiveOwnerNickname)
     }
 
     return (
-      <div onClick={onClickThis}>
+      <div onClick={() => { onClickThis() }}>
         <h4>
           {reviewId}{'   '}
           {eatWhen}{'   '}
