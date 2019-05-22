@@ -7,13 +7,41 @@ const archiveReducer = (state, action) => {
   let token = null
   let userNickname = null
   console.log('archiveReducer begin')
-  if (isLoggedIn) {
-    console.log('archiveReducer isLoggedIn')
-    token = JSON.parse(localStorage.getItem('token'))
-    userNickname = JSON.parse(localStorage.getItem('nickname'))
-  }
-  console.log('archiveReducer after if isLoggedIn')
   console.log(nextState)
+  console.log(localStorage)
+  console.log(localStorage.hasOwnProperty('token'))
+  console.log(localStorage.getItem('token'))
+  console.log(isLoggedIn)
+  if (!nextState) {
+    console.log('archiveReducer !nextState')
+    nextState = {
+      userNickname: (localStorage.hasOwnProperty('token')) ? (
+        JSON.parse(localStorage.getItem('nickname'))
+      ) : null,
+      archiveOwnerNickname: null,
+      token: (localStorage.hasOwnProperty('token')) ? (
+        JSON.parse(localStorage.getItem('token'))
+      ) : null,
+      isLoggedIn: localStorage.hasOwnProperty('token'),
+      sortMethod: null,
+      reviews: [],
+      selectedReviewId: null,
+      selectedReviewObj: null,
+    }
+  } else {
+    console.log('archiveReducer !nextState else')
+    nextState = {
+      ...nextState,
+      userNickname: (localStorage.hasOwnProperty('token')) ? (
+        JSON.parse(localStorage.getItem('nickname'))
+      ) : null,
+      token: (localStorage.hasOwnProperty('token')) ? (
+        JSON.parse(localStorage.getItem('token'))
+      ) : null,
+      isLoggedIn: localStorage.hasOwnProperty('token'),
+    }
+  }
+  /*
   if (!nextState) {
     console.log('archiveReducer !nextState')
     nextState = {
@@ -27,8 +55,15 @@ const archiveReducer = (state, action) => {
       selectedReviewObj: null,
     }
   }
+  console.log('archiveReducer after if !nextState')
+  if (isLoggedIn) {
+    console.log('archiveReducer isLoggedIn')
+    nextState.token = JSON.parse(localStorage.getItem('token'))
+    nextState.userNickname = JSON.parse(localStorage.getItem('nickname'))
+  }
+  */
   console.log('archiveReducer after initialization')
-  console.log(userNickname)
+  console.log(nextState)
 
   // TODO: use localStorage to temporarily save sortMethod
   switch (action.type) {
@@ -92,7 +127,7 @@ const archiveReducer = (state, action) => {
       return {
         ...nextState,
         selectedReviewId: null,
-        selectedReviewObj: null
+        selectedReviewObj: null,
       }
 
     case actions.GOTO_POST_REVIEW:

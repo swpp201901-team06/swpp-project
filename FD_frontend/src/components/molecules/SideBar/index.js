@@ -12,7 +12,9 @@ const Wrapper = styled.div`
 export const SideBar = ({ statefunction, onLogout }) => {
 	const onClickLogout = () => {
 		onLogout();
-	};
+  };
+  console.log('SideBar begin')
+  console.log(statefunction.SignInPage)
   let myArchiveUrl = "/"+statefunction.SignInPage.nickname+"/archive"
   let myAccountUrl = "/"+statefunction.SignInPage.nickname+"/account"
   const loggedInDisplay = (

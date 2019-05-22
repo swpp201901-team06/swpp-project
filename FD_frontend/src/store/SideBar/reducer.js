@@ -31,6 +31,10 @@ const sideBarReducer = (state, action) => {
       }
       window.location.reload()
       return nextState
+    case actions.GOTO_ARCHIVE_BUTTON:
+      return {
+        ...nextState,
+      }
     default:
       return nextState
   }

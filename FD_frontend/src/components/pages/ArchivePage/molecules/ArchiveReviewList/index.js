@@ -17,7 +17,7 @@ class ArchiveReviewList extends React.Component {
   componentDidMount() {
     console.log('ArchiveReviewList componentDidMount')
     console.log(this.props)
-    this.props.requestReviews(this.props.statefunction.SignInPage.nickname)
+    this.props.requestReviews(this.props.children)
   }
 
   render() {

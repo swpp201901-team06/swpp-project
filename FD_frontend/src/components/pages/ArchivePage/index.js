@@ -10,14 +10,15 @@ const ArchivePage = React.createClass({
   render () {
     return (
       <div>
-        {this.props.params.nickname}
-        's archive page
+        {this.props.params.nickname}'s archive page
         <h1>{' '}</h1>
         <SideBar />
         <h1>{' '}</h1>
-          <ArchiveReviewList />
+        <ArchiveReviewList>
+          {this.props.params.nickname}
+        </ArchiveReviewList>
         <h1>{' '}</h1>
-        <Link to='/post/default'>
+        <Link to="/post/default">
           <PostButton>Post Review</PostButton>
         </Link>
         <h1>{' '}</h1>

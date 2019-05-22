@@ -16,6 +16,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(getReviewDetail(reviewId, archiveOwnerNickname))
     },
     requestReviews: (archiveOwnerNickname) => {
+      console.log('ReviewList container requestReviews')
+      console.log(archiveOwnerNickname)
       dispatch(getReviewList(archiveOwnerNickname))
     },
     sendReviewId: (id) => {
