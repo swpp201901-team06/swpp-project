@@ -5,8 +5,8 @@ import * as actions from './actions'
 import { getReviewDetail } from '../ArchivePage/actions'
 
 const backendUrl = 'http://127.0.0.1:8000/'
-const reviewListUrl = `${backendUrl}FooDa/reviewlist/`
-const reviewDetailUrl = `${backendUrl}FooDa/reviewdetail/`
+const reviewListUrl = `${backendUrl}Review/post/`
+const reviewDetailUrl = `${backendUrl}Review/detail/`
 
 export function* getPostReviewDetail({ reviewId }) {
   try {
