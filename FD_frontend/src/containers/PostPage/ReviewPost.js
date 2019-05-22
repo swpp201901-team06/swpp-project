@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ReviewPostDetail from '../../components/pages/PostPage/molecules/ReviewPostDetail'
-import { getPostReviewDetail, postReview, changePublicStatus, changeInput } from '../../store/PostPage/actions'
+import { getPostReviewDetail, postReview, changePublicStatus, changeInput, clearState } from '../../store/PostPage/actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -24,6 +24,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(postReview(reviewId, nickname, restId, eatWhen, tags, score,
         content, photo, publicStatus))
     },
+    onUnmount: () => {
+      dispatch(clearState())
+    }
   }
 }
 

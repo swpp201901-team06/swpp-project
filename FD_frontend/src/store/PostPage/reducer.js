@@ -14,6 +14,7 @@ const postReducer = (state, action) => {
       score: null,
       content: null,
       photo: null,
+      photoUrl: '',
       publicStatus: 'False',
     }
     if (nextState.isLoggedIn) {
@@ -40,7 +41,7 @@ const postReducer = (state, action) => {
               restId: action.restId,
               tags: action.tags,
               score: action.score,
-              photo: action.photo,
+              photoUrl: action.photo,
               publicStatus: bPublicStatus,
               eatWhen: action.eatWhen,
               content: action.content
@@ -107,6 +108,8 @@ const postReducer = (state, action) => {
                 publicStatus: 'True'
         }
       }
+    case actions.CLEAR_STATE:
+      return []
     default:
       return nextState
   }

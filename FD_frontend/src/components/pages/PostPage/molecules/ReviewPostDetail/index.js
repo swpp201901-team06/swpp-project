@@ -18,12 +18,15 @@ class ReviewPostDetail extends React.Component {
   }
 
   componentDidMount() {
-    console.log('component did mount')
     if (this.props.children != 'default') {
       console.log('not default')
       console.log(this.props.children)
       this.props.onLoad(this.props.children)
     }
+  }
+
+  componentWillUnmount() {
+    this.props.onUnmount()
   }
 
   render() {
@@ -36,7 +39,8 @@ class ReviewPostDetail extends React.Component {
     let tag
     let publicStatusText
     let restId
-    
+
+    let imgUrlText
     let dateText
     let scoreText
     let contentText
@@ -88,6 +92,15 @@ class ReviewPostDetail extends React.Component {
       tagText = ''
     }
 
+    if(this.props.statefunction.PostPage.photo){
+      imgUrlText = this.props.statefunction.PostPage.photo
+    }
+    else{
+      imgUrlText = ''
+    }
+    console.log('image url!')
+    console.log(imgUrlText)
+
     const onPubStatusChange = () => {
       if (this.props.statefunction.PostPage.publicStatus) {
         this.props.PubStatusChange(this.props.statefunction.PostPage.publicStatus)
@@ -117,7 +130,7 @@ class ReviewPostDetail extends React.Component {
       <div>
 	      <h4>Date{' '}<input value = {dateText} onChange = {(e) => onInputChange(e)} name="date" ref="date" /></h4>
         <h4>Restaurant ID{' '}<input value = {restIdText} onChange = {(e) => onInputChange(e)} name="restId" ref="restId" /></h4>
-        <h4>Image{' '}<ImageUpload /></h4>
+        <h4>Image{' '}<ImageUpload imageUrl = {imgUrlText}/></h4>
         <h4>Score{' '}<input value = {scoreText} onChange = {(e) => onInputChange(e)} name="score" ref="score" /></h4>
         <h4>Content{' '}<input value = {contentText} onChange = {(e) => onInputChange(e)} name="content" ref="content" /></h4>
         <h4>Tag{' '}<input value = {tagText} onChange = {(e) => onInputChange(e)} name="tag" ref="tag" /></h4>

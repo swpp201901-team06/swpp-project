@@ -7,6 +7,7 @@ export const POST_REVIEW_FAILED = 'POST_REVIEW_FAILED'
 export const CHANGE_PUBLIC_STATUS = 'CHANGE_PUBLIC_STATUS'
 export const UPLOAD_IMAGE = 'UPLOAD_IMAGE'
 export const CHANGE_INPUT = 'CHANGE_INPUT'
+export const CLEAR_STATE = 'CLEAR_STATE'
 
 export const getPostReviewDetail = (reviewId) => {
   return {
@@ -85,5 +86,11 @@ export const postReviewSuccess = () => {
 export const postReviewFailed = () => {
   return {
     type: POST_REVIEW_FAILED,
+  }
+}
+
+export const clearState = () => {
+  return {
+    type: CLEAR_STATE,
   }
 }
