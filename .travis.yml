@@ -3,7 +3,17 @@ language : python
 
 before_script:
         - cd FD_backend
-        - python3 manage.py makemigrations
+        - python3 manage.py makemigrations Account
+        - python3 manage.py makemigrations Archive
+        - python3 manage.py makemigrations Ranking
+        - python3 manage.py makemigrations Restaurant
+        - python3 manage.py makemigrations Review
+        - python3 manage.py makemigrations Tag
+        - python3 manage.py makemigrations users
+
+
+
+
         - python3 manage.py migrate
 
 install:
