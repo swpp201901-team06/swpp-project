@@ -19,6 +19,7 @@ class ReviewPostDetail extends React.Component {
 
   componentDidMount() {
     // TODO: get nickname
+    console.log('ReviewPostDetail componentDidMount')
     if (this.props.children !== 'default') {
       console.log('not default')
       console.log(this.props.children)
@@ -33,7 +34,7 @@ class ReviewPostDetail extends React.Component {
   render() {
     console.log('ReviewPostDetail render start')
     console.log(this.props)
-    if (this.props.children != 'default') {
+    if (this.props.children !== 'default') {
       console.log(this.props.statefunction.PostPage)
     }
     //let date
@@ -49,56 +50,50 @@ class ReviewPostDetail extends React.Component {
     let contentText
     let tagText
     let restIdText
-    
+
     if (this.props.statefunction.PostPage.publicStatus && this.props.statefunction.PostPage.publicStatus == 'True') {
       publicStatusText = 'Public'
     } else {
       publicStatusText = 'Private'
     }
-    
+
     const onInputChange = (e) => {
       this.props.onChangeInput(e.target.name, e.target.value)
     }
-    
-    if(this.props.statefunction.PostPage.eatWhen){
+
+    if (this.props.statefunction.PostPage.eatWhen) {
       dateText = this.props.statefunction.PostPage.eatWhen
-    }
-    else{
+    } else {
       dateText = ''
-    }    
-    
-    if(this.props.statefunction.PostPage.restId){
-      restIdText = this.props.statefunction.PostPage.restId
     }
-    else{
+
+    if (this.props.statefunction.PostPage.restId) {
+      restIdText = this.props.statefunction.PostPage.restId
+    } else {
       restIdText = ''
     }
-    
-    if(this.props.statefunction.PostPage.score){
+
+    if (this.props.statefunction.PostPage.score) {
       scoreText = this.props.statefunction.PostPage.score
-    }
-    else{
+    } else {
       scoreText = ''
     }
-    
-    if(this.props.statefunction.PostPage.content){
+
+    if (this.props.statefunction.PostPage.content) {
       contentText = this.props.statefunction.PostPage.content
-    }
-    else{
+    } else {
       contentText = ''
     }
-    
-    if(this.props.statefunction.PostPage.tags){
+
+    if (this.props.statefunction.PostPage.tags) {
       tagText = this.props.statefunction.PostPage.tags
-    }
-    else{
+    } else {
       tagText = ''
     }
 
-    if(this.props.statefunction.PostPage.photo){
+    if (this.props.statefunction.PostPage.photo) {
       imgUrlText = this.props.statefunction.PostPage.photo
-    }
-    else{
+    } else {
       imgUrlText = ''
     }
     console.log('image url!')
@@ -128,15 +123,58 @@ class ReviewPostDetail extends React.Component {
         )
       }
     }
-    
+
     return (
       <div>
-	      <h4>Date{' '}<input value = {dateText} onChange = {(e) => onInputChange(e)} name="date" ref="date" /></h4>
-        <h4>Restaurant ID{' '}<input value = {restIdText} onChange = {(e) => onInputChange(e)} name="restId" ref="restId" /></h4>
-        <h4>Image{' '}<ImageUpload imageUrl = {imgUrlText}/></h4>
-        <h4>Score{' '}<input value = {scoreText} onChange = {(e) => onInputChange(e)} name="score" ref="score" /></h4>
-        <h4>Content{' '}<input value = {contentText} onChange = {(e) => onInputChange(e)} name="content" ref="content" /></h4>
-        <h4>Tag{' '}<input value = {tagText} onChange = {(e) => onInputChange(e)} name="tag" ref="tag" /></h4>
+        <h4>
+          Date{' '}
+          <input
+            value={dateText}
+            onChange={(e) => onInputChange(e)}
+            name="date"
+            ref="date"
+          />
+        </h4>
+        <h4>
+          Restaurant ID{' '}
+          <input
+            value={restIdText}
+            onChange={(e) => onInputChange(e)}
+            name="restId"
+            ref="restId"
+          />
+        </h4>
+        <h4>
+          Image{' '}
+          <ImageUpload imageUrl={imgUrlText}/>
+        </h4>
+        <h4>
+          Score{' '}
+          <input
+            value={scoreText}
+            onChange={(e) => onInputChange(e)}
+            name="score"
+            ref="score"
+          />
+        </h4>
+        <h4>
+          Content{' '}
+          <input
+            value={contentText}
+            onChange={(e) => onInputChange(e)}
+            name="content"
+            ref="content"
+          />
+        </h4>
+        <h4>
+          Tag{' '}
+          <input
+            value={tagText}
+            onChange={(e) => onInputChange(e)}
+            name="tag"
+            ref="tag"
+          />
+        </h4>
         <h4>
           <PubStatusButton onClick={onPubStatusChange}>
             Public Status

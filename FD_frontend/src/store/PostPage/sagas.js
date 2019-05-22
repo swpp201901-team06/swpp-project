@@ -73,6 +73,8 @@ export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
       const response = yield callUrlImg('PUT', `${reviewDetailUrl}${reviewId}/`, review_data)
     }
     yield put(actions.postReviewSuccess())
+    console.log('postReview saga after postReviewSuccess')
+    console.log(nickname)
     yield put(push(`/${nickname}/archive`))
     /* if(reviewId != 'default'){
       yield put(getReviewDetail(reviewId, nickname))

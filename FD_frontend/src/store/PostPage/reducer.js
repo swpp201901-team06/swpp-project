@@ -5,13 +5,11 @@ const postReducer = (state, action) => {
   const isLoggedIn = localStorage.hasOwnProperty('token')
   let nickname = null
   console.log('post reducer begin')
-  if (isLoggedIn) {
-    console.log('post reducer nextState isLoggedIn')
-    nickname = JSON.parse(localStorage.getItem('nickname'))
-  }
-  console.log('postReducer after if isLoggedIn')
   console.log(nickname)
+  console.log(nextState)
   if (!nextState) {
+    console.log('postReducer within if !nextState')
+    console.log(nextState)
     nextState = {
       nickname,
       isEdit: false,
@@ -27,6 +25,10 @@ const postReducer = (state, action) => {
       publicStatus: 'False',
     }
   }
+  if (isLoggedIn) {
+    console.log('post reducer nextState isLoggedIn')
+    nextState.nickname = JSON.parse(localStorage.getItem('nickname'))
+  }
   console.log('postREducer before switch')
   console.log(nextState)
   console.log(action)
@@ -39,7 +41,7 @@ const postReducer = (state, action) => {
 
     case actions.GET_POST_REVIEW_DETAIL_SUCCESS:
       let bPublicStatus
-      if(action.publicStatus == false){
+      if(action.publicStatus === false){
         bPublicStatus = 'False'
       }
       else{
@@ -61,21 +63,21 @@ const postReducer = (state, action) => {
 
     case actions.UPLOAD_IMAGE:
       return {
-              ...nextState,
-              photo: action.file
+        ...nextState,
+        photo: action.file,
       }
 
     case actions.CHANGE_INPUT:
-      switch(action.key) {
-        case "date":
+      switch (action.key) {
+        case 'date':
           return {
-              ...nextState,
-              eatWhen: action.value
+            ...nextState,
+            eatWhen: action.value,
           }
-        case "restId":
+        case 'restId':
           return {
-              ...nextState,
-              restId: action.value
+            ...nextState,
+            restId: action.value,
           }
         case "score":
           return {
