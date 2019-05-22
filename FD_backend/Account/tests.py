@@ -1,12 +1,10 @@
+# Account/tests.py
 from django.test import TestCase
 import requests
 
-# Create your tests here.
-
-
 class LoginModelTests(TestCase):
 
-    link = "http://127.0.0.1:8000/api/rest-auth/"
+    link = "http://127.0.0.1:8000/Account/"
 
     def setUp(self):
         pass

@@ -6,16 +6,30 @@
 FD_backend/db.sqlite3
 FD_backend/db.sqlite3-journal
 FD_backend/FD_backend/__pycache__/
-FD_backend/FooDa/__pycache__/
+FD_backend/Archive/__pycache__/
 FD_backend/users/__pycache__/
-FD_backend/api/__pycache__/
-FD_backend/FooDa/migrations/
+FD_backend/Account/__pycache__/
+FD_backend/Ranking/__pycache__/
+FD_backend/Restaurant/__pycache__/
+FD_backend/Review/__pycache__/
+FD_backend/Tag/__pycache__/
+
+FD_backend/Account/migrations/
+FD_backend/Archive/migrations/
+FD_backend/Ranking/migrations/
+FD_backend/Restaurant/migrations/
+FD_backend/Review/migrations/
+FD_backend/Tag/migrations/
 FD_backend/users/migrations/
+
 FD_backend/.coverage/
-FD_backend/photo/
 
 # virtual environment
 env/
 
 # test output
 out.txt
+
+# temporary backup files
+*.swp
+*.swo
