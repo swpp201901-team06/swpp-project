@@ -21,28 +21,8 @@ class ArchiveReviewList extends React.Component {
   }
 
   render() {
-    console.log('this reviews!')
-    console.log(this.props.statefunction.ArchivePage.reviews)
     const reviewstate = this.props.statefunction.ArchivePage.reviews
-    const onReviewClick = this.props.onReviewClick
     return (
-      /*
-      <div>
-        {reviewstate.map((review) =>
-          <div key={review.id}>
-            <h4>
-              {review.id}{'   '}
-              {review.eatWhen}{'   '}
-              {review.restaurantId}{'   '}
-              {review.score}{'   '}
-              {review.content}{'  '}
-              {review.photo}
-            </h4>
-            <img src={'http://localhost:8000'+review.photo} width="400" height="400" />
-          </div>
-        )}
-      </div>
-      */
       <div>
         {reviewstate.map((review) =>
           <ArchiveReview
@@ -53,7 +33,8 @@ class ArchiveReviewList extends React.Component {
             score={review.score}
             content={review.content}
             photo={review.photo}
-            onReviewClick={onReviewClick}
+            onReviewClick={this.props.onReviewClick}
+            sendReviewIdFunc={this.props.sendReviewId}
             archiveOwnerNickname={this.props.statefunction.ArchivePage.archiveOwnerNickname}
           />
         )}

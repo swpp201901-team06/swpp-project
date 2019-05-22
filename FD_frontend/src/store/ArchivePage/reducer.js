@@ -35,15 +35,11 @@ const archiveReducer = (state, action) => {
     case actions.GET_REVIEW_LIST_FAILED:
       return nextState
 
-    case actions.GET_REVIEW_DETAIL_REQUEST:
-      nextState.selectedReviewId = action.reviewId
-      nextState.selectedReviewObj = null
-      nextState.archiveOwnerNickname = action.archiveOwnerNickname
-      return nextState
-
     case actions.GET_REVIEW_DETAIL_SUCCESS:
-      nextState.selectedReviewObj = action.reviewDetail
-      return nextState
+      return {
+        ...nextState,
+        selectedReviewObj: action.reviewDetail,
+      }
 
     case actions.GET_REVIEW_DETAIL_FAILED:
       nextState.selectedReviewObj = null
@@ -65,17 +61,22 @@ const archiveReducer = (state, action) => {
       return nextState
 
     case actions.DELETE_REVIEW_SUCCESS:
-      nextState.reviews = action.reviewList
-      return nextState
+      return {
+        ...nextState,
+        reviews: action.reviewList,
+        selectedReviewId: null,
+        selectedReviewObj: null,
+      }
 
     case actions.DELETE_REVIEW_FAILED:
       return nextState
 
-    /*
-    case actions.GOTO_EDIT_REVIEW:
-      nextState.selectedReviewId = action.reviewId
-      return nextState
-    */
+    case actions.STORE_REVIEW_ID:
+      return {
+        ...nextState,
+        selectedReviewId: action.id,
+        selectedReviewObj: null,
+      }
 
     case actions.GOTO_POST_REVIEW:
       return nextState

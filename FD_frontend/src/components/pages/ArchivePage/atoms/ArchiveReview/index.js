@@ -32,10 +32,12 @@ class ArchiveReview extends React.Component {
     const content = this.props.content
     const photo = this.props.photo
     const onReviewClick = this.props.onReviewClick
+    const sendReviewId = this.props.sendReviewIdFunc
     const archiveOwnerNickname = this.props.archiveOwnerNickname
     const onClickThis = () => {
       console.log('ArchiveReview onClickThis')
       console.log(reviewId)
+      sendReviewId(reviewId)
       onReviewClick(reviewId, archiveOwnerNickname)
     }
 

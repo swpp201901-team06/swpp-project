@@ -109,7 +109,7 @@ const postReducer = (state, action) => {
         }
       }
     case actions.CLEAR_STATE:
-      return []
+      return {}
     default:
       return nextState
   }
