@@ -8,17 +8,17 @@ import requests
 
 class CustomUserModelTests(TestCase):
 
-    link = "http://127.0.0.1:8000/User/"
+    link = "http://127.0.0.1:8000/api/users/"
 
     def archive_post(self):
-        link = "http://127.0.0.1:8000/Archive/list/"
+        link = "http://127.0.0.1:8000/FooDa/archivelist/"
         data = {}
         response = requests.post(link, data = data, auth = ("qwer-2@qwer.qwer", "qwer!@#$"))
         self.assertEqual(int(response.status_code/100), 2)
 
 
     def sign_up(self):
-        link = "http://127.0.0.1:8000/Account/registration/"
+        link = "http://127.0.0.1:8000/api/rest-auth/registration/"
         data = {
             "username": "qwer-2",
             "email": "qwer-2@qwer.qwer",
@@ -30,7 +30,7 @@ class CustomUserModelTests(TestCase):
 
 
     def get_list(self):
-        link = self.link + "list/"
+        link = self.link
         response = requests.get(link)
         self.assertEqual(int(response.status_code/100), 2)
 
@@ -45,7 +45,7 @@ class CustomUserModelTests(TestCase):
         self.assertEqual(int(response.status_code/100), 2)
 
     def get_nickname(self):
-        link = self.link + "get-username/qwer-2@qwer.qwer/"
+        link = self.link + "get-nickname/qwer-2@qwer.qwer/"
         response = requests.get(link)
         self.assertEqual(int(response.status_code/100), 2)
 

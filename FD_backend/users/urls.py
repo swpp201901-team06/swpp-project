@@ -1,13 +1,12 @@
-# users/urls.py
-# ~/User/
 from django.urls import include, path
 
 from . import views
 
 urlpatterns = [
-    path('list/', views.UserListView.as_view(), name = 'user_list'),
-    path('detail/<str:pk>/', views.UserDetailView.as_view(), name = 'user_detail'),
-    path('get-username/<str:email>/',views.GetUserNameView.as_view(), name = 'get_username'),
-    path('exists/email/<str:email>/', views.UserEmailExistView.as_view(), name = 'user_email'),
-    path('exists/username/<str:username>/', views.UserNameExistView.as_view(), name = 'user_name'),
+    path('', views.UserListView.as_view(), name = 'userlist'),
+    path('detail/<str:pk>/', views.UserDetailView.as_view(), name = 'userdetail'),
+    path('get-nickname/<str:email>/',views.GetUserName.as_view(), name = 'get_username'),
+    path('exists/email/<str:email>/', views.UserEmailExist.as_view(), name = 'user_email'),
+    path('exists/username/<str:username>/', views.UserNameExist.as_view(), name = 'user_name'),
+
 ]
