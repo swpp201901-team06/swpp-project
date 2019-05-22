@@ -21,7 +21,7 @@ const Styledli = styled.li`
 //   )
 // }
 
-const backendUrl = 'http://localhost:8000/'
+const backendUrl = 'http://localhost:8000'
 
 class ArchiveReview extends React.Component {
   render() {
@@ -39,6 +39,21 @@ class ArchiveReview extends React.Component {
       onReviewClick(reviewId, archiveOwnerNickname)
     }
 
+    if (photo) {
+      return (
+        <div onClick={() => { onClickThis() }}>
+          <h4>
+            {reviewId}{'   '}
+            {eatWhen}{'   '}
+            {restaurantId}{'   '}
+            {score}{'   '}
+            {content}{'  '}
+          </h4>
+          <img src={`${backendUrl}${photo}`} width="400" height="400" />
+        </div>
+      )
+    }
+
     return (
       <div onClick={() => { onClickThis() }}>
         <h4>
@@ -48,7 +63,6 @@ class ArchiveReview extends React.Component {
           {score}{'   '}
           {content}{'  '}
         </h4>
-        <img src={`${backendUrl}${photo}`} width="400" height="400" />
       </div>
     )
   }
