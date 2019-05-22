@@ -3,6 +3,23 @@ import * as actions from './actions'
 
 const archiveReducer = (state, action) => {
   let nextState = state
+  if (!nextState) {
+    nextState = {
+      userNickname: null,
+      archiveOwnerNickname: null,
+      token: null,
+      isLoggedIn: localStorage.hasOwnProperty('token'),
+      sortMethod: null,
+      reviews: [],
+      selectedReviewId: null,
+      selectedReviewObj: null,
+    }
+    if (nextState.isLoggedIn) {
+      nextState.token = JSON.parse(localStorage.getItem('token'))
+      nextState.userNickname = JSON.parse(localStorage.getItem('nickname'))
+    }
+  }
+  /*
   const isLoggedIn = localStorage.hasOwnProperty('token')
   let token = null
   let userNickname = null
@@ -41,6 +58,7 @@ const archiveReducer = (state, action) => {
       isLoggedIn: localStorage.hasOwnProperty('token'),
     }
   }
+  */
   /*
   if (!nextState) {
     console.log('archiveReducer !nextState')
