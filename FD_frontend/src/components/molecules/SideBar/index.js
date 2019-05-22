@@ -20,11 +20,11 @@ export const SideBar = ({ statefunction, onLogout, onClickMyArchive }) => {
   const loggedInDisplay = (
     <div>
 	    <SideBarButton type="submit" onClick={onClickLogout}>Logout</SideBarButton>
-      <Link to={myArchiveUrl}>
-        <SideBarButton onClick={() => { onClickMyArchive() }}>
-          My Archive
-        </SideBarButton>
-      </Link>
+      <SideBarButton
+        onClick={() => { onClickMyArchive(statefunction.SignInPage.nickname) }}
+      >
+        My Archive
+      </SideBarButton>
 
       <Link to={myAccountUrl}>
         <SideBarButton>My Account</SideBarButton>

@@ -7,8 +7,9 @@ export const logOut = () => {
   }
 }
 
-export const gotoArchiveButton = () => {
+export const gotoArchiveButton = (nickname) => {
   return {
     type: GOTO_ARCHIVE_BUTTON,
+    nickname,
   }
 }

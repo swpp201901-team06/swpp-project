@@ -13,8 +13,8 @@ const mapDispatchToProps = (dispatch) => {
     onLogout: () => {
       dispatch(logOut())
     },
-    onClickMyArchive: () => {
-      dispatch(gotoArchiveButton())
+    onClickMyArchive: (nickname) => {
+      dispatch(gotoArchiveButton(nickname))
     },
   }
 }
