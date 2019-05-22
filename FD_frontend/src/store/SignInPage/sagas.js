@@ -5,8 +5,8 @@ import * as actions from '../actions'
 import * as actionTypes from './actionTypes'
 import { baseHistory } from '../../index'
 
-const signInPath = 'http://127.0.0.1:8000/api/rest-auth/login/'
-const getNicknamePath = 'http://127.0.0.1:8000/api/users/get-nickname/'
+const signInPath = 'http://127.0.0.1:8000/Account/login/'
+const getNicknamePath = 'http://127.0.0.1:8000/User/get-nickname/'
 
 export function* signInAsync({ email, password }) {
   try {
