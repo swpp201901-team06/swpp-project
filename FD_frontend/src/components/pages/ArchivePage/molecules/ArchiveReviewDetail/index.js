@@ -15,16 +15,15 @@ class ArchiveReviewDetail extends React.Component {
     console.log('start rendering')
     let reviewId
     let editUrl
-    if(this.props.reviewstate.selectedReviewId){
+    if (this.props.reviewstate.selectedReviewId) {
       console.log('review state')
       console.log(this.props.reviewstate)
-      if(this.props.reviewstate.selectedReviewObj == null){
+      if (this.props.reviewstate.selectedReviewObj == null) {
         this.props.getSelectedReview(this.props.reviewstate.selectedReviewId)
       }
       reviewId = this.props.reviewstate.selectedReviewId
-      editUrl = "/post/"+reviewId
-    }
-    else{
+      editUrl = `/post/${reviewId}`
+    } else {
       reviewId = null
     }
     console.log('set reviewid')
@@ -32,40 +31,51 @@ class ArchiveReviewDetail extends React.Component {
       this.props.onDeleteReview(reviewId, this.props.reviewstate.archiveOwnerNickname)
     }
     let ownerOption
-    if(this.props.reviewstate.isLoggedIn && (this.props.userNickname == this.props.archiveOwnerNickname) && reviewId){
+    if (this.props.reviewstate.isLoggedIn &&
+      (this.props.userNickname === this.props.archiveOwnerNickname) && reviewId) {
       ownerOption = (
         <div>
           <h4>
-          <Link to={editUrl}>
-            <DetailButton>Edit</DetailButton>
-          </Link>{'    '}
-          <DetailButton onClick={onPressDelete}>Delete</DetailButton></h4>
+            <Link to={editUrl}>
+              <DetailButton>Edit</DetailButton>
+            </Link>{'    '}
+            <DetailButton onClick={onPressDelete}>Delete</DetailButton>
+          </h4>
         </div>
       )
-    }
-    else{
+    } else {
       ownerOption = ' '
     }
     console.log('set owneroption')
     let reviewDetail
-    if(this.props.reviewstate.selectedReviewObj){
-      const selectedReview=this.props.reviewstate.selectedReviewObj
-      reviewDetail = (
-        <div>
-          <h4>Restaurant: {selectedReview.restId}</h4>
-          <h4>Date: {selectedReview.eatWhen}</h4>
-          <img src={selectedReview.photo} width="400" height="400" />
-          <h4>Content: {selectedReview.content}</h4>
-          <h4>Score: {selectedReview.score}</h4>
-          <h4>Tags: {selectedReview.tags}</h4>
-        </div>
-      )
-    }
-    else{
+    if (this.props.reviewstate.selectedReviewObj) {
+      const selectedReview = this.props.reviewstate.selectedReviewObj
+      if (selectedReview.photo) {
+        reviewDetail = (
+          <div>
+            <h4>Restaurant: {selectedReview.restId}</h4>
+            <h4>Date: {selectedReview.eatWhen}</h4>
+            <img src={selectedReview.photo} width="400" height="400" />
+            <h4>Content: {selectedReview.content}</h4>
+            <h4>Score: {selectedReview.score}</h4>
+            <h4>Tags: {selectedReview.tags}</h4>
+          </div>
+        )
+      } else {
+        reviewDetail = (
+          <div>
+            <h4>Restaurant: {selectedReview.restId}</h4>
+            <h4>Date: {selectedReview.eatWhen}</h4>
+            <h4>Content: {selectedReview.content}</h4>
+            <h4>Score: {selectedReview.score}</h4>
+            <h4>Tags: {selectedReview.tags}</h4>
+          </div>
+        )
+      }
+    } else {
       reviewDetail = <h4>{' '}</h4>
     }
     console.log('set revewDetail')
-          
     return (
       <div>
         {ownerOption}
