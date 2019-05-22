@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 import PostButton from './atoms/PostButton'
 import ArchiveReviewList from '../../../containers/ArchivePage/ReviewList'
 import ArchiveReviewDetail from '../../../containers/ArchivePage/ReviewDetail'
-
+import GoogleMap from '../../molecules/GoogleMap'
 
 const ArchivePage = React.createClass({
   render () {
@@ -23,6 +23,8 @@ const ArchivePage = React.createClass({
         </Link>
         <h1>{' '}</h1>
         <ArchiveReviewDetail />
+	<h1>{' '}</h1>
+	<GoogleMap />
       </div>
     )
   }
