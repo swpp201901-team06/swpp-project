@@ -26,12 +26,16 @@ export function* watchGetReviewListRequest() {
 
 export function* getReviewDetail({ reviewId }) {
   try {
+    console.log('requesting review detail')
     const response = yield callUrl('GET', `${reviewDetailUrl}${reviewId}/`)
+    console.log('response')
+    console.log(response)
     const reviewDetail = yield response.json()
+    console.log('review detail')
+    console.log(reviewDetail)
     // TODO: make sure reviewDetail is in the right format
     yield put(actions.getReviewDetailSuccess(reviewDetail))
   } catch (err) {
-    console.log(err)
     yield put(actions.getReviewDetailFailed())
   }
 }
@@ -72,23 +76,6 @@ export function* deleteReview({ reviewId, archiveOwnerNickname }) {
 export function* watchDeleteReviewRequest() {
   yield takeEvery(actions.DELETE_REVIEW_REQUEST, deleteReview)
 }
-/*
-export function* watchGotoEditReview() {
-  while (true) {
-    const { reviewId } = yield take(actions.GOTO_EDIT_REVIEW)
-    const editReviewLink = `/post/${reviewId}`
-    yield put(push(editReviewLink))
-  }
-}
-*/
-
-export function* watchGotoPostReview() {
-  while (true) {
-    yield take(actions.GOTO_POST_REVIEW)
-    const postReviewLink = '/post'
-    yield put(push(postReviewLink))
-  }
-}
 
 export function* watchGotoGuestLog() {
   while (true) {
@@ -103,7 +90,5 @@ export default function* () {
   yield fork(watchGetReviewDetailRequest)
   yield fork(watchUpdateSortMethodRequest)
   yield fork(watchDeleteReviewRequest)
-  // yield fork(watchGotoEditReview)
-  yield fork(watchGotoPostReview)
   yield fork(watchGotoGuestLog)
 }

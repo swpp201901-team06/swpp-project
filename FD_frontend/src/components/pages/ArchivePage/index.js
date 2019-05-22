@@ -15,7 +15,7 @@ const ArchivePage = React.createClass({
         <h1>{' '}</h1>
         <SideBar />
         <h1>{' '}</h1>
-        <ArchiveReviewList />
+          <ArchiveReviewList />
         <h1>{' '}</h1>
         <Link to='/post/default'>
           <PostButton>Post Review</PostButton>

@@ -17,19 +17,21 @@ class ArchiveReviewList extends React.Component {
   };
 
   render() {
-	console.log('this reviews!')
-    console.log(this.props.statefunction.ArchivePage.reviews)
     const reviewstate = this.props.statefunction.ArchivePage.reviews
+    const onReviewClick = (reviewId) => {
+      console.log('review Id!')
+      console.log(reviewId)
+      this.props.sendReviewId(reviewId)
+    }
     return (
       <div>
 					{reviewstate.map(( review ) => 
-						<div key={review.id}>
+						<div key={review.id} onClick = {() => {onReviewClick(review.id)}}>
 							<h4>{review.id}{'   '}
 							{review.eatWhen}{'   '}
 							{review.restaurantId}{'   '}
 							{review.score}{'   '}
-							{review.content}{'  '}
-              {review.photo}</h4>
+							{review.content}{'  '}</h4>
 							<img src={'http://localhost:8000'+review.photo} width="400" height="400"/>
 						</div>
 					)}
