@@ -4,8 +4,8 @@ import { callUrl } from '../sagas'
 import * as actions from './actions'
 
 const backendUrl = 'http://127.0.0.1:8000/'
-const myReviewListUrl = `${backendUrl}Review/list/`
-const reviewDetailUrl = `${backendUrl}Review/detail/`
+const myReviewListUrl = `${backendUrl}FooDa/myreviewlist/`
+const reviewDetailUrl = `${backendUrl}FooDa/reviewdetail/`
 
 export function* getReviewList({ archiveOwnerNickname }) {
   try {

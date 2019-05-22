@@ -5,9 +5,9 @@ import * as actions from './actions'
 import { requestSignIn } from '../SignInPage/actions'
 import { SIGN_IN_SUCCESS } from '../SignInPage/actionTypes'
 
-const signUpUrl = 'http://127.0.0.1:8000/Account/registration/'
-const dcUrl = 'http://127.0.0.1:8000/User/exists/'
-const archiveUrl = 'http://127.0.0.1:8000/Archive/list/'
+const signUpUrl = 'http://127.0.0.1:8000/api/rest-auth/registration/'
+const dcUrl = 'http://127.0.0.1:8000/api/users/exists/'
+const archiveUrl = 'http://127.0.0.1:8000/FooDa/archivelist/'
 const archiveInstance = api.create()
 
 export function* submit({ email, pw, confirmpw, nickname }) {
