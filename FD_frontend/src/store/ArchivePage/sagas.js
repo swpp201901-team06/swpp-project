@@ -12,9 +12,13 @@ export function* getReviewList({ archiveOwnerNickname }) {
     console.log('getReviewList saga')
     console.log()
     const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
-    const reviewList = yield response.json()
-    // TODO: make sure reviewList is in the right format
-    yield put(actions.getReviewListSuccess(reviewList))
+    if(response.status == 404){
+      yield put(actions.getReviewListFailed())
+    }
+    else{
+      const reviewList = yield response.json()
+      yield put(actions.getReviewListSuccess(reviewList))
+    }
   } catch (err) {
     console.log(err)
     yield put(actions.getReviewListFailed())
@@ -37,6 +41,7 @@ export function* getReviewDetail({ reviewId }) {
     // TODO: make sure reviewDetail is in the right format
     yield put(actions.getReviewDetailSuccess(reviewDetail))
   } catch (err) {
+    console.log('get review detail fail!')
     yield put(actions.getReviewDetailFailed())
   }
 }
