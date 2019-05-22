@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     requestReviews: (archiveOwnerNickname) => {
       dispatch(getReviewList(archiveOwnerNickname))
-    }
+    },
   }
 }
 
