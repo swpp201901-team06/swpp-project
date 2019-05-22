@@ -3,22 +3,32 @@ import * as actions from './actions'
 
 const archiveReducer = (state, action) => {
   let nextState = state
+  const isLoggedIn = localStorage.hasOwnProperty('token')
+  let token = null
+  let userNickname = null
+  console.log('archiveReducer begin')
+  if (isLoggedIn) {
+    console.log('archiveReducer isLoggedIn')
+    token = JSON.parse(localStorage.getItem('token'))
+    userNickname = JSON.parse(localStorage.getItem('nickname'))
+  }
+  console.log('archiveReducer after if isLoggedIn')
+  console.log(nextState)
   if (!nextState) {
+    console.log('archiveReducer !nextState')
     nextState = {
-      userNickname: null,
+      userNickname,
       archiveOwnerNickname: null,
-      token: null,
-      isLoggedIn: localStorage.hasOwnProperty('token'),
+      token,
+      isLoggedIn,
       sortMethod: null,
       reviews: [],
       selectedReviewId: null,
       selectedReviewObj: null,
     }
-    if (nextState.isLoggedIn) {
-      nextState.token = JSON.parse(localStorage.getItem('token'))
-      nextState.userNickname = JSON.parse(localStorage.getItem('nickname'))
-    }
   }
+  console.log('archiveReducer after initialization')
+  console.log(userNickname)
 
   // TODO: use localStorage to temporarily save sortMethod
   switch (action.type) {

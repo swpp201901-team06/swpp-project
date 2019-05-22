@@ -22,6 +22,10 @@ class ArchiveReviewList extends React.Component {
 
   render() {
     const reviewstate = this.props.statefunction.ArchivePage.reviews
+    console.log('ArchiveReviewList render')
+    console.log(reviewstate)
+    console.log(this.props.statefunction.ArchivePage)
+
     return (
       <div>
         {reviewstate.map((review) =>

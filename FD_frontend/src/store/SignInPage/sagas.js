@@ -17,9 +17,13 @@ export function* signInAsync({ email, password }) {
     }
     const response = yield call(api.post, signInPath, data)
     const nicknameResponse = yield call(api.get, getNicknamePath + email)
-    yield put(push('/' + nicknameResponse.username + '/archive'))
+    console.log('signInAsync before signInSuccess')
+    console.log(nicknameResponse)
     yield put(actions.signInSuccess(response.key, email, password, nicknameResponse.username))
+    console.log('signInAsync after signInSuccess')
+    yield put(push('/' + nicknameResponse.username + '/archive'))
   } catch (e) {
+    console.log('signInAsync error')
     console.error(e)
     yield put(actions.signInFailed())
   }

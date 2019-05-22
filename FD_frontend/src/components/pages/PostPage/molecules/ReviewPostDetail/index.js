@@ -18,7 +18,8 @@ class ReviewPostDetail extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.children != 'default') {
+    // TODO: get nickname
+    if (this.props.children !== 'default') {
       console.log('not default')
       console.log(this.props.children)
       this.props.onLoad(this.props.children)
@@ -30,6 +31,8 @@ class ReviewPostDetail extends React.Component {
   }
 
   render() {
+    console.log('ReviewPostDetail render start')
+    console.log(this.props)
     if (this.props.children != 'default') {
       console.log(this.props.statefunction.PostPage)
     }

@@ -40,6 +40,8 @@ export function* watchGetPostReviewDetailRequest() {
 export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
   content, photo, publicStatus }) {
   try {
+    console.log('post review begin')
+    console.log(nickname)
     const data = {
       restId,
       eatWhen,
@@ -50,29 +52,32 @@ export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
       publicStatus,
     }
 
-    let review_data = new FormData();
-    review_data.append('content',content)
-    review_data.append('eatWhen',eatWhen)
-    review_data.append('publicStatus',publicStatus)
+    let review_data = new FormData()
+    review_data.append('content', content)
+    review_data.append('eatWhen', eatWhen)
+    review_data.append('publicStatus', publicStatus)
     review_data.append('score', score)
     review_data.append('restaurantId', restId)
-    if(photo != null){
+    if (photo != null) {
       review_data.append('photo', photo)
     }
-    review_data.append('tags',tags)
+    review_data.append('tags', tags)
 
-    if (reviewId == 'default') { // post new review
-      const response=yield callUrlImg('POST', reviewListUrl, review_data)
+    console.log('post review before callUrlImg')
+    console.log(nickname)
+    if (reviewId === 'default') { // post new review
+      console.log('postreview callUrlImg 1')
+      const response = yield callUrlImg('POST', reviewListUrl, review_data)
     } else { // edit existing review
-      const response=yield callUrlImg('PUT', `${reviewDetailUrl}${reviewId}/`, review_data)
+      console.log('postreview callUrlImg 2')
+      const response = yield callUrlImg('PUT', `${reviewDetailUrl}${reviewId}/`, review_data)
     }
     yield put(actions.postReviewSuccess())
-    yield put(push('/'+nickname+'/archive'))
-    /*if(reviewId != 'default'){
+    yield put(push(`/${nickname}/archive`))
+    /* if(reviewId != 'default'){
       yield put(getReviewDetail(reviewId, nickname))
-    }*/
-  }
-  catch (err) {
+    } */
+  } catch (err) {
     console.log(err)
     yield put(actions.postReviewFailed())
   }

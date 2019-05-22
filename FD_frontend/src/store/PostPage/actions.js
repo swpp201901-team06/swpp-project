@@ -55,6 +55,8 @@ export const changePublicStatus = (publicStatus) => {
 
 export const postReview = (reviewId, nickname, restId, eatWhen, tags, score,
   content, photo, publicStatus) => {
+  console.log('post review action')
+  console.log(nickname)
   return {
     type: POST_REVIEW_REQUEST,
     reviewId,

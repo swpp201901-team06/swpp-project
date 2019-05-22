@@ -2,12 +2,21 @@ import * as actions from './actions'
 
 const postReducer = (state, action) => {
   let nextState = state
+  const isLoggedIn = localStorage.hasOwnProperty('token')
+  let nickname = null
+  console.log('post reducer begin')
+  if (isLoggedIn) {
+    console.log('post reducer nextState isLoggedIn')
+    nickname = JSON.parse(localStorage.getItem('nickname'))
+  }
+  console.log('postReducer after if isLoggedIn')
+  console.log(nickname)
   if (!nextState) {
     nextState = {
-      nickname: null,
+      nickname,
       isEdit: false,
       reviewId: null,
-      isLoggedIn: localStorage.hasOwnProperty('token'),
+      isLoggedIn,
       restId: null,
       eatWhen: null,
       tags: null,
@@ -17,10 +26,10 @@ const postReducer = (state, action) => {
       photoUrl: '',
       publicStatus: 'False',
     }
-    if (nextState.isLoggedIn) {
-      nextState.nickname = JSON.parse(localStorage.getItem('nickname'))
-    }
   }
+  console.log('postREducer before switch')
+  console.log(nextState)
+  console.log(action)
 
   switch (action.type) {
     case actions.GET_POST_REVIEW_DETAIL_REQUEST:
@@ -87,12 +96,15 @@ const postReducer = (state, action) => {
           return nextState
         }
     case actions.POST_REVIEW_REQUEST:
+      console.log('post review request reducer')
       return nextState
 
     case actions.POST_REVIEW_SUCCESS:
+        console.log('post review success reducer')
       return nextState
 
     case actions.POST_REVIEW_FAILED:
+      console.log('post review failed reducer')
       return nextState
 
 		case actions.CHANGE_PUBLIC_STATUS:

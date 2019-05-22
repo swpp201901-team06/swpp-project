@@ -3,6 +3,8 @@ import { getReviewDetail, getReviewList, storeReviewId } from '../../store/Archi
 import ArchiveReviewList from '../../components/pages/ArchivePage/molecules/ArchiveReviewList'
 
 const mapStateToProps = (state) => {
+  console.log('ReviewList container mapStateToProps')
+  console.log(state)
   return {
     statefunction: state,
   }
