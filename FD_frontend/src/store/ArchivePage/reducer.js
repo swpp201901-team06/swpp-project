@@ -77,6 +77,13 @@ const archiveReducer = (state, action) => {
         selectedReviewId: action.id,
         selectedReviewObj: null,
       }
+      
+    case 'POST_REVIEW_SUCCESS':
+      return {
+        ...nextState,
+        selectedReviewId: null,
+        selectedReviewObj: null
+      }
 
     case actions.GOTO_POST_REVIEW:
       return nextState
