@@ -136,6 +136,8 @@ const archiveReducer = (state, action) => {
     case actions.GOTO_GUEST_LOG:
       return nextState
 
+    
+
     default:
       return nextState
   }

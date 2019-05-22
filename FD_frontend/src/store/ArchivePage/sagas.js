@@ -9,7 +9,8 @@ const reviewDetailUrl = `${backendUrl}FooDa/reviewdetail/`
 
 export function* getReviewList({ archiveOwnerNickname }) {
   try {
-    console.log('getReviewList')
+    console.log('getReviewList saga')
+    console.log()
     const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
     const reviewList = yield response.json()
     // TODO: make sure reviewList is in the right format

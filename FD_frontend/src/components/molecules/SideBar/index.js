@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   color: ${palette('grayscale', 0)};
 `
 
-export const SideBar = ({ statefunction, onLogout }) => {
+export const SideBar = ({ statefunction, onLogout, onClickMyArchive }) => {
 	const onClickLogout = () => {
 		onLogout();
   };
@@ -19,29 +19,31 @@ export const SideBar = ({ statefunction, onLogout }) => {
   let myAccountUrl = "/"+statefunction.SignInPage.nickname+"/account"
   const loggedInDisplay = (
     <div>
-			<SideBarButton type="submit" onClick={onClickLogout}>Logout</SideBarButton>
+	    <SideBarButton type="submit" onClick={onClickLogout}>Logout</SideBarButton>
       <Link to={myArchiveUrl}>
-        <SideBarButton>My Archive</SideBarButton>
+        <SideBarButton onClick={() => { onClickMyArchive() }}>
+          My Archive
+        </SideBarButton>
       </Link>
 
-			<Link to={myAccountUrl}>
+      <Link to={myAccountUrl}>
         <SideBarButton>My Account</SideBarButton>
       </Link>
-		</div>
-	);
+    </div>
+	)
   const notLoggedInDisplay = (
     <Link to="/signin">
       <SideBarButton>{'Sign In'}</SideBarButton>
     </Link>
-  );
+  )
   return (
     statefunction.SignInPage.isLoggedIn ? loggedInDisplay : notLoggedInDisplay
-	);
-};
+	)
+}
 
 SideBar.propTypes = {
   reverse: PropTypes.bool,
   children: PropTypes.node,
 }
 
-/*export default SideBar*/
+/* export default SideBar */
