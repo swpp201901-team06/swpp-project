@@ -4,11 +4,6 @@ import { Link } from 'react-router'
 import { font, palette } from 'styled-theme'
 import SideBarButton from '../../atoms/SideBarButton'
 
-const Wrapper = styled.div`
-  font-family: ${font('primary')};
-  color: ${palette('grayscale', 0)};
-`
-
 export const SideBar = ({ statefunction, onLogout, onClickMyArchive }) => {
 	const onClickLogout = () => {
 		onLogout();
