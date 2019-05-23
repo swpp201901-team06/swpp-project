@@ -15,7 +15,6 @@ const Wrapper = styled.div`
 
 const padding = {
   margin : 10,
-  padding : "px"
 }
 
 const divtext = {
