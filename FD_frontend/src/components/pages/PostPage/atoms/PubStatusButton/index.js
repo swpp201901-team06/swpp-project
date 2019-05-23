@@ -22,7 +22,7 @@ const styles = css`
   white-space: nowrap;
   font-size: ${fontSize};
   border: 0.0625em solid ${ifProp('transparent', 'currentcolor', 'transparent')};
-  height: 2.5em;
+  height: 1.5em;
   justify-content: center;
   text-decoration: none;
   cursor: ${ifProp('disabled', 'default', 'pointer')};

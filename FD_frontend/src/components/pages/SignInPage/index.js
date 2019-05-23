@@ -21,7 +21,7 @@ const SignInPage = () => {
     <div>
       <Wrapper>
         <h1 style={title}>
-          Sign in Page
+          Sign In
         </h1>
         <br/>
         <SignIn/>
