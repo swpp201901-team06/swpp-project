@@ -30,15 +30,23 @@ class ArchiveReviewDetail extends React.Component {
     const onPressDelete = () => {
       this.props.onDeleteReview(reviewId, this.props.reviewstate.archiveOwnerNickname)
     }
+    console.log(this.props.reviewstate.isLoggedIn)
+    console.log(this.props.reviewstate.userNickname)
+    console.log(this.props.reviewstate.archiveOwnerNickname)
+    console.log(reviewId)
     let ownerOption
     if (this.props.reviewstate.isLoggedIn &&
-      (this.props.userNickname === this.props.archiveOwnerNickname) && reviewId) {
+      (this.props.reviewstate.userNickname === this.props.reviewstate.archiveOwnerNickname) &&
+      reviewId) {
+
+      console.log('ArchiveReviewDetail if ownerOption')
       ownerOption = (
         <div>
           <h4>
             <Link to={editUrl}>
               <DetailButton>Edit</DetailButton>
-            </Link>{'    '}
+            </Link>
+            {'    '}
             <DetailButton onClick={onPressDelete}>Delete</DetailButton>
           </h4>
         </div>
