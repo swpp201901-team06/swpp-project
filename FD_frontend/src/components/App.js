@@ -6,6 +6,7 @@ import theme from './themes/default'
 injectGlobal`
   body {
     margin: 0;
+    background-color : #a91935;
   }
 `
 
