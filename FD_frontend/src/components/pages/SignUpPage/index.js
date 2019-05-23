@@ -25,7 +25,7 @@ const SignUpPage = () => {
       <Wrapper>
         <h1 style={title}>
           Sign Up
-          </h1>
+        </h1>
         <SignUp/>
       </Wrapper>
     </div>
