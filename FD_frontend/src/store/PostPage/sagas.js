@@ -76,6 +76,7 @@ export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
     console.log('postReview saga after postReviewSuccess')
     console.log(nickname)
     yield put(push(`/${nickname}/archive`))
+    window.location.reload()
     /* if(reviewId != 'default'){
       yield put(getReviewDetail(reviewId, nickname))
     } */
