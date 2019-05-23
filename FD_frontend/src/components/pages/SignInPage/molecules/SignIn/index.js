@@ -5,9 +5,23 @@ import SignInButton from '../../atoms/SignInButton/index'
 import SignUpButton from '../../atoms/SignUpButton/index'
 
 const Wrapper = styled.div`
-  font-family: ${font('primary')};
-  color: ${palette('grayscale', 0)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
 `
+
+const padding = {
+  margin : 10,
+  padding : "px"
+}
+
+const divtext = {
+  color: "#e0ba7c",
+  fontSize : 15,
+};
 
 const SignIn = ({ isLoggedIn, signInFailed, nickname,
                   onClickSignUp, onClickSignIn, dispatchGotoArchive }) => {
@@ -35,17 +49,25 @@ const SignIn = ({ isLoggedIn, signInFailed, nickname,
   }
   // TODO: use `SignInButton` and `SignUpButton` instead of `button`
   return (
-    <div>
-      Email address
-      <input ref={node => { emailField = node }} />
-      <br />
-      Password
-      <input ref={node => { passwordField = node }} />
-      <br />
-      <button type="submit" onClick={onClickSignUpButton}>Sign Up</button>
-      <button type="submit" onClick={onClickSignInButton}>Sign In</button>
-      <br />
-      {signInFailed ? 'Sign in Failed' : ''}
+    <div style={divtext}>
+      <Wrapper>
+        <div>
+          Email address
+          <input ref={node => { emailField = node }} style={padding} />
+          <br />
+        </div>
+        <div>
+          Password
+          <input ref={node => { passwordField = node }} style={padding}/>
+          <br />
+        </div>
+        <div>
+          <button type="submit" onClick={onClickSignUpButton}>Sign Up</button>
+          <button type="submit" onClick={onClickSignInButton}>Sign In</button>
+          <br />
+        </div>
+        {signInFailed ? 'Sign in Failed' : ''}
+      </Wrapper>
     </div>
   )
 }

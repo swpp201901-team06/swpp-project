@@ -1,16 +1,22 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
-import Button from '../../atoms/Button'
-import DCButton from '../../atoms/DCButton'
+// import Button from '../../atoms/Button'
+// import DCButton from '../../atoms/DCButton'
 import SubmitButton from '../../atoms/SubmitButton'
 import { debounce } from 'lodash'
 
 const Wrapper = styled.div`
-  font-family: ${font('primary')};
-  color: ${palette('grayscale', 0)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
 `
-
+const browncolor = {
+  color: "#e0ba7c",
+};
 export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handleChange }) => {
     let email;
     let pw;
@@ -54,22 +60,35 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
 
   return (
     <div>
-      <h4>Email{' '} 
-      <input ref={node => {email = node;}} onChange={handleEmailChange}/>{'  '}
-      <DCButton type="submit" onClick={onECheck}>Email Check</DCButton> {' '}{emailText}</h4>
-      <h4>Password{' '}
-      <input ref={node => {pw = node;}} /></h4>
-      <h4>Confirm Password{' '}
-      <input ref={node => {confirmpw = node;}} /></h4>
-      <h4>Nickname{' '}
-      <input ref={node => {nickname = node;}} onChange={handleNicknameChange}/>{'  '}
-      <DCButton type="submit" onClick={onNCheck}>Nickname Check</DCButton>{' '}{usernameText}</h4>
-      <h4>
-      <SubmitButton type="submit" onClick={onSubmit}>Submit</SubmitButton></h4>
+      <Wrapper>
+        <h4 style={browncolor}>Email{' '} 
+          <input ref={node => {email = node;}} onChange={handleEmailChange}/>{'  '}
+          {'   '}{emailText}
+        </h4>
+
+        <h4 style={browncolor}>Password{' '}
+          <input ref={node => {pw = node;}} />
+        </h4>
+
+        <h4 style={browncolor}>Confirm Password{' '}
+          <input ref={node => {confirmpw = node;}} />
+        </h4>
+
+        <h4 style={browncolor}>Nickname{' '}
+          <input ref={node => {nickname = node;}} onChange={handleNicknameChange}/>{'  '}
+          {'   '}{usernameText} 
+        </h4>
+
+        <h4 style={browncolor}>
+          <SubmitButton type="submit" onClick={onSubmit}>Submit</SubmitButton>
+        </h4>
+      </Wrapper>
     </div>
   );
 };
 
+{/* <DCButton type="submit" onClick={onECheck}>Email Check</DCButton> {' '}{emailText}
+<DCButton type="submit" onClick={onNCheck}>Nickname Check</DCButton>{' '}{usernameText} */} 
 signUp.propTypes = {
   reverse: PropTypes.bool,
   children: PropTypes.node,

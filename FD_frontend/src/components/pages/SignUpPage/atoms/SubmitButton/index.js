@@ -32,8 +32,8 @@ const styles = css`
   box-sizing: border-box;
   pointer-events: ${ifProp('disabled', 'none', 'auto')};
   transition: background-color 250ms ease-out, color 250ms ease-out, border-color 250ms ease-out;
-  background-color: ${backgroundColor};
-  color: ${foregroundColor};
+  background-color: #ff8d06;
+  color: #ffffff;
 
   &:hover, &:focus, &:active {
     background-color: ${hoverBackgroundColor};
