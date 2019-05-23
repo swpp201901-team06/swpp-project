@@ -5,8 +5,8 @@ import * as actions from '../actions'
 import * as actionTypes from './actionTypes'
 import { baseHistory } from '../../index'
 
-const signInPath = 'http://127.0.0.1:8000/api/rest-auth/login/'
-const getNicknamePath = 'http://127.0.0.1:8000/api/users/get-nickname/'
+const signInPath = 'http://127.0.0.1:8000/Account/login/'
+const getNicknamePath = 'http://127.0.0.1:8000/User/get-username/'
 
 export function* signInAsync({ email, password }) {
   try {
@@ -17,9 +17,17 @@ export function* signInAsync({ email, password }) {
     }
     const response = yield call(api.post, signInPath, data)
     const nicknameResponse = yield call(api.get, getNicknamePath + email)
-    yield put(push('/' + nicknameResponse.username + '/archive'))
+    console.log('signInAsync before signInSuccess')
+    console.log(nicknameResponse)
+    localStorage.setItem('token', JSON.stringify(response.key))
+    localStorage.setItem('email', JSON.stringify(email))
+    localStorage.setItem('password', JSON.stringify(password))
+    localStorage.setItem('nickname', JSON.stringify(nicknameResponse.username))
     yield put(actions.signInSuccess(response.key, email, password, nicknameResponse.username))
+    console.log('signInAsync after signInSuccess')
+    yield put(push('/' + nicknameResponse.username + '/archive'))
   } catch (e) {
+    console.log('signInAsync error')
     console.error(e)
     yield put(actions.signInFailed())
   }

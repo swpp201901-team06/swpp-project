@@ -2,24 +2,36 @@ import * as actions from './actions'
 
 const postReducer = (state, action) => {
   let nextState = state
+  const isLoggedIn = localStorage.hasOwnProperty('token')
+  let nickname = null
+  console.log('post reducer begin')
+  console.log(nickname)
+  console.log(nextState)
   if (!nextState) {
+    console.log('postReducer within if !nextState')
+    console.log(nextState)
     nextState = {
-      nickname: null,
+      nickname,
       isEdit: false,
       reviewId: null,
-      isLoggedIn: localStorage.hasOwnProperty('token'),
+      isLoggedIn,
       restId: null,
       eatWhen: null,
       tags: null,
       score: null,
       content: null,
       photo: null,
-      publicStatus: false,
-    }
-    if (nextState.isLoggedIn) {
-      nextState.nickname = JSON.parse(localStorage.getItem('nickname'))
+      photoUrl: '',
+      publicStatus: 'False',
     }
   }
+  if (isLoggedIn) {
+    console.log('post reducer nextState isLoggedIn')
+    nextState.nickname = JSON.parse(localStorage.getItem('nickname'))
+  }
+  console.log('postREducer before switch')
+  console.log(nextState)
+  console.log(action)
 
   switch (action.type) {
     case actions.GET_POST_REVIEW_DETAIL_REQUEST:
@@ -28,46 +40,90 @@ const postReducer = (state, action) => {
       return nextState
 
     case actions.GET_POST_REVIEW_DETAIL_SUCCESS:
-      nextState.restId = action.restId
-      nextState.eatWhen = action.eatWhen
-      nextState.tags = action.tags
-      nextState.score = action.score
-      nextState.photo = action.photo
-      nextState.publicState = action.publicStatus
-      console.log('reducer get post review detail success')
-      console.log(nextState)
-      return nextState
+      let bPublicStatus
+      if(action.publicStatus === false){
+        bPublicStatus = 'False'
+      }
+      else{
+        bPublicStatus = 'True'
+      }
+      return {
+              ...nextState,
+              restId: action.restId,
+              tags: action.tags,
+              score: action.score,
+              photoUrl: action.photo,
+              publicStatus: bPublicStatus,
+              eatWhen: action.eatWhen,
+              content: action.content
+      }
 
     case actions.GET_POST_REVIEW_DETAIL_FAILED:
       return nextState
 
     case actions.UPLOAD_IMAGE:
       return {
-              ...nextState,
-              photo: action.file
+        ...nextState,
+        photo: action.file,
       }
+
+    case actions.CHANGE_INPUT:
+      switch (action.key) {
+        case 'date':
+          return {
+            ...nextState,
+            eatWhen: action.value,
+          }
+        case 'restId':
+          return {
+            ...nextState,
+            restId: action.value,
+          }
+        case "score":
+          return {
+              ...nextState,
+              score: action.value
+          }
+        case "content":
+          return {
+              ...nextState,
+              content: action.value
+          }
+        case "tag":
+          return {
+              ...nextState,
+              tags: action.value
+          }
+        default:
+          return nextState
+        }
     case actions.POST_REVIEW_REQUEST:
+      console.log('post review request reducer')
       return nextState
 
     case actions.POST_REVIEW_SUCCESS:
+        console.log('post review success reducer')
       return nextState
 
     case actions.POST_REVIEW_FAILED:
+      console.log('post review failed reducer')
       return nextState
 
 		case actions.CHANGE_PUBLIC_STATUS:
-      if(action.publicStatus == 'public'){
+      if(action.publicStatus == 'True'){
 			  return {
 							  ...nextState,
-							  publicStatus: 'private'
+							  publicStatus: 'False'
 			  }
       }
-      else if(action.publicStatus == 'private'){
+      else if(action.publicStatus == 'False'){
         return {
                 ...nextState,
-                publicStatus: 'public'
+                publicStatus: 'True'
         }
       }
+    case actions.CLEAR_STATE:
+      return {}
     default:
       return nextState
   }

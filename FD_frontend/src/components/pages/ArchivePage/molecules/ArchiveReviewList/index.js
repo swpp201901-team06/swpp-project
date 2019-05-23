@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
@@ -9,29 +10,38 @@ const Wrapper = styled.div`
 `
 
 class ArchiveReviewList extends React.Component {
-  componentDidMount() {
-    this.props.requestReviews(this.props.statefunction.SignInPage.nickname);
+  constructor(props) {
+    super(props)
   }
-	constructor(props){
-    super(props);
-  };
+
+  componentDidMount() {
+    console.log('ArchiveReviewList componentDidMount')
+    console.log(this.props)
+    this.props.requestReviews(this.props.children)
+  }
 
   render() {
-	console.log('this reviews!')
-    console.log(this.props.statefunction.ArchivePage.reviews)
     const reviewstate = this.props.statefunction.ArchivePage.reviews
+    console.log('ArchiveReviewList render')
+    console.log(reviewstate)
+    console.log(this.props.statefunction.ArchivePage)
+
     return (
       <div>
-					{reviewstate.map(( review ) => 
-						<div key={review.id}>
-							<h4>{review.id}{'   '}
-							{review.eatWhen}{'   '}
-							{review.restaurantId}{'   '}
-							{review.score}{'   '}
-							{review.content}</h4>
-						</div>
-					)}
-        <h4>{this.props.statefunction.SignInPage.nickname} {'`s review list'}</h4>
+        {reviewstate.map((review) =>
+          <ArchiveReview
+            key={review.id}
+            reviewId={review.id}
+            eatWhen={review.eatWhen}
+            restaurantId={review.restaurantId}
+            score={review.score}
+            content={review.content}
+            photo={review.photo}
+            onReviewClick={this.props.onReviewClick}
+            sendReviewIdFunc={this.props.sendReviewId}
+            archiveOwnerNickname={this.props.statefunction.ArchivePage.archiveOwnerNickname}
+          />
+        )}
       </div>
     )
   }

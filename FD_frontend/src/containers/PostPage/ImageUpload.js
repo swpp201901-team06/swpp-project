@@ -4,6 +4,7 @@ import { uploadImage } from '../../store/PostPage/actions'
 
 const mapStateToProps = (state) => {
   return {
+    statefunction: state
   }
 }
 

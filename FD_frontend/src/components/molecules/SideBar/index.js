@@ -9,37 +9,41 @@ const Wrapper = styled.div`
   color: ${palette('grayscale', 0)};
 `
 
-export const SideBar = ({ statefunction, onLogout }) => {
+export const SideBar = ({ statefunction, onLogout, onClickMyArchive }) => {
 	const onClickLogout = () => {
 		onLogout();
-	};
+  };
+  console.log('SideBar begin')
+  console.log(statefunction.SignInPage)
   let myArchiveUrl = "/"+statefunction.SignInPage.nickname+"/archive"
   let myAccountUrl = "/"+statefunction.SignInPage.nickname+"/account"
   const loggedInDisplay = (
     <div>
-			<SideBarButton type="submit" onClick={onClickLogout}>Logout</SideBarButton>
-      <Link to={myArchiveUrl}>
-        <SideBarButton>My Archive</SideBarButton>
-      </Link>
+	    <SideBarButton type="submit" onClick={onClickLogout}>Logout</SideBarButton>
+      <SideBarButton
+        onClick={() => { onClickMyArchive(statefunction.SignInPage.nickname) }}
+      >
+        My Archive
+      </SideBarButton>
 
-			<Link to={myAccountUrl}>
+      <Link to={myAccountUrl}>
         <SideBarButton>My Account</SideBarButton>
       </Link>
-		</div>
-	);
+    </div>
+	)
   const notLoggedInDisplay = (
     <Link to="/signin">
       <SideBarButton>{'Sign In'}</SideBarButton>
     </Link>
-  );
+  )
   return (
     statefunction.SignInPage.isLoggedIn ? loggedInDisplay : notLoggedInDisplay
-	);
-};
+	)
+}
 
 SideBar.propTypes = {
   reverse: PropTypes.bool,
   children: PropTypes.node,
 }
 
-/*export default SideBar*/
+/* export default SideBar */

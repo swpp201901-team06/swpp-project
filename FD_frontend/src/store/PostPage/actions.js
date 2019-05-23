@@ -6,6 +6,8 @@ export const POST_REVIEW_SUCCESS = 'POST_REVIEW_SUCCESS'
 export const POST_REVIEW_FAILED = 'POST_REVIEW_FAILED'
 export const CHANGE_PUBLIC_STATUS = 'CHANGE_PUBLIC_STATUS'
 export const UPLOAD_IMAGE = 'UPLOAD_IMAGE'
+export const CHANGE_INPUT = 'CHANGE_INPUT'
+export const CLEAR_STATE = 'CLEAR_STATE'
 
 export const getPostReviewDetail = (reviewId) => {
   return {
@@ -53,6 +55,8 @@ export const changePublicStatus = (publicStatus) => {
 
 export const postReview = (reviewId, nickname, restId, eatWhen, tags, score,
   content, photo, publicStatus) => {
+  console.log('post review action')
+  console.log(nickname)
   return {
     type: POST_REVIEW_REQUEST,
     reviewId,
@@ -67,6 +71,14 @@ export const postReview = (reviewId, nickname, restId, eatWhen, tags, score,
   }
 }
 
+export const changeInput = (key, value) => {
+  return {
+    type: CHANGE_INPUT,
+    key,
+    value
+  }
+}
+
 export const postReviewSuccess = () => {
   return {
     type: POST_REVIEW_SUCCESS,
@@ -76,5 +88,11 @@ export const postReviewSuccess = () => {
 export const postReviewFailed = () => {
   return {
     type: POST_REVIEW_FAILED,
+  }
+}
+
+export const clearState = () => {
+  return {
+    type: CLEAR_STATE,
   }
 }

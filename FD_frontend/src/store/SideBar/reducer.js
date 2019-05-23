@@ -22,15 +22,21 @@ const sideBarReducer = (state, action) => {
       localStorage.removeItem('token')
       localStorage.removeItem('email')
       localStorage.removeItem('nickname')
+      localStorage.removeItem('password')
       nextState = {
         ...nextState,
         email: null,
         token: null,
         nickname: null,
+        password: null,
         isLoggedIn: false,
       }
       window.location.reload()
       return nextState
+    case actions.GOTO_ARCHIVE_BUTTON:
+      return {
+        ...nextState,
+      }
     default:
       return nextState
   }

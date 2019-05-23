@@ -3,16 +3,17 @@ import ReviewPostDetail from '../../../containers/PostPage/ReviewPost'
 
 class PostPage extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
   render() {
     let review;
     review = this.props.params.reviewId;
     return (
-      <div><h4>{'Post Page'}</h4>
+      <div>
+        <h4>{'Post Page'}</h4>
         <ReviewPostDetail>
-				  {review}
-			  </ReviewPostDetail>
+          {review}
+        </ReviewPostDetail>
       </div>
     )
   }
