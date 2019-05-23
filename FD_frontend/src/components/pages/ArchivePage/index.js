@@ -68,16 +68,20 @@ const ArchivePage = React.createClass({
     }
     return (
       <div>
-        {this.props.params.nickname}'s archive page
-        <h1>{' '}</h1>
-        <SideBar />
-        <h1>{' '}</h1>
-        <ArchiveReviewList>
-          {this.props.params.nickname}
-        </ArchiveReviewList>
-        <h1>{' '}</h1>
-        <ArchiveReviewDetail />
-        <h1>{' '}</h1>
+        <SideBarWrapper>
+          <img src={require('../../../../../design_source/logo/logo.png')} style={logo}/>
+          {this.props.params.nickname}'s archive page
+          <SideBar />
+        </SideBarWrapper>
+
+        <Wrapper>
+          <ArchiveReviewList>
+            {this.props.params.nickname}
+          </ArchiveReviewList>
+          <ArchiveReviewDetail />
+
+        </Wrapper>
+
         <GoogleMap />
       </div>
     )
