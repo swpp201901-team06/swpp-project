@@ -16,13 +16,13 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
 
-class GetUserName(APIView):
+class GetUserNameView(APIView):
     def get(self, request, email):
         user = get_object_or_404(models.CustomUser, email = email)
         content = {'username' : user.username}
         return Response(content)
 
-class UserEmailExist(generics.RetrieveAPIView):
+class UserEmailExistView(generics.RetrieveAPIView):
     def get(self, request, email):
         user = models.CustomUser.objects.filter(email = email)
         if user:
@@ -30,7 +30,7 @@ class UserEmailExist(generics.RetrieveAPIView):
         else:
             return Response("not exist")
 
-class UserNameExist(generics.RetrieveAPIView):
+class UserNameExistView(generics.RetrieveAPIView):
     def get(self, request, username):
         user = models.CustomUser.objects.filter(username = username)
         if user:
