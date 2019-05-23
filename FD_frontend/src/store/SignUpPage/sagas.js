@@ -36,7 +36,6 @@ export function* submit({ email, pw, confirmpw, nickname }) {
       }
     )
     console.log(response2)
-    yield put(push('/'));
   }
   catch(err) {
     console.log(err);
