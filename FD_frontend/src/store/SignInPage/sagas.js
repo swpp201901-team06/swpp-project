@@ -26,6 +26,7 @@ export function* signInAsync({ email, password }) {
     yield put(actions.signInSuccess(response.key, email, password, nicknameResponse.username))
     console.log('signInAsync after signInSuccess')
     yield put(push('/' + nicknameResponse.username + '/archive'))
+    window.location.reload()
   } catch (e) {
     console.log('signInAsync error')
     console.error(e)
@@ -49,6 +50,7 @@ export function* watchGotoArchive() {
   while (true) {
     const { nickname } = yield take(actionTypes.GOTO_ARCHIVE)
     yield put(push('/' + nickname + '/archive'))
+    window.location.reload()
   }
 }
 
