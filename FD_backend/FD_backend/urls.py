@@ -4,14 +4,14 @@ from django.conf.urls.static import static
 from . import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('Account/', include('Account.urls')),
-    path('Archive/', include('Archive.urls')),
-    path('Ranking/', include('Ranking.urls')),
-    path('Restaurant/', include('Restaurant.urls')),
-    path('Review/', include('Review.urls')),
-    path('Tag/', include('Tag.urls')),
-    path('User/', include('users.urls')),
+    path('admin', admin.site.urls),
+    path('account', include('Account.urls')),
+    path('archive', include('Archive.urls')),
+    path('ranking', include('Ranking.urls')),
+    path('restaurant', include('Restaurant.urls')),
+    path('review', include('Review.urls')),
+    path('tag', include('Tag.urls')),
+    path('user', include('users.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

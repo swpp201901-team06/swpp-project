@@ -5,7 +5,7 @@ from . import models
 
 # /Archive/
 urlpatterns = [
-    path('list/', views.ArchiveListView.as_view(), name = 'archive_list'),
+    path('/list', views.ArchiveListView.as_view(), name = 'archive_list'),
 #    path('detail/<str:username>/', views.ArchiveVisitorIncreaseView.as_view(), name = 'archive_detail'),
 
 #    path('guest-comment/list/', views.GuestCommentListView.as_view(), name = 'guest_comment_list'),
