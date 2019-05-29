@@ -19,11 +19,24 @@ const SideBarWrapper = styled.div`
 `
 const Wrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-around;
   width: 100%;
   height: 100%;
   flex-direction: column;
+  margin-top: -2em
+  margin-left: 8em
+`
+
+const PostWrapper = styled.div`
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  margin-left: 98em
+  margin-top: 3em
 `
 const logo= {
   height : 40,
@@ -50,16 +63,16 @@ const ArchivePage = React.createClass({
             {this.props.params.nickname}'s archive page
             <SideBar />
           </SideBarWrapper>
-
+          <PostWrapper>
+            <Link to="/post/default">
+              <PostButton style={{margin:"10px"}}>Post Review</PostButton>
+            </Link>
+          </PostWrapper>
           <Wrapper>
             <ArchiveReviewList>
               {this.props.params.nickname}
             </ArchiveReviewList>
             <ArchiveReviewDetail />
-            
-            <Link to="/post/default">
-              <PostButton style={{margin:"10px"}}>Post Review</PostButton>
-            </Link>
           </Wrapper>
 
           <GoogleMap />
@@ -79,10 +92,8 @@ const ArchivePage = React.createClass({
             {this.props.params.nickname}
           </ArchiveReviewList>
           <ArchiveReviewDetail />
-
+          <GoogleMap />
         </Wrapper>
-
-        <GoogleMap />
       </div>
     )
   }

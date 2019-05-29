@@ -13,6 +13,8 @@ FD_backend/Ranking/__pycache__/
 FD_backend/Restaurant/__pycache__/
 FD_backend/Review/__pycache__/
 FD_backend/Tag/__pycache__/
+FD_backend/api/__pycache__/
+FD_backend/FooDa/__pycache__/
 
 FD_backend/Account/migrations/
 FD_backend/Archive/migrations/
