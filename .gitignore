@@ -23,8 +23,8 @@ FD_backend/Restaurant/migrations/
 FD_backend/Review/migrations/
 FD_backend/Tag/migrations/
 FD_backend/users/migrations/
-
 FD_backend/.coverage/
+FD_backend/photo/
 
 # virtual environment
 env/
@@ -32,6 +32,7 @@ env/
 # test output
 out.txt
 
-# temporary backup files
+# temporary files
 *.swp
 *.swo
+.DS_Store
