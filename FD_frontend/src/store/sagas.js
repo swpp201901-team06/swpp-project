@@ -25,7 +25,7 @@ export function* callUrl(method, url, data = {}) {
       const credentials = new Buffer(`${email}:${password}`).toString('base64')
       console.log('callUrl credentials')
       console.log(credentials)
-      let response;
+      let response
       if (method === 'GET' || method === 'DELETE') {
         console.log('callUrl loggedin GET/DELETE')
         response = yield call(
@@ -39,7 +39,7 @@ export function* callUrl(method, url, data = {}) {
             },
           }
         )
-      } else {
+      } else if (method === 'PUT' || method === 'DELETE') {
         console.log('callUrl loggedin POST/PUT')
         response = yield call(
           fetch,
@@ -53,9 +53,15 @@ export function* callUrl(method, url, data = {}) {
             body: JSON.stringify(data),
           }
         )
+      } else {
+        throw Error('callUrl: invalid method, logged in')
       }
       console.log('callUrl loggedin response')
       console.log(response)
+      if (!response.ok) {
+        console.log(yield response.json())
+        throw Error(response.statusText)
+      }
       return yield response.json()
     } else if (method === 'GET') {
       console.log('callUrl not loggedin GET')
@@ -71,7 +77,7 @@ export function* callUrl(method, url, data = {}) {
       return yield call(api.delete, url)
     }
     console.log('callUrl not loggedin other')
-    return null
+    throw Error('callUrl: Invalid method, not logged in')
   } catch (err) {
     console.log('callUrl error')
     console.log(err)
@@ -88,12 +94,16 @@ export function* callUrl(method, url, data = {}) {
 //   data of received response
 export function* callUrlImg(method, url, data = {}) {
   try {
+    console.log('callUrlImg begin')
+    console.log(method)
+    console.log(url)
+    console.log(data)
     if (localStorage.hasOwnProperty('token')) {
       const email = JSON.parse(localStorage.getItem('email'))
       const password = JSON.parse(localStorage.getItem('password'))
       const credentials = new Buffer(`${email}:${password}`).toString('base64')
       console.log('callUrlImg POST, PUT')
-      return yield call(
+      const response = yield call(
         fetch,
         url,
         {
@@ -104,9 +114,18 @@ export function* callUrlImg(method, url, data = {}) {
           body: data,
         }
       )
+      console.log('callUrlImg response')
+      console.log(response)
+      if (!response.ok) {
+        console.log(yield response.json())
+        throw Error(response.statusText)
+      }
+      return yield response.json()
     }
-    return null
+    throw Error('callUrlImg: not logged in')
   } catch (err) {
+    console.log('callUrlImg err')
+    console.log(err)
     throw err
   }
 }
