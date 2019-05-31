@@ -3,6 +3,13 @@ import api from 'services/api'
 
 const req = require.context('.', true, /\.\/.+\/sagas\.js$/)
 
+// Call the backend API
+// params:
+//   method: one of 'GET', 'POST', 'PUT', 'DELETE'
+//   url:    backend URL to call
+//   data:   body of request to send to backend API
+// return:
+//   JSON data of received response
 export function* callUrl(method, url, data = {}) {
   console.log('callUrl begin')
   console.log(method)
@@ -18,9 +25,10 @@ export function* callUrl(method, url, data = {}) {
       const credentials = new Buffer(`${email}:${password}`).toString('base64')
       console.log('callUrl credentials')
       console.log(credentials)
+      let response;
       if (method === 'GET' || method === 'DELETE') {
         console.log('callUrl loggedin GET/DELETE')
-        return yield call(
+        response = yield call(
           fetch,
           url,
           {
@@ -31,20 +39,24 @@ export function* callUrl(method, url, data = {}) {
             },
           }
         )
+      } else {
+        console.log('callUrl loggedin POST/PUT')
+        response = yield call(
+          fetch,
+          url,
+          {
+            method,
+            headers: {
+              Authorization: `Basic ${credentials}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          }
+        )
       }
-      console.log('callUrl loggedin POST/PUT')
-      return yield call(
-        fetch,
-        url,
-        {
-          method,
-          headers: {
-            Authorization: `Basic ${credentials}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        }
-      )
+      console.log('callUrl loggedin response')
+      console.log(response)
+      return yield response.json()
     } else if (method === 'GET') {
       console.log('callUrl not loggedin GET')
       return yield call(api.get, url)

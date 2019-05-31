@@ -19,10 +19,15 @@ export function* getPostReviewDetail({ reviewId }) {
       console.log(`${reviewDetailUrl}${reviewId}/`)
       const reviewDetail = yield callUrl('GET', `${reviewDetailUrl}${reviewId}/`)
       console.log('after getting')
+      /*
       const jsonData = yield reviewDetail.json()
       console.log(reviewDetail)
       console.log(jsonData)
       const { restaurantId, eatWhen, tags, score, content, photo, publicStatus } = jsonData
+      */
+      const { restaurantId, eatWhen, tags, score, content, photo, publicStatus }
+        = reviewDetail
+
       yield put(actions.getPostReviewDetailSuccess(restaurantId, eatWhen, tags, score,
         content, photo, publicStatus))
     }
