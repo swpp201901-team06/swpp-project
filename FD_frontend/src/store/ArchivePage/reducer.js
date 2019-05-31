@@ -2,8 +2,12 @@ import * as actions from './actions'
 
 
 const archiveReducer = (state, action) => {
+  console.log('archiveReducer')
+  console.log(state)
+  console.log(action)
   let nextState = state
   if (!nextState) {
+    console.log('archiveReducer if !nextState')
     nextState = {
       userNickname: null,
       archiveOwnerNickname: null,
@@ -15,6 +19,7 @@ const archiveReducer = (state, action) => {
       selectedReviewObj: null,
     }
     if (nextState.isLoggedIn) {
+      console.log('archiveReducer if nextState.isLoggedIn')
       nextState.token = JSON.parse(localStorage.getItem('token'))
       nextState.userNickname = JSON.parse(localStorage.getItem('nickname'))
     }
@@ -105,17 +110,21 @@ const archiveReducer = (state, action) => {
       }
 
     case actions.GET_REVIEW_DETAIL_FAILED:
-      nextState.selectedReviewObj = null
-      nextState.selectedReviewId = null
-      return nextState
+      return {
+        ...nextState,
+        selectedReviewObj: null,
+        selectedReviewId: null,
+      }
 
     case actions.UPDATE_SORT_METHOD_REQUEST:
       return nextState
 
     case actions.UPDATE_SORT_METHOD_SUCCESS:
-      nextState.sortMethod = action.sortMethod
-      nextState.reviews = action.reviewList
-      return nextState
+      return {
+        ...nextState,
+        sortMethod: action.sortMethod,
+        reviews: action.reviewList,
+      }
 
     case actions.UPDATE_SORT_METHOD_FAILED:
       return nextState
@@ -153,8 +162,6 @@ const archiveReducer = (state, action) => {
 
     case actions.GOTO_GUEST_LOG:
       return nextState
-
-    
 
     default:
       return nextState

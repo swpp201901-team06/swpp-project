@@ -10,13 +10,18 @@ const reviewDetailUrl = `${backendUrl}Review/detail/`
 export function* getReviewList({ archiveOwnerNickname }) {
   try {
     console.log('getReviewList saga')
-    console.log()
+    console.log(archiveOwnerNickname)
     const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
-    if(response.status == 404){
+    console.log('getReviewList after callUrl')
+    console.log(response)
+    if (response.status === 404) {
+      console.log('getReviewList if response.status === 404')
       yield put(actions.getReviewListFailed())
-    }
-    else{
+    } else {
+      console.log('getReviewList else')
       const reviewList = yield response.json()
+      console.log('getReviewList conver to json')
+      console.log(reviewList)
       yield put(actions.getReviewListSuccess(reviewList))
     }
   } catch (err) {
