@@ -19,12 +19,6 @@ export function* getPostReviewDetail({ reviewId }) {
       console.log(`${reviewDetailUrl}${reviewId}/`)
       const reviewDetail = yield callUrl('GET', `${reviewDetailUrl}${reviewId}/`)
       console.log('after getting')
-      /*
-      const jsonData = yield reviewDetail.json()
-      console.log(reviewDetail)
-      console.log(jsonData)
-      const { restaurantId, eatWhen, tags, score, content, photo, publicStatus } = jsonData
-      */
       const { restaurantId, eatWhen, tags, score, content, photo, publicStatus }
         = reviewDetail
 
@@ -70,12 +64,17 @@ export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
 
     console.log('post review before callUrlImg')
     console.log(nickname)
+    let response
     if (reviewId === 'default') { // post new review
       console.log('postreview callUrlImg 1')
-      const response = yield callUrlImg('POST', reviewListUrl, review_data)
+      response = yield callUrlImg('POST', reviewListUrl, review_data)
     } else { // edit existing review
       console.log('postreview callUrlImg 2')
-      const response = yield callUrlImg('PUT', `${reviewDetailUrl}${reviewId}/`, review_data)
+      response = yield callUrlImg('PUT', `${reviewDetailUrl}${reviewId}/`, review_data)
+    }
+    if (!response) {
+      yield put(actions.postReviewFailed())
+      return
     }
     yield put(actions.postReviewSuccess())
     console.log('postReview saga after postReviewSuccess')

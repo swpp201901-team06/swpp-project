@@ -24,67 +24,6 @@ const archiveReducer = (state, action) => {
       nextState.userNickname = JSON.parse(localStorage.getItem('nickname'))
     }
   }
-  /*
-  const isLoggedIn = localStorage.hasOwnProperty('token')
-  let token = null
-  let userNickname = null
-  console.log('archiveReducer begin')
-  console.log(nextState)
-  console.log(localStorage)
-  console.log(localStorage.hasOwnProperty('token'))
-  console.log(localStorage.getItem('token'))
-  console.log(isLoggedIn)
-  if (!nextState) {
-    console.log('archiveReducer !nextState')
-    nextState = {
-      userNickname: (localStorage.hasOwnProperty('token')) ? (
-        JSON.parse(localStorage.getItem('nickname'))
-      ) : null,
-      archiveOwnerNickname: null,
-      token: (localStorage.hasOwnProperty('token')) ? (
-        JSON.parse(localStorage.getItem('token'))
-      ) : null,
-      isLoggedIn: localStorage.hasOwnProperty('token'),
-      sortMethod: null,
-      reviews: [],
-      selectedReviewId: null,
-      selectedReviewObj: null,
-    }
-  } else {
-    console.log('archiveReducer !nextState else')
-    nextState = {
-      ...nextState,
-      userNickname: (localStorage.hasOwnProperty('token')) ? (
-        JSON.parse(localStorage.getItem('nickname'))
-      ) : null,
-      token: (localStorage.hasOwnProperty('token')) ? (
-        JSON.parse(localStorage.getItem('token'))
-      ) : null,
-      isLoggedIn: localStorage.hasOwnProperty('token'),
-    }
-  }
-  */
-  /*
-  if (!nextState) {
-    console.log('archiveReducer !nextState')
-    nextState = {
-      userNickname,
-      archiveOwnerNickname: null,
-      token,
-      isLoggedIn,
-      sortMethod: null,
-      reviews: [],
-      selectedReviewId: null,
-      selectedReviewObj: null,
-    }
-  }
-  console.log('archiveReducer after if !nextState')
-  if (isLoggedIn) {
-    console.log('archiveReducer isLoggedIn')
-    nextState.token = JSON.parse(localStorage.getItem('token'))
-    nextState.userNickname = JSON.parse(localStorage.getItem('nickname'))
-  }
-  */
   console.log('archiveReducer after initialization')
   console.log(nextState)
 

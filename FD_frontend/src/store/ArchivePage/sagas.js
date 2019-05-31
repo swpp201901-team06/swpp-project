@@ -14,12 +14,6 @@ export function* getReviewList({ archiveOwnerNickname }) {
     const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
     console.log('getReviewList after callUrl')
     console.log(response)
-    /*
-    if (response.status === 404) {
-      console.log('getReviewList if response.status === 404')
-      yield put(actions.getReviewListFailed())
-    }
-    */
     yield put(actions.getReviewListSuccess(response))
   } catch (err) {
     console.log(err)
