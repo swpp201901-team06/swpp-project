@@ -1,9 +1,9 @@
-import { takeEvery, take, put, call, fork } from 'redux-saga/effects'
+import { takeEvery, take, put, fork } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import api from 'services/api'
 import * as actions from '../actions'
 import * as actionTypes from './actionTypes'
 import { baseHistory } from '../../index'
+import { callUrl } from '../sagas'
 
 const signInPath = 'http://127.0.0.1:8000/Account/login/'
 const getNicknamePath = 'http://127.0.0.1:8000/User/get-username/'
@@ -15,8 +15,8 @@ export function* signInAsync({ email, password }) {
       email,
       password,
     }
-    const response = yield call(api.post, signInPath, data)
-    const nicknameResponse = yield call(api.get, getNicknamePath + email)
+    const response = yield callUrl('POST', signInPath, data)
+    const nicknameResponse = yield callUrl('GET', `${getNicknamePath}${email}`)
     console.log('signInAsync before signInSuccess')
     console.log(nicknameResponse)
     localStorage.setItem('token', JSON.stringify(response.key))
