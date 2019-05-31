@@ -39,7 +39,7 @@ export function* callUrl(method, url, data = {}) {
             },
           }
         )
-      } else if (method === 'PUT' || method === 'DELETE') {
+      } else if (method === 'POST' || method === 'PUT') {
         console.log('callUrl loggedin POST/PUT')
         response = yield call(
           fetch,

@@ -25,11 +25,12 @@ export function* signInAsync({ email, password }) {
     localStorage.setItem('nickname', JSON.stringify(nicknameResponse.username))
     yield put(actions.signInSuccess(response.key, email, password, nicknameResponse.username))
     console.log('signInAsync after signInSuccess')
-    yield put(push('/' + nicknameResponse.username + '/archive'))
+    yield put(push(`/${nicknameResponse.username}/archive`))
   } catch (e) {
     console.log('signInAsync error')
     console.error(e)
     yield put(actions.signInFailed())
+    throw e
   }
 }
 
@@ -48,7 +49,7 @@ export function* watchGotoSignUp() {
 export function* watchGotoArchive() {
   while (true) {
     const { nickname } = yield take(actionTypes.GOTO_ARCHIVE)
-    yield put(push('/' + nickname + '/archive'))
+    yield put(push(`/${nickname}/archive`))
   }
 }
 
