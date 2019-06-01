@@ -1,53 +1,22 @@
 from django.test import TestCase
 import json
 
-from .models import CustomUser
-from users.models import CustomUser
-from Archive.models import Archive
-from Restaurant.models import Restaurant
+from FD_backend.inittest import remove_user, remove_archive, create_user, create_archive
+
 
 # Create your tests here.
 
 
 class CustomUserModelTests(TestCase):
-
     def setUp(self):
+        print("Users Test")
         # Create two users
-        test_user1 = CustomUser.objects.create_user(username = "Utestuser1", email = "Utestemail1@test.com", password = "testpassword!@#$")
-        test_user2 = CustomUser.objects.create_user(username = "Utestuser2", email = "Utestemail2@test.com", password = "testpassword!@#$")
-        test_user1.save()
-        test_user2.save()
-
-        print("\tCreate user Utestuser1")
-        print("\tCreate user Utestuser2")
+        test_user1 = create_user(username = "Utestuser1", email = "Utestemail1@test.com", password = "testpassword!@#$")
+        test_user2 = create_user(username = "Utestuser2", email = "Utestemail2@test.com", password = "testpassword!@#$")
 
         # Create two archives
-        test_archive1 = Archive.objects.create(user = test_user1)
-        test_archive2 = Archive.objects.create(user = test_user2)
-        test_archive1.save()
-        test_archive2.save()
-
-        print("\tCreate Utestuser1's Archive")
-        print("\tCreate Utestuser2's Archive")
-
-    # 유저 삭제(초기화)
-    def remove_user(self, username):
-        try:
-            user = CustomUser.objects.get(username = username)
-            user.delete()
-            print("\tDeleted user {0}".format(username))
-        except CustomUser.DoesNotExist:
-            pass
-        return
-    # 아카이브 삭제(초기화)
-    def remove_archive(self, username):
-        try:
-            archive = Archive.objects.get(user__username = username)
-            archive.delete()
-            print("\tDeleted archive {0}".format(username))
-        except Archive.DoesNotExist:
-            pass
-        return
+        create_archive(user = test_user1)
+        create_archive(user = test_user2)
 
     # 유저 리스트 가져오기 (Get)
     def get_list(self):
@@ -125,7 +94,7 @@ class CustomUserModelTests(TestCase):
         self.delete_user()
 
         # remove test user
-        self.remove_archive("Utestuser1")
-        self.remove_archive("Utestuser2")
-        self.remove_user("Utestuser1")
-        self.remove_user("Utestuser2")
+        remove_archive(username = "Utestuser1")
+        remove_archive(username = "Utestuser2")
+        remove_user(username = "Utestuser1")
+        remove_user(username = "Utestuser2")

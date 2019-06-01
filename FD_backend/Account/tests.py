@@ -1,11 +1,13 @@
 # Account/tests.py
 from django.test import TestCase
-from users.models import CustomUser
+
+from FD_backend.inittest import remove_user
+
 
 class LoginModelTests(TestCase):
 
     def setUp(self):
-        pass
+        print("Account Test")
 
     # 회원가입 테스트
     def sign_up(self, username, email):
@@ -62,6 +64,6 @@ class LoginModelTests(TestCase):
         self.sign_in("accountemail3@test.com")
         self.sign_out()
 
-        self.remove_user("account1")
-        self.remove_user("account2")
-        self.remove_user("account3")
+        remove_user(username = "account1")
+        remove_user(username = "account2")
+        remove_user(username = "account3")

@@ -3,8 +3,8 @@ from django.test import TestCase
 import json
 
 class RestaurantTests(TestCase):
-
-# Create your tests here.
+    def setUp(self):
+        print("Restaurant Test")
     def get_restlist(self):
         link = "/restaurant/list"
         response = self.client.get(link)
