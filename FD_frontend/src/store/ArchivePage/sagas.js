@@ -10,15 +10,11 @@ const reviewDetailUrl = `${backendUrl}Review/detail/`
 export function* getReviewList({ archiveOwnerNickname }) {
   try {
     console.log('getReviewList saga')
-    console.log()
+    console.log(archiveOwnerNickname)
     const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
-    if(response.status == 404){
-      yield put(actions.getReviewListFailed())
-    }
-    else{
-      const reviewList = yield response.json()
-      yield put(actions.getReviewListSuccess(reviewList))
-    }
+    console.log('getReviewList after callUrl')
+    console.log(response)
+    yield put(actions.getReviewListSuccess(response))
   } catch (err) {
     console.log(err)
     yield put(actions.getReviewListFailed())
@@ -31,17 +27,15 @@ export function* watchGetReviewListRequest() {
 
 export function* getReviewDetail({ reviewId }) {
   try {
-    console.log('requesting review detail')
+    console.log('getReviewDetail saga begin')
+    console.log(reviewId)
     const response = yield callUrl('GET', `${reviewDetailUrl}${reviewId}/`)
-    console.log('response')
+    console.log('getReviewDetail saga response')
     console.log(response)
-    const reviewDetail = yield response.json()
-    console.log('review detail')
-    console.log(reviewDetail)
-    // TODO: make sure reviewDetail is in the right format
-    yield put(actions.getReviewDetailSuccess(reviewDetail))
+    yield put(actions.getReviewDetailSuccess(response))
   } catch (err) {
-    console.log('get review detail fail!')
+    console.log('getReviewDetail saga error')
+    console.log(err)
     yield put(actions.getReviewDetailFailed())
   }
 }
@@ -52,10 +46,11 @@ export function* watchGetReviewDetailRequest() {
 
 export function* updateSortMethod({ archiveOwnerNickname, sortMethod }) {
   try {
-    const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/${sortMethod}/`)
-    const reviewList = yield response.json()
-    // TODO: make sure reviewList is in the right format
-    yield put(actions.updateSortMethodSuccess(reviewList, sortMethod))
+    const response = yield callUrl(
+      'GET',
+      `${myReviewListUrl}${archiveOwnerNickname}/${sortMethod}/`
+    )
+    yield put(actions.updateSortMethodSuccess(response, sortMethod))
   } catch (err) {
     console.log(err)
     yield put(actions.updateSortMethodFailed())
@@ -71,8 +66,7 @@ export function* deleteReview({ reviewId, archiveOwnerNickname }) {
     yield callUrl('DELETE', `${reviewDetailUrl}${reviewId}/`)
     // TODO: archiveOwnerNickname undefined
     const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
-    const reviewList = yield response.json()
-    yield put(actions.deleteReviewSuccess(reviewList))
+    yield put(actions.deleteReviewSuccess(response))
   } catch (err) {
     console.log(err)
     yield put(actions.deleteReviewFailed())

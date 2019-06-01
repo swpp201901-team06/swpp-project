@@ -38,17 +38,17 @@ const PostWrapper = styled.div`
   margin-left: 98em
   margin-top: 3em
 `
-const logo= {
-  height : 40,
-  width : 100
-};
+const logo = {
+  height: 40,
+  width: 100,
+}
 
 // const align = {
 //   alignItems : center
 // }
 
-const ArchivePage = React.createClass({
-  render () {
+class ArchivePage extends React.Component {
+  render() {
     console.log('ArchivePage render')
     console.log(this.props.params)
     const userNickname = JSON.parse(localStorage.getItem('nickname'))
@@ -56,16 +56,17 @@ const ArchivePage = React.createClass({
     console.log(userNickname)
     console.log(archiveOwnerNickname)
     if (userNickname === archiveOwnerNickname) {
+      console.log('ArchivePage return 1')
       return (
         <div>
           <SideBarWrapper>
-            <img src={require('../../../../../design_source/logo/logo.png')} style={logo}/>
+            <img src={require('../../../../../design_source/logo/logo.png')} style={logo} />
             {this.props.params.nickname}'s archive page
             <SideBar />
           </SideBarWrapper>
           <PostWrapper>
             <Link to="/post/default">
-              <PostButton style={{margin:"10px"}}>Post Review</PostButton>
+              <PostButton style={{ margin: '10px' }}>Post Review</PostButton>
             </Link>
           </PostWrapper>
           <Wrapper>
@@ -79,10 +80,11 @@ const ArchivePage = React.createClass({
         </div>
       )
     }
+    console.log('ArchivePage return 2')
     return (
       <div>
         <SideBarWrapper>
-          <img src={require('../../../../../design_source/logo/logo.png')} style={logo}/>
+          <img src={require('../../../../../design_source/logo/logo.png')} style={logo} />
           {this.props.params.nickname}'s archive page
           <SideBar />
         </SideBarWrapper>
@@ -97,6 +99,6 @@ const ArchivePage = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default ArchivePage
