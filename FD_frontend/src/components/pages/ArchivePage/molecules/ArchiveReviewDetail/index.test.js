@@ -1,7 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import ArchiveReviewDetail from '.'
-import { isMainThread } from 'worker_threads';
 
 const wrap = (props = {}) => shallow(<ArchiveReviewDetail {...props} />)
 
