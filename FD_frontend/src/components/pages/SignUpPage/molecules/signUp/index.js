@@ -57,6 +57,17 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
       handleChange('username', nickname.value)
     }
   }, 300)
+  // const handleEmailChange = () => {
+  //   if (email.value) {
+  //     handleChange('email', email.value)
+  //   }
+  // }
+
+  // const handleNicknameChange = () => {
+  //   if (nickname.value) {
+  //     handleChange('username', nickname.value)
+  //   }
+  // }
 
   return (
     <div>
