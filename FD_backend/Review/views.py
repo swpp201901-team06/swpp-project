@@ -86,11 +86,17 @@ class SortedReviewListView(APIView):
 # username과 유사한 이름을 가지는 유저들의 대표 리뷰(조회수가 가장 높은 리뷰)를 가져온다.
 class SearchedReviewListView(APIView):
     def get(self, request, *args, **kwargs):
-        archives = Archive.objects.filter(user__username__iregex = r'.*%s.*' % kwargs['username'])
+        archives = Archive.objects.select_related('user').filter(user__username__iregex = r'.*%s.*' % kwargs['username'])
         review_list = []
         for archive in archives:
             review = archive.reviews.filter(publicStatus = True).order_by('-hits').first()
             review_list.append(review)
 
         serializer = ReviewSerializer(review_list, many = True)
+        return Response(serializer.data)
+
+class PopularReviewListView(APIView):
+    def get(self, request, *args, **kwargs):
+        reviewSet = Review.objects.select_related('archive').select_related('archive__user').all().order_by('-hits')
+        serializer = ReviewSerializer(reviewSet, many = True)
         return Response(serializer.data)

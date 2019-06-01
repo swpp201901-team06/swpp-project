@@ -34,6 +34,12 @@ class ArchiveVisitorIncreaseView(APIView):
 
         return Response(serializer.data)
 
+class PopularArchiveListView(APIView):
+    def get(self, request, *args, **kwargs):
+        archiveSet = Archive.objects.select_related('user').all().order_by('-visitorCount')
+        serializer = ArchiveSerializer(archiveSet, many = True)
+        return Response(serializer.data)
+
 
 #GuestComment : 아직 구현되지 않음
 class GuestCommentListView(generics.ListCreateAPIView):
