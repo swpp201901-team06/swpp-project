@@ -9,11 +9,7 @@ const reviewDetailUrl = `${backendUrl}Review/detail/`
 
 export function* getReviewList({ archiveOwnerNickname }) {
   try {
-    console.log('getReviewList saga')
-    console.log(archiveOwnerNickname)
     const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
-    console.log('getReviewList after callUrl')
-    console.log(response)
     yield put(actions.getReviewListSuccess(response))
   } catch (err) {
     console.log(err)
@@ -27,14 +23,12 @@ export function* watchGetReviewListRequest() {
 
 export function* getReviewDetail({ reviewId }) {
   try {
-    console.log('getReviewDetail saga begin')
-    console.log(reviewId)
+    if (!reviewId) {
+      throw Error('getReviewDetail saga reviewId not provided')
+    }
     const response = yield callUrl('GET', `${reviewDetailUrl}${reviewId}/`)
-    console.log('getReviewDetail saga response')
-    console.log(response)
     yield put(actions.getReviewDetailSuccess(response))
   } catch (err) {
-    console.log('getReviewDetail saga error')
     console.log(err)
     yield put(actions.getReviewDetailFailed())
   }
@@ -46,6 +40,12 @@ export function* watchGetReviewDetailRequest() {
 
 export function* updateSortMethod({ archiveOwnerNickname, sortMethod }) {
   try {
+    if (!archiveOwnerNickname) {
+      throw Error('updateSortMethod saga archiveOwnerNickname not provided')
+    }
+    if (!sortMethod) {
+      throw Error('updateSortMethod saga sortMethod not provided')
+    }
     const response = yield callUrl(
       'GET',
       `${myReviewListUrl}${archiveOwnerNickname}/${sortMethod}/`
@@ -63,8 +63,13 @@ export function* watchUpdateSortMethodRequest() {
 
 export function* deleteReview({ reviewId, archiveOwnerNickname }) {
   try {
+    if (!archiveOwnerNickname) {
+      throw Error('deleteReview saga archiveOwnerNickname not provided')
+    }
+    if (!reviewId) {
+      throw Error('deleteReview saga reviewId not provided')
+    }
     yield callUrl('DELETE', `${reviewDetailUrl}${reviewId}/`)
-    // TODO: archiveOwnerNickname undefined
     const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
     yield put(actions.deleteReviewSuccess(response))
   } catch (err) {
@@ -80,7 +85,7 @@ export function* watchDeleteReviewRequest() {
 export function* watchGotoGuestLog() {
   while (true) {
     const { archiveOwnerNickname } = yield take(actions.GOTO_GUEST_LOG)
-    const guestLogLink = `/${archiveOwnerNickname}/archive/guestlog` // TODO: fill in with correct link
+    const guestLogLink = `/${archiveOwnerNickname}/archive/guestlog`
     yield put(push(guestLogLink))
   }
 }

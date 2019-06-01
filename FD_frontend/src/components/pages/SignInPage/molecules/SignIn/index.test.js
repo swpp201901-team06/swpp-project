@@ -29,12 +29,12 @@ describe('SignIn molecule test', () => {
     const renderOutput = wrap(props)
     expect(renderOutput.find('input')).toHaveLength(2)
     expect(renderOutput.find('button')).toHaveLength(2)
-    expect(renderOutput.find('div')).toHaveLength(1)
-    expect(renderOutput.text()).toMatch('Email address')
-    expect(renderOutput.text()).toMatch('Password')
-    expect(renderOutput.text()).toMatch('Sign Up')
-    expect(renderOutput.text()).toMatch('Sign In')
-    expect(renderOutput.text()).not.toMatch('Sign in Failed')
+    expect(renderOutput.find('div')).toHaveLength(5)
+    expect(renderOutput.find('div').at(1).text()).toMatch('Email address')
+    expect(renderOutput.find('div').at(2).text()).toMatch('Password')
+    expect(renderOutput.find('div').at(3).text()).toMatch('Sign Up')
+    expect(renderOutput.find('div').at(3).text()).toMatch('Sign In')
+    expect(renderOutput.find('div').at(4).text()).not.toMatch('Failed')
   })
 
   test('render failed signin attempt', () => {
@@ -52,12 +52,12 @@ describe('SignIn molecule test', () => {
     const renderOutput = wrap(props)
     expect(renderOutput.find('input')).toHaveLength(2)
     expect(renderOutput.find('button')).toHaveLength(2)
-    expect(renderOutput.find('div')).toHaveLength(1)
-    expect(renderOutput.text()).toMatch('Email address')
-    expect(renderOutput.text()).toMatch('Password')
-    expect(renderOutput.text()).toMatch('Sign Up')
-    expect(renderOutput.text()).toMatch('Sign In')
-    expect(renderOutput.text()).toMatch('Sign in Failed')
+    expect(renderOutput.find('div')).toHaveLength(5)
+    expect(renderOutput.find('div').at(1).text()).toMatch('Email address')
+    expect(renderOutput.find('div').at(2).text()).toMatch('Password')
+    expect(renderOutput.find('div').at(3).text()).toMatch('Sign Up')
+    expect(renderOutput.find('div').at(3).text()).toMatch('Sign In')
+    expect(renderOutput.find('div').at(4).text()).toMatch('Failed')
   })
 
   test('do not call onClickSignIn if email is not typed', () => {
@@ -187,5 +187,21 @@ describe('SignIn molecule test', () => {
     }
     wrap(props)
     expect(dispatchGotoArchive).toHaveBeenCalled()
+  })
+
+  test('render nothing when already logged in', () => {
+    const isLoggedIn = true
+    const signInFailed = false
+    const nickname = 'test_nickname'
+    const props = {
+      isLoggedIn,
+      signInFailed,
+      nickname,
+      onClickSignUp,
+      onClickSignIn,
+      dispatchGotoArchive,
+    }
+    const renderOutput = wrap(props)
+    expect(renderOutput.isEmptyRender()).toBe(true)
   })
 })

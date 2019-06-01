@@ -4,12 +4,7 @@ const postReducer = (state, action) => {
   let nextState = state
   const isLoggedIn = localStorage.hasOwnProperty('token')
   let nickname = null
-  console.log('post reducer begin')
-  console.log(nickname)
-  console.log(nextState)
   if (!nextState) {
-    console.log('postReducer within if !nextState')
-    console.log(nextState)
     nextState = {
       nickname,
       isEdit: false,
@@ -26,12 +21,8 @@ const postReducer = (state, action) => {
     }
   }
   if (isLoggedIn) {
-    console.log('post reducer nextState isLoggedIn')
     nextState.nickname = JSON.parse(localStorage.getItem('nickname'))
   }
-  console.log('postREducer before switch')
-  console.log(nextState)
-  console.log(action)
 
   switch (action.type) {
     case actions.GET_POST_REVIEW_DETAIL_REQUEST:
@@ -98,15 +89,12 @@ const postReducer = (state, action) => {
           return nextState
         }
     case actions.POST_REVIEW_REQUEST:
-      console.log('post review request reducer')
       return nextState
 
     case actions.POST_REVIEW_SUCCESS:
-        console.log('post review success reducer')
       return nextState
 
     case actions.POST_REVIEW_FAILED:
-      console.log('post review failed reducer')
       return nextState
 
 		case actions.CHANGE_PUBLIC_STATUS:

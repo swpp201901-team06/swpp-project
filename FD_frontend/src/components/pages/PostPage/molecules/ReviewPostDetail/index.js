@@ -1,7 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
-import { font, palette } from 'styled-theme'
 import ImageUpload from '../../../../../containers/PostPage/ImageUpload'
 import PubStatusButton from '../../atoms/PubStatusButton'
 import PostSubmitButton from '../../atoms/PostSubmitButton'
@@ -25,12 +23,12 @@ const RowWrapper = styled.div`
 `
 
 const padding = {
-  margin : 10
+  margin: 10,
 }
 
 const divtext = {
-  color: "#e0ba7c",
-  fontSize : 15,
+  color: '#e0ba7c',
+  fontSize: 15,
 };
 
 class ReviewPostDetail extends React.Component {
@@ -40,11 +38,7 @@ class ReviewPostDetail extends React.Component {
   }
 
   componentDidMount() {
-    // TODO: get nickname
-    console.log('ReviewPostDetail componentDidMount')
     if (this.props.children !== 'default') {
-      console.log('not default')
-      console.log(this.props.children)
       this.props.onLoad(this.props.children)
     }
   }
@@ -54,17 +48,7 @@ class ReviewPostDetail extends React.Component {
   }
 
   render() {
-    console.log('ReviewPostDetail render start')
-    console.log(this.props)
-    if (this.props.children !== 'default') {
-      console.log(this.props.statefunction.PostPage)
-    }
-    //let date
-    let score
-    let content
-    let tag
     let publicStatusText
-    let restId
 
     let imgUrlText
     let dateText
@@ -118,8 +102,6 @@ class ReviewPostDetail extends React.Component {
     } else {
       imgUrlText = ''
     }
-    console.log('image url!')
-    console.log(imgUrlText)
 
     const onPubStatusChange = () => {
       if (this.props.statefunction.PostPage.publicStatus) {
@@ -127,7 +109,6 @@ class ReviewPostDetail extends React.Component {
       } else {
         this.props.PubStatusChange('False')
       }
-      console.log(this.props.statefunction)
     }
 
     const onClickPostSubmit = () => {
@@ -215,11 +196,6 @@ class ReviewPostDetail extends React.Component {
       </div>
     )
   }
-}
-
-ReviewPostDetail.propTypes = {
-  reverse: PropTypes.bool,
-  children: PropTypes.node,
 }
 
 export default ReviewPostDetail

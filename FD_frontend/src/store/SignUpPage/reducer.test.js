@@ -59,12 +59,12 @@ describe('test signup reducer', () => {
   })
 
 
-  test('handle non-duplicate password case', () => {
+  test('handle non-duplicate username case', () => {
     const testState = {
       emailText: 'some_email_text',
       usernameText: 'some_username_text',
     }
-    const testAction = actions.noDuplicateFound('password')
+    const testAction = actions.noDuplicateFound('username')
     const reducerOutput = signUpReducer(testState, testAction)
     const expectedOutput = {
       emailText: 'some_email_text',
