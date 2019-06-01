@@ -15,10 +15,10 @@ const mapDispatchToProps = (dispatch) => {
     onReviewClick: (reviewId, archiveOwnerNickname) => {
       dispatch(getReviewDetail(reviewId, archiveOwnerNickname))
     },
-    requestReviews: (archiveOwnerNickname) => {
+    requestReviews: (sortOption, archiveOwnerNickname) => {
       console.log('ReviewList container requestReviews')
       console.log(archiveOwnerNickname)
-      dispatch(getReviewList(archiveOwnerNickname))
+      dispatch(getReviewList(sortOption, archiveOwnerNickname))
     },
     sendReviewId: (id) => {
       dispatch(storeReviewId(id))

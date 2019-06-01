@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
 import ArchiveReview from '../../atoms/ArchiveReview'
+import Dropdown from 'react-dropdown'
 
 const Wrapper = styled.div`
   font-family: ${font('primary')};
@@ -17,10 +18,31 @@ class ArchiveReviewList extends React.Component {
   componentDidMount() {
     console.log('ArchiveReviewList componentDidMount')
     console.log(this.props)
-    this.props.requestReviews(this.props.children)
+    this.props.requestReviews('default', this.props.children)
   }
 
   render() {
+    const defaultOption = 'default'
+    const options = [
+      'When', 'Score', 'Id'
+    ]
+    let sortOption
+    const onCategoryChange = (e) => {
+    console.log('category changed!')
+      switch(e.value){
+        case 'When':
+          sortOption = 'eatWhen'
+          break
+        case 'Score':
+          sortOption = 'score'
+          break
+        case 'Id':
+          sortOption = 'id'
+          break
+      }
+      this.props.requestReviews(sortOption, this.props.children)
+    }
+        
     const reviewstate = this.props.statefunction.ArchivePage.reviews
     console.log('ArchiveReviewList render')
     console.log(reviewstate)
@@ -28,6 +50,7 @@ class ArchiveReviewList extends React.Component {
 
     return (
       <div>
+	      <Dropdown options={options} onChange={onCategoryChange} value={defaultOption} placeholder="Select an option" />
         {reviewstate.map((review) =>
           <ArchiveReview
             key={review.id}

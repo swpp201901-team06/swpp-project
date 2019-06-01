@@ -5,16 +5,23 @@ import * as actions from './actions'
 
 const backendUrl = 'http://127.0.0.1:8000/'
 const myReviewListUrl = `${backendUrl}Review/list/`
+const mySortedListUrl = `${backendUrl}Review/sorted-list/`
 const reviewDetailUrl = `${backendUrl}Review/detail/`
 
-export function* getReviewList({ archiveOwnerNickname }) {
+export function* getReviewList({ sortOption, archiveOwnerNickname }) {
   try {
+    let response
     console.log('getReviewList saga')
     console.log(archiveOwnerNickname)
-    const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
+    if(sortOption == 'default'){
+      response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
+    }
+    else{
+      response = yield callUrl('GET', `${mySortedListUrl}${archiveOwnerNickname}/${sortOption}/`)
+    } 
     console.log('getReviewList after callUrl')
-    console.log(response)
     yield put(actions.getReviewListSuccess(response))
+    
   } catch (err) {
     console.log(err)
     yield put(actions.getReviewListFailed())

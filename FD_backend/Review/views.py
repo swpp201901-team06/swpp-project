@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 
 from Review.models import Review
 from . import serializers
+from Archive import serializers as archiveSerializers
 from Archive.models import Archive
 from users.models import CustomUser
 from Review.permissions import UserOnlyAccess,IsOwnerOrReadOnly
@@ -56,7 +57,7 @@ class SortedReviewListView(APIView):
                 "sortOption" : sortopt
             }
 
-            serializer = serializers.ArchiveSerializer(archive, data = archiveData)
+            serializer = archiveSerializers.ArchiveSerializer(archive, data = archiveData)
             if serializer.is_valid():
                 serializer.save()
 

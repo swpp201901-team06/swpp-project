@@ -31,7 +31,6 @@ const sideBarReducer = (state, action) => {
         password: null,
         isLoggedIn: false,
       }
-      window.location.reload()
       return nextState
     case actions.GOTO_ARCHIVE_BUTTON:
       return {
