@@ -1,6 +1,5 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { debounce } from 'lodash'
 import { signUp as SignUp } from './'
 // import configureStore from 'redux-mock-store'
 // import DCButton from '../../atoms/DCButton'
@@ -31,11 +30,14 @@ describe('signUp molecule test', () => {
       const emailInput = wrapper.find('input').at(0)
       emailInput.instance().value = 'test_email@github.com'
       emailInput.simulate('change')
-      jest.runTimersToTime(1000)
+      jest.runAllTimers()
       expect(mockHandleChange.mock.calls.length).toBe(1)
 
-      // wrapper.find('input').at(1).simulate('change', { preventDefault() {} })
-      // expect(mockHandleChange.mock.calls.length).toBe(2)
+      const usernameInput = wrapper.find('input').at(3)
+      usernameInput.instance().value = 'test_username'
+      usernameInput.simulate('change')
+      jest.runAllTimers()
+      expect(mockHandleChange.mock.calls.length).toBe(2)
     })
   })
   describe('When Submit is pressed', () => {

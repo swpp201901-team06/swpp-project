@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
-import { debounce } from 'lodash'
 // import { font, palette } from 'styled-theme'
 // import Button from '../../atoms/Button'
 // import DCButton from '../../atoms/DCButton'
@@ -47,27 +46,16 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
   const onSubmit = () => {
     onSignUpSubmit(email.value, pw.value, confirmpw.value, nickname.value)
   }
-  const handleEmailChange = debounce(() => {
+  const handleEmailChange = () => {
     if (email.value) {
-      handleChange('email', email.value)
+      setTimeout(() => { handleChange('email', email.value) }, 300)
     }
-  }, 300)
-  const handleNicknameChange = debounce(() => {
+  }
+  const handleNicknameChange = () => {
     if (nickname.value) {
-      handleChange('username', nickname.value)
+      setTimeout(() => { handleChange('username', nickname.value) }, 300)
     }
-  }, 300)
-  // const handleEmailChange = () => {
-  //   if (email.value) {
-  //     handleChange('email', email.value)
-  //   }
-  // }
-
-  // const handleNicknameChange = () => {
-  //   if (nickname.value) {
-  //     handleChange('username', nickname.value)
-  //   }
-  // }
+  }
 
   return (
     <div>
