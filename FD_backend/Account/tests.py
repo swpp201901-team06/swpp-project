@@ -3,9 +3,7 @@ from django.test import TestCase
 
 from FD_backend.inittest import remove_user
 
-
-class LoginModelTests(TestCase):
-
+class AccountTests(TestCase):
     def setUp(self):
         print("Account Test")
 

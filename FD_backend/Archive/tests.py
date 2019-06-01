@@ -6,7 +6,7 @@ from FD_backend.inittest import remove_user, remove_archive, create_user
 
 class ArchiveTests(TestCase):
     def setUp(self):
-        print("Archive Test")        
+        print("Archive Test")
         # Create two users
         create_user(username = "Atestuser1", email = "Atestemail1@test.com", password = "testpassword!@#$")
         create_user(username = "Atestuser2", email = "Atestemail2@test.com", password = "testpassword!@#$")
@@ -30,6 +30,10 @@ class ArchiveTests(TestCase):
         self.assertEqual(dict_list[0]['user'],'Atestuser1')
         self.assertEqual(dict_list[1]['user'],'Atestuser2')
         self.assertEqual(response.status_code, 200)
+
+    def get_archive_detail(self, username):
+        link = "/archive/detail"
+
 
     def test_total_archive(self):
         self.post_archive("Atestemail1@test.com")

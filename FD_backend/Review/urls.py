@@ -10,6 +10,6 @@ urlpatterns = [
 
     path('list/<str:username>', views.ReviewListView.as_view(), name = 'review_list'),
     path('sorted-list/<str:username>/<str:sortopt>', views.SortedReviewListView.as_view(), name = 'sorted_review_list'),
-    path('max-hits/<str:username>', views.PopularReviewListView.as_view(), name = 'review_max_hits'),
+    path('search/<str:username>', views.SearchedReviewListView.as_view(), name = 'review_max_hits'),
 
 ]
