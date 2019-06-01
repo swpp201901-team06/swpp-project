@@ -1,14 +1,17 @@
 import React from 'react'
 import ReviewPostDetail from '../../../containers/PostPage/ReviewPost'
 import styled from 'styled-components'
+import GoogleMap from '../../molecules/GoogleMap'
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
   width: 100%;
   height: 100%;
   flex-direction: column;
+  margin-top: -1em
+  margin-left: 10em
 `
 const title = {
   color: "#e0ba7c",
@@ -30,6 +33,7 @@ class PostPage extends React.Component {
             {review}
           </ReviewPostDetail>
         </Wrapper>
+        <GoogleMap />
       </div>
     )
   }
