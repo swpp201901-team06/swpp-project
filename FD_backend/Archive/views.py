@@ -34,10 +34,10 @@ class ArchiveVisitorIncreaseView(APIView):
 
         return Response(serializer.data)
 
-class PopularArchiveListView(APIView):
+class ArchiveRankingView(APIView):
     def get(self, request, *args, **kwargs):
         archiveSet = Archive.objects.select_related('user').all().order_by('-visitorCount')
-        serializer = ArchiveSerializer(archiveSet, many = True)
+        serializer = ArchiveSerializer(archiveSet[:3], many = True)
         return Response(serializer.data)
 
 

@@ -95,8 +95,8 @@ class SearchedReviewListView(APIView):
         serializer = ReviewSerializer(review_list, many = True)
         return Response(serializer.data)
 
-class PopularReviewListView(APIView):
+class ReviewRankingView(APIView):
     def get(self, request, *args, **kwargs):
         reviewSet = Review.objects.select_related('archive').select_related('archive__user').all().order_by('-hits')
-        serializer = ReviewSerializer(reviewSet, many = True)
+        serializer = ReviewSerializer(reviewSet[:3], many = True)
         return Response(serializer.data)

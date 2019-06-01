@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'users',
     'Account',
     'Archive',
-    'Ranking',
     'Restaurant',
     'Review',
     'Tag',

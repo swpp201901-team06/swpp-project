@@ -9,7 +9,6 @@ urlpatterns = [
     path('admin', admin.site.urls),
     path('account/', include('Account.urls')),
     path('archive/', include('Archive.urls')),
-    path('ranking/', include('Ranking.urls')),
     path('restaurant/', include('Restaurant.urls')),
     path('review/', include('Review.urls')),
     path('tag/', include('Tag.urls')),
