@@ -2,9 +2,6 @@ import { initialState } from './selectors'
 import * as actions from './actions'
 
 const signUpReducer = (state = initialState, action) => {
-  //console.log('sign up reducer file')
-  //console.log(action)
-  //console.log(action.key)
   const dataType = action.key
 
   switch (action.type) {
@@ -22,15 +19,12 @@ const signUpReducer = (state = initialState, action) => {
       }
       return state
     case actions.DUPLICATE_NONEXISTENCE:
-      //console.log('sign up reducer duplicate nonexistence')
       if (dataType === 'email') {
-        //console.log('not duplicate email')
         return {
           ...state,
           emailText: 'Email is free to use.',
         }
       } else if (dataType === 'username') {
-        //console.log('not duplicate password')
         return {
           ...state,
           usernameText: 'Username is free to use.',
