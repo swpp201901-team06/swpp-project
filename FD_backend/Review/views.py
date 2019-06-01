@@ -90,7 +90,8 @@ class SearchedReviewListView(APIView):
         review_list = []
         for archive in archives:
             review = archive.reviews.filter(publicStatus = True).order_by('-hits').first()
-            review_list.append(review)
+            if review != None:
+                review_list.append(review)
 
         serializer = ReviewSerializer(review_list, many = True)
         return Response(serializer.data)
