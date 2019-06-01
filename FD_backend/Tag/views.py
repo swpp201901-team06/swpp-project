@@ -1,4 +1,4 @@
-from rest_framework import generics, permissions
+from rest_framework import generics
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -15,15 +15,14 @@ class TagListView(generics.ListCreateAPIView):
     queryset = Tag.objects.all()
     serializer_class = serializers.TagSerializer
 
-class TaggedItemListView(generics.ListCreateAPIView):
+class TaggedItemListView(generics.ListAPIView):
     queryset = TaggedItem.objects.all()
     serializer_class = serializers.TaggedItemSerializer
 
 class TagFilterView(APIView):
-    def get(self, request, tag_id):
-        tag = get_object_or_404(Tag, pk = tag_id)
-        review_list = Review.objects.all() \
-                        .filter(tags__iregex=r'\b%s\b' % tag)
+    def get(self, request, *args, **kwargs):
+        tag = get_object_or_404(Tag, name = kwargs['tag_name'])
+        review_list = Review.objects.filter(tags__iregex=r'\b%s\b' % tag)
 
         serializer = ReviewSerializer(review_list, many = True)
 

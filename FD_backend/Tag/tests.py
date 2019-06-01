@@ -4,16 +4,16 @@ import requests
 
 class TagTests(TestCase):
 
-    link = "http://127.0.0.1:8000/Tag/"
+    link = "http://127.0.0.1:8000/tag/"
 
     def get_tag(self):
-        link = self.link + "tagging/"
+        link = self.link + "list"
         response = requests.get(link)
         self.assertEqual(int(response.status_code/100), 2)
 
 #update number every test
     def post_tag(self):
-        link = self.link + "tagging/"
+        link = self.link + "list"
         data =  {
             "name": "test tag1"
         }
@@ -21,14 +21,14 @@ class TagTests(TestCase):
         self.assertEqual(int(response.status_code/100), 2)
 
     def get_taggeditem(self):
-        link = self.link + "taggeditem/"
+        link = self.link + "taggeditem"
         response = requests.get(link)
         self.assertEqual(int(response.status_code/100), 2)
 
 #update object_id every test
 # in real case u shouldn't do post
     def post_taggeditem(self):
-        link = self.link + "taggeditem/"
+        link = self.link + "taggeditem"
         data =  {
             "object_id": 104,
             "tag": 1,
@@ -38,7 +38,7 @@ class TagTests(TestCase):
         self.assertEqual(int(response.status_code/100), 2)
 
     def get_tagfilter(self):
-        link = self.link + "tagfilter/1/"
+        link = self.link + "filter/1"
         response = requests.get(link)
         self.assertEqual(int(response.status_code/100), 2)
 

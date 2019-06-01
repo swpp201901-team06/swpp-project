@@ -7,7 +7,7 @@ class ReviewTests(TestCase):
     link = "http://127.0.0.1:8000/"
 
     def sign_up(self):
-        link = "http://127.0.0.1:8000/Account/registration/"
+        link = self.link + "account/registration/"
         data = {
             "username": "qwer-1",
             "email": "qwer-1@qwer.qwer",
@@ -18,18 +18,18 @@ class ReviewTests(TestCase):
         self.assertEqual(int(response.status_code/100), 2)
 
     def archive_post(self):
-        link = self.link + "Archive/list/"
+        link = self.link + "archive/list"
         data = {}
         response = requests.post(link, data = data, auth = ("qwer-1@qwer.qwer", "qwer!@#$"))
         self.assertEqual(int(response.status_code/100), 2)
 
     def get_review_list(self):
-        link = self.link + "Review/post/"
+        link = self.link + "review/post"
         response = requests.get(link)
         self.assertEqual(int(response.status_code/100), 2)
 
     def post_review_list(self):
-        link = self.link + "Review/post/"
+        link = self.link + "review/post"
         data = {
             "content": "test content",
             "eatWhen": "2019-01-02T02:00:00Z",
@@ -43,12 +43,12 @@ class ReviewTests(TestCase):
 
 #update number every test
     def delete_review(self):
-        link = self.link + "Review/detail/1/"
+        link = self.link + "review/detail/1"
         response = requests.delete(link, auth = ("qwer-1@qwer.qwer", "qwer!@#$"))
         self.assertEqual(int(response.status_code/100), 2)
 
     def put_review(self):
-        link = self.link + "Review/detail/1/"
+        link = self.link + "review/detail/1"
         data = {
             "content": "test content (modified)",
             "eatWhen": "2019-01-02T02:00:00Z",
@@ -63,13 +63,13 @@ class ReviewTests(TestCase):
 
 ###############resturant
     def get_restlist(self):
-        link = self.link + "Restaurant/list/"
+        link = self.link + "restaurant/list"
         response = requests.get(link)
         self.assertEqual(int(response.status_code/100), 2)
 
 #update number every test
     def post_restaurant(self):
-        link = self.link + "Restaurant/list/"
+        link = self.link + "restaurant/list"
         data = {
             "rName": "test_rest_name5",
             "rAddress": "test_rest_add"

@@ -7,7 +7,7 @@ class ArchiveTests(TestCase):
     link = "http://127.0.0.1:8000/"
 
     def sign_up(self):
-        link = "http://127.0.0.1:8000/Account/registration/"
+        link = self.link + "account/registration/"
         data = {
             "username": "asdf-4",
             "email": "asdf-4@asdf.asdf",
@@ -19,14 +19,14 @@ class ArchiveTests(TestCase):
 
 
     def get_archive_list(self):
-        link = self.link + "Archive/list/"
+        link = self.link + "archive/list"
         response = requests.get(link)
         self.assertEqual(int(response.status_code/100), 2)
 
 #update number every test
 #u should change auth email with who don't have archive
     def post_archive(self):
-        link = self.link + "Archive/list/"
+        link = self.link + "archive/list"
         data = {}
         response = requests.post(link, data = data, auth = ("asdf-4@asdf.asdf", "asdf!@#$"))
         self.assertEqual(int(response.status_code/100), 2)
