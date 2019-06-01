@@ -16,7 +16,7 @@ from Review.permissions import UserOnlyAccess,IsOwnerOrReadOnly
 
 
 # post : review를 create한다.
-class ReviewPostView(generics.ListCreateAPIView):
+class ReviewCreateListView(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     serializer_class = ReviewSerializer
     # db 최적화 (query 요청을 최소화 하기 위한 과정) 8 -> 4

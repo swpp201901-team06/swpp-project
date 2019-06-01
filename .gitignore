@@ -22,6 +22,7 @@ FD_backend/Review/migrations/
 FD_backend/Tag/migrations/
 FD_backend/users/migrations/
 
+FD_backend/photo/
 FD_backend/.coverage/
 
 # virtual environment

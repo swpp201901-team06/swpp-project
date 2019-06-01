@@ -5,7 +5,7 @@ from . import models
 
 # ~/Review/
 urlpatterns = [
-    path('post', views.ReviewPostView.as_view(), name = 'review_post'),
+    path('list', views.ReviewCreateListView.as_view(), name = 'review_post'),
     path('detail/<int:pk>', views.ReviewDetailView.as_view(), name = 'review_detail'),
 
     path('list/<str:username>', views.ReviewListView.as_view(), name = 'review_list'),
