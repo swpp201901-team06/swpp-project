@@ -13,10 +13,10 @@ describe('test signin reducer', () => {
     }
     const reducerOutput = signInReducer(undefined, testAction)
     const expectedOutput = {
-      email: '',
-      nickname: '',
-      token: '',
-      password: '',
+      email: null,
+      nickname: null,
+      token: null,
+      password: null,
       signInFailed: false,
       isLoggedIn: false,
     }
@@ -27,9 +27,11 @@ describe('test signin reducer', () => {
     const email = 'test-email@github.com'
     const nickname = 'some_nickname'
     const token = 'some_token'
-    localStorage.setItem('token', token)
-    localStorage.setItem('nickname', nickname)
-    localStorage.setItem('email', email)
+    const password = 'some_password'
+    localStorage.setItem('token', JSON.stringify(token))
+    localStorage.setItem('nickname', JSON.stringify(nickname))
+    localStorage.setItem('email', JSON.stringify(email))
+    localStorage.setItem('password', JSON.stringify(password))
     const testAction = {
       type: 'UNDEFINED_ACTION',
     }
@@ -38,7 +40,7 @@ describe('test signin reducer', () => {
       email,
       nickname,
       token,
-      password: '',
+      password,
       signInFailed: false,
       isLoggedIn: true,
     }
@@ -104,14 +106,15 @@ describe('test signin reducer', () => {
     }
     const token2 = 'some_token'
     const email2 = 'test-email2@github.com'
+    const password2 = 'some_password2'
     const nickname2 = 'some_nickname2'
-    const testAction = actions.signInSuccess(token2, email2, nickname2)
+    const testAction = actions.signInSuccess(token2, email2, password2, nickname2)
     const reducerOutput = signInReducer(testState, testAction)
     const expectedOutput = {
       email: email2,
       nickname: nickname2,
       token: token2,
-      password,
+      password: password2,
       signInFailed: false,
       isLoggedIn: true,
     }

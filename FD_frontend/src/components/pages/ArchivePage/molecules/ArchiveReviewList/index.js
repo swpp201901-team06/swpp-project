@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
@@ -10,10 +9,6 @@ const Wrapper = styled.div`
 `
 
 class ArchiveReviewList extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   componentDidMount() {
     console.log('ArchiveReviewList componentDidMount')
     console.log(this.props)

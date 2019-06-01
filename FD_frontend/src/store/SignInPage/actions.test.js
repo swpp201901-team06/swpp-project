@@ -31,12 +31,14 @@ describe('test signin actions', () => {
     const email = 'test-email@github.com'
     const nickname = 'some_nickname'
     const token = 'some_token'
+    const password = 'some_password'
     const expectedAction = {
       type: actionTypes.SIGN_IN_SUCCESS,
       email,
       nickname,
       token,
+      password,
     }
-    expect(actions.signInSuccess(token, email, nickname)).toEqual(expectedAction)
+    expect(actions.signInSuccess(token, email, password, nickname)).toEqual(expectedAction)
   })
 })

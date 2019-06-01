@@ -1,8 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { font, palette } from 'styled-theme'
-import SignInButton from '../../atoms/SignInButton/index'
-import SignUpButton from '../../atoms/SignUpButton/index'
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,13 +11,13 @@ const Wrapper = styled.div`
 `
 
 const padding = {
-  margin : 10,
+  margin: 10,
 }
 
 const divtext = {
-  color: "#e0ba7c",
-  fontSize : 15,
-};
+  color: '#e0ba7c',
+  fontSize: 15,
+}
 
 const SignIn = ({ isLoggedIn, signInFailed, nickname,
                   onClickSignUp, onClickSignIn, dispatchGotoArchive }) => {
@@ -34,7 +31,6 @@ const SignIn = ({ isLoggedIn, signInFailed, nickname,
   const onClickSignInButton = () => {
     if (emailField !== undefined && emailField.value !== '' &&
       passwordField !== undefined && passwordField.value !== '') {
-
       onClickSignIn(emailField.value, passwordField.value)
     } else if (emailField === undefined || emailField.value === '') {
       alert('Please enter your email address.')
@@ -43,10 +39,10 @@ const SignIn = ({ isLoggedIn, signInFailed, nickname,
     }
   }
   if (isLoggedIn) {
+    console.log('SignIn molecule isLoggedIn')
     dispatchGotoArchive(nickname)
-    return (<div />)
+    return null
   }
-  // TODO: use `SignInButton` and `SignUpButton` instead of `button`
   return (
     <div style={divtext}>
       <Wrapper>
@@ -57,7 +53,7 @@ const SignIn = ({ isLoggedIn, signInFailed, nickname,
         </div>
         <div>
           Password
-          <input ref={node => { passwordField = node }} style={padding}/>
+          <input ref={node => { passwordField = node }} style={padding} />
           <br />
         </div>
         <div>
@@ -65,14 +61,12 @@ const SignIn = ({ isLoggedIn, signInFailed, nickname,
           <button type="submit" onClick={onClickSignInButton}>Sign In</button>
           <br />
         </div>
-        {signInFailed ? 'Sign in Failed' : ''}
+        <div>
+          {signInFailed ? 'Sign In Failed' : ''}
+        </div>
       </Wrapper>
     </div>
   )
-}
-
-SignIn.propTypes = {
-  reverse: PropTypes.bool,
 }
 
 export default SignIn

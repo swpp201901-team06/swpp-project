@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
