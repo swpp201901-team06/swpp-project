@@ -14,8 +14,6 @@ export const GOTO_GUEST_LOG = 'GOTO_GUEST_LOG'
 export const STORE_REVIEW_ID = 'STORE_REVIEW_ID'
 
 export const getReviewList = (archiveOwnerNickname) => {
-  console.log('ArchivePage actions getReviewList')
-  console.log(archiveOwnerNickname)
   return {
     type: GET_REVIEW_LIST_REQUEST,
     archiveOwnerNickname,
@@ -23,8 +21,6 @@ export const getReviewList = (archiveOwnerNickname) => {
 }
 
 export const getReviewListSuccess = (reviewList) => {
-  console.log('ArchivePage actions getReviewListSuccess')
-  console.log(reviewList)
   return {
     type: GET_REVIEW_LIST_SUCCESS,
     reviewList,
@@ -32,15 +28,12 @@ export const getReviewListSuccess = (reviewList) => {
 }
 
 export const getReviewListFailed = () => {
-  console.log('ArchivePage actions getReviewListFailed')
   return {
     type: GET_REVIEW_LIST_FAILED,
   }
 }
 
 export const getReviewDetail = (reviewId) => {
-  console.log('ArchivePage actions getReviewDetail')
-  console.log(reviewId)
   return {
     type: GET_REVIEW_DETAIL_REQUEST,
     reviewId,
@@ -48,8 +41,6 @@ export const getReviewDetail = (reviewId) => {
 }
 
 export const getReviewDetailSuccess = (reviewDetail) => {
-  console.log('ArchivePage actions getReviewDetailSuccess')
-  console.log(reviewDetail)
   return {
     type: GET_REVIEW_DETAIL_SUCCESS,
     reviewDetail,
@@ -57,16 +48,12 @@ export const getReviewDetailSuccess = (reviewDetail) => {
 }
 
 export const getReviewDetailFailed = () => {
-  console.log('ArchivePage actions getReviewDetailFailed')
   return {
     type: GET_REVIEW_DETAIL_FAILED,
   }
 }
 
 export const updateSortMethod = (archiveOwnerNickname, sortMethod) => {
-  console.log('ArchivePage actions updateSortMethod')
-  console.log(archiveOwnerNickname)
-  console.log(sortMethod)
   return {
     type: UPDATE_SORT_METHOD_REQUEST,
     archiveOwnerNickname,
@@ -75,9 +62,6 @@ export const updateSortMethod = (archiveOwnerNickname, sortMethod) => {
 }
 
 export const updateSortMethodSuccess = (reviewList, sortMethod) => {
-  console.log('ArchivePage actions updateSortMethodSuccess')
-  console.log(reviewList)
-  console.log(sortMethod)
   return {
     type: UPDATE_SORT_METHOD_SUCCESS,
     reviewList,
@@ -86,14 +70,12 @@ export const updateSortMethodSuccess = (reviewList, sortMethod) => {
 }
 
 export const updateSortMethodFailed = () => {
-  console.log('ArchivePage actions updateSortMethodFailed')
   return {
     type: UPDATE_SORT_METHOD_FAILED,
   }
 }
 
 export const deleteReview = (reviewId, archiveOwnerNickname) => {
-  console.log('ArchivePage actions deleteReview')
   return {
     type: DELETE_REVIEW_REQUEST,
     reviewId,
@@ -102,8 +84,6 @@ export const deleteReview = (reviewId, archiveOwnerNickname) => {
 }
 
 export const deleteReviewSuccess = (reviewList) => {
-  console.log('ArchivePage actions deleteReviewSuccess')
-  console.log(reviewList)
   return {
     type: DELETE_REVIEW_SUCCESS,
     reviewList,
@@ -111,15 +91,12 @@ export const deleteReviewSuccess = (reviewList) => {
 }
 
 export const deleteReviewFailed = () => {
-  console.log('ArchivePage actions deleteReviewFailed')
   return {
     type: DELETE_REVIEW_FAILED,
   }
 }
 
 export const storeReviewId = (id) => {
-  console.log('ArchivePage actions storeReviewId')
-  console.log(id)
   return {
     type: STORE_REVIEW_ID,
     id,
@@ -127,8 +104,6 @@ export const storeReviewId = (id) => {
 }
 
 export const gotoGuestLog = (archiveOwnerNickname) => {
-  console.log('ArchivePage actions gotoGuestLog')
-  console.log(archiveOwnerNickname)
   return {
     type: GOTO_GUEST_LOG,
     archiveOwnerNickname,

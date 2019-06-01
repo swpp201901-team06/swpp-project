@@ -2,12 +2,8 @@ import * as actions from './actions'
 
 
 const archiveReducer = (state, action) => {
-  console.log('archiveReducer')
-  console.log(state)
-  console.log(action)
   let nextState = state
   if (!nextState) {
-    console.log('archiveReducer if !nextState')
     nextState = {
       userNickname: null,
       archiveOwnerNickname: null,
@@ -19,13 +15,10 @@ const archiveReducer = (state, action) => {
       selectedReviewObj: null,
     }
     if (nextState.isLoggedIn) {
-      console.log('archiveReducer if nextState.isLoggedIn')
       nextState.token = JSON.parse(localStorage.getItem('token'))
       nextState.userNickname = JSON.parse(localStorage.getItem('nickname'))
     }
   }
-  console.log('archiveReducer after initialization')
-  console.log(nextState)
 
   // TODO: use localStorage to temporarily save sortMethod
   switch (action.type) {
