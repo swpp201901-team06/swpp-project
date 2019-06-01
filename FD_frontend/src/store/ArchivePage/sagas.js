@@ -9,11 +9,7 @@ const reviewDetailUrl = `${backendUrl}Review/detail/`
 
 export function* getReviewList({ archiveOwnerNickname }) {
   try {
-    console.log('getReviewList saga')
-    console.log(archiveOwnerNickname)
     const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
-    console.log('getReviewList after callUrl')
-    console.log(response)
     yield put(actions.getReviewListSuccess(response))
   } catch (err) {
     console.log(err)
@@ -27,17 +23,12 @@ export function* watchGetReviewListRequest() {
 
 export function* getReviewDetail({ reviewId }) {
   try {
-    console.log('getReviewDetail saga begin')
-    console.log(reviewId)
     if (!reviewId) {
       throw Error('getReviewDetail saga reviewId not provided')
     }
     const response = yield callUrl('GET', `${reviewDetailUrl}${reviewId}/`)
-    console.log('getReviewDetail saga response')
-    console.log(response)
     yield put(actions.getReviewDetailSuccess(response))
   } catch (err) {
-    console.log('getReviewDetail saga error')
     console.log(err)
     yield put(actions.getReviewDetailFailed())
   }

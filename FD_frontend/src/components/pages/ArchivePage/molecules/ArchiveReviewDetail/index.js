@@ -11,12 +11,9 @@ const Wrapper = styled.div`
 
 class ArchiveReviewDetail extends React.Component {
   render() {
-    console.log('ArchiveReviewDetail rendeAr')
     let reviewId
     let editUrl
     if (this.props.reviewstate.selectedReviewId) {
-      console.log('ArchiveReviewDetail review state')
-      console.log(this.props.reviewstate)
       if (this.props.reviewstate.selectedReviewObj == null) {
         this.props.getSelectedReview(this.props.reviewstate.selectedReviewId)
       }
@@ -25,20 +22,14 @@ class ArchiveReviewDetail extends React.Component {
     } else {
       reviewId = null
     }
-    console.log('ArchiveReviewDetail set reviewid')
     const onPressDelete = () => {
       this.props.onDeleteReview(reviewId, this.props.reviewstate.archiveOwnerNickname)
     }
-    console.log(this.props.reviewstate.isLoggedIn)
-    console.log(this.props.reviewstate.userNickname)
-    console.log(this.props.reviewstate.archiveOwnerNickname)
-    console.log(reviewId)
     let ownerOption
     if (this.props.reviewstate.isLoggedIn &&
       (this.props.reviewstate.userNickname === this.props.reviewstate.archiveOwnerNickname) &&
       reviewId) {
 
-      console.log('ArchiveReviewDetail if ownerOption')
       ownerOption = (
         <div>
           <h4>
@@ -53,7 +44,6 @@ class ArchiveReviewDetail extends React.Component {
     } else {
       ownerOption = ' '
     }
-    console.log('ArchiveReviewDetail set owneroption')
     let reviewDetail
     if (this.props.reviewstate.selectedReviewObj) {
       const selectedReview = this.props.reviewstate.selectedReviewObj
@@ -82,7 +72,6 @@ class ArchiveReviewDetail extends React.Component {
     } else {
       reviewDetail = <h4>{' '}</h4>
     }
-    console.log('ArchiveReviewDetail set revewDetail')
     return (
       <div>
         {ownerOption}

@@ -13,8 +13,6 @@ const signInReducer = (state, action) => {
       isLoggedIn: localStorage.hasOwnProperty('token'),
     }
     if (nextState.isLoggedIn) {
-      console.log('signInReducer if nextState.isLoggedIn')
-      console.log(localStorage)
       nextState = {
         ...nextState,
         token: JSON.parse(localStorage.getItem('token')),
@@ -30,7 +28,6 @@ const signInReducer = (state, action) => {
     case actionTypes.REQUEST_SIGN_IN:
       return nextState
     case actionTypes.SIGN_IN_SUCCESS:
-      console.log(action.nickname)
       return {
         ...nextState,
         email: action.email,

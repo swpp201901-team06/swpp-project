@@ -5,7 +5,6 @@ import { baseHistory } from '../../index'
 export function* watchGoToSignin() {
   while (true) {
     yield take('GO_TO_SIGNIN')
-    console.log('store/MainPage/sagas watchGoToSignin')
     baseHistory.push('/signin')
   }
 }
@@ -13,7 +12,6 @@ export function* watchGoToSignin() {
 export function* watchGoToGuest() {
   while (true) {
     yield take('GO_TO_GUEST')
-    console.log('store/MainPage/sagas watchGoToGuest')
     baseHistory.push('/guest')
   }
 }

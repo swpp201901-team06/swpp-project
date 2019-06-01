@@ -49,14 +49,9 @@ const logo = {
 
 class ArchivePage extends React.Component {
   render() {
-    console.log('ArchivePage render')
-    console.log(this.props.params)
     const userNickname = JSON.parse(localStorage.getItem('nickname'))
     const archiveOwnerNickname = this.props.params.nickname
-    console.log(userNickname)
-    console.log(archiveOwnerNickname)
     if (userNickname === archiveOwnerNickname) {
-      console.log('ArchivePage return 1')
       return (
         <div>
           <SideBarWrapper>
@@ -80,7 +75,6 @@ class ArchivePage extends React.Component {
         </div>
       )
     }
-    console.log('ArchivePage return 2')
     return (
       <div>
         <SideBarWrapper>

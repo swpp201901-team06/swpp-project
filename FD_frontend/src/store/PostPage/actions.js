@@ -18,8 +18,6 @@ export const getPostReviewDetail = (reviewId) => {
 
 export const getPostReviewDetailSuccess = (restId, eatWhen, tags, score,
   content, photo, publicStatus) => {
-  console.log('get post review detail success')
-  console.log({ restId, eatWhen, tags, score, content, photo, publicStatus })
   return {
     type: GET_POST_REVIEW_DETAIL_SUCCESS,
     restId,
@@ -46,7 +44,6 @@ export const uploadImage = (file) => {
 }
 
 export const changePublicStatus = (publicStatus) => {
-  console.log(publicStatus)
   return {
     type: CHANGE_PUBLIC_STATUS,
     publicStatus,
@@ -55,8 +52,6 @@ export const changePublicStatus = (publicStatus) => {
 
 export const postReview = (reviewId, nickname, restId, eatWhen, tags, score,
   content, photo, publicStatus) => {
-  console.log('post review action')
-  console.log(nickname)
   return {
     type: POST_REVIEW_REQUEST,
     reviewId,

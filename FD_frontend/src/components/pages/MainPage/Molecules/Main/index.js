@@ -9,11 +9,9 @@ const margin = {
 
 const Main = ({ statefunction, onClickSignin, onClickGuest }) => {
   const onSignin = () => {
-    console.log("si_mol");
     onClickSignin();
   };
   const onGuest = () => {
-    console.log("gu_mol");
     onClickGuest();
   };
   return (

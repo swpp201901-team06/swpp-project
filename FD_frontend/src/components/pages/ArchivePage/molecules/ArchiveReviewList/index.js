@@ -10,16 +10,11 @@ const Wrapper = styled.div`
 
 class ArchiveReviewList extends React.Component {
   componentDidMount() {
-    console.log('ArchiveReviewList componentDidMount')
-    console.log(this.props)
     this.props.requestReviews(this.props.children)
   }
 
   render() {
     const reviewstate = this.props.statefunction.ArchivePage.reviews
-    console.log('ArchiveReviewList render')
-    console.log(reviewstate)
-    console.log(this.props.statefunction.ArchivePage)
 
     return (
       <div>

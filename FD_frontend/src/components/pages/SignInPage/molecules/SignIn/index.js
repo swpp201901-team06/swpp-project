@@ -39,7 +39,6 @@ const SignIn = ({ isLoggedIn, signInFailed, nickname,
     }
   }
   if (isLoggedIn) {
-    console.log('SignIn molecule isLoggedIn')
     dispatchGotoArchive(nickname)
     return null
   }

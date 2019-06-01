@@ -38,10 +38,7 @@ class ReviewPostDetail extends React.Component {
   }
 
   componentDidMount() {
-    console.log('ReviewPostDetail componentDidMount')
     if (this.props.children !== 'default') {
-      console.log('not default')
-      console.log(this.props.children)
       this.props.onLoad(this.props.children)
     }
   }
@@ -51,11 +48,6 @@ class ReviewPostDetail extends React.Component {
   }
 
   render() {
-    console.log('ReviewPostDetail render start')
-    console.log(this.props)
-    if (this.props.children !== 'default') {
-      console.log(this.props.statefunction.PostPage)
-    }
     let publicStatusText
 
     let imgUrlText
@@ -110,8 +102,6 @@ class ReviewPostDetail extends React.Component {
     } else {
       imgUrlText = ''
     }
-    console.log('image url!')
-    console.log(imgUrlText)
 
     const onPubStatusChange = () => {
       if (this.props.statefunction.PostPage.publicStatus) {
@@ -119,7 +109,6 @@ class ReviewPostDetail extends React.Component {
       } else {
         this.props.PubStatusChange('False')
       }
-      console.log(this.props.statefunction)
     }
 
     const onClickPostSubmit = () => {
