@@ -3,8 +3,6 @@ import { getReviewDetail, getReviewList, storeReviewId } from '../../store/Archi
 import ArchiveReviewList from '../../components/pages/ArchivePage/molecules/ArchiveReviewList'
 
 const mapStateToProps = (state) => {
-  console.log('ReviewList container mapStateToProps')
-  console.log(state)
   return {
     statefunction: state,
   }
@@ -15,9 +13,8 @@ const mapDispatchToProps = (dispatch) => {
     onReviewClick: (reviewId, archiveOwnerNickname) => {
       dispatch(getReviewDetail(reviewId, archiveOwnerNickname))
     },
+<<<<<<< HEAD
     requestReviews: (sortOption, archiveOwnerNickname) => {
-      console.log('ReviewList container requestReviews')
-      console.log(archiveOwnerNickname)
       dispatch(getReviewList(sortOption, archiveOwnerNickname))
     },
     sendReviewId: (id) => {

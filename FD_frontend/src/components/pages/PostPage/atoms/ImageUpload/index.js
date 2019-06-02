@@ -15,9 +15,6 @@ class ImageUpload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {file: null,imagePreviewUrl: ''};
-    console.log('state of this')
-    console.log(this.state)
-    console.log(this.props)
   }
 
   componentDidMount() {
@@ -54,10 +51,6 @@ class ImageUpload extends React.Component {
     else{
       imagePreviewUrl = this.state.imagePreviewUrl
     }
-    console.log('debug check!')
-    console.log(this.state.imagePreviewUrl)
-    console.log(this.props.statefunction.PostPage.photoUrl)
-    console.log(imagePreviewUrl)
 
     let $imagePreview = null;
     if (imagePreviewUrl) {

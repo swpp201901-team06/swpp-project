@@ -17,17 +17,13 @@ export function* signInAsync({ email, password }) {
     }
     const response = yield callUrl('POST', signInPath, data)
     const nicknameResponse = yield callUrl('GET', `${getNicknamePath}${email}`)
-    console.log('signInAsync before signInSuccess')
-    console.log(nicknameResponse)
     localStorage.setItem('token', JSON.stringify(response.key))
     localStorage.setItem('email', JSON.stringify(email))
     localStorage.setItem('password', JSON.stringify(password))
     localStorage.setItem('nickname', JSON.stringify(nicknameResponse.username))
     yield put(actions.signInSuccess(response.key, email, password, nicknameResponse.username))
-    console.log('signInAsync after signInSuccess')
     yield put(push(`/${nicknameResponse.username}/archive`))
   } catch (e) {
-    console.log('signInAsync error')
     console.error(e)
     yield put(actions.signInFailed())
     throw e
@@ -41,7 +37,6 @@ export function* watchRequestSignIn() {
 export function* watchGotoSignUp() {
   while (true) {
     yield take(actionTypes.GOTO_SIGN_UP)
-    console.log('store/SignInPage/sagas watchGotoSignUp')
     baseHistory.push('/signup')
   }
 }

@@ -22,8 +22,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     onPostSubmit: (reviewId, nickname, restId, eatWhen, tags, score,
       content, photo, publicStatus) => {
-      console.log('PostPage container onPostSUbmit')
-      console.log(nickname)
       dispatch(postReview(reviewId, nickname, restId, eatWhen, tags, score,
         content, photo, publicStatus))
     },

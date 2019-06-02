@@ -9,8 +9,6 @@ const dcUrl = 'http://127.0.0.1:8000/user/exists/'
 const archiveUrl = 'http://127.0.0.1:8000/archive/list'
 
 export function* submit({ email, pw, confirmpw, nickname }) {
-  console.log('submit saga')
-  console.log({ email, pw, confirmpw, nickname })
   try {
     yield callUrl('POST', signUpUrl, {
       email,
@@ -18,12 +16,8 @@ export function* submit({ email, pw, confirmpw, nickname }) {
       password2: confirmpw,
       username: nickname,
     })
-    console.log('submit saga after callUrl')
     yield put(requestSignIn(email, pw))
-    console.log('submit saga after requestSignIn')
     yield take(SIGN_IN_SUCCESS)
-    console.log('submit saga after SIGN_IN_SUCCESS')
-    console.log(JSON.parse(localStorage.getItem('token')))
     yield callUrl('POST', archiveUrl)
   } catch (err) {
     console.log(err)
@@ -35,21 +29,15 @@ export function* watchSubmitRequest() {
 }
 
 export function* duplicateCheck({ key, value }) {
-  console.log(key, value)
   try {
-    console.log('sending DC request')
     const response = yield callUrl('GET', `${dcUrl}${key}/${value}`)
-    console.log('duplicateCheck after callUrl response')
-    console.log(response)
     if (response === 'exist') {
-      console.log('already exists')
       yield put(actions.duplicateFound(key))
     } else if (response === 'not exist') {
-      console.log('does not exist')
       yield put(actions.noDuplicateFound(key))
     }
   } catch (err) {
-    console.log('free to use')
+    console.log(err)
     yield put(actions.noDuplicateFound(key))
   }
 }
