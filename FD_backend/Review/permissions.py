@@ -19,7 +19,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
             if request.user.is_anonymous:
                 return False;
 
-            return obj.archive == request.user.Archive
+            return obj.archive == request.user.archive
 
 
         if request.method in permissions.SAFE_METHODS:
@@ -28,4 +28,4 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         if request.user.is_anonymous:
             return False;
 
-        return obj.archive == request.user.Archive
+        return obj.archive == request.user.archive

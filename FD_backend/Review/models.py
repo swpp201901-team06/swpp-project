@@ -15,7 +15,7 @@ class Review(models.Model):
     publicStatus = models.BooleanField(default = False)
     score = models.IntegerField(blank = True,)
     restaurantId = models.ForeignKey(Restaurant, on_delete = models.CASCADE)
-    archive = models.ForeignKey(Archive, related_name = 'review_archive', on_delete = models.CASCADE)
+    archive = models.ForeignKey(Archive, related_name = 'reviews', on_delete = models.CASCADE)
     hits = models.IntegerField(default = 0)
     id = models.AutoField(primary_key = True)
 

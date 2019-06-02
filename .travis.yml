@@ -30,6 +30,7 @@ matrix:
         - pip install django-rest-auth==0.9.5
         - pip install django-allauth==0.39.1
         - pip install Pillow==6.0.0
+        - pip install django-debug-toolbar==1.11  
       script :
         - python3 manage.py runserver&
         - sleep 3

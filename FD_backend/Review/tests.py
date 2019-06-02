@@ -1,97 +1,79 @@
 # Review/tests.py
 from django.test import TestCase
-import requests
+import json
+
+from FD_backend.inittest import remove_user, remove_archive, remove_restaurant, create_user, create_archive, create_restaurant
 
 class ReviewTests(TestCase):
+    def setUp(self):
+        print("Review Test")
+        # Create two users
+        test_user1 = create_user(username = "Rtestuser1", email = "Rtestemail1@test.com", password = "testpassword!@#$")
+        test_user2 = create_user(username = "Rtestuser2", email = "Rtestemail2@test.com", password = "testpassword!@#$")
 
-    link = "http://127.0.0.1:8000/"
+        # Create two archives
+        create_archive(user = test_user1)
+        create_archive(user = test_user2)
 
-    def sign_up(self):
-        link = "http://127.0.0.1:8000/Account/registration/"
-        data = {
-            "username": "qwer-1",
-            "email": "qwer-1@qwer.qwer",
-            "password1": "qwer!@#$",
-            "password2": "qwer!@#$"
-        }
-        response = requests.post(link, data = data)
-        self.assertEqual(int(response.status_code/100), 2)
+        # Create two Restaurant
+        create_restaurant(rName = "RtestRest1", rAddress = "RtestAddr1")
+        create_restaurant(rName = "RtestRest2", rAddress = "RtestAddr2")
 
-    def archive_post(self):
-        link = self.link + "Archive/list/"
-        data = {}
-        response = requests.post(link, data = data, auth = ("qwer-1@qwer.qwer", "qwer!@#$"))
-        self.assertEqual(int(response.status_code/100), 2)
-
-    def get_review_list(self):
-        link = self.link + "Review/post/"
-        response = requests.get(link)
-        self.assertEqual(int(response.status_code/100), 2)
-
-    def post_review_list(self):
-        link = self.link + "Review/post/"
+    # 새로운 리뷰 Create (Post)
+    def post_review_list(self, email):
+        link = "/review/list"
         data = {
             "content": "test content",
             "eatWhen": "2019-01-02T02:00:00Z",
             "publicStatus": False,
             "score": 4,
-            "restaurantId": 2,
+            "restaurantId": 1,
             "tags": "new tag1, new tag2"
         }
-        response = requests.post(link, data = data, auth = ("qwer-1@qwer.qwer", "qwer!@#$"))
-        self.assertEqual(int(response.status_code/100), 2)
+        self.client.login(email = email, password = "testpassword!@#$")
+        response = self.client.post(link, data = data)
+        self.assertEqual(response.status_code, 201)
 
-#update number every test
-    def delete_review(self):
-        link = self.link + "Review/detail/1/"
-        response = requests.delete(link, auth = ("qwer-1@qwer.qwer", "qwer!@#$"))
-        self.assertEqual(int(response.status_code/100), 2)
+    # 전체 리뷰 리스트 가져오기(get)
+    def get_review_list(self):
+        link = "/review/list"
+        response = self.client.get(link)
+        self.assertEqual(response.status_code, 200)
 
-    def put_review(self):
-        link = self.link + "Review/detail/1/"
+    # 리뷰 수정 (Put)
+    def put_review(self, email):
+        link = "/review/detail/1"
         data = {
             "content": "test content (modified)",
             "eatWhen": "2019-01-02T02:00:00Z",
             "publicStatus": False,
-            "score": 4,
+            "score": 5,
             "restaurantId": 2,
             "tags": "new tag1, new tag2",
             "id": 1
         }
-        response = requests.put(link, data = data, auth = ("qwer-1@qwer.qwer", "qwer!@#$"))
-        self.assertEqual(int(response.status_code/100), 2)
+        self.client.login(email = email, password = "testpassword!@#$")
+        response = self.client.put(link, data = json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, 200)
 
-###############resturant
-    def get_restlist(self):
-        link = self.link + "Restaurant/list/"
-        response = requests.get(link)
-        self.assertEqual(int(response.status_code/100), 2)
+    # 리뷰 삭제 (Delete)
+    def delete_review(self, email):
+        link = "/review/detail/1"
+        self.client.login(email = email, password = "testpassword!@#$")
+        response = self.client.delete(link)
+        self.assertEqual(response.status_code, 204)
 
-#update number every test
-    def post_restaurant(self):
-        link = self.link + "Restaurant/list/"
-        data = {
-            "rName": "test_rest_name5",
-            "rAddress": "test_rest_add"
-        }
-        response = requests.post(link, data = data)
-        self.assertEqual(int(response.status_code/100), 2)
-
-#update number every test
-#    def delete_rest(self):
-#        link = self.link + "Restaurant/detail/1/"
-#        response = requests.delete(link)
-#        self.assertEqual(int(response.status_code/100), 2)
 
     def test_total_review(self):
-        self.sign_up()
-        self.archive_post()
-
-        self.post_restaurant()
-
-        self.post_review_list()
+        self.post_review_list("Rtestemail1@test.com")
         self.get_review_list()
-        self.put_review()
-        self.delete_review()
+        self.put_review("Rtestemail1@test.com")
+        self.delete_review("Rtestemail1@test.com")
 
-#        self.delete_rest()
+        # remove test user
+        remove_archive(username = "Rtestuser1")
+        remove_archive(username = "Rtestuser2")
+        remove_user(username = "Rtestuser1")
+        remove_user(username = "Rtestuser2")
+        remove_restaurant(rName = "RtestRest1")
+        remove_restaurant(rName = "RtestRest2")

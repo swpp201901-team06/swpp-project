@@ -27,9 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
 
-
-    'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework',
     'rest_auth',
     'django.contrib.sites',
     'allauth',
@@ -40,13 +39,13 @@ INSTALLED_APPS = [
     'users',
     'Account',
     'Archive',
-    'Ranking',
     'Restaurant',
     'Review',
     'Tag',
 
     'hitcount',
     'tagging.apps.TaggingConfig',
+    'debug_toolbar',
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -70,7 +69,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+INTERNAL_IPS = ('127.0.0.1',)
 
 CORS_ORIGIN_WHITELIST = [
     'localhost:80',

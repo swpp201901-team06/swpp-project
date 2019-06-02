@@ -1,37 +1,46 @@
 # Archive/tests.py
 from django.test import TestCase
-import requests
+
+from FD_backend.inittest import remove_user, remove_archive, create_user
+
 
 class ArchiveTests(TestCase):
+    def setUp(self):
+        print("Archive Test")
+        # Create two users
+        create_user(username = "Atestuser1", email = "Atestemail1@test.com", password = "testpassword!@#$")
+        create_user(username = "Atestuser2", email = "Atestemail2@test.com", password = "testpassword!@#$")
 
-    link = "http://127.0.0.1:8000/"
-
-    def sign_up(self):
-        link = "http://127.0.0.1:8000/Account/registration/"
-        data = {
-            "username": "asdf-4",
-            "email": "asdf-4@asdf.asdf",
-            "password1": "asdf!@#$",
-            "password2": "asdf!@#$"
-        }
-        response = requests.post(link, data = data)
-        self.assertEqual(int(response.status_code/100), 2)
-
-
-    def get_archive_list(self):
-        link = self.link + "Archive/list/"
-        response = requests.get(link)
-        self.assertEqual(int(response.status_code/100), 2)
-
-#update number every test
-#u should change auth email with who don't have archive
-    def post_archive(self):
-        link = self.link + "Archive/list/"
+    # 아카이브 만들기 (Post)
+    def post_archive(self, email):
+        link = "/archive/list"
+        self.client.login( email = email, password = 'testpassword!@#$')
         data = {}
-        response = requests.post(link, data = data, auth = ("asdf-4@asdf.asdf", "asdf!@#$"))
-        self.assertEqual(int(response.status_code/100), 2)
+        response = self.client.post(link, data = data)
+        self.assertEqual(response.status_code, 201)
+        print("\tCreate archive {0}",format(email))
+
+    # 아카이브 리스트 get (Get)
+    def get_archive_list(self):
+        link = "/archive/list"
+        response = self.client.get(link)
+        dict_list = response.json()
+
+        # get이 제대로 되었는지 확인
+        self.assertEqual(dict_list[0]['user'],'Atestuser1')
+        self.assertEqual(dict_list[1]['user'],'Atestuser2')
+        self.assertEqual(response.status_code, 200)
+
+    def get_archive_detail(self, username):
+        link = "/archive/detail"
+
 
     def test_total_archive(self):
-        self.sign_up()
-        self.post_archive()
+        self.post_archive("Atestemail1@test.com")
+        self.post_archive("Atestemail2@test.com")
         self.get_archive_list()
+        # remove test user
+        remove_archive(username = "Atestuser1")
+        remove_archive(username = "Atestuser2")
+        remove_user(username = "Atestuser1")
+        remove_user(username = "Atestuser2")
