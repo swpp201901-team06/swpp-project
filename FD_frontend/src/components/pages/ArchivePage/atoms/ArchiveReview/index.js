@@ -41,11 +41,12 @@ class ArchiveReview extends React.Component {
     return (
       <div onClick={() => { onClickThis() }}>
         <h4>
-          {reviewId}{'   '}
-          {eatWhen}{'   '}
-          {restaurantId}{'   '}
-          {score}{'   '}
-          {content}{'  '}
+          <h4>
+            {'date: '}{eatWhen}{'   '}</h4>
+          <h4>
+            {'where: '}{restaurantId}{'   '}
+            {'score: '}{score}{'   '}
+          </h4>
         </h4>
       </div>
     )

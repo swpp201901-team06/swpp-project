@@ -55,7 +55,7 @@ class ReviewListView(APIView):
             reviewSet = archive.reviews.all().order_by(archive.sortOption)
         # 다른 사람의 review일 경우 public한 review만 get한다.
         else :
-            queryset = archive.reviews.filter(publicStatus = True).order_by(archive.sortOption)
+            reviewSet = archive.reviews.filter(publicStatus = True).order_by(archive.sortOption)
 
         serializer = ReviewSerializer(reviewSet, many = True)
         return Response(serializer.data)
@@ -67,41 +67,6 @@ class SortedReviewListView(APIView):
         user = get_object_or_404(CustomUser.objects.select_related('archive'), username = kwargs['username'])
         archive = user.archive
         if request.user == user:
-<<<<<<< HEAD
-            queryset = archive.review_archive.all().order_by(sortopt)
-            archive.sortOption = sortopt
-
-            archiveData = {
-                "user" : archive.user,
-                "visitorCount" : archive.visitorCount,
-                "sortOption" : sortopt
-            }
-
-            serializer = archiveSerializers.ArchiveSerializer(archive, data = archiveData)
-            if serializer.is_valid():
-                serializer.save()
-
-            serializer_class = serializers.ReviewSerializer(queryset, many = True)
-            return Response(serializer_class.data)
-
-        queryset = archive.review_archive.filter(publicStatus = True).order_by(sortopt)
-        serializer_class = serializers.ReviewSerializer(queryset, many = True)
-        return Response(serializer_class.data)
-
-#TODO : this view should be modified because this view access db two time, and hits can be increased just push F5 button
-class ReviewHitsIncreaseView(generics.RetrieveUpdateAPIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-                      )
-    serializer_class = serializers.ReviewSerializer
-    queryset = Review.objects.all()
-
-    def put(self, request, pk):
-        review = Review.objects.get(id = pk)
-        review.hits = review.hits + 1
-        serializer = serializers.ReviewSerializer(review, data = request.data)
-        if serializer.is_valid():
-            serializer.save()
-=======
             # 정렬된 review set을 db에서 읽어온다.
             reviewSet = archive.reviews.all().order_by(kwargs['sortopt'])
 
@@ -111,11 +76,10 @@ class ReviewHitsIncreaseView(generics.RetrieveUpdateAPIView):
                 archive.save()
 
             serializer = ReviewSerializer(reviewSet, many = True)
->>>>>>> 790756d0a83bb0538f1d65dcebfe1885589df3e6
             return Response(serializer.data)
 
         reviewSet = archive.reviews.filter(publicStatus = True).order_by(kwargs['sortopt'])
-        serializer = ReviewSerializer(queryset, many = True)
+        serializer = ReviewSerializer(reviewset, many = True)
         return Response(serializer.data)
 
 # username과 유사한 이름을 가지는 유저들의 대표 리뷰(조회수가 가장 높은 리뷰)를 가져온다.

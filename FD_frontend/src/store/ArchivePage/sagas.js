@@ -11,7 +11,7 @@ export function* getReviewList({ sortOption, archiveOwnerNickname }) {
   try {
     let response
     if(sortOption == 'default'){
-      response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
+      response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}`)
     }
     else{
       response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/${sortOption}`)
@@ -31,18 +31,10 @@ export function* watchGetReviewListRequest() {
 
 export function* getReviewDetail({ reviewId }) {
   try {
-<<<<<<< HEAD
-    console.log('getReviewDetail saga begin')
-    console.log(reviewId)
-    const response = yield callUrl('GET', `${reviewDetailUrl}${reviewId}`)
-    console.log('getReviewDetail saga response')
-    console.log(response)
-=======
     if (!reviewId) {
       throw Error('getReviewDetail saga reviewId not provided')
     }
-    const response = yield callUrl('GET', `${reviewDetailUrl}${reviewId}/`)
->>>>>>> 790756d0a83bb0538f1d65dcebfe1885589df3e6
+    const response = yield callUrl('GET', `${reviewDetailUrl}${reviewId}`)
     yield put(actions.getReviewDetailSuccess(response))
   } catch (err) {
     console.log(err)

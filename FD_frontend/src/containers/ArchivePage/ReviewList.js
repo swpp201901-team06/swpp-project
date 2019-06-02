@@ -13,7 +13,6 @@ const mapDispatchToProps = (dispatch) => {
     onReviewClick: (reviewId, archiveOwnerNickname) => {
       dispatch(getReviewDetail(reviewId, archiveOwnerNickname))
     },
-<<<<<<< HEAD
     requestReviews: (sortOption, archiveOwnerNickname) => {
       dispatch(getReviewList(sortOption, archiveOwnerNickname))
     },

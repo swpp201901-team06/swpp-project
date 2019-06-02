@@ -6,7 +6,8 @@ import SideBarButton from '../../atoms/SideBarButton'
 
 export const SideBar = ({ statefunction, onLogout, onClickMyArchive }) => {
 	const onClickLogout = () => {
-		onLogout();
+		window.localStorage.clear()
+		window.location.href = '/'
   };
   let myArchiveUrl = "/"+statefunction.SignInPage.nickname+"/archive"
   let myAccountUrl = "/"+statefunction.SignInPage.nickname+"/account"
@@ -15,9 +16,7 @@ export const SideBar = ({ statefunction, onLogout, onClickMyArchive }) => {
       <Link to="/guest">
 	      <SideBarButton>Guest Page</SideBarButton>
 	    </Link>
-      <Link to="/">
-	      <SideBarButton type="submit" onClick={onClickLogout}>Logout</SideBarButton>
-	    </Link>
+      <SideBarButton type="submit" onClick={onClickLogout}>Logout</SideBarButton>
       <SideBarButton
         onClick={() => { onClickMyArchive(statefunction.SignInPage.nickname) }}
       >

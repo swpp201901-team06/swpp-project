@@ -2,6 +2,18 @@ import React from 'react'
 import ReviewPostDetail from '../../../containers/PostPage/ReviewPost'
 import styled from 'styled-components'
 import GoogleMap from '../../molecules/GoogleMap'
+import SideBar from '../../../containers/SideBar/SideBar'
+
+const SideBarWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  background : #e0ba7c;
+  color : #ffffff;
+`
 
 const Wrapper = styled.div`
   display: flex;
@@ -13,6 +25,13 @@ const Wrapper = styled.div`
   margin-top: -1em
   margin-left: 10em
 `
+
+const logo = {
+  height: 40,
+  width: 100,
+}
+
+
 const title = {
   color: "#e0ba7c",
   fontSize : 80
@@ -27,6 +46,11 @@ class PostPage extends React.Component {
     review = this.props.params.reviewId;
     return (
       <div>
+        <SideBarWrapper>
+          <img src={require('../../../../../design_source/logo/logo.png')} style={logo} />
+          {this.props.params.nickname}'s archive page
+          <SideBar />
+        </SideBarWrapper>
         <Wrapper>
           <h1 style={title}>{'Posting'}</h1>
           <ReviewPostDetail>

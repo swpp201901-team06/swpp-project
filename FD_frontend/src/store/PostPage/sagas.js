@@ -68,7 +68,7 @@ export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
     }
     yield put(actions.postReviewSuccess())
     yield put(push(`/${nickname}/archive`))
-    window.location.reload()
+    //window.location.reload()
 
     /* if(reviewId != 'default'){
       yield put(getReviewDetail(reviewId, nickname))
