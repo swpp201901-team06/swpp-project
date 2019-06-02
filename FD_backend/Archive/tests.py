@@ -18,7 +18,7 @@ class ArchiveTests(TestCase):
         data = {}
         response = self.client.post(link, data = data)
         self.assertEqual(response.status_code, 201)
-        print("\tCreate archive {0}",format(email))
+        print("\tCreate archive {0}".format(email))
 
     # 아카이브 리스트 get (Get)
     def get_archive_list(self):

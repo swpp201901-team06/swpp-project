@@ -56,7 +56,7 @@ class ReviewListView(APIView):
             reviewSet = archive.reviews.all().order_by(archive.sortOption)
         # 다른 사람의 review일 경우 public한 review만 get한다.
         else :
-            queryset = archive.reviews.filter(publicStatus = True).order_by(archive.sortOption)
+            reviewSet = archive.reviews.filter(publicStatus = True).order_by(archive.sortOption)
 
         serializer = ReviewSerializer(reviewSet, many = True)
         return Response(serializer.data)
@@ -80,7 +80,7 @@ class SortedReviewListView(APIView):
             return Response(serializer.data)
 
         reviewSet = archive.reviews.filter(publicStatus = True).order_by(kwargs['sortopt'])
-        serializer = ReviewSerializer(queryset, many = True)
+        serializer = ReviewSerializer(reviewSet, many = True)
         return Response(serializer.data)
 
 # username과 유사한 이름을 가지는 유저들의 대표 리뷰(조회수가 가장 높은 리뷰)를 가져온다.

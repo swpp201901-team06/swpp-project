@@ -20,7 +20,9 @@ class RestaurantTests(TestCase):
         link = "/restaurant/list"
         data = {
             "rName": "rest1",
-            "rAddress": "rest_address1"
+            "rAddress": "rest_address1",
+            "latitude": 33.348885,
+            "longitude": 126.280975,
         }
         response = self.client.post(link, data = data)
         self.assertEqual(response.status_code, 201)
@@ -40,7 +42,9 @@ class RestaurantTests(TestCase):
         link = "/restaurant/detail/1"
         data = {
             "rName": "rest1_(modify)",
-            "rAddress": "restadd"
+            "rAddress": "restadd",
+            "latitude": 33.348885,
+            "longitude": 126.280975,
         }
 
         response = self.client.put(link, data = json.dumps(data), content_type='application/json')

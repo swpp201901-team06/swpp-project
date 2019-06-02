@@ -63,11 +63,36 @@ class ReviewTests(TestCase):
         response = self.client.delete(link)
         self.assertEqual(response.status_code, 204)
 
+    def get_user_review(self, username):
+        link = "/review/list/" + username
+        response = self.client.get(link)
+        self.assertEqual(response.status_code, 200)
+
+    def get_sorted_review(self, username, sortopt):
+        link = "/review/list/" + username + "/" + sortopt
+        response = self.client.get(link)
+        self.assertEqual(response.status_code, 200)
+
+    def get_search_review(self, username):
+        link = "/review/search/" + username
+        response = self.client.get(link)
+        self.assertEqual(response.status_code, 200)
+
+    def get_review_ranking(self):
+        link = "/review/ranking"
+        response = self.client.get(link)
+        self.assertEqual(response.status_code, 200)
 
     def test_total_review(self):
         self.post_review_list("Rtestemail1@test.com")
         self.get_review_list()
         self.put_review("Rtestemail1@test.com")
+
+        self.get_user_review("Rtestuser1")
+        self.get_sorted_review("Rtestuser1", "hits")
+        self.get_search_review("Rtestuser1")
+        self.get_review_ranking()
+
         self.delete_review("Rtestemail1@test.com")
 
         # remove test user
