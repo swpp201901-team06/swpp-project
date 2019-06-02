@@ -1,12 +1,15 @@
 import React from 'react'
+import SideBar from '../../../containers/SideBar/SideBar'
+import GuestSearch from '../../../containers/GuestPage/GuestSearch'
 
 import { PageTemplate, Header, Hero, Footer, FeatureList } from 'components'
 
 const GuestPage = () => {
   return (
-    <PageTemplate header={<Header />} hero={<Hero />} footer={<Footer />}>
-      <FeatureList />
-    </PageTemplate>
+    <div>
+      <SideBar />
+      <GuestSearch />
+    </div>
   )
 }
 

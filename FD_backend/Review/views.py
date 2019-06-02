@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.http import HttpResponseBadRequest
 from django.shortcuts import get_object_or_404
-
 from Archive.models import Archive
 from Review.models import Review
 from users.models import CustomUser
@@ -80,7 +79,8 @@ class SortedReviewListView(APIView):
             return Response(serializer.data)
 
         reviewSet = archive.reviews.filter(publicStatus = True).order_by(kwargs['sortopt'])
-        serializer = ReviewSerializer(reviewSet, many = True)
+        serializer = ReviewSerializer(reviewset, many = True)
+
         return Response(serializer.data)
 
 # username과 유사한 이름을 가지는 유저들의 대표 리뷰(조회수가 가장 높은 리뷰)를 가져온다.

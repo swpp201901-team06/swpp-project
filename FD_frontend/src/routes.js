@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import App from 'components/App'
-import { MainPage, SignInPage, GuestPage, SignUpPage, ArchivePage, AccountPage, PostPage } from 'components'
+import { MainPage, SignInPage, GuestPage, SignUpPage, ArchivePage, AccountPage, PostPage, SearchPage } from 'components'
 
 const routes = (
   <div>
@@ -13,6 +13,7 @@ const routes = (
       <Route path="post/:reviewId" component={PostPage} />
       <Route path=":nickname/archive" component={ArchivePage} />
       <Route path=":nickname/account" component={AccountPage} />
+      <Route path="search/:method/:keyword" component={SearchPage} />
     </Route>
   </div>
 )

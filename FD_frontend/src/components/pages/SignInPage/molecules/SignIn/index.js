@@ -52,7 +52,7 @@ const SignIn = ({ isLoggedIn, signInFailed, nickname,
         </div>
         <div>
           Password
-          <input ref={node => { passwordField = node }} style={padding} />
+          <input type="password" ref={node => { passwordField = node }} style={padding} />
           <br />
         </div>
         <div>

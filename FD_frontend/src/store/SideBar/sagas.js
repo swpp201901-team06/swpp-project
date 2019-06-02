@@ -12,6 +12,14 @@ export function* watchGotoArchiveButton() {
   }
 }
 
+export function* watchLogOutButton() {
+  while (true) {
+    const { nickname } = yield take(actions.LOGOUT)
+    yield put(push('/'))
+  }
+}
+
 export default function* () {
   yield fork(watchGotoArchiveButton)
+  yield fork(watchLogOutButton)
 }
