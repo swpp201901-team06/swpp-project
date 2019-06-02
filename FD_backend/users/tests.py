@@ -40,7 +40,7 @@ class CustomUserModelTests(TestCase):
 
     # 유저 이메일을 통해 유저 이름 가져오기 (Get)
     def get_username(self, email, username):
-        link = "/user/email/" + email
+        link = "/user/username/" + email
         response = self.client.get(link)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['username'], username)
