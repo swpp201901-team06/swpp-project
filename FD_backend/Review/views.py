@@ -80,6 +80,7 @@ class SortedReviewListView(APIView):
 
         reviewSet = archive.reviews.filter(publicStatus = True).order_by(kwargs['sortopt'])
         serializer = ReviewSerializer(reviewset, many = True)
+
         return Response(serializer.data)
 
 # username과 유사한 이름을 가지는 유저들의 대표 리뷰(조회수가 가장 높은 리뷰)를 가져온다.
