@@ -4,9 +4,9 @@ import { requestSignIn } from '../SignInPage/actions'
 import { SIGN_IN_SUCCESS } from '../SignInPage/actionTypes'
 import { callUrl } from '../sagas'
 
-const signUpUrl = 'http://127.0.0.1:8000/Account/registration/'
-const dcUrl = 'http://127.0.0.1:8000/User/exists/'
-const archiveUrl = 'http://127.0.0.1:8000/Archive/list/'
+const signUpUrl = 'http://127.0.0.1:8000/account/registration'
+const dcUrl = 'http://127.0.0.1:8000/user/exists/'
+const archiveUrl = 'http://127.0.0.1:8000/archive/list'
 
 export function* submit({ email, pw, confirmpw, nickname }) {
   console.log('submit saga')

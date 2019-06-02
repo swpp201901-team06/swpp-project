@@ -5,8 +5,8 @@ import * as actionTypes from './actionTypes'
 import { baseHistory } from '../../index'
 import { callUrl } from '../sagas'
 
-const signInPath = 'http://127.0.0.1:8000/Account/login/'
-const getNicknamePath = 'http://127.0.0.1:8000/User/get-username/'
+const signInPath = 'http://127.0.0.1:8000/account/login'
+const getNicknamePath = 'http://127.0.0.1:8000/user/username/'
 
 export function* signInAsync({ email, password }) {
   try {

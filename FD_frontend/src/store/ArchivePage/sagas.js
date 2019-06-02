@@ -4,9 +4,8 @@ import { callUrl } from '../sagas'
 import * as actions from './actions'
 
 const backendUrl = 'http://127.0.0.1:8000/'
-const myReviewListUrl = `${backendUrl}Review/list/`
-const mySortedListUrl = `${backendUrl}Review/sorted-list/`
-const reviewDetailUrl = `${backendUrl}Review/detail/`
+const myReviewListUrl = `${backendUrl}review/list/`
+const reviewDetailUrl = `${backendUrl}review/detail/`
 
 export function* getReviewList({ sortOption, archiveOwnerNickname }) {
   try {
@@ -17,7 +16,7 @@ export function* getReviewList({ sortOption, archiveOwnerNickname }) {
       response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
     }
     else{
-      response = yield callUrl('GET', `${mySortedListUrl}${archiveOwnerNickname}/${sortOption}/`)
+      response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/${sortOption}`)
     } 
     console.log('getReviewList after callUrl')
     yield put(actions.getReviewListSuccess(response))
@@ -36,7 +35,7 @@ export function* getReviewDetail({ reviewId }) {
   try {
     console.log('getReviewDetail saga begin')
     console.log(reviewId)
-    const response = yield callUrl('GET', `${reviewDetailUrl}${reviewId}/`)
+    const response = yield callUrl('GET', `${reviewDetailUrl}${reviewId}`)
     console.log('getReviewDetail saga response')
     console.log(response)
     yield put(actions.getReviewDetailSuccess(response))
