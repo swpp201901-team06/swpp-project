@@ -12,11 +12,12 @@ from .serializers import ReviewSerializer
 from Archive.serializers import ArchiveSerializer
 from users.serializers import UserSerializer
 
-from Review.permissions import UserOnlyAccess,IsOwnerOrReadOnly
+from Review.permissions import IsOwnerOrReadOnly
 
-
+# get : 전체 review list를 가져옴(디버깅용, 추후 삭제할 예정)
 # post : review를 create한다.
 class ReviewCreateListView(generics.ListCreateAPIView):
+    # 로그인한 유저만 리뷰를 post할 수 있음
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     serializer_class = ReviewSerializer
     # db 최적화 (query 요청을 최소화 하기 위한 과정) 8 -> 4
@@ -29,6 +30,7 @@ class ReviewCreateListView(generics.ListCreateAPIView):
 # put : 특정한 review를 update한다.
 # delete : 특정한 review를 destroy한다.
 class ReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
+    # Review가 publicStatus이면 Get 요청은 모두 수락, 그 외의 경우 리뷰 주인만 요청 가능
     permission_classes = (IsOwnerOrReadOnly,)
     # db 최적화 (query 요청을 최소화 하기 위한 과정)
     queryset = Review.objects.select_related('archive').select_related('archive__user').all()
@@ -83,7 +85,7 @@ class SortedReviewListView(APIView):
         serializer = ReviewSerializer(reviewSet, many = True)
         return Response(serializer.data)
 
-# username과 유사한 이름을 가지는 유저들의 대표 리뷰(조회수가 가장 높은 리뷰)를 가져온다.
+# get : username과 유사한 이름을 가지는 유저들의 대표 리뷰(조회수가 가장 높은 리뷰)를 가져온다.
 class SearchedReviewListView(APIView):
     def get(self, request, *args, **kwargs):
         archives = Archive.objects.select_related('user').filter(user__username__iregex = r'.*%s.*' % kwargs['username'])
@@ -96,6 +98,7 @@ class SearchedReviewListView(APIView):
         serializer = ReviewSerializer(review_list, many = True)
         return Response(serializer.data)
 
+# get : 조회수가 가장 높은 3개의 리뷰를 가져온다.
 class ReviewRankingView(APIView):
     def get(self, request, *args, **kwargs):
         reviewSet = Review.objects.select_related('archive').select_related('archive__user').all().order_by('-hits')

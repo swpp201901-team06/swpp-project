@@ -8,7 +8,7 @@ from .models import GuestComment
 from .serializers import ArchiveSerializer
 from .serializers import GuestCommentSerializer
 from users.models import CustomUser
-from Review.permissions import UserOnlyAccess
+from .permissions import UserOnlyAccess
 
 # get : archive list를 가져온다.(디버깅 용으로 사용됨)
 # post : 아카이브를 create함(최초 1번만 가능)

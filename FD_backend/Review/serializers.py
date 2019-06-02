@@ -13,6 +13,4 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Review
-        fields = ('content', 'eatWhen', 'publicStatus', 'postTime',
-         'publicStatus', 'score', 'restaurantId', 'archive', 'hits',
-         'tags', 'photo', 'id')
+        fields = ('__all__')

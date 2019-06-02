@@ -19,30 +19,40 @@ class CustomUserModelTests(TestCase):
         create_archive(user = test_user2)
 
     # 유저 리스트 가져오기 (Get)
-    def get_list(self):
+    def get_list(self, number):
         link = "/user/list"
         response = self.client.get(link)
+        # get 요청이 정상적으로 수행 되었는지 확인
         self.assertEqual(response.status_code, 200)
-
+        # 유저 수가 number와 같은지 확인
+        self.assertEqual(len(response.json()), number)
     # 유저 상세 정보 가져오기 (Get)
-    def get_detail(self, username):
+    def get_detail(self, username, publicStatus):
         link = "/user/detail/" + username
         response = self.client.get(link)
+        # get 요청이 정상적으로 수행 되었는지 확인
         self.assertEqual(response.status_code, 200)
+        # 유저 이름이 [username]과 같은지 확인
         self.assertEqual(response.json()['username'], username)
+        # 유저의 publicStatus가 [publicStatus]와 같은지 확인
+        self.assertEqual(response.json()['publicStatus'], publicStatus)
         print("\tGet {0}'s information".format(username))
 
     # 유저 삭제하기 (Delete)
-    def delete_user(self):
-        link = "/user/detail/Utestuser1"
+    def delete_user(self, username):
+        link = "/user/detail/" + username
         response = self.client.delete(link)
+        # 삭제 요청이 정상적으로 수행되었는지 확인
         self.assertEqual(response.status_code, 204)
+        print("\tDelete user {0}".format(username))
 
     # 유저 이메일을 통해 유저 이름 가져오기 (Get)
     def get_username(self, email, username):
         link = "/user/username/" + email
         response = self.client.get(link)
+        # get 요청이 정상적으로 수행되었는지 확인
         self.assertEqual(response.status_code, 200)
+        # get 결과의 username이 [username]과 같은지 확인
         self.assertEqual(response.json()['username'], username)
         print("\tUser who have Email {0} is {1}".format(email, username))
 
@@ -50,7 +60,9 @@ class CustomUserModelTests(TestCase):
     def get_exist_email(self, email, existence):
         link = "/user/exists/email/" + email
         response = self.client.get(link)
+        # get 요청이 정상적으로 수행되었는지 확인
         self.assertEqual(response.status_code, 200)
+        # get 결과가 [existence]와 같은지 확인
         self.assertEqual(response.json(), existence)
         print("\tEmail {0} is {1}".format(email, existence))
 
@@ -58,26 +70,29 @@ class CustomUserModelTests(TestCase):
     def get_exist_username(self, username, existence):
         link = "/user/exists/username/" + username
         response = self.client.get(link)
+        # get 요청이 정상적으로 수행되었는지 확인
         self.assertEqual(response.status_code, 200)
+        # get 결과가 [existence]와 같은지 확인
         self.assertEqual(response.json(), existence)
         print("\tUsername {0} is {1}".format(username, existence))
 
-    # 유저 정보 수정 (Put)
-    def update_user(self):
-        link = "/user/detail/Utestuser1"
+    # 유저 정보 수정 - publicStatus True로 update (Put)
+    def update_user(self, username, email):
+        link = "/user/detail/" + username
         data = {
-            "username": "Utestuser1",
-            "email": "Utestuser1@test.com",
+            "username": username,
+            "email": email,
             "publicStatus": True,
-            "Archive": "Utestuser1"
+            "Archive": username
         }
         response = self.client.put(link, data = json.dumps(data), content_type='application/json')
+        # put 요청이 정상적으로 수행되었는지 확인
         self.assertEqual(response.status_code, 200)
 
     def test_total_user(self):
-        self.get_list()
-        self.get_detail("Utestuser1")
-        self.get_detail("Utestuser2")
+        self.get_list(2)
+        self.get_detail("Utestuser1", False)
+        self.get_detail("Utestuser2", False)
 
         self.get_username("Utestemail1@test.com", "Utestuser1")
         self.get_username("Utestemail2@test.com", "Utestuser2")
@@ -90,8 +105,11 @@ class CustomUserModelTests(TestCase):
         self.get_exist_username("Utestuser2", "exist")
         self.get_exist_username("NotExistName", "not exist")
 
-        self.update_user()
-        self.delete_user()
+        self.update_user("Utestuser1", "Utestemail1@test.com")
+        self.get_detail("Utestuser1", True)
+
+        self.delete_user("Utestuser2")
+        self.get_list(1)
 
         # remove test user
         remove_archive(username = "Utestuser1")

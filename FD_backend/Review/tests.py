@@ -20,25 +20,28 @@ class ReviewTests(TestCase):
         create_restaurant(rName = "RtestRest2", rAddress = "RtestAddr2")
 
     # 새로운 리뷰 Create (Post)
-    def post_review_list(self, email):
+    def post_review(self, email):
         link = "/review/list"
         data = {
             "content": "test content",
             "eatWhen": "2019-01-02T02:00:00Z",
             "publicStatus": False,
-            "score": 4,
-            "restaurantId": 1,
-            "tags": "new tag1, new tag2"
+            "score": 3,
+            "tags": "new tag1, new tag2",
+            "restaurantId": 1
         }
+
         self.client.login(email = email, password = "testpassword!@#$")
         response = self.client.post(link, data = data)
         self.assertEqual(response.status_code, 201)
+        print("\tPost Review")
 
     # 전체 리뷰 리스트 가져오기(get)
     def get_review_list(self):
         link = "/review/list"
         response = self.client.get(link)
         self.assertEqual(response.status_code, 200)
+        print("\tGet Review List")
 
     # 리뷰 수정 (Put)
     def put_review(self, email):
@@ -84,7 +87,7 @@ class ReviewTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_total_review(self):
-        self.post_review_list("Rtestemail1@test.com")
+        self.post_review("Rtestemail1@test.com")
         self.get_review_list()
         self.put_review("Rtestemail1@test.com")
 
@@ -92,7 +95,6 @@ class ReviewTests(TestCase):
         self.get_sorted_review("Rtestuser1", "hits")
         self.get_search_review("Rtestuser1")
         self.get_review_ranking()
-
         self.delete_review("Rtestemail1@test.com")
 
         # remove test user

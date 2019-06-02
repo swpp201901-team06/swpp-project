@@ -2,13 +2,11 @@
 from django.test import TestCase
 
 class TagTests(TestCase):
-
     def get_tag(self):
         link = "/tag/list"
         response = self.client.get(link)
         self.assertEqual(response.status_code, 200)
 
-#update number every test
     def post_tag(self):
         link = "/tag/list"
         data =  {
@@ -21,8 +19,6 @@ class TagTests(TestCase):
         link = "/tag/taggeditem"
         response = self.client.get(link)
         self.assertEqual(response.status_code, 200)
-
-#update object_id every test
 
     def get_tagfilter(self):
         link = "/tag/filter/testtag1"

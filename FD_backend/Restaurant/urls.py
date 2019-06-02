@@ -5,6 +5,8 @@ from . import models
 
 # ~/Restaurant/
 urlpatterns = [
+    # 전체 식당 list
     path('list', views.RestaurantListView.as_view(), name = 'restaurant_list'),
+    # 특정한 식당 정보
     path('detail/<int:pk>', views.RestaurantDetailView.as_view(), name = 'restaurant_detail'),
 ]
