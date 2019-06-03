@@ -20,8 +20,7 @@ matrix:
         - python3 manage.py makemigrations
         - python3 manage.py migrate
       install:
-        - pip install -r requirements.txt 
-      
+        - pip install -r requirements.txt              
       script :
         - python3 manage.py runserver&
         - sleep 3
