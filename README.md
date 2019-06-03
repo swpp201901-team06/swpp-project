@@ -15,8 +15,7 @@ sudo pip3 install -r requirements.txt
 
 # Setup backend
 cd FD_backend
-python3 manage.py makemigrations users
-python3 manage.py makemigrations FooDa
+python3 manage.py makemigrations
 python3 manage.py migrate
 
 # Setup frontend

@@ -67,17 +67,16 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
           {'     '}
           {emailText}
         </h4>
-
         <h4 style={browncolor}>
           Password
           {' '}
-          <input ref={node => { pw = node }} />
+          <input type="password" ref={node => { pw = node }} />
         </h4>
 
         <h4 style={browncolor}>
           Confirm Password
           {' '}
-          <input ref={node => { confirmpw = node }} />
+          <input type="password" ref={node => { confirmpw = node }} />
         </h4>
 
         <h4 style={browncolor}>

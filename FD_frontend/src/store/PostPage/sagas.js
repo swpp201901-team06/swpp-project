@@ -5,8 +5,8 @@ import * as actions from './actions'
 import { getReviewDetail } from '../ArchivePage/actions'
 
 const backendUrl = 'http://127.0.0.1:8000/'
-const reviewListUrl = `${backendUrl}Review/post/`
-const reviewDetailUrl = `${backendUrl}Review/detail/`
+const reviewListUrl = `${backendUrl}review/list`
+const reviewDetailUrl = `${backendUrl}review/detail/`
 
 export function* getPostReviewDetail({ reviewId }) {
   try {
@@ -15,7 +15,7 @@ export function* getPostReviewDetail({ reviewId }) {
         null, null, false))
     }
     else { // edit existing review
-      const reviewDetail = yield callUrl('GET', `${reviewDetailUrl}${reviewId}/`)
+      const reviewDetail = yield callUrl('GET', `${reviewDetailUrl}${reviewId}`)
       const { restaurantId, eatWhen, tags, score, content, photo, publicStatus }
         = reviewDetail
 
@@ -68,7 +68,7 @@ export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
     }
     yield put(actions.postReviewSuccess())
     yield put(push(`/${nickname}/archive`))
-    window.location.reload()
+    //window.location.reload()
 
     /* if(reviewId != 'default'){
       yield put(getReviewDetail(reviewId, nickname))
