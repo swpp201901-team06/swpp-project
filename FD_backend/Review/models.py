@@ -1,9 +1,8 @@
-# Review/models.py
-
+# review/models.py
 from django.db import models
-from users.models import CustomUser
-from Restaurant.models import Restaurant
-from Archive.models import Archive
+from user.models import CustomUser
+from restaurant.models import Restaurant
+from archive.models import Archive
 
 from tagging.fields import TagField
 from tagging.models import Tag, TaggedItem
@@ -18,7 +17,5 @@ class Review(models.Model):
     archive = models.ForeignKey(Archive, related_name = 'reviews', on_delete = models.CASCADE)
     hits = models.IntegerField(default = 0)
     id = models.AutoField(primary_key = True)
-
     photo = models.ImageField(blank = True, null = True)
-
     tags = TagField()

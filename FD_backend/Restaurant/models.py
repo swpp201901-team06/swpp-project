@@ -1,4 +1,4 @@
-# Restaurant/models.py
+# restaurant/models.py
 from django.db import models
 
 

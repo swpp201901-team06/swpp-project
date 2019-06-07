@@ -9,7 +9,7 @@ from . import models
 from . import serializers
 
 # 유저 전체 리스트 가져오기
-class UserListView(generics.ListAPIView):
+class UserListView(generics.ListCreateAPIView):
     queryset = models.CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
 

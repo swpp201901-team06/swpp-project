@@ -4,14 +4,15 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.http import HttpResponseBadRequest
 from django.shortcuts import get_object_or_404
-from Archive.models import Archive
-from Review.models import Review
-from users.models import CustomUser
-from .serializers import ReviewSerializer
-from Archive.serializers import ArchiveSerializer
-from users.serializers import UserSerializer
 
-from Review.permissions import IsOwnerOrReadOnly
+from archive.models import Archive
+from .models import Review
+from user.models import CustomUser
+from .serializers import ReviewSerializer
+from archive.serializers import ArchiveSerializer
+from user.serializers import UserSerializer
+
+from .permissions import IsOwnerOrReadOnly
 
 # get : 전체 review list를 가져옴(디버깅용, 추후 삭제할 예정)
 # post : review를 create한다.

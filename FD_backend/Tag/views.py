@@ -5,9 +5,9 @@ from rest_framework.response import Response
 import operator
 
 from tagging.models import Tag, TaggedItem
-from Review.models import Review
+from review.models import Review
 from .serializers import TagSerializer, TaggedItemSerializer
-from Review.serializers import ReviewSerializer
+from review.serializers import ReviewSerializer
 
 
 # post : create 태그(디버깅용)

@@ -1,4 +1,4 @@
-# Archive/serializers.py
+# archive/serializers.py
 
 from rest_framework import serializers
 from . import models

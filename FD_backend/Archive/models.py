@@ -1,6 +1,6 @@
-# Archive/models.py
+# archive/models.py
 from django.db import models
-from users.models import CustomUser
+from user.models import CustomUser
 
 #TODO : modify sort option : sort option should have only (content|eatWhen|postTime|score|....)
 class Archive(models.Model):

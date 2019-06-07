@@ -1,6 +1,6 @@
-from users.models import CustomUser
-from Archive.models import Archive
-from Restaurant.models import Restaurant
+from user.models import CustomUser
+from archive.models import Archive
+from restaurant.models import Restaurant
 
 # 유저 삭제(초기화)
 def remove_user(username):

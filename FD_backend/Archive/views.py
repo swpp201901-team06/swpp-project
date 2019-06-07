@@ -7,7 +7,7 @@ from .models import Archive
 from .models import GuestComment
 from .serializers import ArchiveSerializer
 from .serializers import GuestCommentSerializer
-from users.models import CustomUser
+from user.models import CustomUser
 from .permissions import UserOnlyAccess
 
 # get : archive list를 가져온다.(디버깅 용으로 사용됨)

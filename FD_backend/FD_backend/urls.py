@@ -7,12 +7,12 @@ import debug_toolbar
 
 urlpatterns = [
     path('admin', admin.site.urls),
-    path('account/', include('Account.urls')),
-    path('archive/', include('Archive.urls')),
-    path('restaurant/', include('Restaurant.urls')),
-    path('review/', include('Review.urls')),
-    path('tag/', include('Tag.urls')),
-    path('user/', include('users.urls')),
+    path('account/', include('accounts.urls')),
+    path('archive/', include('archive.urls')),
+    path('restaurant/', include('restaurant.urls')),
+    path('review/', include('review.urls')),
+    path('tag/', include('tag.urls')),
+    path('user/', include('user.urls')),
 
    path('__debug__/', include(debug_toolbar.urls)),
 
