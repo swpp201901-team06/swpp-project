@@ -3,7 +3,7 @@ from rest_framework import permissions
 class IsOwnerOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         # 리뷰의 pulbicStatus가 False
-        if obj.publicStatus == False:
+        if obj.public_status == False:
             # 유저가 로그인을 하지 않은 anonymous user
             if request.user.is_anonymous:
                 return False;

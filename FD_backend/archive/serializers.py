@@ -6,8 +6,8 @@ from . import models
 
 class ArchiveSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username') #source?
-    visitorCount = serializers.ReadOnlyField()
-    sortOption = serializers.ReadOnlyField()
+    visitor_count = serializers.ReadOnlyField()
+    sort_option = serializers.ReadOnlyField()
     class Meta:
         model = models.Archive
         fields = ('__all__')

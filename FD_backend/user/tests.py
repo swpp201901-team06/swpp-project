@@ -27,15 +27,15 @@ class CustomUserModelTests(TestCase):
         # 유저 수가 number와 같은지 확인
         self.assertEqual(len(response.json()), number)
     # 유저 상세 정보 가져오기 (Get)
-    def get_detail(self, username, publicStatus):
+    def get_detail(self, username, public_status):
         link = "/user/detail/" + username
         response = self.client.get(link)
         # get 요청이 정상적으로 수행 되었는지 확인
         self.assertEqual(response.status_code, 200)
         # 유저 이름이 [username]과 같은지 확인
         self.assertEqual(response.json()['username'], username)
-        # 유저의 publicStatus가 [publicStatus]와 같은지 확인
-        self.assertEqual(response.json()['publicStatus'], publicStatus)
+        # 유저의 public_status가 [public_status]와 같은지 확인
+        self.assertEqual(response.json()['public_status'], public_status)
         print("\tGet {0}'s information".format(username))
 
     # 유저 삭제하기 (Delete)
@@ -76,13 +76,13 @@ class CustomUserModelTests(TestCase):
         self.assertEqual(response.json(), existence)
         print("\tUsername {0} is {1}".format(username, existence))
 
-    # 유저 정보 수정 - publicStatus True로 update (Put)
+    # 유저 정보 수정 - public_status True로 update (Put)
     def update_user(self, username, email):
         link = "/user/detail/" + username
         data = {
             "username": username,
             "email": email,
-            "publicStatus": True,
+            "public_status": True,
             "Archive": username
         }
         response = self.client.put(link, data = json.dumps(data), content_type='application/json')

@@ -26,7 +26,7 @@ class ArchiveVisitorIncreaseView(APIView):
     def get(self,request, username):
         user = get_object_or_404(CustomUser.objects.select_related('archive'), username = username)
         archive = user.archive
-        archive.visitorCount += 1
+        archive.visitor_count += 1
 
         serializer_class = ArchiveSerializer
         serializer = serializer_class(archive)
@@ -36,8 +36,8 @@ class ArchiveVisitorIncreaseView(APIView):
 
 class ArchiveRankingView(APIView):
     def get(self, request, *args, **kwargs):
-        archiveSet = Archive.objects.select_related('user').all().order_by('-visitorCount')
-        serializer = ArchiveSerializer(archiveSet[:3], many = True)
+        archive_set = Archive.objects.select_related('user').all().order_by('-visitor_count')
+        serializer = ArchiveSerializer(archive_set[:3], many = True)
         return Response(serializer.data)
 
 

@@ -12,15 +12,15 @@ class RestaurantTests(TestCase):
         print("\tGet restaurant list")
 
         dict = response.json()
-        self.assertEqual(dict[0]['rName'], "rest1")
-        self.assertEqual(dict[0]['rAddress'], "rest_address1")
+        self.assertEqual(dict[0]['name'], "rest1")
+        self.assertEqual(dict[0]['address'], "rest_address1")
 
 #update number every test
     def post_restaurant(self):
         link = "/restaurant/list"
         data = {
-            "rName": "rest1",
-            "rAddress": "rest_address1",
+            "name": "rest1",
+            "address": "rest_address1",
             "latitude": 33.348885,
             "longitude": 126.280975,
         }
@@ -35,14 +35,14 @@ class RestaurantTests(TestCase):
         print("\tGet restaurant")
 
         dict = response.json()
-        self.assertEqual(dict['rName'], "rest1")
-        self.assertEqual(dict['rAddress'], "rest_address1")
+        self.assertEqual(dict['name'], "rest1")
+        self.assertEqual(dict['address'], "rest_address1")
 
     def put_restdetail(self):
         link = "/restaurant/detail/1"
         data = {
-            "rName": "rest1_(modify)",
-            "rAddress": "restadd",
+            "name": "rest1_(modify)",
+            "address": "restadd",
             "latitude": 33.348885,
             "longitude": 126.280975,
         }

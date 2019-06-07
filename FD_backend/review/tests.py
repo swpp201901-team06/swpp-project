@@ -16,16 +16,16 @@ class ReviewTests(TestCase):
         create_archive(user = test_user2)
 
         # Create two Restaurant
-        create_restaurant(rName = "RtestRest1", rAddress = "RtestAddr1")
-        create_restaurant(rName = "RtestRest2", rAddress = "RtestAddr2")
+        create_restaurant(name = "RtestRest1", address = "RtestAddr1")
+        create_restaurant(name = "RtestRest2", address = "RtestAddr2")
 
     # 새로운 리뷰 Create (Post)
     def post_review(self, email):
         link = "/review/list"
         data = {
             "content": "test content",
-            "eatWhen": "2019-01-02T02:00:00Z",
-            "publicStatus": False,
+            "eat_when": "2019-01-02T02:00:00Z",
+            "public_status": False,
             "score": 3,
             "tags": "new tag1, new tag2",
             "restaurantId": 1
@@ -48,8 +48,8 @@ class ReviewTests(TestCase):
         link = "/review/detail/1"
         data = {
             "content": "test content (modified)",
-            "eatWhen": "2019-01-02T02:00:00Z",
-            "publicStatus": False,
+            "eat_when": "2019-01-02T02:00:00Z",
+            "public_status": False,
             "score": 5,
             "restaurantId": 2,
             "tags": "new tag1, new tag2",
@@ -102,5 +102,5 @@ class ReviewTests(TestCase):
         remove_archive(username = "Rtestuser2")
         remove_user(username = "Rtestuser1")
         remove_user(username = "Rtestuser2")
-        remove_restaurant(rName = "RtestRest1")
-        remove_restaurant(rName = "RtestRest2")
+        remove_restaurant(name = "RtestRest1")
+        remove_restaurant(name = "RtestRest2")

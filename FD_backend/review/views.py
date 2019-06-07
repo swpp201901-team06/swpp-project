@@ -55,12 +55,12 @@ class ReviewListView(APIView):
         # archive의 review들을 get 한다.
         # 본인의 review일 경우 모든 review를 get한다.
         if request.user == user :
-            reviewSet = archive.reviews.all().order_by(archive.sortOption)
+            review_set = archive.reviews.all().order_by(archive.sort_option)
         # 다른 사람의 review일 경우 public한 review만 get한다.
         else :
-            reviewSet = archive.reviews.filter(publicStatus = True).order_by(archive.sortOption)
+            review_set = archive.reviews.filter(public_status = True).order_by(archive.sort_option)
 
-        serializer = ReviewSerializer(reviewSet, many = True)
+        serializer = ReviewSerializer(review_set, many = True)
         return Response(serializer.data)
 
 # get : 정렬된 review list를 get한다. 추가로 저장된 sort option을 입력된 sortopt 값으로 update한다.
@@ -71,18 +71,18 @@ class SortedReviewListView(APIView):
         archive = user.archive
         if request.user == user:
             # 정렬된 review set을 db에서 읽어온다.
-            reviewSet = archive.reviews.all().order_by(kwargs['sortopt'])
+            review_set = archive.reviews.all().order_by(kwargs['sortopt'])
 
-            # 아카이브의 sortOption과 입력 받은 sortopt가 다를 경우 업데이트 한다. ( - 업데이트 query는 비싸기 때문에 바뀔때만 업데이트 해준다)
-            if archive.sortOption != kwargs['sortopt']:
-                archive.sortOption = kwargs['sortopt']
+            # 아카이브의 sort_option과 입력 받은 sortopt가 다를 경우 업데이트 한다. ( - 업데이트 query는 비싸기 때문에 바뀔때만 업데이트 해준다)
+            if archive.sort_option != kwargs['sortopt']:
+                archive.sort_option = kwargs['sortopt']
                 archive.save()
 
-            serializer = ReviewSerializer(reviewSet, many = True)
+            serializer = ReviewSerializer(review_set, many = True)
             return Response(serializer.data)
 
-        reviewSet = archive.reviews.filter(publicStatus = True).order_by(kwargs['sortopt'])
-        serializer = ReviewSerializer(reviewset, many = True)
+        review_set = archive.reviews.filter(public_status = True).order_by(kwargs['sortopt'])
+        serializer = ReviewSerializer(review_set, many = True)
 
         return Response(serializer.data)
 
@@ -92,7 +92,7 @@ class SearchedReviewListView(APIView):
         archives = Archive.objects.select_related('user').filter(user__username__iregex = r'.*%s.*' % kwargs['username'])
         review_list = []
         for archive in archives:
-            review = archive.reviews.filter(publicStatus = True).order_by('-hits').first()
+            review = archive.reviews.filter(public_status = True).order_by('-hits').first()
             if review != None:
                 review_list.append(review)
 
@@ -102,6 +102,6 @@ class SearchedReviewListView(APIView):
 # get : 조회수가 가장 높은 3개의 리뷰를 가져온다.
 class ReviewRankingView(APIView):
     def get(self, request, *args, **kwargs):
-        reviewSet = Review.objects.select_related('archive').select_related('archive__user').all().order_by('-hits')
-        serializer = ReviewSerializer(reviewSet[:3], many = True)
+        review_set = Review.objects.select_related('archive').select_related('archive__user').all().order_by('-hits')
+        serializer = ReviewSerializer(review_set[:3], many = True)
         return Response(serializer.data)
