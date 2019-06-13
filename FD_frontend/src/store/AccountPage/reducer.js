@@ -2,6 +2,14 @@ import * as actions from './actions'
 
 const accountReducer = (state=[], action) => {
   switch(action.ype) {
+    case actions.GET_ACCOUNT_SUCCESS:
+      return {
+        ...nextState,
+        email: action.email,
+        password: action.password,
+        confirmpw: action.password,
+        nickname: action.nickname
+      }
     case actions.CHANGE_ACCOUNT_INPUT:
       switch (action.key) {
         case 'email':
@@ -9,26 +17,38 @@ const accountReducer = (state=[], action) => {
             ...nextState,
             email: action.value,
           }
-        case 'restId':
+        case 'password':
           return {
             ...nextState,
-            restId: action.value,
+            password: action.value,
           }
-        case "score":
+        case 'confirmpw':
           return {
               ...nextState,
-              score: action.value
+              confirmpw: action.value
           }
-        case "content":
+        case 'nickname':
           return {
               ...nextState,
-              content: action.value
+              nickname: action.value
           }
-        case "tag":
-          return {
+        case 'publicStatus':
+          if (action.value == 'Public') {
+            return {
               ...nextState,
-              tags: action.value
+              publicStatus: 'True'
+            }
+          }
+          else {
+            return {
+              ...nextState,
+              publicStatus: 'False'
+            }
           }
         default:
           return nextState
         }
+    default:
+      return nextState
+  }
+}

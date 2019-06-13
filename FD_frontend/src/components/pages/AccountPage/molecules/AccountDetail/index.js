@@ -39,7 +39,14 @@ export class AccountDetail extends React.Component {
     let emailText
     let usernameText
     
-    const defaultOption = 'Private'
+    let defaultOption
+    if(this.props.statefunction.AccountPage.pubStatus) {
+      defaultOption = 'Public'
+    }
+    else {
+      defaultOption = 'Private'
+    }
+    
     const options = [
       'Public', 'Private',
     ]
@@ -59,25 +66,25 @@ export class AccountDetail extends React.Component {
     if (this.props.statefunction.AccountPage.email) {
       currentEmail = this.props.statefunction.AccountPage.email
     } else {
-      currentEmail = ''
+      currentEmail = localStorage.getItem('email')
     }
     
-    if (this.props.statefunction.AccountPage.email) {
-      currentPW = this.props.statefunction.AccountPage.email
+    if (this.props.statefunction.AccountPage.password) {
+      currentPW = this.props.statefunction.AccountPage.password
     } else {
-      currentPW = ''
+      currentPW = localStorage.getItem('password')
     }
     
-    if (this.props.statefunction.AccountPage.email) {
-      currentPW2 = this.props.statefunction.AccountPage.email
+    if (this.props.statefunction.AccountPage.confirmpw) {
+      currentPW2 = this.props.statefunction.AccountPage.confirmpw
     } else {
-      currentPW2 = ''
+      currentPW2 = localStorage.getItem('password')
     }
     
-    if (this.props.statefunction.AccountPage.email) {
-      currentNickname = this.props.statefunction.AccountPage.email
+    if (this.props.statefunction.AccountPage.nickname) {
+      currentNickname = this.props.statefunction.AccountPage.nickname
     } else {
-      currentNickname = ''
+      currentNickname = localStorage.getItem('nickname')
     }
     
     const onInputChange = (e) => {
@@ -157,7 +164,7 @@ export class AccountDetail extends React.Component {
             {'     '}
             {usernameText}
           </h4>
-	        <Dropdown options={options} onChange={onCategoryChange} value={defaultOption} placeholder="Select an option" />
+	        <Dropdown name="publicStatus" options={options} onChange={(e) => onInputChange(e)} value={defaultOption} placeholder="Select an option" />
           <h4 style={browncolor}>
             <SubmitButton type="submit" onClick={onSubmit}>
               Submit
