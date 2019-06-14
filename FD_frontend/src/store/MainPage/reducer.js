@@ -1,18 +1,11 @@
 import { initialState } from './selectors'
+import * as actions from './actions'
 
-const MainPage_reducer = (state = initialState, action) => {
-    switch(action.type){
-        case 'GO_TO_SIGNIN':
-            return{
-                ...state,
-            }
-        case 'GO_TO_GUEST':
-            return{
-                ...state,
-            }
-        default:
-            return state
-    }
+const mainReducer = (state, action) => {
+  if (!state) {
+    return initialState
+  }
+  return state
 }
 
-export default MainPage_reducer
+export default mainReducer
