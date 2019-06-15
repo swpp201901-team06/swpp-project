@@ -1,4 +1,5 @@
 import React from 'react'
+import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
 import Main from './index'
 
@@ -15,6 +16,11 @@ describe('Main component test', () => {
   it('renders Main', () => {
     const wrapper = wrap()
     expect(wrapper.length).toEqual(1)
+  })
+
+  it('matches snapshot', () => {
+    const renderedValue = renderer.create(<Main />).toJSON()
+    expect(renderedValue).toMatchSnapshot()
   })
 
   it('renders two MainButton\'s', () => {
