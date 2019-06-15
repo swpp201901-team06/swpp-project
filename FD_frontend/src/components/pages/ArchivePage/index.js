@@ -6,6 +6,7 @@ import PostButton from './atoms/PostButton'
 import ArchiveReviewList from '../../../containers/ArchivePage/ReviewList'
 import ArchiveReviewDetail from '../../../containers/ArchivePage/ReviewDetail'
 import GoogleMap from '../../molecules/GoogleMap'
+import Marker from '../../atoms/Marker'
 
 const SideBarWrapper = styled.div`
   display: flex;
@@ -59,6 +60,7 @@ class ArchivePage extends React.Component {
             {this.props.params.nickname}'s archive page
             <SideBar />
           </SideBarWrapper>
+          
           <PostWrapper>
             <Link to="/post/default">
               <PostButton style={{ margin: '10px' }}>Post Review</PostButton>
