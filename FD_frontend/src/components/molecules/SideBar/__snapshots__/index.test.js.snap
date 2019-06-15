@@ -44,3 +44,18 @@ exports[`SideBar molecule test matches snapshot when logged in 1`] = `
   </a>
 </div>
 `;
+
+exports[`SideBar molecule test matches snapshot when logged out 1`] = `
+<a
+  onClick={[Function]}
+  style={Object {}}
+>
+  <button
+    className="kjvHRn"
+    height={40}
+    type="button"
+  >
+    Sign In
+  </button>
+</a>
+`;

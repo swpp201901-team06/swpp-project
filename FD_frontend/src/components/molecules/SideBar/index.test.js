@@ -23,4 +23,17 @@ describe('SideBar molecule test', () => {
     const renderedValue = renderer.create(<SideBar {...props} />).toJSON()
     expect(renderedValue).toMatchSnapshot()
   })
+
+  it('matches snapshot when logged out', () => {
+    const props = {
+      statefunction: {
+        SignInPage: {
+          nickname: 'test_nickname',
+          isLoggedIn: false,
+        },
+      },
+    }
+    const renderedValue = renderer.create(<SideBar {...props} />).toJSON()
+    expect(renderedValue).toMatchSnapshot()
+  })
 })
