@@ -109,4 +109,25 @@ describe('SideBar molecule test', () => {
     wrapper.find('SideBarButton').at(2).simulate('click')
     expect(onClickMyArchive).toHaveBeenCalledWith(nickname)
   })
+
+  // it('clear localStorage on logout', () => {
+  //   // global.localStorage = {
+  //   //   clear: jest.fn(),
+  //   // }
+  //   // global.location = {
+  //   //   href: 'some_href',
+  //   // }
+  //   const props = {
+  //     statefunction: {
+  //       SignInPage: {
+  //         nickname: 'test_nickname',
+  //         isLoggedIn: true,
+  //       },
+  //     },
+  //     onClickMyArchive,
+  //   }
+  //   const wrapper = wrap(props)
+  //   wrapper.find('SideBarButton').at(1).simulate('click')
+  //   // expect(global.localStorage.clear).toHaveBeenCalled()
+  // })
 })
