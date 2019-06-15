@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
 import Main from './index'
 
-describe('Main component test', () => {
+describe('Main molecule test', () => {
   const onClickSignIn = jest.fn()
   const onClickGuest = jest.fn()
   const wrap = (props = {}) => shallow(<Main {...props} />)

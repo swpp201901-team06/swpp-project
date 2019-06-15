@@ -1,20 +1,26 @@
 import React from 'react'
+import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
-import SideBar from '.'
+import { SideBar } from './index'
 
-const wrap = (props = {}) => shallow(<SideBar {...props} />)
+describe('SideBar molecule test', () => {
+  const onClickMyArchive = jest.fn()
+  const wrap = (props = {}) => shallow(<SideBar {...props} />)
 
-it('placeholder test', () => {
-  expect(true).toBe(true)
-})
-/*
-it('renders children when passed in', () => {
-  const wrapper = wrap({ children: 'test' })
-  expect(wrapper.contains('test')).toBe(true)
-})
+  beforeEach(() => {
+    onClickMyArchive.mockClear()
+  })
 
-it('renders props when passed in', () => {
-  const wrapper = wrap({ id: 'foo' })
-  expect(wrapper.find({ id: 'foo' })).toHaveLength(1)
+  it('matches snapshot when logged in', () => {
+    const props = {
+      statefunction: {
+        SignInPage: {
+          nickname: 'test_nickname',
+          isLoggedIn: true,
+        },
+      },
+    }
+    const renderedValue = renderer.create(<SideBar {...props} />).toJSON()
+    expect(renderedValue).toMatchSnapshot()
+  })
 })
-*/
