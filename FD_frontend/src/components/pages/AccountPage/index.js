@@ -18,20 +18,19 @@ const title = {
 };
 
 
-const AccountPage = () => {
-  return (
-    <div>
-      <Wrapper>
-        <h1 style={title}>
-          {this.props.params.nickname}
-          's account page
-        </h1>
-        <AccountDetail>
-          {this.props.params.nickname}
-        </AccountDetail>
-      </Wrapper>
-    </div>
-  )
+class AccountPage extends React.Component {
+  render() {
+    return (
+      <div>
+          <h1>
+            {this.props.params.nickname}'s account page
+          </h1>
+          <AccountDetail>
+            {this.props.params.nickname}
+          </AccountDetail>
+      </div>
+    )
+  }
 }
 
 export default AccountPage

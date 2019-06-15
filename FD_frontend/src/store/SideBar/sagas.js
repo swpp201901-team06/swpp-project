@@ -12,6 +12,15 @@ export function* watchGotoArchiveButton() {
   }
 }
 
+export function* watchGotoAccountButton() {
+  while (true) {
+    const { nickname } = yield take(actions.GOTO_ACCOUNT_BUTTON)
+    const accountLink = `/${nickname}/account/`
+    yield put(push(accountLink))
+    window.location.reload()
+  }
+}
+
 export function* watchLogOutButton() {
   while (true) {
     const { nickname } = yield take(actions.LOGOUT)
@@ -21,5 +30,6 @@ export function* watchLogOutButton() {
 
 export default function* () {
   yield fork(watchGotoArchiveButton)
+  yield fork(watchGotoAccountButton)
   yield fork(watchLogOutButton)
 }

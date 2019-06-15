@@ -24,11 +24,8 @@ export class AccountDetail extends React.Component {
   }
   
   componentDidMount() {
+    console.log(this.props.children)
     this.props.onAccountLoad(this.props.children)
-  }
-
-  componentWillUnmount() {
-    this.props.onUnmount()
   }
   
   render() {
@@ -38,6 +35,10 @@ export class AccountDetail extends React.Component {
     let nickname
     let emailText
     let usernameText
+    let currentEmail
+    let currentPW
+    let currentPW2
+    let currentNickname
     
     let defaultOption
     if(this.props.statefunction.AccountPage.pubStatus) {
@@ -66,33 +67,33 @@ export class AccountDetail extends React.Component {
     if (this.props.statefunction.AccountPage.email) {
       currentEmail = this.props.statefunction.AccountPage.email
     } else {
-      currentEmail = localStorage.getItem('email')
+      currentEmail = JSON.parse(localStorage.getItem('email'))
     }
     
     if (this.props.statefunction.AccountPage.password) {
       currentPW = this.props.statefunction.AccountPage.password
     } else {
-      currentPW = localStorage.getItem('password')
+      currentPW = JSON.parse(localStorage.getItem('password'))
     }
     
     if (this.props.statefunction.AccountPage.confirmpw) {
       currentPW2 = this.props.statefunction.AccountPage.confirmpw
     } else {
-      currentPW2 = localStorage.getItem('password')
+      currentPW2 = JSON.parse(localStorage.getItem('password'))
     }
     
     if (this.props.statefunction.AccountPage.nickname) {
       currentNickname = this.props.statefunction.AccountPage.nickname
     } else {
-      currentNickname = localStorage.getItem('nickname')
+      currentNickname = JSON.parse(localStorage.getItem('nickname'))
     }
     
     const onInputChange = (e) => {
-      this.props.onChangeInput(e.target.name, e.target.value)
+      this.props.onChangeAccountInput(e.target.name, e.target.value)
     }
 
     const onSubmit = () => {
-      onAccountChange(email.value, pw.value, confirmpw.value, nickname.value)
+      this.props.onAccountChange(this.refs.email.value, this.refs.password.value, this.refs.confirmpw.value, this.refs.nickname.value, this.props.statefunction.AccountPage.pubStatus)
     }
     const handleEmailChange = () => {
       if (email.value) {
@@ -118,7 +119,6 @@ export class AccountDetail extends React.Component {
               ref="email"
               style={{paddingleft:"100px"}}
             />
-            <input ref={node => { email = node }} onChange={handleEmailChange} />
             {'     '}
             {emailText}
           </h4>
@@ -133,7 +133,6 @@ export class AccountDetail extends React.Component {
               ref="password"
               style={{paddingleft:"100px"}}
             />
-            <input type="password" ref={node => { pw = node }} />
           </h4>
 
           <h4 style={browncolor}>
@@ -147,7 +146,6 @@ export class AccountDetail extends React.Component {
               ref="confirmpw"
               style={{paddingleft:"100px"}}
             />
-            <input type="password" ref={node => { confirmpw = node }} />
           </h4>
 
           <h4 style={browncolor}>
@@ -160,7 +158,6 @@ export class AccountDetail extends React.Component {
               ref="nickname"
               style={{paddingleft:"100px"}}
             />
-            <input ref={node => { nickname = node }} onChange={handleNicknameChange} />
             {'     '}
             {usernameText}
           </h4>

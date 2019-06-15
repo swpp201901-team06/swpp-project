@@ -1,7 +1,8 @@
 import * as actions from './actions'
 
 const accountReducer = (state=[], action) => {
-  switch(action.ype) {
+  let nextState = state
+  switch(action.type) {
     case actions.GET_ACCOUNT_SUCCESS:
       return {
         ...nextState,
@@ -52,3 +53,5 @@ const accountReducer = (state=[], action) => {
       return nextState
   }
 }
+
+export default accountReducer

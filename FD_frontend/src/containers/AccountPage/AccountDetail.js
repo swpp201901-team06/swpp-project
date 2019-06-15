@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import { AccountDetail } from '../../components/pages/AccountPage/molecules/AccountPage'
+import { AccountDetail } from '../../components/pages/AccountPage/molecules/AccountDetail'
 import { duplicateCheck } from '../../store/SignUpPage/actions'
-import { modifyAccount, changeAccountInput } from '../../store/AccountPage/actions'
+import { getAccount, modifyAccount, changeAccountInput } from '../../store/AccountPage/actions'
 
 const mapStateToProps = (state) => { 
     return {
@@ -17,8 +17,8 @@ const mapDispatchToProps = (dispatch) => {
     	onDuplicateCheck: (key, value) => {
         	dispatch(duplicateCheck(key, value))
     	},
-    	onSignUpSubmit: (email, pw, confirmpw, nickname) => {
-        	dispatch(modifyAccount(email, pw, confirmpw, nickname))
+    	onAccountChange: (email, pw, confirmpw, nickname, publicStatus) => {
+        	dispatch(modifyAccount(email, pw, confirmpw, nickname, publicStatus))
     	},
       onChangeAccountInput: (key, value) => {
           dispatch(changeAccountInput(key, value))

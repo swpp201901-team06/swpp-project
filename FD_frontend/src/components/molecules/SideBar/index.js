@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 import { font, palette } from 'styled-theme'
 import SideBarButton from '../../atoms/SideBarButton'
 
-export const SideBar = ({ statefunction, onLogout, onClickMyArchive }) => {
+export const SideBar = ({ statefunction, onLogout, onClickMyArchive, onClickMyAccount }) => {
 	const onClickLogout = () => {
 		window.localStorage.clear()
 		window.location.href = '/'
@@ -22,10 +22,11 @@ export const SideBar = ({ statefunction, onLogout, onClickMyArchive }) => {
       >
         My Archive
       </SideBarButton>
-
-      <Link to={myAccountUrl}>
-        <SideBarButton>My Account</SideBarButton>
-      </Link>
+      <SideBarButton
+        onClick={() => { onClickMyAccount(statefunction.SignInPage.nickname) }}
+      >
+        My Account
+      </SideBarButton>
     </div>
 	)
   const notLoggedInDisplay = (
