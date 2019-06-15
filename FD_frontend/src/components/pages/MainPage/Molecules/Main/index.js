@@ -5,9 +5,9 @@ const margin = {
   margin: 10,
 }
 
-const Main = ({ statefunction, onClickSignin, onClickGuest }) => {
+const Main = ({ statefunction, onClickSignIn, onClickGuest }) => {
   const onSignin = () => {
-    onClickSignin()
+    onClickSignIn()
   }
   const onGuest = () => {
     onClickGuest()

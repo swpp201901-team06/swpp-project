@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Main from '../../components/pages/MainPage/Molecules/Main/index'
-import { goToSignin, goToGuest } from '../../store/MainPage/actions'
+import { gotoSignIn, gotoGuest } from '../../store/MainPage/actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -10,11 +10,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onClickSignin: () => {
-      dispatch(goToSignin())
+    onClickSignIn: () => {
+      dispatch(gotoSignIn())
     },
     onClickGuest: () => {
-      dispatch(goToGuest())
+      dispatch(gotoGuest())
     },
   }
 }
