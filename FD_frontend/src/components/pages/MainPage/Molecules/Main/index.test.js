@@ -13,14 +13,14 @@ describe('Main component test', () => {
     onClickGuest.mockReset()
   })
 
-  it('renders Main', () => {
-    const wrapper = wrap()
-    expect(wrapper.length).toEqual(1)
-  })
-
   it('matches snapshot', () => {
     const renderedValue = renderer.create(<Main />).toJSON()
     expect(renderedValue).toMatchSnapshot()
+  })
+
+  it('renders Main', () => {
+    const wrapper = wrap()
+    expect(wrapper.length).toEqual(1)
   })
 
   it('renders two MainButton\'s', () => {

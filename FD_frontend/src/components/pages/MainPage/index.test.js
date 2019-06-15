@@ -10,6 +10,11 @@ describe('MainPage component test', () => {
     wrapper = shallow(<MainPage />)
   })
 
+  it('matches snapshot', () => {
+    const MainPageComponent = wrapper
+    expect(MainPageComponent).toMatchSnapshot()
+  })
+
   it('renders MainPage', () => {
     expect(wrapper.length).toEqual(1)
   })
