@@ -23,6 +23,7 @@ const sideBarReducer = (state, action) => {
       localStorage.removeItem('email')
       localStorage.removeItem('nickname')
       localStorage.removeItem('password')
+      localStorage.removeItem('id')
       nextState = {
         ...nextState,
         email: null,

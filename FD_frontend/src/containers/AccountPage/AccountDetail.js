@@ -11,8 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      onAccountLoad: (key) => {
-          dispatch(getAccount(key))
+      onAccountLoad: () => {
+          dispatch(getAccount())
       },
     	onDuplicateCheck: (key, value) => {
         	dispatch(duplicateCheck(key, value))

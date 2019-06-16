@@ -9,8 +9,8 @@ const pwChangeUrl = 'http://127.0.0.1:8000/account/password/change/'
 
 export function* modifyAccount({ email, pw, confirmpw, nickname, publicStatus }) {
   try {
-    const currentNickname = JSON.parse(localStorage.getItem('nickname'))
-    const response = yield callUrl('PUT', userUrl+currentNickname, { username: nickname, email: email, publicStatus: publicStatus })
+    const Id = JSON.parse(localStorage.getItem('id'))
+    const response = yield callUrl('PUT', userUrl+Id, { username: nickname, email: email, publicStatus: publicStatus })
     
     if(response.ok){
       const password = JSON.parse(localStorage.getItem('password'))
@@ -27,9 +27,10 @@ export function* modifyAccount({ email, pw, confirmpw, nickname, publicStatus })
   }
 }
 
-export function* getAccount({ key }) {
+export function* getAccount() {
   try {
-    const response = yield callUrl('GET', userUrl+key)
+    const Id = JSON.parse(localStorage.getItem('id'))
+    const response = yield callUrl('GET', userUrl+Id)
     if(response.ok){
       console.log('response is ok')
       const password = JSON.parse(localStorage.getItem('password'))

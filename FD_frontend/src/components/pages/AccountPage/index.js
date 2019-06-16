@@ -25,9 +25,7 @@ class AccountPage extends React.Component {
           <h1>
             {this.props.params.nickname}'s account page
           </h1>
-          <AccountDetail>
-            {this.props.params.nickname}
-          </AccountDetail>
+          <AccountDetail/>
       </div>
     )
   }

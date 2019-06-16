@@ -25,7 +25,7 @@ export class AccountDetail extends React.Component {
   
   componentDidMount() {
     console.log(this.props.children)
-    this.props.onAccountLoad(this.props.children)
+    this.props.onAccountLoad()
   }
   
   render() {

@@ -31,9 +31,8 @@ export const getAccountSuccess = (username, email, password, publicStatus) => {
   }
 }
 
-export const getAccount = (key) => {
+export const getAccount = () => {
   return {
-    type: GET_ACCOUNT_REQUEST,
-    key
+    type: GET_ACCOUNT_REQUEST
   }
 }
