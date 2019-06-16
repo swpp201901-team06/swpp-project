@@ -1,4 +1,4 @@
-import * as actions from '../actions'
+import * as actions from './actions'
 
 const sideBarReducer = (state, action) => {
   let nextState = state
@@ -12,9 +12,13 @@ const sideBarReducer = (state, action) => {
       isLoggedIn: localStorage.hasOwnProperty('token'),
     }
     if (nextState.isLoggedIn) {
-      nextState.token = JSON.parse(localStorage.getItem('token'))
-      nextState.email = JSON.parse(localStorage.getItem('email'))
-      nextState.nickname = JSON.parse(localStorage.getItem('nickname'))
+      nextState = {
+        ...nextState,
+        token: JSON.parse(localStorage.getItem('token')),
+        email: JSON.parse(localStorage.getItem('email')),
+        password: JSON.parse(localStorage.getItem('password')),
+        nickname: JSON.parse(localStorage.getItem('nickname')),
+      }
     }
   }
   switch (action.type) {
@@ -30,6 +34,7 @@ const sideBarReducer = (state, action) => {
         token: null,
         nickname: null,
         password: null,
+        signInFailed: false,
         isLoggedIn: false,
       }
       return nextState

@@ -11,14 +11,11 @@ const Wrapper = styled.div`
 
 class SearchResultList extends React.Component {
   componentDidMount() {
-    console.log('SearchResultList componentDidMount')
-    console.log(this.props)
     this.props.requestResults(this.props.children[0], this.props.children[1])
   }
 
   render() {
     const searchstate = this.props.statefunction.SearchPage.results
-    console.log(this.props.statefunction.SearchPage)
 
     return (
       <div>
