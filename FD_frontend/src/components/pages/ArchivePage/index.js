@@ -7,7 +7,7 @@ import ArchiveReviewList from '../../../containers/ArchivePage/ReviewList'
 import ArchiveReviewDetail from '../../../containers/ArchivePage/ReviewDetail'
 import GoogleMap from '../../atoms/GoogleMap'
 import Marker from '../../atoms/Marker'
-import SearchBox from '../../atoms/SearchBox';
+import Search from '../../molecules/Searchbox'
 
 const SideBarWrapper = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
   justify-content: space-around;
   width: 100%;
   height: 100%;
-  flex-direction: column;
+  flex-direction: row;
   margin-top: -2em
   margin-left: 8em
 `
@@ -45,6 +45,7 @@ const logo = {
   width: 100,
 }
 
+
 // const align = {
 //   alignItems : center
 // }
@@ -61,22 +62,21 @@ class ArchivePage extends React.Component {
             {this.props.params.nickname}'s archive page
             <SideBar />
           </SideBarWrapper>
-          
           <PostWrapper>
-            <Link to="/post/default">
-              <PostButton style={{ margin: '10px' }}>Post Review</PostButton>
-            </Link>
-          </PostWrapper>
+              <Link to="/post/default">
+                <PostButton style={{ margin: '10px' }}>Post Review</PostButton>
+              </Link>
+            </PostWrapper>
           <Wrapper>
             <ArchiveReviewList>
               {this.props.params.nickname}
             </ArchiveReviewList>
             <ArchiveReviewDetail />
           </Wrapper>
-
-          <GoogleMap defaultZoom={10}
-          defaultCenter={[34.0522, -118.2437]}/>
-          <SearchBox />
+          
+          <div style={{ height: '100vh', width: '100%' }}>
+            <Search />
+          </div>
         </div>
       )
     }
@@ -95,9 +95,11 @@ class ArchivePage extends React.Component {
           <ArchiveReviewDetail />
           <GoogleMap />
         </Wrapper>
+
       </div>
     )
   }
 }
 
 export default ArchivePage
+//
