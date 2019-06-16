@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-//position: absolute;
+
 const Wrapper = styled.div`
-  
+  position: absolute;
   top: 50%;
   left: 50%;
   width: 18px;

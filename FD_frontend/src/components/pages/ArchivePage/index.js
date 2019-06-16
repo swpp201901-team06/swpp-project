@@ -5,8 +5,9 @@ import { Link } from 'react-router'
 import PostButton from './atoms/PostButton'
 import ArchiveReviewList from '../../../containers/ArchivePage/ReviewList'
 import ArchiveReviewDetail from '../../../containers/ArchivePage/ReviewDetail'
-import GoogleMap from '../../molecules/GoogleMap'
+import GoogleMap from '../../atoms/GoogleMap'
 import Marker from '../../atoms/Marker'
+import SearchBox from '../../atoms/SearchBox';
 
 const SideBarWrapper = styled.div`
   display: flex;
@@ -73,7 +74,9 @@ class ArchivePage extends React.Component {
             <ArchiveReviewDetail />
           </Wrapper>
 
-          <GoogleMap />
+          <GoogleMap defaultZoom={10}
+          defaultCenter={[34.0522, -118.2437]}/>
+          <SearchBox />
         </div>
       )
     }
