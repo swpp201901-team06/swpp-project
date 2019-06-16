@@ -12,15 +12,14 @@ FD_backend/accounts/__pycache__/
 FD_backend/restaurant/__pycache__/
 FD_backend/review/__pycache__/
 FD_backend/tag/__pycache__/
-FD_backend/api/__pycache__/
 
-FD_backend/accounts/migrations/
 FD_backend/archive/migrations/
-FD_backend/ranking/migrations/
+FD_backend/user/migrations/
+FD_backend/accounts/migrations/
 FD_backend/restaurant/migrations/
 FD_backend/review/migrations/
 FD_backend/tag/migrations/
-FD_backend/user/migrations/
+
 
 FD_backend/.coverage/
 FD_backend/photo/
