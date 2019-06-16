@@ -7,7 +7,7 @@ import { getReviewDetail } from '../ArchivePage/actions'
 const backendUrl = 'http://127.0.0.1:8000/'
 const reviewListUrl = `${backendUrl}review/list`
 const reviewDetailUrl = `${backendUrl}review/detail/`
-const restListUrl = `${backendUrl}restaurant/list/`
+const restListUrl = `${backendUrl}restaurant/list`
 
 export function* getPostReviewDetailSaga({ reviewId }) {
   try {

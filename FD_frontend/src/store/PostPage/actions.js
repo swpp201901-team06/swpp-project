@@ -96,6 +96,11 @@ export const clearState = () => {
 }
 
 export const confirmRest = (restName, address, latitude, longitude) => {
+  console.log('confirmRest action')
+  console.log(restName)
+  console.log(address)
+  console.log(latitude)
+  console.log(longitude)
   return {
     type: CONFIRM_REST_REQUEST,
     name: restName,
@@ -106,6 +111,8 @@ export const confirmRest = (restName, address, latitude, longitude) => {
 }
 
 export const confirmRestSuccess = (restId) => {
+  console.log('confirmRestSuccess action')
+  console.log(restId)
   return {
     type: CONFIRM_REST_SUCCESS,
     restId,
@@ -113,6 +120,7 @@ export const confirmRestSuccess = (restId) => {
 }
 
 export const confirmRestFailed = () => {
+  console.log('confirmRestFailed action')
   return {
     type: CONFIRM_REST_FAILED,
   }
