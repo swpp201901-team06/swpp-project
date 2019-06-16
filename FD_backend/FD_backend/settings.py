@@ -157,10 +157,10 @@ LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/api/accounts/logout/'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/api/accounts/login/'
 
 AUTHENTICATION_BACKENDS = (
+    "allauth.account.auth_backends.AuthenticationBackend",
 
     "django.contrib.auth.backends.ModelBackend",
 
-    "allauth.account.auth_backends.AuthenticationBackend",
 
 )
 

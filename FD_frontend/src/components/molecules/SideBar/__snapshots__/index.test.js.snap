@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SideBar molecule test matches snapshot when logged in 1`] = `
+<div>
+  <a
+    onClick={[Function]}
+    style={Object {}}
+  >
+    <button
+      className="kjvHRn"
+      height={40}
+      type="button"
+    >
+      Guest Page
+    </button>
+  </a>
+  <button
+    className="kjvHRn"
+    height={40}
+    onClick={[Function]}
+    type="submit"
+  >
+    Logout
+  </button>
+  <button
+    className="kjvHRn"
+    height={40}
+    onClick={[Function]}
+    type="button"
+  >
+    My Archive
+  </button>
+  <a
+    onClick={[Function]}
+    style={Object {}}
+  >
+    <button
+      className="kjvHRn"
+      height={40}
+      type="button"
+    >
+      My Account
+    </button>
+  </a>
+</div>
+`;
+
+exports[`SideBar molecule test matches snapshot when logged out 1`] = `
+<a
+  onClick={[Function]}
+  style={Object {}}
+>
+  <button
+    className="kjvHRn"
+    height={40}
+    type="button"
+  >
+    Sign In
+  </button>
+</a>
+`;

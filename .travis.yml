@@ -12,21 +12,18 @@ matrix:
       script:
         - npm test -- --coverage
 
-    - language: python        
+    - language: python
       before_script:
         - cd FD_backend
         - find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
         - find . -path "*/migrations/*.pyc" -delete
         - python3 manage.py makemigrations
+        - python3 manage.py makemigrations user
         - python3 manage.py migrate
       install:
-        - pip install -r requirements.txt              
+        - pip install -r requirements.txt
       script :
         - python3 manage.py runserver&
         - sleep 3
         - coverage run --source='.' manage.py test
         - coverage report
-
-          
-
-

@@ -28,17 +28,17 @@ class GetUserNameView(APIView):
 # email 중복확인
 class UserEmailExistView(generics.RetrieveAPIView):
     def get(self, request, email):
-        user = models.CustomUser.objects.filter(email = email)
-        if user:
-            return Response("exist")
-        else:
-            return Response("not exist")
+        try:
+            user = models.CustomUser.objects.get(email = email)
+            return Response({"exist" : "true", "id" : user.id})
+        except:
+            return Response({"exist" : "false"})
 
 # 유저 이름 중복 확인
 class UserNameExistView(generics.RetrieveAPIView):
     def get(self, request, username):
-        user = models.CustomUser.objects.filter(username = username)
-        if user:
-            return Response("exist")
-        else:
-            return Response("not exist")
+        try:
+            user = models.CustomUser.objects.get(username = username)
+            return Response({"exist" : "true", "id" : user.id})
+        except:
+            return Response({"exist" : "false"})

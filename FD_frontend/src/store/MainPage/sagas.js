@@ -1,17 +1,17 @@
-import { take, call, fork } from 'redux-saga/effects'
-import api from 'services/api'
+import { take, fork } from 'redux-saga/effects'
 import { baseHistory } from '../../index'
+import * as actions from './actions'
 
 export function* watchGoToSignin() {
   while (true) {
-    yield take('GO_TO_SIGNIN')
+    yield take(actions.GOTO_SIGN_IN)
     baseHistory.push('/signin')
   }
 }
 
 export function* watchGoToGuest() {
   while (true) {
-    yield take('GO_TO_GUEST')
+    yield take(actions.GOTO_GUEST)
     baseHistory.push('/guest')
   }
 }
