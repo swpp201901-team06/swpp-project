@@ -39,7 +39,7 @@ export const getPostReviewDetailFailed = () => {
 export const uploadImage = (file) => {
   return {
     type: UPLOAD_IMAGE,
-    file
+    file,
   }
 }
 
@@ -47,7 +47,7 @@ export const changePublicStatus = (publicStatus) => {
   return {
     type: CHANGE_PUBLIC_STATUS,
     publicStatus,
-	}
+  }
 }
 
 export const postReview = (reviewId, nickname, restId, eatWhen, tags, score,
@@ -70,7 +70,7 @@ export const changeInput = (key, value) => {
   return {
     type: CHANGE_INPUT,
     key,
-    value
+    value,
   }
 }
 

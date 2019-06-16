@@ -14,7 +14,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(changePublicStatus(pubStatus))
     },
     onLoad: (reviewId) => {
-      
       dispatch(getPostReviewDetail(reviewId))
     },
     onChangeInput: (key, value) => {
@@ -27,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     onUnmount: () => {
       dispatch(clearState())
-    }
+    },
   }
 }
 

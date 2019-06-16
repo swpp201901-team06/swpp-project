@@ -3,7 +3,7 @@ import * as actions from './actions'
 const postReducer = (state, action) => {
   let nextState = state
   const isLoggedIn = localStorage.hasOwnProperty('token')
-  let nickname = null
+  const nickname = null
   if (!nextState) {
     nextState = {
       nickname,
@@ -24,6 +24,7 @@ const postReducer = (state, action) => {
     nextState.nickname = JSON.parse(localStorage.getItem('nickname'))
   }
 
+  let bPublicStatus
   switch (action.type) {
     case actions.GET_POST_REVIEW_DETAIL_REQUEST:
       nextState.isEdit = true
@@ -31,22 +32,20 @@ const postReducer = (state, action) => {
       return nextState
 
     case actions.GET_POST_REVIEW_DETAIL_SUCCESS:
-      let bPublicStatus
-      if(action.publicStatus === false){
+      if (action.publicStatus === false) {
         bPublicStatus = 'False'
-      }
-      else{
+      } else {
         bPublicStatus = 'True'
       }
       return {
-              ...nextState,
-              restId: action.restId,
-              tags: action.tags,
-              score: action.score,
-              photoUrl: action.photo,
-              publicStatus: bPublicStatus,
-              eatWhen: action.eatWhen,
-              content: action.content
+        ...nextState,
+        restId: action.restId,
+        tags: action.tags,
+        score: action.score,
+        photoUrl: action.photo,
+        publicStatus: bPublicStatus,
+        eatWhen: action.eatWhen,
+        content: action.content,
       }
 
     case actions.GET_POST_REVIEW_DETAIL_FAILED:
@@ -70,24 +69,24 @@ const postReducer = (state, action) => {
             ...nextState,
             restId: action.value,
           }
-        case "score":
+        case 'score':
           return {
-              ...nextState,
-              score: action.value
+            ...nextState,
+            score: action.value,
           }
-        case "content":
+        case 'content':
           return {
-              ...nextState,
-              content: action.value
+            ...nextState,
+            content: action.value,
           }
-        case "tag":
+        case 'tag':
           return {
-              ...nextState,
-              tags: action.value
+            ...nextState,
+            tags: action.value,
           }
         default:
           return nextState
-        }
+      }
     case actions.POST_REVIEW_REQUEST:
       return nextState
 
@@ -97,19 +96,19 @@ const postReducer = (state, action) => {
     case actions.POST_REVIEW_FAILED:
       return nextState
 
-		case actions.CHANGE_PUBLIC_STATUS:
-      if(action.publicStatus == 'True'){
-			  return {
-							  ...nextState,
-							  publicStatus: 'False'
-			  }
-      }
-      else if(action.publicStatus == 'False'){
+    case actions.CHANGE_PUBLIC_STATUS:
+      if (action.publicStatus === 'True') {
         return {
-                ...nextState,
-                publicStatus: 'True'
+          ...nextState,
+          publicStatus: 'False',
+        }
+      } else if (action.publicStatus === 'False') {
+        return {
+          ...nextState,
+          publicStatus: 'True',
         }
       }
+      return nextState
     case actions.CLEAR_STATE:
       return {}
     default:

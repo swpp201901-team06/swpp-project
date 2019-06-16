@@ -49,7 +49,6 @@ class ReviewPostDetail extends React.Component {
 
   render() {
     let publicStatusText
-
     let imgUrlText
     let dateText
     let scoreText
@@ -57,7 +56,8 @@ class ReviewPostDetail extends React.Component {
     let tagText
     let restIdText
 
-    if (this.props.statefunction.PostPage.publicStatus && this.props.statefunction.PostPage.publicStatus == 'True') {
+    if (this.props.statefunction.PostPage.publicStatus &&
+      this.props.statefunction.PostPage.publicStatus === 'True') {
       publicStatusText = 'Public'
     } else {
       publicStatusText = 'Private'
@@ -112,7 +112,8 @@ class ReviewPostDetail extends React.Component {
     }
 
     const onClickPostSubmit = () => {
-      if (this.refs.restId.value && this.refs.date.value && this.refs.score.value && this.refs.content.value) {
+      if (this.refs.restId.value && this.refs.date.value && this.refs.score.value &&
+        this.refs.content.value) {
         this.props.onPostSubmit(
           this.props.children,
           this.props.statefunction.PostPage.nickname,
