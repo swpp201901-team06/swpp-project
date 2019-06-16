@@ -28,7 +28,7 @@ class ReviewTests(TestCase):
             "public_status": False,
             "score": 3,
             "tags": "new tag1, new tag2",
-            "restaurantId": 1
+            "restaurant_id": 1
         }
 
         self.client.login(email = email, password = "testpassword!@#$")
@@ -51,7 +51,7 @@ class ReviewTests(TestCase):
             "eat_when": "2019-01-02T02:00:00Z",
             "public_status": False,
             "score": 5,
-            "restaurantId": 2,
+            "restaurant_id": 2,
             "tags": "new tag1, new tag2",
             "id": 1
         }
