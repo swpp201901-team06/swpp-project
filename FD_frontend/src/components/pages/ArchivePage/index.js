@@ -74,9 +74,9 @@ class ArchivePage extends React.Component {
             <ArchiveReviewDetail />
           </Wrapper>
           
-          <div style={{ height: '100vh', width: '100%' }}>
-            <Search />
-          </div>
+         
+          <Search />
+          
         </div>
       )
     }

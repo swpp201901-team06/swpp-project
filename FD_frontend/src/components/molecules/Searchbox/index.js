@@ -10,6 +10,10 @@ import SearchBox from '../../atoms/SearchBox';
 
 // consts
 //import LOS_ANGELES_CENTER from '../const/la_center';
+const logo = {
+  height: 40,
+  width: 100,
+}
 
 class Search extends Component {
   constructor(props) {
