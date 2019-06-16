@@ -5,4 +5,4 @@ from archive.models import Archive
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CustomUser
-        fields = ('username', 'email', 'publicStatus')
+        fields = ('username', 'email', 'public_status')
