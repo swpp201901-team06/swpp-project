@@ -8,13 +8,12 @@ const backendUrl = 'http://127.0.0.1:8000/'
 const reviewListUrl = `${backendUrl}review/list`
 const reviewDetailUrl = `${backendUrl}review/detail/`
 
-export function* getPostReviewDetail({ reviewId }) {
+export function* getPostReviewDetailSaga({ reviewId }) {
   try {
     if (reviewId === 'default') { // post new review
       yield put(actions.getPostReviewDetailSuccess(null, null, null, null,
         null, null, false))
-    }
-    else { // edit existing review
+    } else { // edit existing review
       const reviewDetail = yield callUrl('GET', `${reviewDetailUrl}${reviewId}`)
       const { restaurantId, eatWhen, tags, score, content, photo, publicStatus }
         = reviewDetail
@@ -29,10 +28,10 @@ export function* getPostReviewDetail({ reviewId }) {
 }
 
 export function* watchGetPostReviewDetailRequest() {
-  yield takeEvery(actions.GET_POST_REVIEW_DETAIL_REQUEST, getPostReviewDetail)
+  yield takeEvery(actions.GET_POST_REVIEW_DETAIL_REQUEST, getPostReviewDetailSaga)
 }
 
-export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
+export function* postReviewSaga({ reviewId, nickname, restId, eatWhen, tags, score,
   content, photo, publicStatus }) {
   try {
     const data = {
@@ -80,10 +79,28 @@ export function* postReview({ reviewId, nickname, restId, eatWhen, tags, score,
 }
 
 export function* watchPostMeetingRequest() {
-  yield takeEvery(actions.POST_REVIEW_REQUEST, postReview)
+  yield takeEvery(actions.POST_REVIEW_REQUEST, postReviewSaga)
+}
+
+// TODO
+export function* confirmRestSaga({ rName, rAddress, latitude, longitude }) {
+  try {
+    console.log('confirmRestSaga')
+    console.log(rName)
+    console.log(rAddress)
+    console.log(latitude)
+    console.log(longitude)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export function* watchConfirmRestRequest() {
+  yield takeEvery(actions.CONFIRM_REST_REQUEST, confirmRestSaga)
 }
 
 export default function* () {
   yield fork(watchGetPostReviewDetailRequest)
   yield fork(watchPostMeetingRequest)
+  yield fork(watchConfirmRestRequest)
 }

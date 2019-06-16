@@ -109,8 +109,25 @@ const postReducer = (state, action) => {
         }
       }
       return nextState
+
     case actions.CLEAR_STATE:
       return {}
+
+    case actions.CONFIRM_REST_REQUEST:
+      return nextState
+
+    case actions.CONFIRM_REST_SUCCESS:
+      return {
+        ...nextState,
+        restId: action.restId,
+      }
+
+    case actions.CONFIRM_REST_FAILED:
+      return {
+        ...nextState,
+        restId: null,
+      }
+
     default:
       return nextState
   }
