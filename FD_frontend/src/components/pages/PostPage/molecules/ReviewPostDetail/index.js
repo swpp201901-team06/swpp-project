@@ -64,16 +64,6 @@ class ReviewPostDetail extends React.Component {
       publicStatusText = 'Private'
     }
 
-    const onInputChange = (e) => {
-      console.log('ReviewPostDetail onInputChange')
-      console.log(e)
-      console.log(typeof e.target)
-      console.log(e.target)
-      console.log(e.target.name)
-      console.log(e.target.value)
-      this.props.onChangeInput(e.target.name, e.target.value)
-    }
-
     if (this.props.statefunction.PostPage.eatWhen) {
       dateText = this.props.statefunction.PostPage.eatWhen
     } else {
@@ -110,12 +100,30 @@ class ReviewPostDetail extends React.Component {
       imgUrlText = ''
     }
 
+    const onInputChange = (e) => {
+      console.log('ReviewPostDetail onInputChange')
+      console.log(e)
+      console.log(typeof e.target)
+      console.log(e.target)
+      console.log(e.target.name)
+      console.log(e.target.value)
+      this.props.onChangeInput(e.target.name, e.target.value)
+    }
+
     const onPubStatusChange = () => {
       if (this.props.statefunction.PostPage.publicStatus) {
         this.props.PubStatusChange(this.props.statefunction.PostPage.publicStatus)
       } else {
         this.props.PubStatusChange('False')
       }
+    }
+
+    const onClickRestConfirm = () => {
+      const restName = 'some_restname'
+      const address = 'some_addr'
+      const latitude = 1.0
+      const longitude = 2.0
+      this.props.onConfirmRest(restName, address, latitude, longitude)
     }
 
     const onClickPostSubmit = () => {
@@ -152,10 +160,12 @@ class ReviewPostDetail extends React.Component {
             Restaurant ID{' '}
             <input
               value={restIdText}
-              onChange={(e) => onInputChange(e)}
               name="restId"
               ref="restId"
             />
+            <RestConfirmButton onClick={onClickRestConfirm}>
+              Confirm
+            </RestConfirmButton>
           </div>
           <RowWrapper>
             Image{' '}
