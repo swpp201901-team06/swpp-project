@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'tb!=hs2+y$a0pq5=8pxfriu5&heskgk3ueeyl-940n-=&x7oyx'
+SECRET_KEY = '!)n5ub0qljn+2ojwjy&l_1lz(=@w)abg7t$jfnpyq@3z9$g980'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
 
+
     'rest_framework.authtoken',
     'rest_framework',
     'rest_auth',
@@ -36,12 +37,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'rest_auth.registration',
 
-    'users',
-    'Account',
-    'Archive',
-    'Restaurant',
-    'Review',
-    'Tag',
+    'user',
+    'accounts',
+    'archive',
+    'restaurant',
+    'review',
+    'tag',
 
     'hitcount',
     'tagging.apps.TaggingConfig',
@@ -52,11 +53,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SITE_ID = 1
 
-AUTH_USER_MODEL = 'users.CustomUser'
+AUTH_USER_MODEL = 'user.CustomUser'
 
 
 REST_AUTH_SERIALIZERS = {
-'USER_DETAILS_SERIALIZER':'users.serializers.UserSerializer',
+'USER_DETAILS_SERIALIZER':'user.serializers.UserSerializer',
 }
 
 
