@@ -95,11 +95,11 @@ export const clearState = () => {
   }
 }
 
-export const confirmRest = (rName, rAddress, latitude, longitude) => {
+export const confirmRest = (restName, address, latitude, longitude) => {
   return {
     type: CONFIRM_REST_REQUEST,
-    rName,
-    rAddress,
+    name: restName,
+    address,
     latitude,
     longitude,
   }

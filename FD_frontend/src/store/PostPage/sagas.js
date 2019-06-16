@@ -7,6 +7,7 @@ import { getReviewDetail } from '../ArchivePage/actions'
 const backendUrl = 'http://127.0.0.1:8000/'
 const reviewListUrl = `${backendUrl}review/list`
 const reviewDetailUrl = `${backendUrl}review/detail/`
+const restListUrl = `${backendUrl}restaurant/list/`
 
 export function* getPostReviewDetailSaga({ reviewId }) {
   try {
@@ -82,16 +83,24 @@ export function* watchPostMeetingRequest() {
   yield takeEvery(actions.POST_REVIEW_REQUEST, postReviewSaga)
 }
 
-// TODO
-export function* confirmRestSaga({ rName, rAddress, latitude, longitude }) {
+export function* confirmRestSaga({ name, address, latitude, longitude }) {
   try {
     console.log('confirmRestSaga')
-    console.log(rName)
-    console.log(rAddress)
+    console.log(name)
+    console.log(address)
     console.log(latitude)
     console.log(longitude)
+    const data = {
+      name,
+      address,
+      latitude,
+      longitude,
+    }
+    const response = yield callUrl('POST', restListUrl, data)
+    yield put(actions.confirmRestSuccess(response.id))
   } catch (err) {
     console.log(err)
+    yield put(actions.confirmRestFailed())
   }
 }
 
