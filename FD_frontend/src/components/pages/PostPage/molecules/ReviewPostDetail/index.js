@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import ImageUpload from '../../../../../containers/PostPage/ImageUpload'
 import PubStatusButton from '../../atoms/PubStatusButton'
 import PostSubmitButton from '../../atoms/PostSubmitButton'
+import RestConfirmButton from '../../atoms/RestConfirmButton'
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,7 +30,7 @@ const padding = {
 const divtext = {
   color: '#e0ba7c',
   fontSize: 15,
-};
+}
 
 class ReviewPostDetail extends React.Component {
   constructor(props) {
@@ -64,6 +65,12 @@ class ReviewPostDetail extends React.Component {
     }
 
     const onInputChange = (e) => {
+      console.log('ReviewPostDetail onInputChange')
+      console.log(e)
+      console.log(typeof e.target)
+      console.log(e.target)
+      console.log(e.target.name)
+      console.log(e.target.value)
       this.props.onChangeInput(e.target.name, e.target.value)
     }
 

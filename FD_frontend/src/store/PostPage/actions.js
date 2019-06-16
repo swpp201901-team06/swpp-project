@@ -8,6 +8,9 @@ export const CHANGE_PUBLIC_STATUS = 'CHANGE_PUBLIC_STATUS'
 export const UPLOAD_IMAGE = 'UPLOAD_IMAGE'
 export const CHANGE_INPUT = 'CHANGE_INPUT'
 export const CLEAR_STATE = 'CLEAR_STATE'
+export const CONFIRM_REST_REQUEST = 'CONFIRM_REST_REQUEST'
+export const CONFIRM_REST_SUCCESS = 'CONFIRM_REST_SUCCESS'
+export const CONFIRM_REST_FAILED = 'CONFIRM_REST_FAILED'
 
 export const getPostReviewDetail = (reviewId) => {
   return {
@@ -89,5 +92,28 @@ export const postReviewFailed = () => {
 export const clearState = () => {
   return {
     type: CLEAR_STATE,
+  }
+}
+
+export const confirmRest = (rName, rAddress, latitude, longitude) => {
+  return {
+    type: CONFIRM_REST_REQUEST,
+    rName,
+    rAddress,
+    latitude,
+    longitude,
+  }
+}
+
+export const confirmRestSuccess = (restId) => {
+  return {
+    type: CONFIRM_REST_SUCCESS,
+    restId,
+  }
+}
+
+export const confirmRestFailed = () => {
+  return {
+    type: CONFIRM_REST_FAILED,
   }
 }
