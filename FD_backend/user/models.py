@@ -9,4 +9,4 @@ class CustomUser(AbstractUser):
     is_admin = models.BooleanField(default = False)
 
     def __str__(self):
-        return self.email
+        return self.username
