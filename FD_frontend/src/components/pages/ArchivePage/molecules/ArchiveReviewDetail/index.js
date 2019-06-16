@@ -49,7 +49,6 @@ class ArchiveReviewDetail extends React.Component {
       const selectedReview = this.props.reviewstate.selectedReviewObj
       if (selectedReview.photo) {
         const photoUrl = "http://localhost:8000"+selectedReview.photo
-        console.log(photoUrl)
         reviewDetail = (
           <div>
             <h4>Restaurant: {selectedReview.restId}</h4>

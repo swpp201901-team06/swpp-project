@@ -85,11 +85,6 @@ export function* watchPostMeetingRequest() {
 
 export function* confirmRestSaga({ name, address, latitude, longitude }) {
   try {
-    console.log('confirmRestSaga')
-    console.log(name)
-    console.log(address)
-    console.log(latitude)
-    console.log(longitude)
     const data = {
       name,
       address,

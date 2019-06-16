@@ -101,12 +101,6 @@ class ReviewPostDetail extends React.Component {
     }
 
     const onInputChange = (e) => {
-      console.log('ReviewPostDetail onInputChange')
-      console.log(e)
-      console.log(typeof e.target)
-      console.log(e.target)
-      console.log(e.target.name)
-      console.log(e.target.value)
       this.props.onChangeInput(e.target.name, e.target.value)
     }
 
