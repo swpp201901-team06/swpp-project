@@ -179,10 +179,14 @@ class ReviewPostDetail extends React.Component {
             Content{' '}
             <input
               value={contentText}
+              type="text"
               onChange={(e) => onInputChange(e)}
               name="content"
               ref="content"
+              style={{width:"500px", height:"200px"}}
             />
+
+
           </div>
           <div style={padding}>
             Tag{' '}

@@ -18,13 +18,13 @@ const SideBarWrapper = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: baseline;
   justify-content: center;
   width: 100%;
   height: 100%;
   flex-direction: column;
-  margin-top: -1em
-  margin-left: 10em
+  margin-top: 0em;
+  margin-left: 0em;
+  text-align:center;
 `
 
 const logo = {
@@ -50,6 +50,7 @@ class PostPage extends React.Component {
           <img src={require('../../../../../design_source/logo/logo.png')} style={logo} />
           <SideBar />
         </SideBarWrapper>
+
         <Wrapper>
           <h1 style={title}>{'Posting'}</h1>
           <ReviewPostDetail>
