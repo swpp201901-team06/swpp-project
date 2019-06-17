@@ -1,8 +1,9 @@
 import React from 'react'
-import ReviewPostDetail from '../../../containers/PostPage/ReviewPost'
 import styled from 'styled-components'
-import GoogleMap from '../../molecules/GoogleMap'
+
+import Search from '../../molecules/Searchbox'
 import SideBar from '../../../containers/SideBar/SideBar'
+import ReviewPostDetail from '../../../containers/PostPage/ReviewPost'
 
 const SideBarWrapper = styled.div`
   display: flex;
@@ -33,22 +34,20 @@ const logo = {
 
 
 const title = {
-  color: "#e0ba7c",
-  fontSize : 80
-};
+  color: '#e0ba7c',
+  fontSize: 80,
+}
 
 class PostPage extends React.Component {
   constructor(props) {
     super(props)
   }
   render() {
-    let review;
-    review = this.props.params.reviewId;
+    const review = this.props.params.reviewId;
     return (
       <div>
         <SideBarWrapper>
           <img src={require('../../../../../design_source/logo/logo.png')} style={logo} />
-          {this.props.params.nickname}'s archive page
           <SideBar />
         </SideBarWrapper>
         <Wrapper>
@@ -57,7 +56,8 @@ class PostPage extends React.Component {
             {review}
           </ReviewPostDetail>
         </Wrapper>
-        <GoogleMap />
+
+        <Search />
       </div>
     )
   }

@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 import PostButton from './atoms/PostButton'
 import ArchiveReviewList from '../../../containers/ArchivePage/ReviewList'
 import ArchiveReviewDetail from '../../../containers/ArchivePage/ReviewDetail'
-import GoogleMap from '../../molecules/GoogleMap'
+import ReviewMap from '../../molecules/ReviewMap'
 
 const SideBarWrapper = styled.div`
   display: flex;
@@ -19,29 +19,30 @@ const SideBarWrapper = styled.div`
 `
 const Wrapper = styled.div`
   display: flex;
-  align-items: baseline;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   flex-direction: column;
-  margin-top: -2em
-  margin-left: 8em
+  margin-top: 3em
+  margin-left: 0em
 `
 
 const PostWrapper = styled.div`
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-around;
   width: 100%;
   height: 100%;
   flex-direction: column;
-  margin-left: 98em
+  margin-left: 0em
   margin-top: 3em
 `
 const logo = {
   height: 40,
   width: 100,
 }
+
 
 // const align = {
 //   alignItems : center
@@ -59,19 +60,23 @@ class ArchivePage extends React.Component {
             {this.props.params.nickname}'s archive page
             <SideBar />
           </SideBarWrapper>
-          <PostWrapper>
-            <Link to="/post/default">
-              <PostButton style={{ margin: '10px' }}>Post Review</PostButton>
+         <PostWrapper>
+         <Link to="/post/default">
+                <PostButton style={{ margin: '10px' }}>Post Review</PostButton>
             </Link>
-          </PostWrapper>
+              </PostWrapper> 
           <Wrapper>
-            <ArchiveReviewList>
+            
+            
+            <ArchiveReviewList style={{margin:'10px'}}>
               {this.props.params.nickname}
             </ArchiveReviewList>
             <ArchiveReviewDetail />
           </Wrapper>
-
-          <GoogleMap />
+          
+         
+          <ReviewMap />
+          
         </div>
       )
     }
@@ -88,11 +93,13 @@ class ArchivePage extends React.Component {
             {this.props.params.nickname}
           </ArchiveReviewList>
           <ArchiveReviewDetail />
-          <GoogleMap />
+          
         </Wrapper>
+        <ReviewMap />
       </div>
     )
   }
 }
 
 export default ArchivePage
+//</PostWrapper>
