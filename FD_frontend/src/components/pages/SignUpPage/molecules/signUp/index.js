@@ -28,6 +28,8 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
   let usernameText
   let phoneText
   let phoneAuthText
+  let failText
+  let confirmedNumber
 
   if (statefunction.SignUpPage.emailText) {
     emailText = statefunction.SignUpPage.emailText
@@ -52,6 +54,18 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
   } else {
     phoneAuthText = ''
   }
+  
+  if (statefunction.SignUpPage.failText) {
+    failText = statefunction.SignUpPage.failText
+  } else {
+    failText = ''
+  }
+  
+  if (statefunction.SignUpPage.confirmedNumber) {
+    confirmedNumber = statefunction.SignUpPage.confirmedNumber
+  } else {
+    confirmedNumber = ''
+  }
 
   // const onECheck = () => {
   //   onDuplicateCheck('email', email.value)
@@ -60,7 +74,7 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
   //   onDuplicateCheck('username', nickname.value)
   // }
   const onSubmit = () => {
-    onSignUpSubmit(email.value, pw.value, confirmpw.value, nickname.value)
+    onSignUpSubmit(email.value, pw.value, confirmpw.value, nickname.value, confirmedNumber)
   }
   const handleEmailChange = () => {
     if (email.value) {
@@ -76,12 +90,14 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
     onPhoneAuthRequest(phoneNumber.value)
   }
   const onAuthorize = () => {
-    onPhoneAuthSubmit(code.value, statefunction.SignUpPage.code, phoneNumber.value)
+    console.log(phoneNumber.value)
+    onPhoneAuthSubmit(inputCode.value, statefunction.SignUpPage.code, phoneNumber.value)
   }
 
   let phoneAuthComponent
   
   if(statefunction.SignUpPage.phoneAuth == 'True'){
+    console.log(statefunction.SignUpPage.code)
     phoneAuthComponent = (
       <div>
         <h4 style={browncolor}>
@@ -151,6 +167,10 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
             Submit
           </SubmitButton>
         </h4>
+        
+       <h4 style={browncolor}>
+          {failText}
+       </h4>
       </Wrapper>
     </div>
   )

@@ -11,23 +11,26 @@ const archiveUrl = `${backendUrl}/archive/list`
 const phoneUrl = `${backendUrl}/account/message/send/`
 const phoneSaveUrl = `${backendUrl}/account/message/save`
 
-export function* submit({ email, pw, confirmpw, nickname }) {
+export function* submit({ email, pw, confirmpw, nickname, phoneNumber }) {
   try {
-    console.log(email)
-    console.log(pw)
-    console.log(confirmpw)
-    console.log(nickname)
-    const response=yield callUrl('POST', signUpUrl, {
-      email,
-      password1: pw,
-      password2: confirmpw,
-      username: nickname,
-    })
-    yield put(requestSignIn(email, pw))
-    yield take(SIGN_IN_SUCCESS)
-    yield callUrl('POST', archiveUrl)
+    if(phoneNumber != ''){
+      const response=yield callUrl('POST', signUpUrl, {
+        email,
+        password1: pw,
+        password2: confirmpw,
+        username: nickname,
+      })
+      yield callUrl('POST', phoneSaveUrl, {number: phoneNumber})
+      yield put(requestSignIn(email, pw))
+      yield take(SIGN_IN_SUCCESS)
+      yield callUrl('POST', archiveUrl)
+    }
+    else {
+      yield put(actions.mustPhoneAuth())
+    }
   } catch (err) {
     console.log(err)
+    yield put(actions.signUpFailed())
   }
 }
 
@@ -38,7 +41,6 @@ export function* watchSubmitRequest() {
 export function* duplicateCheck({ key, value }) {
   try {
     const response = yield callUrl('GET', `${dcUrl}/${key}/${value}`)
-    console.log(response)
     if (response.exist === 'true') {
       yield put(actions.duplicateFound(key))
     } else if (response.exist === 'false') {
@@ -52,12 +54,12 @@ export function* duplicateCheck({ key, value }) {
 
 export function* phoneAuthentication({ number }) {
   try {
-    console.log(number)
     const response = yield callUrl('GET', `${phoneUrl}${number}`)
     if(response == 'exist'){
       yield put(actions.phoneDuplicate())
     }
     else {
+      console.log(response)
       yield put(actions.phoneSent(response))
     }
   } catch(e) {
@@ -69,8 +71,7 @@ export function* phoneAuthentication({ number }) {
 export function* phoneAuthenticate({ input, code, phoneNumber }) {
   try {
     if (input == code){
-      yield callUrl('POST', phoneSaveUrl, phoneNumber)
-      yield put(actions.phoneAuthSuccess())
+      yield put(actions.phoneAuthSuccess(phoneNumber))
     }
     else {
       yield put(actions.phoneAuthFailed())
