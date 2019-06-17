@@ -1,7 +1,8 @@
 import React from 'react'
-import ReviewPostDetail from '../../../containers/PostPage/ReviewPost'
 import styled from 'styled-components'
 import SideBar from '../../../containers/SideBar/SideBar'
+import ReviewPostDetail from '../../../containers/PostPage/ReviewPost'
+import Search from '../../molecules/Searchbox'
 
 const SideBarWrapper = styled.div`
   display: flex;
@@ -56,6 +57,7 @@ class PostPage extends React.Component {
             {review}
           </ReviewPostDetail>
         </Wrapper>
+        <Search />
       </div>
     )
   }
