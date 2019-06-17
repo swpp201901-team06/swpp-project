@@ -58,6 +58,7 @@ class ReviewPostDetail extends React.Component {
     let tagText
     let restIdText
 
+    // initialize publicStatus field
     if (this.props.statefunction.PostPage.publicStatus &&
       this.props.statefunction.PostPage.publicStatus === 'True') {
       publicStatusText = 'Public'
@@ -65,36 +66,43 @@ class ReviewPostDetail extends React.Component {
       publicStatusText = 'Private'
     }
 
+    // initialize eatWhen field
     if (this.props.statefunction.PostPage.eatWhen) {
       dateText = this.props.statefunction.PostPage.eatWhen
     } else {
       dateText = ''
     }
 
+    // initialize restaurant ID field
+    // TODO: we probably no longer need restaurant ID
     if (this.props.statefunction.PostPage.restId) {
       restIdText = this.props.statefunction.PostPage.restId
     } else {
       restIdText = ''
     }
 
+    // initialize score field
     if (this.props.statefunction.PostPage.score) {
       scoreText = this.props.statefunction.PostPage.score
     } else {
       scoreText = ''
     }
 
+    // initialize content field
     if (this.props.statefunction.PostPage.content) {
       contentText = this.props.statefunction.PostPage.content
     } else {
       contentText = ''
     }
 
+    // initialize tags field
     if (this.props.statefunction.PostPage.tags) {
       tagText = this.props.statefunction.PostPage.tags
     } else {
       tagText = ''
     }
 
+    // initialize photo field
     if (this.props.statefunction.PostPage.photo) {
       imgUrlText = this.props.statefunction.PostPage.photo
     } else {
@@ -112,14 +120,6 @@ class ReviewPostDetail extends React.Component {
         this.props.PubStatusChange('False')
       }
     }
-
-    // const onClickRestConfirm = () => {
-    //   const restName = 'some_restname'
-    //   const address = 'some_addr'
-    //   const latitude = 1.0
-    //   const longitude = 2.0
-    //   this.props.onConfirmRest(restName, address, latitude, longitude)
-    // }
 
     const onClickPostSubmit = () => {
       if (this.refs.restId.value && this.refs.date.value && this.refs.score.value &&
