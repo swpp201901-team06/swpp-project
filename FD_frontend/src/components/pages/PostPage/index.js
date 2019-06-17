@@ -50,7 +50,6 @@ class PostPage extends React.Component {
       <div>
         <SideBarWrapper>
           <img src={require('../../../../../design_source/logo/logo.png')} style={logo} />
-          {this.props.params.nickname}'s archive page
           <SideBar />
         </SideBarWrapper>
         <Wrapper>
