@@ -57,10 +57,14 @@ class RecommendationView(APIView):
     def get(self, request, username):
         user = CustomUser.objects.get(username=username)
         user_set = user.follows.all()
-        if user.follows.count() >= 5:
-            review_set = Review.objects.select_related('archive').select_related('archive__user').filter(archive__user__in=user_set, public_status=True).order_by('-hits')
-            serializer = ReviewSerializer(review_set[:3], many = True)
-            return Response(serializer.data)
+        print(user_set)
+        new_user = CustomUser.objects.filter(followers__in=user_set)
+        print(new_user)
+        if user.follows.count() >= 1:
+            review_set = Review.objects.select_related('archive').select_related('archive__user').exclude(archive__user__username=username).filter(archive__user__in=new_user, public_status=True).order_by('-hits')
+            if review_set.count() >= 3:
+                serializer = ReviewSerializer(review_set[:3], many = True)
+                return Response(serializer.data)
 
         review_set = Review.objects.select_related('archive').select_related('archive__user').exclude(archive__user__username=username).filter(public_status=True).order_by('-hits')
         serializer = ReviewSerializer(review_set[:3], many = True)
