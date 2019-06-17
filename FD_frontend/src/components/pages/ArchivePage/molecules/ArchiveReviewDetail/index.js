@@ -15,8 +15,6 @@ class ArchiveReviewDetail extends React.Component {
     let editUrl
     const isLoggedIn = localStorage.hasOwnProperty('nickname')
     const userNickname = (isLoggedIn ? JSON.parse(localStorage.getItem('nickname')) : null)
-    console.log('ArchiveReviewDetail userNickname set')
-    console.log(userNickname)
     if (this.props.reviewstate.selectedReviewId) {
       if (this.props.reviewstate.selectedReviewObj == null) {
         this.props.getSelectedReview(this.props.reviewstate.selectedReviewId)
@@ -30,13 +28,6 @@ class ArchiveReviewDetail extends React.Component {
       this.props.onDeleteReview(reviewId, this.props.reviewstate.archiveOwnerNickname)
     }
     let ownerOption
-    console.log('ArchiveReviewDetail this.props.reviewstate')
-    console.log(this.props.reviewstate)
-    console.log(isLoggedIn)
-    console.log(this.props.reviewstate.archiveOwnerNickname)
-    console.log(userNickname)
-    console.log(userNickname === this.props.reviewstate.archiveOwnerNickname)
-    console.log(reviewId)
     if (isLoggedIn && (userNickname === this.props.reviewstate.archiveOwnerNickname) && reviewId) {
       ownerOption = (
         <div>

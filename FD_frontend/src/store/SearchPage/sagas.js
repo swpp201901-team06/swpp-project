@@ -19,7 +19,6 @@ export function* getResultsSaga({ key, value }) {
     } else {
       response = yield callUrl('GET', `${restaurantUrl}/${value}`)
     }
-    
     const newResponse = response.map((review) => {
       const newReview = {
         ...review,
