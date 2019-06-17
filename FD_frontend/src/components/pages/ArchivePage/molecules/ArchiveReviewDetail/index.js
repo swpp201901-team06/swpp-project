@@ -13,8 +13,8 @@ class ArchiveReviewDetail extends React.Component {
   render() {
     let reviewId
     let editUrl
-    const userNickname = (localStorage.hasOwnProperty('nickname') ?
-      JSON.parse(localStorage.getItem('nickname')) : null)
+    const isLoggedIn = localStorage.hasOwnProperty('nickname')
+    const userNickname = (isLoggedIn ? JSON.parse(localStorage.getItem('nickname')) : null)
     console.log('ArchiveReviewDetail userNickname set')
     console.log(userNickname)
     if (this.props.reviewstate.selectedReviewId) {
@@ -32,10 +32,12 @@ class ArchiveReviewDetail extends React.Component {
     let ownerOption
     console.log('ArchiveReviewDetail this.props.reviewstate')
     console.log(this.props.reviewstate)
-    if (this.props.reviewstate.isLoggedIn &&
-      (userNickname === this.props.reviewstate.archiveOwnerNickname) &&
-      reviewId) {
-
+    console.log(isLoggedIn)
+    console.log(this.props.reviewstate.archiveOwnerNickname)
+    console.log(userNickname)
+    console.log(userNickname === this.props.reviewstate.archiveOwnerNickname)
+    console.log(reviewId)
+    if (isLoggedIn && (userNickname === this.props.reviewstate.archiveOwnerNickname) && reviewId) {
       ownerOption = (
         <div>
           <h4>
