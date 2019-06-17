@@ -7,6 +7,9 @@ class CustomUser(AbstractUser):
     email = models.EmailField(blank = False, unique = True)
     public_status = models.BooleanField(default = False)
     is_admin = models.BooleanField(default = False)
+    is_active = models.BooleanField(default = True)
+
+    follows = models.ManyToManyField("self", related_name = "followers", blank=True)
 
     def __str__(self):
         return self.username

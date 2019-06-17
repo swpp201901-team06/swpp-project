@@ -16,7 +16,7 @@ class UserListView(generics.ListCreateAPIView):
 # 유저 상세 정보 가져오기
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.CustomUser.objects.all()
-    serializer_class = serializers.UserSerializer
+    serializer_class = serializers.UserModifySerializer
 
 # email을 통해 유저 이름 가져오기
 class GetUserNameView(APIView):
@@ -42,3 +42,7 @@ class UserNameExistView(generics.RetrieveAPIView):
             return Response({"exist" : "true", "id" : user.id})
         except:
             return Response({"exist" : "false"})
+
+class AddFollowView(generics.RetrieveUpdateAPIView):
+    queryset = models.CustomUser.objects.all()
+    serializer_class = serializers.FollowSerializer
