@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main molecule test matches snapshot 1`] = `
+<div>
+  <button
+    className="bnZcBb"
+    height={100}
+    onClick={[Function]}
+    style={
+      Object {
+        "margin": 10,
+      }
+    }
+    type="signin"
+  >
+    Login
+  </button>
+  <button
+    className="bnZcBb"
+    height={100}
+    onClick={[Function]}
+    style={
+      Object {
+        "margin": 10,
+      }
+    }
+    type="guest"
+  >
+    Guest
+  </button>
+</div>
+`;

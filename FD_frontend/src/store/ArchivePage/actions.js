@@ -14,8 +14,6 @@ export const GOTO_GUEST_LOG = 'GOTO_GUEST_LOG'
 export const STORE_REVIEW_ID = 'STORE_REVIEW_ID'
 
 export const getReviewList = (sortOption, archiveOwnerNickname) => {
-  console.log('ArchivePage actions getReviewList')
-  console.log(archiveOwnerNickname)
   return {
     type: GET_REVIEW_LIST_REQUEST,
     sortOption,
@@ -43,10 +41,11 @@ export const getReviewDetail = (reviewId) => {
   }
 }
 
-export const getReviewDetailSuccess = (reviewDetail) => {
+export const getReviewDetailSuccess = (reviewDetail, restObj) => {
   return {
     type: GET_REVIEW_DETAIL_SUCCESS,
     reviewDetail,
+    restObj,
   }
 }
 

@@ -1,25 +1,23 @@
 import React, { PropTypes } from 'react'
-import styled from 'styled-components'
-import { font, palette } from 'styled-theme'
 import MainButton from '../../Atoms/MainButton'
 
 const margin = {
-  margin : 10
+  margin: 10,
 }
 
-const Main = ({ statefunction, onClickSignin, onClickGuest }) => {
+const Main = ({ statefunction, onClickSignIn, onClickGuest }) => {
   const onSignin = () => {
-    onClickSignin();
-  };
+    onClickSignIn()
+  }
   const onGuest = () => {
-    onClickGuest();
-  };
+    onClickGuest()
+  }
   return (
     <div>
       <MainButton type="signin" onClick={onSignin} style={margin}>Login</MainButton>
       <MainButton type="guest" onClick={onGuest} style={margin}>Guest</MainButton>
     </div>
-  );
+  )
 }
 
 Main.propTypes = {

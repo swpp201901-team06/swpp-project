@@ -8,14 +8,14 @@ import SearchBox from '../../atoms/SearchBox';
 
 class Search extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       mapApiLoaded: false,
       mapInstance: null,
       mapApi: null,
       places: [],
-    };
+    }
   }
 
   apiHasLoaded = (map, maps) => {
@@ -23,17 +23,35 @@ class Search extends Component {
       mapApiLoaded: true,
       mapInstance: map,
       mapApi: maps,
-    });
-  };
+    })
+  }
 
   addPlace = (place) => {
-    this.setState({ places: place });
-  };
-  
+    console.log('Search addPlace')
+    console.log(place)
+    this.setState({ places: place })
+    console.log('Search addPlace after setState')
+    console.log(this.state)
+  }
+
+  confirmRest = () => {
+    console.log('Search confirmRest')
+    console.log(this.state.places)
+    const onConfirmRest = this.props.onConfirmRest
+    const place = this.state.places[0]
+    console.log(place)
+    const restName = place.name
+    const address = place.formatted_address
+    const latitude = place.geometry.location.lat()
+    const longitude = place.geometry.location.lng()
+    console.log({ restName, address, latitude, longitude })
+    onConfirmRest(restName, address, latitude, longitude)
+  }
+
   render() {
     const {
       places, mapApiLoaded, mapInstance, mapApi,
-    } = this.state;
+    } = this.state
     return (
       <div>
         {mapApiLoaded && <SearchBox map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />}
@@ -47,29 +65,20 @@ class Search extends Component {
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={({ map, maps }) => this.apiHasLoaded(map, maps)}
         >
-          {places.map(place => (
-              <Marker
-                key={place.id}
-                text={place.name}
-                lat={place.geometry.location.lat()}
-                lng={place.geometry.location.lng()}
-              />
-            ))}
-          
+          {places.map(place => {
+            return <Marker
+              key={place.id}
+              text={place.name}
+              lat={place.geometry.location.lat()}
+              lng={place.geometry.location.lng()}
+              onClick={this.confirmRest}
+            />
+          })}
         </GoogleMap>
       </div>
-    );
+    )
   }
 }
 //!isEmpty(places) &&
-export default Search;
 
-{/* <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
-          onClose={this.onClose}
-          >
-            <div>
-              <h4>{this.state.selectedPlace.name}</h4>
-            </div>
-          </InfoWindow> */}
+export default Search
