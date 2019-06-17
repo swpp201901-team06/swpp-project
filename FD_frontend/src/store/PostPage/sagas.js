@@ -1,8 +1,8 @@
-import { takeEvery, take, put, fork } from 'redux-saga/effects'
+import { takeEvery, put, fork } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 import { callUrl, callUrlImg } from '../sagas'
 import * as actions from './actions'
-import { getReviewDetail } from '../ArchivePage/actions'
+// import { getReviewDetail } from '../ArchivePage/actions'
 
 const backendUrl = 'http://127.0.0.1:8000'
 const reviewListUrl = `${backendUrl}/review/list`
@@ -17,9 +17,6 @@ export function* getPostReviewDetailSaga({ reviewId }) {
     } else { // edit existing review
       const reviewDetail = yield callUrl('GET', `${reviewDetailUrl}/${reviewId}`)
       const { restaurant_id, eat_when, tags, score, content, photo, public_status } = reviewDetail
-      console.log('getPostReviewDetailSaga else')
-      console.log(restaurant_id)
-      console.log(photo)
       const photoLink = `${backendUrl}${photo}`
       yield put(actions.getPostReviewDetailSuccess(restaurant_id, eat_when, tags, score,
         content, photoLink, public_status))
@@ -37,25 +34,22 @@ export function* watchGetPostReviewDetailRequest() {
 export function* postReviewSaga({ reviewId, nickname, restId, eatWhen, tags, score,
   content, photo, publicStatus }) {
   try {
-    console.log('postReviewSaga begin')
-    console.log(reviewId)
-    console.log(restId)
-    const review_data = new FormData()
-    review_data.append('content', content)
-    review_data.append('eat_when', eatWhen)
-    review_data.append('public_status', publicStatus)
-    review_data.append('score', score)
-    review_data.append('restaurant_id', restId)
+    const reviewData = new FormData()
+    reviewData.append('content', content)
+    reviewData.append('eat_when', eatWhen)
+    reviewData.append('public_status', publicStatus)
+    reviewData.append('score', score)
+    reviewData.append('restaurant_id', restId)
     if (photo != null) {
-      review_data.append('photo', photo)
+      reviewData.append('photo', photo)
     }
-    review_data.append('tags', tags)
+    reviewData.append('tags', tags)
 
     let response
     if (reviewId === 'default') { // post new review
-      response = yield callUrlImg('POST', reviewListUrl, review_data)
+      response = yield callUrlImg('POST', reviewListUrl, reviewData)
     } else { // edit existing review
-      response = yield callUrlImg('PUT', `${reviewDetailUrl}/${reviewId}`, review_data)
+      response = yield callUrlImg('PUT', `${reviewDetailUrl}/${reviewId}`, reviewData)
     }
     if (!response) {
       yield put(actions.postReviewFailed())
@@ -63,7 +57,7 @@ export function* postReviewSaga({ reviewId, nickname, restId, eatWhen, tags, sco
     }
     yield put(actions.postReviewSuccess())
     yield put(push(`/${nickname}/archive`))
-    //window.location.reload()
+    // window.location.reload()
 
     /* if(reviewId != 'default'){
       yield put(getReviewDetail(reviewId, nickname))
@@ -86,6 +80,7 @@ export function* confirmRestSaga({ name, address, latitude, longitude }) {
       latitude,
       longitude,
     }
+    // Get ID for the POSTed restaurant
     const response = yield callUrl('POST', restListUrl, data)
     yield put(actions.confirmRestSuccess(response.id))
   } catch (err) {
