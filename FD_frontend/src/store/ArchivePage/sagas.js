@@ -6,6 +6,7 @@ import * as actions from './actions'
 const backendUrl = 'http://127.0.0.1:8000'
 const myReviewListUrl = `${backendUrl}/review/list`
 const reviewDetailUrl = `${backendUrl}/review/detail`
+const restDetailUrl = `${backendUrl}/restaurant/detail`
 
 export function* getReviewListSaga({ sortOption, archiveOwnerNickname }) {
   try {
@@ -57,7 +58,10 @@ export function* getReviewDetailSaga({ reviewId }) {
     delete newResponse.post_time
     delete newResponse.public_status
     delete newResponse.restaurant_id
-    yield put(actions.getReviewDetailSuccess(newResponse))
+
+    const restDetailResponse = yield callUrl('GET', `${restDetailUrl}/${reviewId}`)
+
+    yield put(actions.getReviewDetailSuccess(newResponse, restDetailResponse))
   } catch (err) {
     console.log(err)
     yield put(actions.getReviewDetailFailed())

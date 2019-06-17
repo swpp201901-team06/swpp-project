@@ -1,12 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import { GoogleApiWrapper, InfoWindow } from 'google-map-react';
 //import isEmpty from 'lodash.isempty';
 
 import Marker from '../../atoms/Marker';
 import GoogleMap from '../../atoms/GoogleMap';
 import SearchBox from '../../atoms/SearchBox';
 
-class Search extends Component {
+class ReviewMap extends Component {
   constructor(props) {
     super(props)
 
@@ -27,17 +26,11 @@ class Search extends Component {
   }
 
   addPlace = (place) => {
+    console.log('Search addPlace')
+    console.log(place)
     this.setState({ places: place })
-  }
-
-  confirmRest = () => {
-    const onConfirmRest = this.props.onConfirmRest
-    const place = this.state.places[0]
-    const restName = place.name
-    const address = place.formatted_address
-    const latitude = place.geometry.location.lat()
-    const longitude = place.geometry.location.lng()
-    onConfirmRest(restName, address, latitude, longitude)
+    console.log('Search addPlace after setState')
+    console.log(this.state)
   }
 
   render() {
@@ -63,7 +56,6 @@ class Search extends Component {
               text={place.name}
               lat={place.geometry.location.lat()}
               lng={place.geometry.location.lng()}
-              onClick={this.confirmRest}
             />
           })}
         </GoogleMap>
@@ -73,4 +65,4 @@ class Search extends Component {
 }
 //!isEmpty(places) &&
 
-export default Search
+export default ReviewMap;

@@ -16,4 +16,6 @@ urlpatterns = [
     path('exists/email/<str:email>', views.UserEmailExistView.as_view(), name = 'user_email'),
     # [username]이 이미 존재하는지 확인
     path('exists/username/<str:username>', views.UserNameExistView.as_view(), name = 'user_name'),
+
+    path('follows/<int:pk>', views.AddFollowView.as_view()),
 ]
