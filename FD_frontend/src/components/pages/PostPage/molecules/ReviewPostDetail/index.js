@@ -68,6 +68,9 @@ class ReviewPostDetail extends React.Component {
     // initialize eatWhen field
     if (this.props.statefunction.PostPage.eatWhen) {
       dateText = this.props.statefunction.PostPage.eatWhen
+      if (dateText[dateText.length - 1] == 'Z') {
+        dateText = dateText.substring(0, dateText.length - 1)
+      }
     } else {
       dateText = ''
     }
@@ -144,6 +147,7 @@ class ReviewPostDetail extends React.Component {
             Date{' '}
             <input
               value={dateText}
+              type="datetime-local"
               onChange={(e) => onInputChange(e)}
               name="date"
               ref="date"

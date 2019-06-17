@@ -41,9 +41,7 @@ class PostPage extends React.Component {
     super(props)
   }
   render() {
-    const review = this.props.params.reviewId;
-    console.log('PostPage component this.props')
-    console.log(this.props)
+    const review = this.props.params.reviewId
     return (
       <div>
         <SideBarWrapper>
