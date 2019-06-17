@@ -17,6 +17,7 @@ export function* callUrl(method, url, data = {}) {
       const password = JSON.parse(localStorage.getItem('password'))
       const credentials = new Buffer(`${email}:${password}`).toString('base64')
       let response
+      
       if (method === 'GET' || method === 'DELETE') {
         response = yield call(
           fetch,
@@ -48,6 +49,9 @@ export function* callUrl(method, url, data = {}) {
       if (!response.ok) {
         console.log(yield response.json())
         throw Error(response.statusText)
+      }
+      if (method === 'DELETE') {
+        return null
       }
       return yield response.json()
     } else if (method === 'GET') {

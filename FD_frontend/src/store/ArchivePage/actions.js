@@ -41,10 +41,11 @@ export const getReviewDetail = (reviewId) => {
   }
 }
 
-export const getReviewDetailSuccess = (reviewDetail) => {
+export const getReviewDetailSuccess = (reviewDetail, restObj) => {
   return {
     type: GET_REVIEW_DETAIL_SUCCESS,
     reviewDetail,
+    restObj,
   }
 }
 

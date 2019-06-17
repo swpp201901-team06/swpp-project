@@ -100,8 +100,8 @@ export const confirmRest = (restName, address, latitude, longitude) => {
     type: CONFIRM_REST_REQUEST,
     name: restName,
     address,
-    latitude,
-    longitude,
+    latitude: latitude.toFixed(6),
+    longitude: longitude.toFixed(6),
   }
 }
 

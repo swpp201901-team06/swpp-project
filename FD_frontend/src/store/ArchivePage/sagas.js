@@ -3,18 +3,33 @@ import { push } from 'react-router-redux'
 import { callUrl } from '../sagas'
 import * as actions from './actions'
 
-const backendUrl = 'http://127.0.0.1:8000/'
-const myReviewListUrl = `${backendUrl}review/list/`
-const reviewDetailUrl = `${backendUrl}review/detail/`
+const backendUrl = 'http://127.0.0.1:8000'
+const myReviewListUrl = `${backendUrl}/review/list`
+const reviewDetailUrl = `${backendUrl}/review/detail`
+const restDetailUrl = `${backendUrl}/restaurant/detail`
 
-export function* getReviewList({ sortOption, archiveOwnerNickname }) {
+export function* getReviewListSaga({ sortOption, archiveOwnerNickname }) {
   try {
     let response
     if (sortOption === 'default') {
-      response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}`)
+      response = yield callUrl('GET', `${myReviewListUrl}/${archiveOwnerNickname}`)
     } else {
-      response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/${sortOption}`)
+      response = yield callUrl('GET', `${myReviewListUrl}/${archiveOwnerNickname}/${sortOption}`)
     }
+    response = response.map((review) => {
+      const newReview = {
+        ...review,
+        eatWhen: review.eat_when,
+        postTime: review.post_time,
+        publicStatus: review.public_status,
+        restaurantId: review.restaurant_id,
+      }
+      delete newReview.eat_when
+      delete newReview.post_time
+      delete newReview.public_status
+      delete newReview.restaurant_id
+      return newReview
+    })
     yield put(actions.getReviewListSuccess(response))
   } catch (err) {
     console.log(err)
@@ -23,16 +38,28 @@ export function* getReviewList({ sortOption, archiveOwnerNickname }) {
 }
 
 export function* watchGetReviewListRequest() {
-  yield takeEvery(actions.GET_REVIEW_LIST_REQUEST, getReviewList)
+  yield takeEvery(actions.GET_REVIEW_LIST_REQUEST, getReviewListSaga)
 }
 
-export function* getReviewDetail({ reviewId }) {
+export function* getReviewDetailSaga({ reviewId }) {
   try {
     if (!reviewId) {
       throw Error('getReviewDetail saga reviewId not provided')
     }
-    const response = yield callUrl('GET', `${reviewDetailUrl}${reviewId}`)
-    yield put(actions.getReviewDetailSuccess(response))
+    const response = yield callUrl('GET', `${reviewDetailUrl}/${reviewId}`)
+    const newResponse = {
+      ...response,
+      eatWhen: response.eat_when,
+      postTime: response.post_time,
+      publicStatus: response.public_status,
+      restaurantId: response.restaurant_id,
+    }
+    delete newResponse.eat_when
+    delete newResponse.post_time
+    delete newResponse.public_status
+    delete newResponse.restaurant_id
+    const restDetailResponse = yield callUrl('GET', `${restDetailUrl}/${reviewId}`)
+    yield put(actions.getReviewDetailSuccess(newResponse, restDetailResponse))
   } catch (err) {
     console.log(err)
     yield put(actions.getReviewDetailFailed())
@@ -40,10 +67,10 @@ export function* getReviewDetail({ reviewId }) {
 }
 
 export function* watchGetReviewDetailRequest() {
-  yield takeEvery(actions.GET_REVIEW_DETAIL_REQUEST, getReviewDetail)
+  yield takeEvery(actions.GET_REVIEW_DETAIL_REQUEST, getReviewDetailSaga)
 }
 
-export function* updateSortMethod({ archiveOwnerNickname, sortMethod }) {
+export function* updateSortMethodSaga({ archiveOwnerNickname, sortMethod }) {
   try {
     if (!archiveOwnerNickname) {
       throw Error('updateSortMethod saga archiveOwnerNickname not provided')
@@ -53,9 +80,23 @@ export function* updateSortMethod({ archiveOwnerNickname, sortMethod }) {
     }
     const response = yield callUrl(
       'GET',
-      `${myReviewListUrl}${archiveOwnerNickname}/${sortMethod}/`
+      `${myReviewListUrl}/${archiveOwnerNickname}/${sortMethod}`
     )
-    yield put(actions.updateSortMethodSuccess(response, sortMethod))
+    const newResponse = response.map((review) => {
+      const newReview = {
+        ...review,
+        eatWhen: review.eat_when,
+        postTime: review.post_time,
+        publicStatus: review.public_status,
+        restaurantId: review.restaurant_id,
+      }
+      delete newReview.eat_when
+      delete newReview.post_time
+      delete newReview.public_status
+      delete newReview.restaurant_id
+      return newReview
+    })
+    yield put(actions.updateSortMethodSuccess(newResponse, sortMethod))
   } catch (err) {
     console.log(err)
     yield put(actions.updateSortMethodFailed())
@@ -63,10 +104,10 @@ export function* updateSortMethod({ archiveOwnerNickname, sortMethod }) {
 }
 
 export function* watchUpdateSortMethodRequest() {
-  yield takeEvery(actions.UPDATE_SORT_METHOD_REQUEST, updateSortMethod)
+  yield takeEvery(actions.UPDATE_SORT_METHOD_REQUEST, updateSortMethodSaga)
 }
 
-export function* deleteReview({ reviewId, archiveOwnerNickname }) {
+export function* deleteReviewSaga({ reviewId, archiveOwnerNickname }) {
   try {
     if (!archiveOwnerNickname) {
       throw Error('deleteReview saga archiveOwnerNickname not provided')
@@ -74,9 +115,23 @@ export function* deleteReview({ reviewId, archiveOwnerNickname }) {
     if (!reviewId) {
       throw Error('deleteReview saga reviewId not provided')
     }
-    yield callUrl('DELETE', `${reviewDetailUrl}${reviewId}/`)
-    const response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/`)
-    yield put(actions.deleteReviewSuccess(response))
+    yield callUrl('DELETE', `${reviewDetailUrl}/${reviewId}`)
+    const response = yield callUrl('GET', `${myReviewListUrl}/${archiveOwnerNickname}`)
+    const newResponse = response.map((review) => {
+      const newReview = {
+        ...review,
+        eatWhen: review.eat_when,
+        postTime: review.post_time,
+        publicStatus: review.public_status,
+        restaurantId: review.restaurant_id,
+      }
+      delete newReview.eat_when
+      delete newReview.post_time
+      delete newReview.public_status
+      delete newReview.restaurant_id
+      return newReview
+    })
+    yield put(actions.deleteReviewSuccess(newResponse))
   } catch (err) {
     console.log(err)
     yield put(actions.deleteReviewFailed())
@@ -84,7 +139,7 @@ export function* deleteReview({ reviewId, archiveOwnerNickname }) {
 }
 
 export function* watchDeleteReviewRequest() {
-  yield takeEvery(actions.DELETE_REVIEW_REQUEST, deleteReview)
+  yield takeEvery(actions.DELETE_REVIEW_REQUEST, deleteReviewSaga)
 }
 
 export function* watchGotoGuestLog() {
