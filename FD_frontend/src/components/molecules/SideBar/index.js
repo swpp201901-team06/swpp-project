@@ -2,12 +2,12 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router' 
 import SideBarButton from '../../atoms/SideBarButton'
 
-export const SideBar = ({ statefunction, onLogout, onClickMyArchive }) => {
+export const SideBar = ({ statefunction, onLogout, onClickMyArchive, onClickMyAccount }) => {
   const onClickLogout = () => {
     window.localStorage.clear()
     window.location.href = '/'
   }
-  // let myArchiveUrl = `/${statefunction.SignInPage.nickname}/archive`
+  const myArchiveUrl = `/${statefunction.SignInPage.nickname}/archive`
   const myAccountUrl = `/${statefunction.SignInPage.nickname}/account`
   const loggedInDisplay = (
     <div>
@@ -20,10 +20,11 @@ export const SideBar = ({ statefunction, onLogout, onClickMyArchive }) => {
       >
         My Archive
       </SideBarButton>
-
-      <Link to={myAccountUrl}>
-        <SideBarButton>My Account</SideBarButton>
-      </Link>
+      <SideBarButton
+        onClick={() => { onClickMyAccount(statefunction.SignInPage.nickname) }}
+      >
+        My Account
+      </SideBarButton>
     </div>
   )
   const notLoggedInDisplay = (
