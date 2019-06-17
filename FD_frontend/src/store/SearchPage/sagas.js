@@ -2,6 +2,7 @@ import { takeEvery, put, fork } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 import { callUrl } from '../sagas'
 import * as actions from './actions'
+import * as actions2 from '../ArchivePage/actions'
 
 const backendUrl = 'http://127.0.0.1:8000'
 const usernameUrl = `${backendUrl}/review/search`
@@ -37,10 +38,24 @@ export function* getResultsSaga({ key, value }) {
   }
 }
 
+export function* loadArchive({resultId, archiveOwnerNickname}) {
+  try {
+    yield put(push("/"+archiveOwnerNickname+"/archive/"))
+    yield put(actions2.getReviewDetail(resultId, archiveOwnerNickname))
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 export function* watchGetResultsRequest() {
   yield takeEvery(actions.GET_RESULTS_REQUEST, getResultsSaga)
 }
 
+export function* watchGoToArchiveRequest() {
+  yield takeEvery(actions.GO_TO_TARGET_ARCHIVE, loadArchive)
+}
+
 export default function* () {
   yield fork(watchGetResultsRequest)
+  yield fork(watchGoToArchiveRequest)
 }

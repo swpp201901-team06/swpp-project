@@ -11,7 +11,11 @@ const archiveUrl = `${backendUrl}/archive/list`
 
 export function* submit({ email, pw, confirmpw, nickname }) {
   try {
-    yield callUrl('POST', signUpUrl, {
+    console.log(email)
+    console.log(pw)
+    console.log(confirmpw)
+    console.log(nickname)
+    const response=yield callUrl('POST', signUpUrl, {
       email,
       password1: pw,
       password2: confirmpw,
