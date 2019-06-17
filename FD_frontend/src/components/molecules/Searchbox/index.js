@@ -1,15 +1,15 @@
-import React, { Component, Fragment } from 'react';
-//import isEmpty from 'lodash.isempty';
+import React, { Component, Fragment } from 'react'
+// import isEmpty from 'lodash.isempty';
 
 // components:
-import Marker from '../../atoms/Marker';
+import Marker from '../../atoms/Marker'
 
 // examples:
-import GoogleMap from '../../atoms/GoogleMap';
-import SearchBox from '../../atoms/SearchBox';
+import GoogleMap from '../../atoms/GoogleMap'
+import SearchBox from '../../atoms/SearchBox'
 
 // consts
-//import LOS_ANGELES_CENTER from '../const/la_center';
+// import LOS_ANGELES_CENTER from '../const/la_center';
 const logo = {
   height: 40,
   width: 100,
@@ -17,14 +17,14 @@ const logo = {
 
 class Search extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       mapApiLoaded: false,
       mapInstance: null,
       mapApi: null,
       places: [],
-    };
+    }
   }
 
   apiHasLoaded = (map, maps) => {
@@ -32,17 +32,31 @@ class Search extends Component {
       mapApiLoaded: true,
       mapInstance: map,
       mapApi: maps,
-    });
-  };
+    })
+  }
 
   addPlace = (place) => {
-    this.setState({ places: place });
-  };
-  
+    console.log('Search addPlace')
+    console.log(place)
+    this.setState({ places: place })
+    console.log('Search addPlace after setState')
+    console.log(this.state)
+  }
+
+  confirmRest = () => {
+    console.log('Search confirmRest')
+    const onConfirmRest = this.props.onConfirmRest
+    const restName = ''
+    const address = ''
+    const latitude = 0.0
+    const longitude = 0.0
+    onConfirmRest(restName, address, latitude, longitude)
+  }
+
   render() {
     const {
       places, mapApiLoaded, mapInstance, mapApi,
-    } = this.state;
+    } = this.state
     return (
       <div>
         {mapApiLoaded && <SearchBox map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />}
@@ -56,18 +70,19 @@ class Search extends Component {
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={({ map, maps }) => this.apiHasLoaded(map, maps)}
         >
-          {places.map(place => (
-              <Marker
-                key={place.id}
-                text={place.name}
-                lat={place.geometry.location.lat()}
-                lng={place.geometry.location.lng()}
-              />
-            ))}
+          {places.map(place => {
+            return <Marker
+              key={place.id}
+              text={place.name}
+              lat={place.geometry.location.lat()}
+              lng={place.geometry.location.lng()}
+              onClick={this.confirmRest}
+            />
+          })}
         </GoogleMap>
       </div>
-    );
+    )
   }
 }
 //!isEmpty(places) &&
-export default Search;
+export default Search
