@@ -1,7 +1,6 @@
 import React from 'react'
 import ReviewPostDetail from '../../../containers/PostPage/ReviewPost'
 import styled from 'styled-components'
-import GoogleMap from '../../molecules/GoogleMap'
 import SideBar from '../../../containers/SideBar/SideBar'
 
 const SideBarWrapper = styled.div`
@@ -33,17 +32,16 @@ const logo = {
 
 
 const title = {
-  color: "#e0ba7c",
-  fontSize : 80
-};
+  color: '#e0ba7c',
+  fontSize: 80,
+}
 
 class PostPage extends React.Component {
   constructor(props) {
     super(props)
   }
   render() {
-    let review;
-    review = this.props.params.reviewId;
+    const review = this.props.params.reviewId;
     console.log('PostPage component this.props')
     console.log(this.props)
     return (
@@ -58,7 +56,6 @@ class PostPage extends React.Component {
             {review}
           </ReviewPostDetail>
         </Wrapper>
-        <GoogleMap />
       </div>
     )
   }
