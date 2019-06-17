@@ -51,9 +51,10 @@ export const phoneDuplicate = () => {
   }
 }
 
-export const phoneSent = () => {
+export const phoneSent = (code) => {
   return {
     type: PHONE_SENT,
+    code
   }
 }
 

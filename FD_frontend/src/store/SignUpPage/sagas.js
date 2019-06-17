@@ -8,8 +8,8 @@ const backendUrl = 'http://localhost:8000'
 const signUpUrl = `${backendUrl}/account/registration`
 const dcUrl = `${backendUrl}/user/exists`
 const archiveUrl = `${backendUrl}/archive/list`
-const phoneUrl = `${backendUrl}/accounts/message/send/`
-const phoneSaveUrl = `${backendUrl}/accounts/message/save`
+const phoneUrl = `${backendUrl}/account/message/send/`
+const phoneSaveUrl = `${backendUrl}/account/message/save`
 
 export function* submit({ email, pw, confirmpw, nickname }) {
   try {
@@ -52,16 +52,17 @@ export function* duplicateCheck({ key, value }) {
 
 export function* phoneAuthentication({ number }) {
   try {
-    const response = yield callURL('GET', `${phoneUrl}number`)
+    console.log(number)
+    const response = yield callUrl('GET', `${phoneUrl}${number}`)
     if(response == 'exist'){
-      actions.phoneDuplicate()
+      yield put(actions.phoneDuplicate())
     }
     else {
       yield put(actions.phoneSent(response))
     }
   } catch(e) {
     console.log(e)
-    actions.phoneFail()
+    yield put(actions.phoneFail())
   }
 }
 
@@ -69,14 +70,14 @@ export function* phoneAuthenticate({ input, code, phoneNumber }) {
   try {
     if (input == code){
       yield callUrl('POST', phoneSaveUrl, phoneNumber)
-      yield put(actions.phoneAuthSuccess)
+      yield put(actions.phoneAuthSuccess())
     }
     else {
-      yield put(actions.phoneAuthFailed)
+      yield put(actions.phoneAuthFailed())
     }
   } catch(e) {
     console.log(e)
-    actions.phoneFail()
+    yield put(actions.phoneAuthFailed())
   }
 }
 
@@ -97,5 +98,5 @@ export default function* () {
   yield fork(watchSubmitRequest)
   yield fork(watchDCRequest)
   yield fork(watchPhoneRequest)
-  yield fork(watchPhoneSaveRequest)
+  yield fork(watchPhoneAuthRequest)
 }
