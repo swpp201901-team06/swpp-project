@@ -11,8 +11,6 @@ const Wrapper = styled.div`
 
 class ArchiveReviewList extends React.Component {
   componentDidMount() {
-    console.log('ArchiveReviewList componentDidMount')
-    console.log(this.props)
     this.props.requestReviews('default', this.props.children)
   }
 
@@ -23,8 +21,7 @@ class ArchiveReviewList extends React.Component {
     ]
     let sortOption
     const onCategoryChange = (e) => {
-    console.log('category changed!')
-      switch(e.value){
+      switch (e.value) {
         case 'When':
           sortOption = 'eatWhen'
           break

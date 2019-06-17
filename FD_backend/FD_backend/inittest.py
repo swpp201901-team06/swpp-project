@@ -1,6 +1,6 @@
-from users.models import CustomUser
-from Archive.models import Archive
-from Restaurant.models import Restaurant
+from user.models import CustomUser
+from archive.models import Archive
+from restaurant.models import Restaurant
 
 # 유저 삭제(초기화)
 def remove_user(username):
@@ -21,11 +21,11 @@ def remove_archive(username):
         pass
     return
 # 레스토랑 삭제(초기화)
-def remove_restaurant(rName):
+def remove_restaurant(name):
     try:
-        restaurant = Restaurant.objects.get(rName = rName)
+        restaurant = Restaurant.objects.get(name = name)
         restaurant.delete()
-        print("\tDeleted restaurnat {0}".format(rName))
+        print("\tDeleted restaurnat {0}".format(name))
     except Restaurant.DoesNotExist:
         pass
     return
@@ -43,7 +43,7 @@ def create_archive(user):
     test_archive.save()
     print("\tCreate {0}'s Archive".format(user.username))
 
-def create_restaurant(rName, rAddress):
-    test_restaurant = Restaurant.objects.create(rName = rName, rAddress = rAddress)
+def create_restaurant(name, address):
+    test_restaurant = Restaurant.objects.create(name = name, address = address)
     test_restaurant.save()
-    print("\tCreate restaurant {0}".format(rName))
+    print("\tCreate restaurant {0}".format(name))

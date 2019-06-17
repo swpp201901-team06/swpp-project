@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import ImageUpload from '../../../../../containers/PostPage/ImageUpload'
 import PubStatusButton from '../../atoms/PubStatusButton'
 import PostSubmitButton from '../../atoms/PostSubmitButton'
+import RestConfirmButton from '../../atoms/RestConfirmButton'
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,7 +30,7 @@ const padding = {
 const divtext = {
   color: '#e0ba7c',
   fontSize: 15,
-};
+}
 
 class ReviewPostDetail extends React.Component {
   constructor(props) {
@@ -49,7 +50,6 @@ class ReviewPostDetail extends React.Component {
 
   render() {
     let publicStatusText
-
     let imgUrlText
     let dateText
     let scoreText
@@ -57,14 +57,11 @@ class ReviewPostDetail extends React.Component {
     let tagText
     let restIdText
 
-    if (this.props.statefunction.PostPage.publicStatus && this.props.statefunction.PostPage.publicStatus == 'True') {
+    if (this.props.statefunction.PostPage.publicStatus &&
+      this.props.statefunction.PostPage.publicStatus === 'True') {
       publicStatusText = 'Public'
     } else {
       publicStatusText = 'Private'
-    }
-
-    const onInputChange = (e) => {
-      this.props.onChangeInput(e.target.name, e.target.value)
     }
 
     if (this.props.statefunction.PostPage.eatWhen) {
@@ -103,6 +100,10 @@ class ReviewPostDetail extends React.Component {
       imgUrlText = ''
     }
 
+    const onInputChange = (e) => {
+      this.props.onChangeInput(e.target.name, e.target.value)
+    }
+
     const onPubStatusChange = () => {
       if (this.props.statefunction.PostPage.publicStatus) {
         this.props.PubStatusChange(this.props.statefunction.PostPage.publicStatus)
@@ -111,8 +112,17 @@ class ReviewPostDetail extends React.Component {
       }
     }
 
+    const onClickRestConfirm = () => {
+      const restName = 'some_restname'
+      const address = 'some_addr'
+      const latitude = 1.0
+      const longitude = 2.0
+      this.props.onConfirmRest(restName, address, latitude, longitude)
+    }
+
     const onClickPostSubmit = () => {
-      if (this.refs.restId.value && this.refs.date.value && this.refs.score.value && this.refs.content.value) {
+      if (this.refs.restId.value && this.refs.date.value && this.refs.score.value &&
+        this.refs.content.value) {
         this.props.onPostSubmit(
           this.props.children,
           this.props.statefunction.PostPage.nickname,
@@ -144,10 +154,12 @@ class ReviewPostDetail extends React.Component {
             Restaurant ID{' '}
             <input
               value={restIdText}
-              onChange={(e) => onInputChange(e)}
               name="restId"
               ref="restId"
             />
+            <RestConfirmButton onClick={onClickRestConfirm}>
+              Confirm
+            </RestConfirmButton>
           </div>
           <RowWrapper>
             Image{' '}

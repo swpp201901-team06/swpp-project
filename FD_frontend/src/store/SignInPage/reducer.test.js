@@ -7,7 +7,7 @@ describe('test signin reducer', () => {
     localStorage.clear()
   })
 
-  test('initialize state with token unset', () => {
+  it('initialize state with token unset', () => {
     const testAction = {
       type: 'UNDEFINED_ACTION',
     }
@@ -23,7 +23,7 @@ describe('test signin reducer', () => {
     expect(reducerOutput).toEqual(expectedOutput)
   })
 
-  test('initialize state with token set', () => {
+  it('initialize state with token set', () => {
     const email = 'test-email@github.com'
     const nickname = 'some_nickname'
     const token = 'some_token'
@@ -47,7 +47,7 @@ describe('test signin reducer', () => {
     expect(reducerOutput).toEqual(expectedOutput)
   })
 
-  test('handle GOTO_SIGN_UP', () => {
+  it('handle GOTO_SIGN_UP', () => {
     const email = 'test-email@github.com'
     const nickname = 'some_nickname'
     const token = 'some_token'
@@ -67,7 +67,7 @@ describe('test signin reducer', () => {
     expect(reducerOutput).toEqual(testState)
   })
 
-  test('handle REQUEST_SIGN_IN', () => {
+  it('handle REQUEST_SIGN_IN', () => {
     const email = 'test-email@github.com'
     const nickname = 'some_nickname'
     const token = ''
@@ -89,7 +89,7 @@ describe('test signin reducer', () => {
     expect(reducerOutput).toEqual(testState)
   })
 
-  test('handle SIGN_IN_SUCCESS', () => {
+  it('handle SIGN_IN_SUCCESS', () => {
     const email = 'test-email@github.com'
     const nickname = 'some_nickname'
     const token = ''
@@ -121,7 +121,7 @@ describe('test signin reducer', () => {
     expect(reducerOutput).toEqual(expectedOutput)
   })
 
-  test('handle SIGN_IN_FAILED', () => {
+  it('handle SIGN_IN_FAILED', () => {
     const email = 'test-email@github.com'
     const nickname = 'some_nickname'
     const token = ''
@@ -149,7 +149,7 @@ describe('test signin reducer', () => {
     expect(reducerOutput).toEqual(expectedOutput)
   })
 
-  test('handle misc actions', () => {
+  it('handle misc actions', () => {
     const email = 'test-email@github.com'
     const nickname = 'some_nickname'
     const token = 'some_token'
