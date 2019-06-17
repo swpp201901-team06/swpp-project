@@ -58,9 +58,7 @@ export function* getReviewDetailSaga({ reviewId }) {
     delete newResponse.post_time
     delete newResponse.public_status
     delete newResponse.restaurant_id
-
     const restDetailResponse = yield callUrl('GET', `${restDetailUrl}/${reviewId}`)
-
     yield put(actions.getReviewDetailSuccess(newResponse, restDetailResponse))
   } catch (err) {
     console.log(err)

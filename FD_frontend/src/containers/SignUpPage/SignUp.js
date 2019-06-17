@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { signUp } from '../../components/pages/SignUpPage/molecules/signUp'
-import { duplicateCheck, signUpSubmit } from '../../store/SignUpPage/actions'
+import { duplicateCheck, signUpSubmit, phoneRequest, phoneAuthRequest } from '../../store/SignUpPage/actions'
 
 const mapStateToProps = (state) => {
   return {
@@ -13,11 +13,17 @@ const mapDispatchToProps = (dispatch) => {
     onDuplicateCheck: (key, value) => {
       dispatch(duplicateCheck(key, value))
     },
-    onSignUpSubmit: (email, pw, confirmpw, nickname) => {
-      dispatch(signUpSubmit(email, pw, confirmpw, nickname))
+    onSignUpSubmit: (email, pw, confirmpw, nickname, phoneNumber) => {
+      dispatch(signUpSubmit(email, pw, confirmpw, nickname, phoneNumber))
     },
     handleChange: (key, value) => {
       dispatch(duplicateCheck(key, value))
+    },
+    onPhoneAuthRequest: ( number ) => {
+      dispatch(phoneRequest(number))
+    },
+    onPhoneAuthSubmit: (input, code, phoneNumber) => {
+      dispatch(phoneAuthRequest(input, code, phoneNumber))
     },
   }
 }
