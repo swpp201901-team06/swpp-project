@@ -1,6 +1,5 @@
-import { takeEvery, take, put, fork } from 'redux-saga/effects'
+import { take, put, fork } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
-import { callUrl } from '../sagas'
 import * as actions from './actions'
 
 export function* watchGotoArchiveButton() {
@@ -14,7 +13,7 @@ export function* watchGotoArchiveButton() {
 
 export function* watchLogOutButton() {
   while (true) {
-    const { nickname } = yield take(actions.LOGOUT)
+    yield take(actions.LOGOUT)
     yield put(push('/'))
   }
 }
