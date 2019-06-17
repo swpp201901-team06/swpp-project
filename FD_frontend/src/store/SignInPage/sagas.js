@@ -6,7 +6,7 @@ import { baseHistory } from '../../index'
 import { callUrl } from '../sagas'
 
 const backendUrl = 'http://localhost:8000/'
-const checkIdPath =  `${backendUrl}user/exists/email`
+const checkIdPath = `${backendUrl}user/exists/email`
 const signInPath = `${backendUrl}account/login/`
 const getNicknamePath = `${backendUrl}user/username`
 
@@ -15,7 +15,7 @@ export function* signInAsync({ email, password }) {
     const checkIdResponse = yield callUrl('GET', `${checkIdPath}/${email}`)
     console.log('signInAsync saga')
     console.log(checkIdResponse)
-    if (!checkIdResponse.exist) {
+    if (checkIdResponse.exist === 'false') {
       throw Error('No matching email found.')
     }
     const userId = checkIdResponse.id
