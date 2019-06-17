@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import SideBar from '../../../containers/SideBar/SideBar'
 import GuestSearch from '../../../containers/GuestPage/GuestSearch'
+import UserRankings from '../../../containers/GuestPage/UserRankings'
 
 import { PageTemplate, Header, Hero, Footer, FeatureList } from 'components'
 
@@ -28,6 +29,7 @@ const GuestPage = () => {
         <SideBar />
       </SideBarWrapper>
       <GuestSearch />
+			<UserRankings />
     </div>
   )
 }

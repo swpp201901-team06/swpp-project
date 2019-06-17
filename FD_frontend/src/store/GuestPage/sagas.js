@@ -3,6 +3,9 @@ import { push } from 'react-router-redux'
 import { callUrl } from '../sagas'
 import * as actions from './actions'
 
+const backendUrl = 'http://127.0.0.1:8000/'
+const rankingUrl = `${backendUrl}review/ranking`
+
 export function* goToSearchPage({key, value}) {
   try {
     yield put(push("/search/"+key+"/"+value))
@@ -12,10 +15,40 @@ export function* goToSearchPage({key, value}) {
   }
 }
 
+export function* getRankingReviews() {
+  try {
+    const response = yield callUrl('GET', rankingUrl)
+    
+    const newResponse = response.map((review) => {
+      const newReview = {
+        ...review,
+        eatWhen: review.eat_when,
+        postTime: review.post_time,
+        publicStatus: review.public_status,
+        restaurantId: review.restaurant_id,
+      }
+      delete newReview.eat_when
+      delete newReview.post_time
+      delete newReview.public_status
+      delete newReview.restaurant_id
+      return newReview
+    })
+    
+    yield put(actions.getPopularReviewsSuccess(newResponse))
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export function* watchGoToSearchPage() {
   yield takeEvery(actions.SEARCH_REQUEST, goToSearchPage)
 }
 
+export function* watchGetPopularReviews() {
+  yield takeEvery(actions.GET_POPULAR_REVIEWS_REQUEST, getRankingReviews)
+}
+
 export default function* () {
   yield fork(watchGoToSearchPage)
+  yield fork(watchGetPopularReviews)
 }
