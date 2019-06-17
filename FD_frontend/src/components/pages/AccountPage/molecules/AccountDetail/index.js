@@ -93,8 +93,14 @@ export class AccountDetail extends React.Component {
     }
 
     const onSubmit = () => {
-      this.props.onAccountChange(this.refs.email.value, this.refs.password.value, this.refs.confirmpw.value, this.refs.nickname.value, this.props.statefunction.AccountPage.pubStatus)
+      this.props.onAccountInfoChange(this.refs.email.value, this.refs.nickname.value, this.props.statefunction.AccountPage.pubStatus)
     }
+
+    const onPasswordSubmit = () => {
+      this.props.onPasswordChange(this.refs.password.value, this.refs.confirmpw.value)
+    }
+
+
     const handleEmailChange = () => {
       if (email.value) {
         setTimeout(() => { handleChange('email', email.value) }, 300)
@@ -109,6 +115,8 @@ export class AccountDetail extends React.Component {
     return (
       <div>
         <Wrapper>
+          <h4>Change Account Info</h4>
+
           <h4 style={browncolor}>
             Email
             {' '}
@@ -122,6 +130,30 @@ export class AccountDetail extends React.Component {
             {'     '}
             {emailText}
           </h4>
+
+          <h4 style={browncolor}>
+            Nickname
+            {' '}
+            <input
+              value={currentNickname}
+              onChange={(e) => onInputChange(e)}
+              name="nickname"
+              ref="nickname"
+              style={{paddingleft:"100px"}}
+            />
+            {'     '}
+            {usernameText}
+          </h4>
+          <Dropdown name="publicStatus" options={options} onChange={(e) => onInputChange(e)} value={defaultOption} placeholder="Select an option" />
+          <h4>
+            <SubmitButton type="submit" onClick={onSubmit}>
+              Submit
+            </SubmitButton>
+          </h4>
+
+
+          <h4>Change Password</h4>
+
           <h4 style={browncolor}>
             Password
             {' '}
@@ -147,23 +179,8 @@ export class AccountDetail extends React.Component {
               style={{paddingleft:"100px"}}
             />
           </h4>
-
-          <h4 style={browncolor}>
-            Nickname
-            {' '}
-            <input
-              value={currentNickname}
-              onChange={(e) => onInputChange(e)}
-              name="nickname"
-              ref="nickname"
-              style={{paddingleft:"100px"}}
-            />
-            {'     '}
-            {usernameText}
-          </h4>
-	        <Dropdown name="publicStatus" options={options} onChange={(e) => onInputChange(e)} value={defaultOption} placeholder="Select an option" />
-          <h4 style={browncolor}>
-            <SubmitButton type="submit" onClick={onSubmit}>
+          <h4>
+            <SubmitButton type="submit" onClick={onPasswordSubmit}>
               Submit
             </SubmitButton>
           </h4>

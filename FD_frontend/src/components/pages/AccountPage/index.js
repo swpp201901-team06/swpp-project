@@ -20,13 +20,29 @@ const title = {
 
 class AccountPage extends React.Component {
   render() {
-    return (
+    let accountOption
+    const currentUser=JSON.parse(localStorage.getItem('nickname'))
+    if(currentUser == this.props.params.nickname){
+      accountOption = (
       <div>
-          <h1>
-            {this.props.params.nickname}'s account page
-          </h1>
-          <AccountDetail/>
+        <h1>
+          {this.props.params.nickname}'s account page
+        </h1>
+        <AccountDetail/>
       </div>
+      )
+    }
+    else{
+      accountOption = (
+      <div>
+        <h1>
+          You need to be logged in as this user to view this page.
+        </h1>
+      </div>
+      )
+    }
+    return (
+        accountOption
     )
   }
 }

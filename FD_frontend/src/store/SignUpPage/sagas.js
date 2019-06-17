@@ -32,9 +32,10 @@ export function* watchSubmitRequest() {
 export function* duplicateCheck({ key, value }) {
   try {
     const response = yield callUrl('GET', `${dcUrl}/${key}/${value}`)
-    if (response === 'exist') {
+    console.log(response)
+    if (response.exist === 'true') {
       yield put(actions.duplicateFound(key))
-    } else if (response === 'not exist') {
+    } else if (response.exist === 'false') {
       yield put(actions.noDuplicateFound(key))
     }
   } catch (err) {

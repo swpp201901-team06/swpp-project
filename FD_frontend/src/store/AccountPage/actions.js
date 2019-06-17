@@ -1,16 +1,23 @@
 export const CHANGE_ACCOUNT_INPUT = 'CHANGE_ACCOUNT_INPUT'
-export const EDIT_ACCOUNT_REQUEST = 'EDIT_ACCOUNT_REQUEST'
+export const MODIFY_ACCOUNT_INFO_REQUEST = 'MODIFY_ACCOUNT_INFO_REQUEST'
+export const MODIFY_PASSWORD_REQUEST = 'MODIFY_PASSWORD_REQUEST'
 export const GET_ACCOUNT_SUCCESS = 'GET_ACCOUNT_SUCCESS'
 export const GET_ACCOUNT_REQUEST = 'GET_ACCOUNT_REQUEST'
 
-export const modifyAccount = (email, pw, confirmpw, nickname, publicStatus) => {
+export const modifyAccountInfo = (email, nickname, publicStatus) => {
   return {
-    type: EDIT_ACCOUNT_REQUEST,
+    type: MODIFY_ACCOUNT_INFO_REQUEST,
     email,
-    pw,
-    confirmpw,
     nickname,
     publicStatus
+  }
+}
+
+export const modifyPassword = (pw, confirmpw) => {
+  return {
+    type: MODIFY_PASSWORD_REQUEST,
+    pw,
+    confirmpw
   }
 }
 

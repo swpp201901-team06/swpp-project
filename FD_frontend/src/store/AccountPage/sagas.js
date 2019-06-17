@@ -7,21 +7,25 @@ const backendUrl = 'http://127.0.0.1:8000/'
 const userUrl = `${backendUrl}user/detail/`
 const pwChangeUrl = 'http://127.0.0.1:8000/account/password/change/'
 
-export function* modifyAccount({ email, pw, confirmpw, nickname, publicStatus }) {
+export function* modifyAccountInfo({ email, nickname, publicStatus }) {
   try {
     const Id = JSON.parse(localStorage.getItem('id'))
     const response = yield callUrl('PUT', userUrl+Id, { username: nickname, email: email, publicStatus: publicStatus })
-    
-    if(response.ok){
+    localStorage.setItem('email', JSON.stringify(email))
+    localStorage.setItem('nickname', JSON.stringify(nickname))
+    yield put(push(`/${nickname}/account`))
+  } catch(e) {
+    console.error(e)
+  }
+}
+
+export function* modifyPassword({ pw, confirmpw }) {
+  try {
+    const Id = JSON.parse(localStorage.getItem('id'))
       const password = JSON.parse(localStorage.getItem('password'))
-      localStorage.setItem('email', JSON.stringify(email))
-      localStorage.setItem('nickname', JSON.stringify(nicknameResponse.username))
-      const response2 = yield callUrl('POST', pwChangeUrl, { new_password1: pw, new_password2: confirmpw, old_password: password })
-      if(response2.ok){
-        localStorage.setItem('password', JSON.stringify(password))
-        yield put(push(`/${nickname}/archive`))
-      }
-    }
+      const response = yield callUrl('POST', pwChangeUrl, { new_password1: pw, new_password2: confirmpw, old_password: password })
+      console.log(response)
+      localStorage.setItem('password', JSON.stringify(pw))
   } catch(e) {
     console.error(e)
   }
@@ -44,8 +48,12 @@ export function* getAccount() {
 }
 
 
-export function* watchModifyAccountRequest() {
-  yield takeEvery(actions.EDIT_ACCOUNT_REQUEST, modifyAccount)
+export function* watchModifyAccountInfoRequest() {
+  yield takeEvery(actions.MODIFY_ACCOUNT_INFO_REQUEST, modifyAccountInfo)
+}
+
+export function* watchModifyPasswordRequest() {
+  yield takeEvery(actions.MODIFY_PASSWORD_REQUEST, modifyPassword)
 }
 
 export function* watchGetAccountRequest() {
@@ -53,6 +61,7 @@ export function* watchGetAccountRequest() {
 }
 
 export default function* () {
-  yield fork(watchModifyAccountRequest)
+  yield fork(watchModifyPasswordRequest)
+  yield fork(watchModifyAccountInfoRequest)
   yield fork(watchGetAccountRequest)
 }
