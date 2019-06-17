@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import ImageUpload from '../../../../../containers/PostPage/ImageUpload'
 import PubStatusButton from '../../atoms/PubStatusButton'
 import PostSubmitButton from '../../atoms/PostSubmitButton'
-import RestConfirmButton from '../../atoms/RestConfirmButton'
+import Search from '../../../../molecules/Searchbox'
 
 const Wrapper = styled.div`
   display: flex;
@@ -57,6 +57,7 @@ class ReviewPostDetail extends React.Component {
     let tagText
     let restIdText
 
+    // initialize publicStatus field
     if (this.props.statefunction.PostPage.publicStatus &&
       this.props.statefunction.PostPage.publicStatus === 'True') {
       publicStatusText = 'Public'
@@ -64,36 +65,46 @@ class ReviewPostDetail extends React.Component {
       publicStatusText = 'Private'
     }
 
+    // initialize eatWhen field
     if (this.props.statefunction.PostPage.eatWhen) {
       dateText = this.props.statefunction.PostPage.eatWhen
+      if (dateText[dateText.length - 1] == 'Z') {
+        dateText = dateText.substring(0, dateText.length - 1)
+      }
     } else {
       dateText = ''
     }
 
+    // initialize restaurant ID field
+    // TODO: we probably no longer need restaurant ID
     if (this.props.statefunction.PostPage.restId) {
       restIdText = this.props.statefunction.PostPage.restId
     } else {
       restIdText = ''
     }
 
+    // initialize score field
     if (this.props.statefunction.PostPage.score) {
       scoreText = this.props.statefunction.PostPage.score
     } else {
       scoreText = ''
     }
 
+    // initialize content field
     if (this.props.statefunction.PostPage.content) {
       contentText = this.props.statefunction.PostPage.content
     } else {
       contentText = ''
     }
 
+    // initialize tags field
     if (this.props.statefunction.PostPage.tags) {
       tagText = this.props.statefunction.PostPage.tags
     } else {
       tagText = ''
     }
 
+    // initialize photo field
     if (this.props.statefunction.PostPage.photo) {
       imgUrlText = this.props.statefunction.PostPage.photo
     } else {
@@ -110,14 +121,6 @@ class ReviewPostDetail extends React.Component {
       } else {
         this.props.PubStatusChange('False')
       }
-    }
-
-    const onClickRestConfirm = () => {
-      const restName = 'some_restname'
-      const address = 'some_addr'
-      const latitude = 1.0
-      const longitude = 2.0
-      this.props.onConfirmRest(restName, address, latitude, longitude)
     }
 
     const onClickPostSubmit = () => {
@@ -144,6 +147,7 @@ class ReviewPostDetail extends React.Component {
             Date{' '}
             <input
               value={dateText}
+              type="datetime-local"
               onChange={(e) => onInputChange(e)}
               name="date"
               ref="date"
@@ -157,9 +161,6 @@ class ReviewPostDetail extends React.Component {
               name="restId"
               ref="restId"
             />
-            <RestConfirmButton onClick={onClickRestConfirm}>
-              Confirm
-            </RestConfirmButton>
           </div>
           <RowWrapper>
             Image{' '}
@@ -178,10 +179,14 @@ class ReviewPostDetail extends React.Component {
             Content{' '}
             <input
               value={contentText}
+              type="text"
               onChange={(e) => onInputChange(e)}
               name="content"
               ref="content"
+              style={{width:"500px", height:"200px"}}
             />
+
+
           </div>
           <div style={padding}>
             Tag{' '}
@@ -205,6 +210,7 @@ class ReviewPostDetail extends React.Component {
             </PostSubmitButton>
           </div>
         </Wrapper>
+        <Search onConfirmRest={this.props.onConfirmRest} />
       </div>
     )
   }

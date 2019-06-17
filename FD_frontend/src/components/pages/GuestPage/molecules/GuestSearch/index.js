@@ -37,16 +37,14 @@ export class GuestSearch extends React.Component {
 
     
     const onSubmitClick = () => {
-      onSearchSubmit(this.state.searchKey, this.state.searchValue)
+      this.props.onSearchSubmit(this.state.searchKey, this.state.searchValue)
     }
     
     return (
       <div>
          <h4><Dropdown options={options} onChange={this.onCategoryChange} value={defaultOption} placeholder="Select an option" />
 	      <input onChange={(e) => this.onValueChange(e)} />{'    '}
-        <Link to={"/search/"+this.state.searchKey+"/"+this.state.searchValue}>
-          <SearchButton>Search</SearchButton>
-        </Link>
+          <SearchButton onClick = { onSubmitClick } >Search</SearchButton>
         </h4>
       </div>
     )
