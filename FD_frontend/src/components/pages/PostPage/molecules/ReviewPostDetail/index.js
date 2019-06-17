@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import ImageUpload from '../../../../../containers/PostPage/ImageUpload'
 import PubStatusButton from '../../atoms/PubStatusButton'
 import PostSubmitButton from '../../atoms/PostSubmitButton'
-import RestConfirmButton from '../../atoms/RestConfirmButton'
 import Search from '../../../../molecules/Searchbox'
 
 const Wrapper = styled.div`
