@@ -9,7 +9,7 @@ class CustomUser(AbstractUser):
     is_admin = models.BooleanField(default = False)
     is_active = models.BooleanField(default = True)
 
-    follows = models.ManyToManyField("self", related_name = "followers", blank=True)
+    follows = models.ManyToManyField("self", related_name = "followers", blank=True, symmetrical=False)
 
     def __str__(self):
         return self.username
