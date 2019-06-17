@@ -15,7 +15,22 @@ export function* getResultsSaga({ key, value }) {
     } else {
       response = yield callUrl('GET', `${tagUrl}/${value}`)
     }
-    yield put(actions.getResultsSuccess(response))
+    const newResponse = response.map((review) => {
+      const newReview = {
+        ...review,
+        eatWhen: review.eat_when,
+        postTime: review.post_time,
+        publicStatus: review.public_status,
+        restaurantId: review.restaurant_id,
+      }
+      delete newReview.eat_when
+      delete newReview.post_time
+      delete newReview.public_status
+      delete newReview.restaurant_id
+      return newReview
+    })
+
+    yield put(actions.getResultsSuccess(newResponse))
   } catch (err) {
     console.log(err)
     yield put(actions.getResultsFailed())
