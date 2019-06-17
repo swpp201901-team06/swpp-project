@@ -23,9 +23,11 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
   let confirmpw
   let nickname
   let phoneNumber
-  let code
+  let inputCode
   let emailText
   let usernameText
+  let phoneText
+  let phoneAuthText
 
   if (statefunction.SignUpPage.emailText) {
     emailText = statefunction.SignUpPage.emailText
@@ -70,6 +72,12 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
       setTimeout(() => { handleChange('username', nickname.value) }, 300)
     }
   }
+  const onSend = () => {
+    onPhoneAuthRequest(phoneNumber.value)
+  }
+  const onAuthorize = () => {
+    onPhoneAuthSubmit(code.value, statefunction.SignUpPage.code, phoneNumber.value)
+  }
 
   let phoneAuthComponent
   
@@ -79,9 +87,9 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
         <h4 style={browncolor}>
           Authorization Code
           {' '}
-          <input ref={node => { code = node }} />
+          <input ref={node => { inputCode = node }} />
           {' '}
-          <SubmitButton type="submit" onClick={onPhoneAuthSubmit}>
+          <SubmitButton type="submit" onClick={onAuthorize}>
             Authorize
           </SubmitButton>
           {'     '}
@@ -92,7 +100,7 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
     )
   }
   else {
-    phoneAuth = ''
+    phoneAuthComponent = ''
   }
       
 
@@ -111,13 +119,13 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
           {' '}
           <input ref={node => { phoneNumber = node }} />
           {' '}
-          <SubmitButton type="submit" onClick={onPhoneAuthRequest}>
+          <SubmitButton type="submit" onClick={onSend}>
             Send/Resend
           </SubmitButton>
           {'     '}
           {phoneText}
         </h4>
-        phoneAuthComponent
+        {phoneAuthComponent}
         <h4 style={browncolor}>
           Password
           {' '}

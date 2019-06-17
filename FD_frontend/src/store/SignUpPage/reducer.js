@@ -55,7 +55,8 @@ const signUpReducer = (state = initialState, action) => {
       return {
         ...state,
         phoneSendText: 'Please write down the authorization code sent to your phone below.',
-        phoneAuth: 'True'
+        phoneAuth: 'True',
+        code: actions.code
       }  
     default:
       return state
