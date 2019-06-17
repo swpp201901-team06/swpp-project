@@ -22,7 +22,7 @@ python3 manage.py migrate
 sudo apt install npm
 cd ../FD_frontend
 npm install
-npm install google-maps-react
+npm install google-map-react
 ```
 In order to run the backend server, follow these steps:
 ```bash
