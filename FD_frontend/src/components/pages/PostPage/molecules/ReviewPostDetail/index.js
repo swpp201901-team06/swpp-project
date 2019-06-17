@@ -1,9 +1,10 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import ImageUpload from '../../../../../containers/PostPage/ImageUpload'
 import PubStatusButton from '../../atoms/PubStatusButton'
 import PostSubmitButton from '../../atoms/PostSubmitButton'
 import RestConfirmButton from '../../atoms/RestConfirmButton'
+import Search from '../../../../molecules/Searchbox'
 
 const Wrapper = styled.div`
   display: flex;
@@ -112,13 +113,13 @@ class ReviewPostDetail extends React.Component {
       }
     }
 
-    const onClickRestConfirm = () => {
-      const restName = 'some_restname'
-      const address = 'some_addr'
-      const latitude = 1.0
-      const longitude = 2.0
-      this.props.onConfirmRest(restName, address, latitude, longitude)
-    }
+    // const onClickRestConfirm = () => {
+    //   const restName = 'some_restname'
+    //   const address = 'some_addr'
+    //   const latitude = 1.0
+    //   const longitude = 2.0
+    //   this.props.onConfirmRest(restName, address, latitude, longitude)
+    // }
 
     const onClickPostSubmit = () => {
       if (this.refs.restId.value && this.refs.date.value && this.refs.score.value &&
@@ -157,9 +158,6 @@ class ReviewPostDetail extends React.Component {
               name="restId"
               ref="restId"
             />
-            <RestConfirmButton onClick={onClickRestConfirm}>
-              Confirm
-            </RestConfirmButton>
           </div>
           <RowWrapper>
             Image{' '}
@@ -205,6 +203,7 @@ class ReviewPostDetail extends React.Component {
             </PostSubmitButton>
           </div>
         </Wrapper>
+        <Search onConfirmRest={this.props.onConfirmRest} />
       </div>
     )
   }
