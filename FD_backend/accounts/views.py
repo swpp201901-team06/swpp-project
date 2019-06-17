@@ -53,7 +53,6 @@ class MessageSendView(generics.RetrieveAPIView):
 
     def get(self, request, number):
         try:
-            print(number)
             obj = models.PhoneNumber.objects.get(number=number)
             return Response("exist")
         except:
