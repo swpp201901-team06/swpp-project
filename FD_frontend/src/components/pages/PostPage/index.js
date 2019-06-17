@@ -1,7 +1,7 @@
 import React from 'react'
 import ReviewPostDetail from '../../../containers/PostPage/ReviewPost'
 import styled from 'styled-components'
-import GoogleMap from '../../molecules/GoogleMap'
+import Search from '../../molecules/Searchbox'
 import SideBar from '../../../containers/SideBar/SideBar'
 
 const SideBarWrapper = styled.div`
@@ -57,7 +57,7 @@ class PostPage extends React.Component {
             {review}
           </ReviewPostDetail>
         </Wrapper>
-        <GoogleMap />
+        <Search />
       </div>
     )
   }

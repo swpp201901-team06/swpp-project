@@ -6,7 +6,6 @@ import PostButton from './atoms/PostButton'
 import ArchiveReviewList from '../../../containers/ArchivePage/ReviewList'
 import ArchiveReviewDetail from '../../../containers/ArchivePage/ReviewDetail'
 import GoogleMap from '../../atoms/GoogleMap'
-import Marker from '../../atoms/Marker'
 import Search from '../../molecules/Searchbox'
 
 const SideBarWrapper = styled.div`
@@ -93,7 +92,7 @@ class ArchivePage extends React.Component {
             {this.props.params.nickname}
           </ArchiveReviewList>
           <ArchiveReviewDetail />
-          <GoogleMap />
+          <Search />
         </Wrapper>
 
       </div>

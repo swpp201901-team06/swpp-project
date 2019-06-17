@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { GoogleApiWrapper, InfoWindow } from 'google-map-react';
 //import isEmpty from 'lodash.isempty';
 
 // components:
@@ -64,6 +65,7 @@ class Search extends Component {
                 lng={place.geometry.location.lng()}
               />
             ))}
+          
         </GoogleMap>
       </div>
     );
@@ -71,3 +73,13 @@ class Search extends Component {
 }
 //!isEmpty(places) &&
 export default Search;
+
+{/* <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+          onClose={this.onClose}
+          >
+            <div>
+              <h4>{this.state.selectedPlace.name}</h4>
+            </div>
+          </InfoWindow> */}
