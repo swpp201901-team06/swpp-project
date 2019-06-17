@@ -4,9 +4,10 @@ import { requestSignIn } from '../SignInPage/actions'
 import { SIGN_IN_SUCCESS } from '../SignInPage/actionTypes'
 import { callUrl } from '../sagas'
 
-const signUpUrl = 'http://127.0.0.1:8000/account/registration'
-const dcUrl = 'http://127.0.0.1:8000/user/exists/'
-const archiveUrl = 'http://127.0.0.1:8000/archive/list'
+const backendUrl = 'http://localhost:8000'
+const signUpUrl = `${backendUrl}/account/registration`
+const dcUrl = `${backendUrl}/user/exists`
+const archiveUrl = `${backendUrl}/archive/list`
 
 export function* submit({ email, pw, confirmpw, nickname }) {
   try {
@@ -30,7 +31,7 @@ export function* watchSubmitRequest() {
 
 export function* duplicateCheck({ key, value }) {
   try {
-    const response = yield callUrl('GET', `${dcUrl}${key}/${value}`)
+    const response = yield callUrl('GET', `${dcUrl}/${key}/${value}`)
     if (response === 'exist') {
       yield put(actions.duplicateFound(key))
     } else if (response === 'not exist') {

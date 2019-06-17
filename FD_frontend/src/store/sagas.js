@@ -50,6 +50,9 @@ export function* callUrl(method, url, data = {}) {
         console.log(yield response.json())
         throw Error(response.statusText)
       }
+      if (method === 'DELETE') {
+        return null
+      }
       return yield response.json()
     } else if (method === 'GET') {
       return yield call(api.get, url)

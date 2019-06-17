@@ -5,22 +5,36 @@ import * as actionTypes from './actionTypes'
 import { baseHistory } from '../../index'
 import { callUrl } from '../sagas'
 
-const signInPath = 'http://127.0.0.1:8000/account/login/'
-const getNicknamePath = 'http://127.0.0.1:8000/user/username/'
+const backendUrl = 'http://localhost:8000'
+const checkIdUrl = `${backendUrl}/user/exists/email`
+const signInUrl = `${backendUrl}/account/login/`
+const getNicknameUrl = `${backendUrl}/user/username`
 
-export function* signInAsync({ email, password }) {
+export function* signInSaga({ email, password }) {
   try {
+    // check and get ID of user with `email`
+    const checkIdResponse = yield callUrl('GET', `${checkIdUrl}/${email}`)
+    if (checkIdResponse.exist === 'false') {
+      throw Error('No matching email found.')
+    }
+    const userId = checkIdResponse.id
+
     const data = {
       username: 'test_username',
       email,
       password,
     }
-    const response = yield callUrl('POST', signInPath, data)
-    const nicknameResponse = yield callUrl('GET', `${getNicknamePath}${email}`)
+    // sign in request
+    const response = yield callUrl('POST', signInUrl, data)
+    // check nickname corresponding to `email`
+    const nicknameResponse = yield callUrl('GET', `${getNicknameUrl}/${email}`)
+
     localStorage.setItem('token', JSON.stringify(response.key))
     localStorage.setItem('email', JSON.stringify(email))
     localStorage.setItem('password', JSON.stringify(password))
     localStorage.setItem('nickname', JSON.stringify(nicknameResponse.username))
+    localStorage.setItem('id', JSON.stringify(userId))
+
     yield put(actions.signInSuccess(response.key, email, password, nicknameResponse.username))
     yield put(push(`/${nicknameResponse.username}/archive`))
   } catch (e) {
@@ -30,12 +44,13 @@ export function* signInAsync({ email, password }) {
 }
 
 export function* watchRequestSignIn() {
-  yield takeEvery(actionTypes.REQUEST_SIGN_IN, signInAsync)
+  yield takeEvery(actionTypes.REQUEST_SIGN_IN, signInSaga)
 }
 
 export function* watchGotoSignUp() {
   while (true) {
     yield take(actionTypes.GOTO_SIGN_UP)
+    // redirect to `/signup`
     baseHistory.push('/signup')
   }
 }
@@ -43,6 +58,7 @@ export function* watchGotoSignUp() {
 export function* watchGotoArchive() {
   while (true) {
     const { nickname } = yield take(actionTypes.GOTO_ARCHIVE)
+    // redirect to archive page
     yield put(push(`/${nickname}/archive`))
   }
 }
