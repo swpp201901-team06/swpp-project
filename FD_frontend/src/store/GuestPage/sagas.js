@@ -5,6 +5,7 @@ import * as actions from './actions'
 
 const backendUrl = 'http://127.0.0.1:8000/'
 const rankingUrl = `${backendUrl}review/ranking`
+const recommendUrl = `${backendUrl}recommend/`
 
 export function* goToSearchPage({key, value}) {
   try {
@@ -17,7 +18,14 @@ export function* goToSearchPage({key, value}) {
 
 export function* getRankingReviews() {
   try {
-    const response = yield callUrl('GET', rankingUrl)
+    let response
+    if(localStorage.hasOwnProperty('nickname')) {
+      const nickname=JSON.parse(localStorage.getItem('nickname'))
+      response = yield callUrl('GET', `${recommendUrl}${nickname}`)
+    }
+    else {
+      response = yield callUrl('GET', rankingUrl)
+    }
     
     const newResponse = response.map((review) => {
       const newReview = {
