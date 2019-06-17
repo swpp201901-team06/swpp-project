@@ -101,6 +101,6 @@ class SearchedReviewListView(APIView):
 # get : 조회수가 가장 높은 3개의 리뷰를 가져온다.
 class ReviewRankingView(APIView):
     def get(self, request, *args, **kwargs):
-        review_set = Review.objects.select_related('archive').select_related('archive__user').all().order_by('-hits')
+        review_set = Review.objects.select_related('archive').select_related('archive__user').filter(public_status=True).order_by('-hits')
         serializer = ReviewSerializer(review_set[:3], many = True)
         return Response(serializer.data)
