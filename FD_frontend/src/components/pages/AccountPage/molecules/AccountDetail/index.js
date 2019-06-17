@@ -24,7 +24,6 @@ export class AccountDetail extends React.Component {
   }
   
   componentDidMount() {
-    console.log(this.props.children)
     this.props.onAccountLoad()
   }
   
@@ -33,15 +32,14 @@ export class AccountDetail extends React.Component {
     let pw
     let confirmpw
     let nickname
-    let emailText
     let usernameText
-    let currentEmail
     let currentPW
     let currentPW2
     let currentNickname
     
     let defaultOption
-    if(this.props.statefunction.AccountPage.pubStatus) {
+    console.log(this.props.statefunction.AccountPage.publicStatus)
+    if(this.props.statefunction.AccountPage.publicStatus == true) {
       defaultOption = 'Public'
     }
     else {
@@ -52,22 +50,10 @@ export class AccountDetail extends React.Component {
       'Public', 'Private',
     ]
 
-    if (this.props.statefunction.SignUpPage.emailText) {
-      emailText = this.props.statefunction.SignUpPage.emailText
-    } else {
-      emailText = ''
-    }
-
     if (this.props.statefunction.SignUpPage.usernameText) {
       usernameText = this.props.statefunction.SignUpPage.usernameText
     } else {
       usernameText = ''
-    }
-    
-    if (this.props.statefunction.AccountPage.email) {
-      currentEmail = this.props.statefunction.AccountPage.email
-    } else {
-      currentEmail = JSON.parse(localStorage.getItem('email'))
     }
     
     if (this.props.statefunction.AccountPage.password) {
@@ -91,21 +77,19 @@ export class AccountDetail extends React.Component {
     const onInputChange = (e) => {
       this.props.onChangeAccountInput(e.target.name, e.target.value)
     }
+    
+    const onPublicStatusChange = (e) => {
+      this.props.onChangeAccountInput('publicStatus', e.value)
+    }
 
     const onSubmit = () => {
-      this.props.onAccountInfoChange(this.refs.email.value, this.refs.nickname.value, this.props.statefunction.AccountPage.pubStatus)
+      this.props.onAccountInfoChange(this.refs.nickname.value, this.props.statefunction.AccountPage.publicStatus)
     }
 
     const onPasswordSubmit = () => {
       this.props.onPasswordChange(this.refs.password.value, this.refs.confirmpw.value)
     }
 
-
-    const handleEmailChange = () => {
-      if (email.value) {
-        setTimeout(() => { handleChange('email', email.value) }, 300)
-      }
-    }
     const handleNicknameChange = () => {
       if (nickname.value) {
         setTimeout(() => { handleChange('username', nickname.value) }, 300)
@@ -116,20 +100,6 @@ export class AccountDetail extends React.Component {
       <div>
         <Wrapper>
           <h4>Change Account Info</h4>
-
-          <h4 style={browncolor}>
-            Email
-            {' '}
-            <input
-              value={currentEmail}
-              onChange={(e) => onInputChange(e)}
-              name="email"
-              ref="email"
-              style={{paddingleft:"100px"}}
-            />
-            {'     '}
-            {emailText}
-          </h4>
 
           <h4 style={browncolor}>
             Nickname
@@ -144,7 +114,7 @@ export class AccountDetail extends React.Component {
             {'     '}
             {usernameText}
           </h4>
-          <Dropdown name="publicStatus" options={options} onChange={(e) => onInputChange(e)} value={defaultOption} placeholder="Select an option" />
+          <Dropdown name="publicStatus" options={options} onChange={(e) => onPublicStatusChange(e)} value={defaultOption} placeholder="Select an option" />
           <h4>
             <SubmitButton type="submit" onClick={onSubmit}>
               Submit

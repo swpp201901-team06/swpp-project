@@ -6,18 +6,13 @@ const accountReducer = (state=[], action) => {
     case actions.GET_ACCOUNT_SUCCESS:
       return {
         ...nextState,
-        email: action.email,
         password: action.password,
         confirmpw: action.password,
-        nickname: action.nickname
+        nickname: action.username,
+        publicStatus: action.public_status
       }
     case actions.CHANGE_ACCOUNT_INPUT:
       switch (action.key) {
-        case 'email':
-          return {
-            ...nextState,
-            email: action.value,
-          }
         case 'password':
           return {
             ...nextState,
@@ -37,13 +32,13 @@ const accountReducer = (state=[], action) => {
           if (action.value == 'Public') {
             return {
               ...nextState,
-              publicStatus: 'True'
+              publicStatus: true
             }
           }
           else {
             return {
               ...nextState,
-              publicStatus: 'False'
+              publicStatus: false
             }
           }
         default:

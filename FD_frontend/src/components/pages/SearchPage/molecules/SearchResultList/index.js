@@ -21,7 +21,7 @@ class SearchResultList extends React.Component {
       <div>
         {searchstate.map((result) =>
           <SearchResult
-            key={result.archive}
+            key={result.id}
             resultId={result.id}
             eatWhen={result.eatWhen}
             restaurantId={result.restaurantId}

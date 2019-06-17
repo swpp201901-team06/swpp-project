@@ -17,8 +17,8 @@ const mapDispatchToProps = (dispatch) => {
     	onDuplicateCheck: (key, value) => {
         	dispatch(duplicateCheck(key, value))
     	},
-    	onAccountInfoChange: (email, nickname, publicStatus) => {
-        	dispatch(modifyAccountInfo(email, nickname, publicStatus))
+    	onAccountInfoChange: (nickname, publicStatus) => {
+        	dispatch(modifyAccountInfo(nickname, publicStatus))
     	},
     	onPasswordChange: (pw, confirmpw) => {
         	dispatch(modifyPassword(pw, confirmpw))

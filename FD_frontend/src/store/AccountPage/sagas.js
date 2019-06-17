@@ -7,11 +7,10 @@ const backendUrl = 'http://127.0.0.1:8000/'
 const userUrl = `${backendUrl}user/detail/`
 const pwChangeUrl = 'http://127.0.0.1:8000/account/password/change/'
 
-export function* modifyAccountInfo({ email, nickname, publicStatus }) {
+export function* modifyAccountInfo({ nickname, publicStatus }) {
   try {
     const Id = JSON.parse(localStorage.getItem('id'))
-    const response = yield callUrl('PUT', userUrl+Id, { username: nickname, email: email, publicStatus: publicStatus })
-    localStorage.setItem('email', JSON.stringify(email))
+    const response = yield callUrl('PUT', userUrl+Id, { username: nickname, public_status: publicStatus })
     localStorage.setItem('nickname', JSON.stringify(nickname))
     yield put(push(`/${nickname}/account`))
   } catch(e) {
@@ -24,7 +23,6 @@ export function* modifyPassword({ pw, confirmpw }) {
     const Id = JSON.parse(localStorage.getItem('id'))
       const password = JSON.parse(localStorage.getItem('password'))
       const response = yield callUrl('POST', pwChangeUrl, { new_password1: pw, new_password2: confirmpw, old_password: password })
-      console.log(response)
       localStorage.setItem('password', JSON.stringify(pw))
   } catch(e) {
     console.error(e)
@@ -35,13 +33,10 @@ export function* getAccount() {
   try {
     const Id = JSON.parse(localStorage.getItem('id'))
     const response = yield callUrl('GET', userUrl+Id)
-    if(response.ok){
-      console.log('response is ok')
-      const password = JSON.parse(localStorage.getItem('password'))
-      console.log(password)
-      const { username, email, publicStatus } = response
-      yield put(actions.getAccountSuccess( username, email, password, publicStatus))
-    }
+    const password = JSON.parse(localStorage.getItem('password'))
+    const { username, public_status } = response
+    console.log(public_status)
+    yield put(actions.getAccountSuccess( username, password, public_status))
   } catch(e) {
     console.error(e)
   }

@@ -4,10 +4,9 @@ export const MODIFY_PASSWORD_REQUEST = 'MODIFY_PASSWORD_REQUEST'
 export const GET_ACCOUNT_SUCCESS = 'GET_ACCOUNT_SUCCESS'
 export const GET_ACCOUNT_REQUEST = 'GET_ACCOUNT_REQUEST'
 
-export const modifyAccountInfo = (email, nickname, publicStatus) => {
+export const modifyAccountInfo = (nickname, publicStatus) => {
   return {
     type: MODIFY_ACCOUNT_INFO_REQUEST,
-    email,
     nickname,
     publicStatus
   }
@@ -29,12 +28,12 @@ export const changeAccountInput = (key, value) => {
   }
 }
 
-export const getAccountSuccess = (username, email, password, publicStatus) => {
+export const getAccountSuccess = (username, password, public_status) => {
   return {
     type: GET_ACCOUNT_SUCCESS,
     username,
-    email,
-    publicStatus
+    password,
+    public_status
   }
 }
 

@@ -6,16 +6,22 @@ import * as actions2 from '../ArchivePage/actions'
 
 const backendUrl = 'http://127.0.0.1:8000'
 const usernameUrl = `${backendUrl}/review/search`
-const tagUrl = `${backendUrl}tag/filter`
+const tagUrl = `${backendUrl}/tag/filter`
+const restaurantUrl = `${backendUrl}/restaurant/search`
 
 export function* getResultsSaga({ key, value }) {
   try {
     let response
     if (key === 'author') {
       response = yield callUrl('GET', `${usernameUrl}/${value}`)
-    } else {
+    } else if (key == 'tag') {
       response = yield callUrl('GET', `${tagUrl}/${value}`)
+    } else {
+      response = yield callUrl('GET', `${restaurantUrl}/${value}`)
     }
+    
+    console.log(response)
+    
     const newResponse = response.map((review) => {
       const newReview = {
         ...review,
