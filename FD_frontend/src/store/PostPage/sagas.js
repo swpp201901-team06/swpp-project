@@ -4,10 +4,10 @@ import { callUrl, callUrlImg } from '../sagas'
 import * as actions from './actions'
 import { getReviewDetail } from '../ArchivePage/actions'
 
-const backendUrl = 'http://127.0.0.1:8000/'
-const reviewListUrl = `${backendUrl}review/list`
-const reviewDetailUrl = `${backendUrl}review/detail/`
-const restListUrl = `${backendUrl}restaurant/list`
+const backendUrl = 'http://127.0.0.1:8000'
+const reviewListUrl = `${backendUrl}/review/list`
+const reviewDetailUrl = `${backendUrl}/review/detail`
+const restListUrl = `${backendUrl}/restaurant/list`
 
 export function* getPostReviewDetailSaga({ reviewId }) {
   try {
@@ -15,12 +15,14 @@ export function* getPostReviewDetailSaga({ reviewId }) {
       yield put(actions.getPostReviewDetailSuccess(null, null, null, null,
         null, null, false))
     } else { // edit existing review
-      const reviewDetail = yield callUrl('GET', `${reviewDetailUrl}${reviewId}`)
-      const { restaurantId, eatWhen, tags, score, content, photo, publicStatus }
-        = reviewDetail
-
-      yield put(actions.getPostReviewDetailSuccess(restaurantId, eatWhen, tags, score,
-        content, photo, publicStatus))
+      const reviewDetail = yield callUrl('GET', `${reviewDetailUrl}/${reviewId}`)
+      const { restaurant_id, eat_when, tags, score, content, photo, public_status } = reviewDetail
+      console.log('getPostReviewDetailSaga else')
+      console.log(restaurant_id)
+      console.log(photo)
+      const photoLink = `${backendUrl}${photo}`
+      yield put(actions.getPostReviewDetailSuccess(restaurant_id, eat_when, tags, score,
+        content, photoLink, public_status))
     }
   } catch (err) {
     console.log(err)
@@ -53,7 +55,7 @@ export function* postReviewSaga({ reviewId, nickname, restId, eatWhen, tags, sco
     if (reviewId === 'default') { // post new review
       response = yield callUrlImg('POST', reviewListUrl, review_data)
     } else { // edit existing review
-      response = yield callUrlImg('PUT', `${reviewDetailUrl}${reviewId}/`, review_data)
+      response = yield callUrlImg('PUT', `${reviewDetailUrl}/${reviewId}`, review_data)
     }
     if (!response) {
       yield put(actions.postReviewFailed())
