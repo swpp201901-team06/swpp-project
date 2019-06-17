@@ -17,11 +17,13 @@ const browncolor = {
   color: '#e0ba7c',
 }
 
-export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handleChange }) => {
+export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handleChange, onPhoneAuthRequest, onPhoneAuthSubmit }) => {
   let email
   let pw
   let confirmpw
   let nickname
+  let phoneNumber
+  let code
   let emailText
   let usernameText
 
@@ -35,6 +37,18 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
     usernameText = statefunction.SignUpPage.usernameText
   } else {
     usernameText = ''
+  }
+  
+  if (statefunction.SignUpPage.phoneSendText) {
+    phoneText = statefunction.SignUpPage.phoneSendText
+  } else {
+    phoneText = ''
+  }
+  
+  if (statefunction.SignUpPage.phoneAuthText) {
+    phoneAuthText = statefunction.SignUpPage.phoneAuthText
+  } else {
+    phoneAuthText = ''
   }
 
   // const onECheck = () => {
@@ -57,6 +71,31 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
     }
   }
 
+  let phoneAuthComponent
+  
+  if(statefunction.SignUpPage.phoneAuth == 'True'){
+    phoneAuthComponent = (
+      <div>
+        <h4 style={browncolor}>
+          Authorization Code
+          {' '}
+          <input ref={node => { code = node }} />
+          {' '}
+          <SubmitButton type="submit" onClick={onPhoneAuthSubmit}>
+            Authorize
+          </SubmitButton>
+          {'     '}
+          {phoneAuthText}
+        </h4>
+        
+      </div>
+    )
+  }
+  else {
+    phoneAuth = ''
+  }
+      
+
   return (
     <div>
       <Wrapper>
@@ -67,6 +106,18 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
           {'     '}
           {emailText}
         </h4>
+        <h4 style={browncolor}>
+          Phone number(without '-')
+          {' '}
+          <input ref={node => { phoneNumber = node }} />
+          {' '}
+          <SubmitButton type="submit" onClick={onPhoneAuthRequest}>
+            Send/Resend
+          </SubmitButton>
+          {'     '}
+          {phoneText}
+        </h4>
+        phoneAuthComponent
         <h4 style={browncolor}>
           Password
           {' '}

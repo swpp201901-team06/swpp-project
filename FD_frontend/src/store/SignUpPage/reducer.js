@@ -31,6 +31,32 @@ const signUpReducer = (state = initialState, action) => {
         }
       }
       return state
+    case actions.PHONE_AUTH_FAILED:
+      return {
+        ...state,
+        phoneAuthText: 'Authorization failed.'
+      }
+    case actions.PHONE_AUTH_SUCCESS:
+      return {
+        ...state,
+        phoneAuthText: 'Success!'
+      }
+    case actions.PHONE_DUPLICATE:
+      return {
+        ...state,
+        phoneSendText: 'This number already exists.'
+      }
+    case actions.PHONE_FAIL:
+      return {
+        ...state,
+        phoneSendText: 'Failed to send authorization code. Please try again.'
+      }
+    case actions.PHONE_SENT:
+      return {
+        ...state,
+        phoneSendText: 'Please write down the authorization code sent to your phone below.',
+        phoneAuth: 'True'
+      }  
     default:
       return state
   }
