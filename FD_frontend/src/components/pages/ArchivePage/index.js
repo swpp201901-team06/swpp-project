@@ -6,8 +6,7 @@ import PostButton from './atoms/PostButton'
 import ArchiveReviewList from '../../../containers/ArchivePage/ReviewList'
 import ArchiveReviewDetail from '../../../containers/ArchivePage/ReviewDetail'
 import GoogleMap from '../../atoms/GoogleMap'
-import Marker from '../../atoms/Marker'
-import Search from '../../molecules/Searchbox'
+import ReviewMap from '../../molecules/ReviewMap'
 
 const SideBarWrapper = styled.div`
   display: flex;
@@ -75,7 +74,7 @@ class ArchivePage extends React.Component {
           </Wrapper>
           
          
-          <Search />
+          <ReviewMap />
           
         </div>
       )
@@ -93,9 +92,9 @@ class ArchivePage extends React.Component {
             {this.props.params.nickname}
           </ArchiveReviewList>
           <ArchiveReviewDetail />
-          <GoogleMap />
+          
         </Wrapper>
-
+        <ReviewMap />
       </div>
     )
   }

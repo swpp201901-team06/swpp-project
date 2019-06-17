@@ -1,19 +1,10 @@
-import React, { Component, Fragment } from 'react'
-// import isEmpty from 'lodash.isempty';
+import React, { Component, Fragment } from 'react';
+import { GoogleApiWrapper, InfoWindow } from 'google-map-react';
+//import isEmpty from 'lodash.isempty';
 
-// components:
-import Marker from '../../atoms/Marker'
-
-// examples:
-import GoogleMap from '../../atoms/GoogleMap'
-import SearchBox from '../../atoms/SearchBox'
-
-// consts
-// import LOS_ANGELES_CENTER from '../const/la_center';
-const logo = {
-  height: 40,
-  width: 100,
-}
+import Marker from '../../atoms/Marker';
+import GoogleMap from '../../atoms/GoogleMap';
+import SearchBox from '../../atoms/SearchBox';
 
 class Search extends Component {
   constructor(props) {
@@ -65,8 +56,8 @@ class Search extends Component {
       <div>
         {mapApiLoaded && <SearchBox map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />}
         <GoogleMap
-          defaultZoom={10}
-          defaultCenter={[34.0522, -118.2437]}
+          defaultZoom={17}
+          defaultCenter={[37.4812, 126.9527]}
           bootstrapURLKeys={{
             key: 'AIzaSyBBUBM1s37lF0M2Wbkkv6Yl5tdOhF3YBfM',
             libraries: ['places', 'geometry'],
@@ -89,4 +80,5 @@ class Search extends Component {
   }
 }
 //!isEmpty(places) &&
+
 export default Search
