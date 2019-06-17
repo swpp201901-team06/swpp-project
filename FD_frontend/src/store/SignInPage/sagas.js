@@ -5,22 +5,32 @@ import * as actionTypes from './actionTypes'
 import { baseHistory } from '../../index'
 import { callUrl } from '../sagas'
 
-const signInPath = 'http://127.0.0.1:8000/account/login/'
-const getNicknamePath = 'http://127.0.0.1:8000/user/username/'
+const backendUrl = 'http://localhost:8000/'
+const checkIdPath =  `${backendUrl}user/exists/email`
+const signInPath = `${backendUrl}account/login/`
+const getNicknamePath = `${backendUrl}user/username`
 
 export function* signInAsync({ email, password }) {
   try {
+    const checkIdResponse = yield callUrl('GET', `${checkIdPath}/${email}`)
+    console.log('signInAsync saga')
+    console.log(checkIdResponse)
+    if (!checkIdResponse.exist) {
+      throw Error('No matching email found.')
+    }
+    const userId = checkIdResponse.id
     const data = {
       username: 'test_username',
       email,
       password,
     }
     const response = yield callUrl('POST', signInPath, data)
-    const nicknameResponse = yield callUrl('GET', `${getNicknamePath}${email}`)
+    const nicknameResponse = yield callUrl('GET', `${getNicknamePath}/${email}`)
     localStorage.setItem('token', JSON.stringify(response.key))
     localStorage.setItem('email', JSON.stringify(email))
     localStorage.setItem('password', JSON.stringify(password))
     localStorage.setItem('nickname', JSON.stringify(nicknameResponse.username))
+    localStorage.setItem('id', JSON.stringify(userId))
     yield put(actions.signInSuccess(response.key, email, password, nicknameResponse.username))
     yield put(push(`/${nicknameResponse.username}/archive`))
   } catch (e) {

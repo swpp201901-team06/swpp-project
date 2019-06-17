@@ -10,15 +10,12 @@ const reviewDetailUrl = `${backendUrl}review/detail/`
 export function* getReviewList({ sortOption, archiveOwnerNickname }) {
   try {
     let response
-    if(sortOption == 'default'){
+    if (sortOption === 'default') {
       response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}`)
-    }
-    else{
+    } else {
       response = yield callUrl('GET', `${myReviewListUrl}${archiveOwnerNickname}/${sortOption}`)
-    } 
-    console.log('getReviewList after callUrl')
+    }
     yield put(actions.getReviewListSuccess(response))
-    
   } catch (err) {
     console.log(err)
     yield put(actions.getReviewListFailed())

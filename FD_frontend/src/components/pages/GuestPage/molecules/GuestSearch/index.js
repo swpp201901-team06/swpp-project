@@ -26,7 +26,6 @@ export class GuestSearch extends React.Component {
   
   onValueChange = (e) => {
     this.setState({searchValue: e.target.value})
-    console.log(this.state.searchValue)
   }
     
   render() {

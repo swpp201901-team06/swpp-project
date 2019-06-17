@@ -1,18 +1,17 @@
 import React from 'react'
-import Main from '../../../containers/MainPage/Main'
 import styled from 'styled-components'
-// import { PageTemplate, Header, Hero, Footer, FeatureList } from 'components'
+import Main from '../../../containers/MainPage/Main'
 
-const logo= {
-  height : 200,
-  width : 500,
-  margin : 100
-};
+const logo = {
+  height: 200,
+  width: 500,
+  margin: 100,
+}
 
 const main = {
-  height : '30%',
-  width : '30%',
-};
+  height: '30%',
+  width: '30%',
+}
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,12 +23,12 @@ const Wrapper = styled.div`
 `
 const MainPage = () => {
   return (
-      <div>
-        <Wrapper>
-          <img src={require('./logo.png')} style={logo}/>
-          <Main style={main}/>
-        </Wrapper>
-      </div>
+    <div>
+      <Wrapper>
+        <img src={require('./logo.png')} style={logo} />
+        <Main style={main} />
+      </Wrapper>
+    </div>
   )
 }
 
