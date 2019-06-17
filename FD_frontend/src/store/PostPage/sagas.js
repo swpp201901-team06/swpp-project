@@ -35,22 +35,15 @@ export function* watchGetPostReviewDetailRequest() {
 export function* postReviewSaga({ reviewId, nickname, restId, eatWhen, tags, score,
   content, photo, publicStatus }) {
   try {
-    const data = {
-      restId,
-      eatWhen,
-      tags,
-      score,
-      content,
-      photo,
-      publicStatus,
-    }
-
-    let review_data = new FormData()
+    console.log('postReviewSaga begin')
+    console.log(reviewId)
+    console.log(restId)
+    const review_data = new FormData()
     review_data.append('content', content)
-    review_data.append('eatWhen', eatWhen)
-    review_data.append('publicStatus', publicStatus)
+    review_data.append('eat_when', eatWhen)
+    review_data.append('public_status', publicStatus)
     review_data.append('score', score)
-    review_data.append('restaurantId', restId)
+    review_data.append('restaurant_id', restId)
     if (photo != null) {
       review_data.append('photo', photo)
     }
