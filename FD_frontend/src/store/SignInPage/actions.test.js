@@ -1,15 +1,15 @@
 import * as actions from './actions'
 import * as actionTypes from './actionTypes'
 
-describe('test signin actions', () => {
-  test('should create GOTO_SIGN_UP action', () => {
+describe('test SignInPage actions', () => {
+  it('should create GOTO_SIGN_UP action', () => {
     const expectedAction = {
       type: actionTypes.GOTO_SIGN_UP,
     }
     expect(actions.gotoSignUp()).toEqual(expectedAction)
   })
 
-  test('should create GOTO_SIGN_UP action', () => {
+  it('should create GOTO_SIGN_UP action', () => {
     const email = 'test-email@github.com'
     const password = 'some_password'
     const expectedAction = {
@@ -20,14 +20,14 @@ describe('test signin actions', () => {
     expect(actions.requestSignIn(email, password)).toEqual(expectedAction)
   })
 
-  test('should create SIGN_IN_FAILED action', () => {
+  it('should create SIGN_IN_FAILED action', () => {
     const expectedAction = {
       type: actionTypes.SIGN_IN_FAILED,
     }
     expect(actions.signInFailed()).toEqual(expectedAction)
   })
 
-  test('should create SIGN_IN_SUCCESS action', () => {
+  it('should create SIGN_IN_SUCCESS action', () => {
     const email = 'test-email@github.com'
     const nickname = 'some_nickname'
     const token = 'some_token'

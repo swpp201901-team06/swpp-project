@@ -7,18 +7,16 @@ const backendUrl = 'http://127.0.0.1:8000/'
 const usernameUrl = `${backendUrl}review/search/`
 const tagUrl = `${backendUrl}tag/filter/`
 
-export function * getResults({ key, value }) {
+export function* getResults({ key, value }) {
   try {
     let response
-    if(key == 'author') {
+    if (key === 'author') {
       response = yield callUrl('GET', `${usernameUrl}${value}`)
-    }
-    else {
+    } else {
       response = yield callUrl('GET', `${tagUrl}${value}`)
     }
     yield put(actions.getResultsSuccess(response))
-  }
-  catch(err){
+  } catch (err) {
     console.log(err)
     yield put(actions.getResultsFailed())
   }
