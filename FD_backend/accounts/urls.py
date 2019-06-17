@@ -8,6 +8,10 @@ urlpatterns = [
     # 회원가입
     path('registration', include('rest_auth.registration.urls')),
     path('list', views.AccountListView.as_view(), name = 'account_list'),
-    path('detail/<int:pk>', views.AccountDetailView.as_view(), name = 'account_detail')
+    path('detail/<int:pk>', views.AccountDetailView.as_view(), name = 'account_detail'),
+
+
+    path('message/send/<str:number>', views.MessageSendView.as_view()),
+    path('message/save', views.PhoneNumberSaveView.as_view())
 
 ]
