@@ -13,8 +13,8 @@ urlpatterns = [
     path('review/', include('review.urls')),
     path('tag/', include('tag.urls')),
     path('user/', include('user.urls')),
-
-   path('__debug__/', include(debug_toolbar.urls)),
+    path('recommend/', include('recommendation.urls')),
+    path('__debug__/', include(debug_toolbar.urls)),
 
 ]
 

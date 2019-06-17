@@ -21,14 +21,14 @@ class AccountDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 def send_message(number, key):
     # set api key, api secret
-    api_key = ""
-    api_secret = ""
+#    api_key = "NCSQ5KKELRN8UV2G"
+#    api_secret = "1DJPS2THIBMXLS5CRJU8SOJY0LM6XBVY"
 
     ## 4 params(to, from, type, text) are mandatory. must be filled
     params = dict()
     params['type'] = 'sms' # Message type ( sms, lms, mms, ata )
     params['to'] = number # Recipients Number '01000000000,01000000001'
-    params['from'] = '' # Sender number
+#    params['from'] = '01077213599' # Sender number
     params['text'] = "key : " + key # Message
     print(params)
     cool = Message(api_key, api_secret)
@@ -53,7 +53,6 @@ class MessageSendView(generics.RetrieveAPIView):
 
     def get(self, request, number):
         try:
-            print(number)
             obj = models.PhoneNumber.objects.get(number=number)
             return Response("exist")
         except:
