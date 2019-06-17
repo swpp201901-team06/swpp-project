@@ -17,13 +17,19 @@ const browncolor = {
   color: '#e0ba7c',
 }
 
-export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handleChange }) => {
+export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handleChange, onPhoneAuthRequest, onPhoneAuthSubmit }) => {
   let email
   let pw
   let confirmpw
   let nickname
+  let phoneNumber
+  let inputCode
   let emailText
   let usernameText
+  let phoneText
+  let phoneAuthText
+  let failText
+  let confirmedNumber
 
   if (statefunction.SignUpPage.emailText) {
     emailText = statefunction.SignUpPage.emailText
@@ -36,6 +42,30 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
   } else {
     usernameText = ''
   }
+  
+  if (statefunction.SignUpPage.phoneSendText) {
+    phoneText = statefunction.SignUpPage.phoneSendText
+  } else {
+    phoneText = ''
+  }
+  
+  if (statefunction.SignUpPage.phoneAuthText) {
+    phoneAuthText = statefunction.SignUpPage.phoneAuthText
+  } else {
+    phoneAuthText = ''
+  }
+  
+  if (statefunction.SignUpPage.failText) {
+    failText = statefunction.SignUpPage.failText
+  } else {
+    failText = ''
+  }
+  
+  if (statefunction.SignUpPage.confirmedNumber) {
+    confirmedNumber = statefunction.SignUpPage.confirmedNumber
+  } else {
+    confirmedNumber = ''
+  }
 
   // const onECheck = () => {
   //   onDuplicateCheck('email', email.value)
@@ -44,7 +74,7 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
   //   onDuplicateCheck('username', nickname.value)
   // }
   const onSubmit = () => {
-    onSignUpSubmit(email.value, pw.value, confirmpw.value, nickname.value)
+    onSignUpSubmit(email.value, pw.value, confirmpw.value, nickname.value, confirmedNumber)
   }
   const handleEmailChange = () => {
     if (email.value) {
@@ -56,6 +86,39 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
       setTimeout(() => { handleChange('username', nickname.value) }, 300)
     }
   }
+  const onSend = () => {
+    onPhoneAuthRequest(phoneNumber.value)
+  }
+  const onAuthorize = () => {
+    console.log(phoneNumber.value)
+    onPhoneAuthSubmit(inputCode.value, statefunction.SignUpPage.code, phoneNumber.value)
+  }
+
+  let phoneAuthComponent
+  
+  if(statefunction.SignUpPage.phoneAuth == 'True'){
+    console.log(statefunction.SignUpPage.code)
+    phoneAuthComponent = (
+      <div>
+        <h4 style={browncolor}>
+          Authorization Code
+          {' '}
+          <input ref={node => { inputCode = node }} />
+          {' '}
+          <SubmitButton type="submit" onClick={onAuthorize}>
+            Authorize
+          </SubmitButton>
+          {'     '}
+          {phoneAuthText}
+        </h4>
+        
+      </div>
+    )
+  }
+  else {
+    phoneAuthComponent = ''
+  }
+      
 
   return (
     <div>
@@ -67,6 +130,18 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
           {'     '}
           {emailText}
         </h4>
+        <h4 style={browncolor}>
+          Phone number(without '-')
+          {' '}
+          <input ref={node => { phoneNumber = node }} />
+          {' '}
+          <SubmitButton type="submit" onClick={onSend}>
+            Send/Resend
+          </SubmitButton>
+          {'     '}
+          {phoneText}
+        </h4>
+        {phoneAuthComponent}
         <h4 style={browncolor}>
           Password
           {' '}
@@ -92,6 +167,10 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
             Submit
           </SubmitButton>
         </h4>
+        
+       <h4 style={browncolor}>
+          {failText}
+       </h4>
       </Wrapper>
     </div>
   )

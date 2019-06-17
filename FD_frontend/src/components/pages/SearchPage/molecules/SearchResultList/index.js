@@ -21,16 +21,16 @@ class SearchResultList extends React.Component {
       <div>
         {searchstate.map((result) =>
           <SearchResult
-            key={result.id}
-            reviewId={result.id}
+            key={result.hits}
+            resultId={result.id}
             eatWhen={result.eatWhen}
             restaurantId={result.restaurantId}
             score={result.score}
             content={result.content}
             photo={result.photo}
-            onReviewClick={this.props.onReviewClick}
-            sendReviewIdFunc={this.props.sendReviewId}
-            archiveOwnerNickname={this.props.statefunction.ArchivePage.archiveOwnerNickname}
+            onResultClick={this.props.onResultClick}
+            sendResultIdFunc={this.props.sendResultId}
+            archiveOwnerNickname={result.archive}
           />
         )}
       </div>
