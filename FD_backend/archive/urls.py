@@ -7,7 +7,8 @@ from . import models
 urlpatterns = [
     path('list', views.ArchiveListView.as_view(), name = 'archive_list'),
     path('detail/<str:username>', views.ArchiveVisitorIncreaseView.as_view(), name = 'archive_detail'),
-    path('ranking', views.ArchiveRankingView.as_view(), name = 'archive_ranking')
+    path('ranking', views.ArchiveRankingView.as_view(), name = 'archive_ranking'),
+    path('hitcount/<str:username>', views.ArchiveHitCountView.as_view())
 
 #    path('guest-comment/list/', views.GuestCommentListView.as_view(), name = 'guest_comment_list'),
 #    path('guest-comment/detail/<int:pk>/', views.GuestCommentDetailView.as_view(), name = 'guest_comment_detail'),

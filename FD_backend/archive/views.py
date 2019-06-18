@@ -10,6 +10,25 @@ from .serializers import GuestCommentSerializer
 from user.models import CustomUser
 from .permissions import UserOnlyAccess
 
+from hitcount.views import HitCountDetailView
+from hitcount.views import HitCountJSONView
+
+
+class ArchiveHitCountView(APIView):
+    def get(self,request, username):
+        user = get_object_or_404(CustomUser.objects.select_related('archive'), username = username)
+        archive = user.archive
+        archive.hit_count.hits += 1
+        archive.save()
+        archive.hit_count.increase()
+        print(archive.hit_count.hits)
+
+        serializer_class = ArchiveSerializer
+        serializer = serializer_class(archive)
+        archive.save()
+
+        return Response({"visitor_count":archive.hit_count.hits})
+
 # get : archive list를 가져온다.(디버깅 용으로 사용됨)
 # post : 아카이브를 create함(최초 1번만 가능)
 class ArchiveListView(generics.ListCreateAPIView):
@@ -19,6 +38,10 @@ class ArchiveListView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)
+
+class ArchiveHitDetailView(HitCountDetailView):
+    model = Archive
+    count_hit = True
 
 # get : archive의 visitor count를 get하면서 1을 증가시킨다.
 # ToDo : 동일 접속자에 대해 하루에 한번만 오르도록 하기 위해 session이나 ip를 체크하자
