@@ -57,8 +57,6 @@ class PostPage extends React.Component {
             {review}
           </ReviewPostDetail>
         </Wrapper>
-
-        <Search />
       </div>
     )
   }
