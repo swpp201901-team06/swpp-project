@@ -14,3 +14,8 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Review
         fields = ('__all__')
+
+class ReviewIPSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.ReviewIP
+        fields = ('__all__')
