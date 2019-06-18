@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'tag',
     'recommendation',
 
-    'hitcount',
     'tagging.apps.TaggingConfig',
     'debug_toolbar',
 ]

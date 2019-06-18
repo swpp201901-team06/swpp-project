@@ -8,7 +8,7 @@ FD_backend/db.sqlite3-journal
 FD_backend/FD_backend/__pycache__/
 FD_backend/accounts/__pycache__/
 FD_backend/archive/__pycache__/
-FD_backend/recommendation/__pycache/
+FD_backend/recommendation/__pycache__/
 FD_backend/restaurant/__pycache__/
 FD_backend/review/__pycache__/
 FD_backend/tag/__pycache__/
