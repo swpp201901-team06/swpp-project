@@ -6,19 +6,29 @@
 FD_backend/db.sqlite3
 FD_backend/db.sqlite3-journal
 FD_backend/FD_backend/__pycache__/
-FD_backend/archive/__pycache__/
-FD_backend/user/__pycache__/
 FD_backend/accounts/__pycache__/
+FD_backend/archive/__pycache__/
+FD_backend/recommendation/
 FD_backend/restaurant/__pycache__/
 FD_backend/review/__pycache__/
 FD_backend/tag/__pycache__/
+FD_backend/user/__pycache__/
 
-FD_backend/archive/migrations/
-FD_backend/user/migrations/
 FD_backend/accounts/migrations/
+FD_backend/archive/migrations/
+FD_backend/recommendation/migrations/
 FD_backend/restaurant/migrations/
 FD_backend/review/migrations/
 FD_backend/tag/migrations/
+FD_backend/user/migrations/
+
+FD_backend/Archive/
+FD_backend/Account/
+FD_backend/Recommendation/
+FD_backend/Restaurant/
+FD_backend/Review/
+FD_backend/Tag/
+FD_backend/users/
 
 
 FD_backend/.coverage/
