@@ -8,24 +8,31 @@ FD_backend/db.sqlite3-journal
 FD_backend/FD_backend/__pycache__/
 FD_backend/accounts/__pycache__/
 FD_backend/archive/__pycache__/
-FD_backend/recommendation/
+FD_backend/recommendation/__pycache/
 FD_backend/restaurant/__pycache__/
 FD_backend/review/__pycache__/
 FD_backend/tag/__pycache__/
 FD_backend/user/__pycache__/
 
-FD_backend/accounts/migrations/
-FD_backend/archive/migrations/
-FD_backend/recommendation/migrations/
-FD_backend/restaurant/migrations/
-FD_backend/review/migrations/
-FD_backend/tag/migrations/
-FD_backend/user/migrations/
+FD_backend/accounts/migrations/*
+FD_backend/archive/migrations/*
+FD_backend/recommendation/migrations/*
+FD_backend/restaurant/migrations/*
+FD_backend/review/migrations/*
+FD_backend/tag/migrations/*
+FD_backend/user/migrations/*
 
+!FD_backend/accounts/migrations/__init__.py
+!FD_backend/archive/migrations/__init__.py
+!FD_backend/recommendation/migrations/__init__.py
+!FD_backend/restaurant/migrations/__init__.py
+!FD_backend/review/migrations/__init__.py
+!FD_backend/tag/migrations/__init__.py
+!FD_backend/user/migrations/__init__.py
 
 
 FD_backend/.coverage/
-FD_backend/photo/
+FD_backend/photo/*
 
 # virtual environment
 env/
