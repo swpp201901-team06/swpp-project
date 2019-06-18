@@ -16,7 +16,6 @@ FD_backend/user/__pycache__/
 
 FD_backend/accounts/migrations/*
 FD_backend/archive/migrations/*
-FD_backend/recommendation/migrations/*
 FD_backend/restaurant/migrations/*
 FD_backend/review/migrations/*
 FD_backend/tag/migrations/*
