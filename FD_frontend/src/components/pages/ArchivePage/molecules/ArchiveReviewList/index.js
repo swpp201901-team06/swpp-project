@@ -34,11 +34,20 @@ class ArchiveReviewList extends React.Component {
       }
       this.props.requestReviews(sortOption, this.props.children)
     }
+    
+    let visitorCount
+    if(this.props.statefunction.ArchivePage.visitorCount){
+      visitorCount = this.props.statefunction.ArchivePage.visitorCount
+    }
+    else {
+      visitorCount = ' '
+    }
         
     const reviewstate = this.props.statefunction.ArchivePage.reviews
 
     return (
       <div>
+        <h4>{visitorCount}</h4>
 	      <Dropdown options={options} onChange={onCategoryChange} value={defaultOption} placeholder="Select an option" />
         {reviewstate.map((review) =>
           <ArchiveReview
@@ -49,9 +58,10 @@ class ArchiveReviewList extends React.Component {
             score={review.score}
             content={review.content}
             photo={review.photo}
+            hits={review.hits}
             onReviewClick={this.props.onReviewClick}
             sendReviewIdFunc={this.props.sendReviewId}
-            archiveOwnerNickname={this.props.statefunction.ArchivePage.archiveOwnerNickname}
+            archiveOwnerNickname={review.archive}
           />
         )}
       </div>

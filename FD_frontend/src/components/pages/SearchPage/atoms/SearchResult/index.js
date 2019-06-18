@@ -16,6 +16,7 @@ class SearchResult extends React.Component {
     const score = this.props.score
     const content = this.props.content
     const photo = this.props.photo
+    const hits = this.props.hits
     const onResultClick = this.props.onResultClick
     const sendResultId = this.props.sendResultIdFunc
     const archiveOwnerNickname = this.props.archiveOwnerNickname
@@ -28,7 +29,9 @@ class SearchResult extends React.Component {
       return (
         <div onClick={() => { onClickThis() }}>
           <h4>
-            {'by: '}{archiveOwnerNickname}{'   '}</h4>
+            {'by: '}{archiveOwnerNickname}{'   '}
+            {'view: '}{hits}{'   '}
+          </h4>
           <h4>
             {'date: '}{eatWhen}{'   '}</h4>
           <h4>
@@ -44,7 +47,9 @@ class SearchResult extends React.Component {
       <div onClick={() => { onClickThis() }}>
         <h4>
           <h4>
-            {'by: '}{archiveOwnerNickname}{'   '}</h4>
+            {'by: '}{archiveOwnerNickname}{'   '}
+            {'view: '}{hits}{'   '}
+          </h4>
           <h4>
             {'date: '}{eatWhen}{'   '}</h4>
           <h4>
