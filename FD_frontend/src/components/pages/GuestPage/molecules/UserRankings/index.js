@@ -23,13 +23,14 @@ export class UserRankings extends React.Component {
       <div>
         {rankingstate.map((result) =>
             <SearchResult
-              key={result.hits}
+              key={result.id}
               resultId={result.id}
               eatWhen={result.eatWhen}
               restaurantId={result.restaurantId}
               score={result.score}
               content={result.content}
               photo={result.photo}
+              hits={result.hits}
               onResultClick={this.props.onResultClick}
               sendResultIdFunc={this.props.sendResultId}
               archiveOwnerNickname={result.archive}
