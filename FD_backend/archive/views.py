@@ -36,12 +36,10 @@ class ArchiveVisitorIncreaseView(APIView):
         archive = user.archive
         ip = get_ip(request)
         if ip is not None:
-            check_ip = archive.ip_list.filter(ip=ip)
+            check_ip = archive.ip_list.filter(archive=archive, ip=ip)
             if not check_ip.exists():
                 new_ip = ArchiveVisitorIP.objects.create(archive=archive, ip=ip)
                 new_ip.save()
-                archive.ip_list.add(new_ip)
-                # F 이용해서 수정해야댐
                 archive.visitor_count += 1
                 archive.save()
         else:
@@ -55,6 +53,8 @@ class ArchiveRankingView(APIView):
         archive_set = Archive.objects.select_related('user').all().order_by('-visitor_count')
         serializer = ArchiveSerializer(archive_set[:3], many = True)
         return Response(serializer.data)
+
+
 
 # for debugging
 class DeleteAllIP(APIView):
