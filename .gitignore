@@ -22,13 +22,6 @@ FD_backend/review/migrations/
 FD_backend/tag/migrations/
 FD_backend/user/migrations/
 
-FD_backend/Archive/
-FD_backend/Account/
-FD_backend/Recommendation/
-FD_backend/Restaurant/
-FD_backend/Review/
-FD_backend/Tag/
-FD_backend/users/
 
 
 FD_backend/.coverage/
