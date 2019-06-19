@@ -75,14 +75,18 @@ class ArchivePage extends React.Component {
                   </Link>
                 </PostWrapper> 
 
-                <Wrapper>
+                
                   <ArchiveReviewList style={{margin:'10px'}}>
                     {this.props.params.nickname}
                   </ArchiveReviewList>
-                  <ArchiveReviewDetail />
+                  
                 </Wrapper>
+              
+              <Wrapper>
+                <ReviewMap/>
+                <ArchiveReviewDetail />
               </Wrapper>
-              <ReviewMap style={{marginTop:'100px'}}/>
+              
             </RowWrapper>
             
             

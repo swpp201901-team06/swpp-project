@@ -34,6 +34,7 @@ const styles = css`
   transition: background-color 250ms ease-out, color 250ms ease-out, border-color 250ms ease-out;
   background-color: #ff8d06;
   color: #ffffff;
+  margin : 0.3em;
 
   &:hover, &:focus, &:active {
     background-color: ${hoverBackgroundColor};
