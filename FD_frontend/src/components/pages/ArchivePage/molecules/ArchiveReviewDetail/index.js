@@ -48,9 +48,9 @@ class ArchiveReviewDetail extends React.Component {
       const selectedReview = this.props.reviewstate.selectedReviewObj
 
       const eatWhenDate = new Date(selectedReview.eatWhen).toLocaleString('ko-KR')
-      
+
       if (selectedReview.photo) {
-        const photoUrl = "http://localhost:8000"+selectedReview.photo
+        const photoUrl = "http://3.13.219.185:8000"+selectedReview.photo
         reviewDetail = (
           <div>
             <h4>Restaurant: {selectedReview.restName}</h4>
