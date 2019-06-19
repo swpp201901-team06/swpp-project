@@ -6,9 +6,25 @@ import FollowButton from '../../atoms/FollowButton'
 import Dropdown from 'react-dropdown'
 
 const Wrapper = styled.div`
-  font-family: ${font('primary')};
-  color: ${palette('grayscale', 0)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  margin-top: 0em
+  margin-left: 0em
 `
+const Review = styled.li`
+  background-color: #e0ba7c;
+  margin-bottom:1em;
+  padding : 1em;
+  &:hover, &:focus, &:active {
+    background-color: #ff8d06;
+  }
+  text-align : center;
+`
+
 
 class ArchiveReviewList extends React.Component {
   componentDidMount() {
@@ -62,8 +78,8 @@ class ArchiveReviewList extends React.Component {
     }
 
     return (
-      <div>
-        <h4><FollowButton onClick={onFollow}> {followText} </FollowButton> visitor: {visitorCount}{'    '}</h4>
+      <Wrapper>
+        <h4 style={{color:"#FFFFFF"}}><FollowButton onClick={onFollow} style={{marginRight:'50px'}}> {followText} </FollowButton> visitor: {visitorCount}{'    '}</h4>
 	      <Dropdown options={options} onChange={onCategoryChange} value={defaultOption} placeholder="Select an option" />
         {reviewstate.map((review) =>
           <ArchiveReview
@@ -80,7 +96,7 @@ class ArchiveReviewList extends React.Component {
             archiveOwnerNickname={review.archive}
           />
         )}
-      </div>
+      </Wrapper>
     )
   }
 }

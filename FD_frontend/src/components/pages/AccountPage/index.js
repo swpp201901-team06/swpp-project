@@ -26,7 +26,7 @@ const Wrapper = styled.div`
 const title = {
   color: "#e0ba7c",
   fontSize : 80,
-  margin : 100
+  margin : 40
 };
 
 const logo = {
@@ -41,13 +41,13 @@ class AccountPage extends React.Component {
     const currentUser=JSON.parse(localStorage.getItem('nickname'))
     if(currentUser == this.props.params.nickname){
       accountOption = (
-      <div>
+      <div style={{textAlign:'center'}}>
           <SideBarWrapper>
             <img src={require('../../../../../design_source/logo/logo.png')} style={logo} />
             {this.props.params.nickname}'s archive page
             <SideBar />
           </SideBarWrapper>
-        <h1>
+        <h1 style={title}>
           My Account
         </h1>
         <AccountDetail/>
