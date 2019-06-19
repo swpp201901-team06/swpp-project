@@ -50,20 +50,9 @@ class ArchiveReviewDetail extends React.Component {
     let reviewDetail
     if (this.props.reviewstate.selectedReviewObj) {
       const selectedReview = this.props.reviewstate.selectedReviewObj
-<<<<<<< HEAD
 
-<<<<<<< HEAD
-      const eatWhenDate = new Date(selectedReview.eatWhen).toLocaleString('ko-KR')
-
-=======
       const eatWhenDate = new Date(selectedReview.eatWhen).toLocaleString('ko-KR', { timeZone: 'UTC' })
-      
->>>>>>> 46bd0a2f7cc8aa800f4770d55fed6d4a6dc45f2b
-=======
-      const eatWhenDate = new Date(selectedReview.eatWhen).toLocaleString('ko-KR', { timeZone: 'UTC' })
-      
 
->>>>>>> 123a562a03b7d3d50739488511e596fbc285f831
       if (selectedReview.photo) {
         const photoUrl = "http://3.13.219.185:8000"+selectedReview.photo
         reviewDetail = (

@@ -80,16 +80,14 @@ class SearchResult extends React.Component {
     return (
       <Review onClick={() => { onClickThis() }}>
         <h4>
-          <h4>
-            {'by: '}{archiveOwnerNickname}{'   '}
-            {'view: '}{hits}{'   '}
-          </h4>
-          <h4>
-            {'date: '}{eatWhenDate}{'   '}</h4>
-          <h4>
-            {'where: '}{restaurantId}{'   '}
-            {'score: '}{score}{'   '}
-          </h4>
+          {'by: '}{archiveOwnerNickname}{'   '}
+          {'view: '}{hits}{'   '}
+        </h4>
+        <h4>
+          {'date: '}{eatWhenDate}{'   '}</h4>
+        <h4>
+          {'where: '}{restaurantId}{'   '}
+          {'score: '}{score}{'   '}
         </h4>
       </Review>
     )
