@@ -14,7 +14,7 @@ export const PHONE_AUTH_REQUEST = 'PHONE_AUTH_REQUEST'
 export const PHONE_AUTH_SUCCESS = 'PHONE_AUTH_SUCCESS'
 export const MUST_AUTH = 'MUST_AUTH'
 export const SIGNUP_FAILED = 'SIGNUP_FAILED'
-
+export const CANCEL_SIGNUP = 'CANCEL_SIGNUP'
 
 export const duplicateCheck = (key, value) => {
   return {
@@ -106,5 +106,11 @@ export const mustPhoneAuth = () => {
 export const signUpFailed = () => {
   return {
     type: SIGNUP_FAILED,
+  }
+}
+
+export const cancelSignUp = () => {
+  return {
+    type: CANCEL_SIGNUP,
   }
 }
