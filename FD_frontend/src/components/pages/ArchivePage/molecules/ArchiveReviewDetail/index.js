@@ -6,6 +6,7 @@ import DetailButton from '../../atoms/DetailButton'
 
 const Review = styled.li`
   background-color: #d0997c;
+  margin-top:3em;
   margin-bottom:1em;
   padding : 1em;
   text-align : center;
