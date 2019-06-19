@@ -96,6 +96,18 @@ const archiveReducer = (state, action) => {
         selectedReviewObj: null,
       }
 
+    case actions.FOLLOWING:
+      return {
+        ...nextState,
+        Follow: true,
+      }
+
+    case actions.NOT_FOLLOWING:
+      return {
+        ...nextState,
+        Follow: false,
+      }
+
     case actions.GOTO_POST_REVIEW:
       return nextState
 
