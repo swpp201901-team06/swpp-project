@@ -38,7 +38,7 @@ const RowWrapper = styled.div`
   margin-top: 3em
   margin-left: 0em
 `
-const backendUrl = 'http://localhost:8000'
+const backendUrl = 'http://3.13.219.185:8000'
 
 class SearchResult extends React.Component {
   render() {
