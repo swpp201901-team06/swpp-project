@@ -46,7 +46,7 @@ class ReviewMap extends Component {
     } = this.state
     const selectedReviewObj = this.props.reviewstate.selectedReviewObj
     return (
-      <div>
+      <Wrapper>
         {/*mapApiLoaded && <SearchBox map={mapInstance} mapApi={mapApi} />*/}
         <GoogleMap
           defaultZoom={17}
@@ -68,7 +68,7 @@ class ReviewMap extends Component {
             ) : null
           }
         </GoogleMap>
-      </div>
+      </Wrapper>
     )
   }
 }

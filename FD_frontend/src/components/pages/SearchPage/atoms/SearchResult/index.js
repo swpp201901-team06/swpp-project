@@ -59,7 +59,7 @@ class SearchResult extends React.Component {
 
     if (photo) {
       return (
-        <div onClick={() => { onClickThis() }}>
+        <Review onClick={() => { onClickThis() }}>
           <h4>
             {'by: '}{archiveOwnerNickname}{'   '}
             {'view: '}{hits}{'   '}
@@ -71,12 +71,12 @@ class SearchResult extends React.Component {
             {'score: '}{score}{'   '}
           </h4>
           <img src={`${backendUrl}${photo}`} width="100" height="100" />
-        </div>
+        </Review>
       )
     }
 
     return (
-      <div onClick={() => { onClickThis() }}>
+      <Review onClick={() => { onClickThis() }}>
         <h4>
           <h4>
             {'by: '}{archiveOwnerNickname}{'   '}
@@ -89,7 +89,7 @@ class SearchResult extends React.Component {
             {'score: '}{score}{'   '}
           </h4>
         </h4>
-      </div>
+      </Review>
     )
   }
 }
