@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   height: 100%;
   flex-direction: column;
   text-align:center;
+  margin-top:5%;
 `
 
 class ReviewMap extends Component {
