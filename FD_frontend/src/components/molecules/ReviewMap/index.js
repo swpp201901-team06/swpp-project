@@ -62,7 +62,6 @@ class ReviewMap extends Component {
         >
           {
             selectedReviewObj ? (
-              console.log(selectedReviewObj.restLat),
               <Marker
                 text={selectedReviewObj.restName}
                 lat={selectedReviewObj.restLat}
