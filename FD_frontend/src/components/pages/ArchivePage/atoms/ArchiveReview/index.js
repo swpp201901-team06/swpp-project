@@ -52,7 +52,7 @@ class ArchiveReview extends React.Component {
     }
 
     return (
-      <div onClick={() => { onClickThis() }}>
+      <Review onClick={() => { onClickThis() }}>
         <h4>
           <h4>
             {'view: '}{hits}{'   '}
@@ -64,7 +64,7 @@ class ArchiveReview extends React.Component {
             {'score: '}{score}{'   '}
           </h4>
         </h4>
-      </div>
+      </Review>
     )
   }
 }
