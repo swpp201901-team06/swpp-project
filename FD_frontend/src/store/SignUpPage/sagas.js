@@ -20,6 +20,7 @@ export function* submit({ email, pw, confirmpw, nickname, phoneNumber }) {
         password2: confirmpw,
         username: nickname,
       })
+      console.log(response)
       yield callUrl('POST', phoneSaveUrl, {number: phoneNumber})
       yield put(requestSignIn(email, pw))
       yield take(SIGN_IN_SUCCESS)
