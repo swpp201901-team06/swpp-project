@@ -22,6 +22,7 @@ export const getReviewList = (sortOption, archiveOwnerNickname) => {
 }
 
 export const getReviewListSuccess = (reviewList, archive) => {
+  console.log(reviewList)
   return {
     type: GET_REVIEW_LIST_SUCCESS,
     reviewList,

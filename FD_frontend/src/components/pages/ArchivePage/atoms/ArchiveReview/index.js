@@ -21,6 +21,7 @@ class ArchiveReview extends React.Component {
     const sendReviewId = this.props.sendReviewIdFunc
     const archiveOwnerNickname = this.props.archiveOwnerNickname
     const onClickThis = () => {
+      console.log(restaurantId)
       sendReviewId(reviewId)
       onReviewClick(reviewId, archiveOwnerNickname)
     }
