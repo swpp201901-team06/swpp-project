@@ -30,7 +30,7 @@ const Wrapper = styled.div`
 
 const RowWrapper = styled.div`
   display: flex;
-  align-items: center;
+  
   justify-content: center;
   width: 100%;
   height: 100%;
@@ -69,20 +69,20 @@ class ArchivePage extends React.Component {
 
             <RowWrapper>
               <Wrapper>
-              <PostWrapper>
-                <Link to="/post/default">
-                  <PostButton style={{ margin: '10px' }}>Post Review</PostButton>
-                </Link>
-              </PostWrapper> 
+                <PostWrapper>
+                  <Link to="/post/default">
+                    <PostButton style={{ margin: '10px' }}>Post Review</PostButton>
+                  </Link>
+                </PostWrapper> 
 
-              <Wrapper>
-                <ArchiveReviewList style={{margin:'10px'}}>
-                  {this.props.params.nickname}
-                </ArchiveReviewList>
-                <ArchiveReviewDetail />
+                <Wrapper>
+                  <ArchiveReviewList style={{margin:'10px'}}>
+                    {this.props.params.nickname}
+                  </ArchiveReviewList>
+                  <ArchiveReviewDetail />
+                </Wrapper>
               </Wrapper>
-              </Wrapper>
-              <ReviewMap />
+              <ReviewMap style={{marginTop:'100px'}}/>
             </RowWrapper>
             
             
