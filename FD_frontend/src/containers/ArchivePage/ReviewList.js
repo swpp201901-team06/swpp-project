@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getReviewDetail, getReviewList, storeReviewId } from '../../store/ArchivePage/actions'
+import { getReviewDetail, getReviewList, storeReviewId, followArchive } from '../../store/ArchivePage/actions'
 import ArchiveReviewList from '../../components/pages/ArchivePage/molecules/ArchiveReviewList'
 
 const mapStateToProps = (state) => {
@@ -19,6 +19,9 @@ const mapDispatchToProps = (dispatch) => {
     sendReviewId: (id) => {
       dispatch(storeReviewId(id))
     },
+    doFollow: (archiveOwner) => {
+      dispatch(followArchive(archiveOwner))
+    }
   }
 }
 

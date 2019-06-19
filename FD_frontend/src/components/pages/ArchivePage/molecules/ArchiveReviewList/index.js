@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
 import ArchiveReview from '../../atoms/ArchiveReview'
+import FollowButton from '../../atoms/FollowButton'
 import Dropdown from 'react-dropdown'
 
 const Wrapper = styled.div`
@@ -43,18 +44,33 @@ class ArchiveReviewList extends React.Component {
       visitorCount = ' '
     }
         
+    let followText
+    if(this.props.statefunction.ArchivePage.Follow){
+      followText = 'Unfollow'
+    }
+    else {
+      followText = 'Follow'
+    }
+
+    console.log(this.props.statefunction.ArchivePage.Follow)
+    
     const reviewstate = this.props.statefunction.ArchivePage.reviews
+
+    const onFollow = () => {
+      console.log(this.props.children)
+      this.props.doFollow(this.props.children)
+    }
 
     return (
       <div>
-        <h4>{visitorCount}</h4>
+        <h4><FollowButton onClick={onFollow}> {followText} </FollowButton> visitor: {visitorCount}{'    '}</h4>
 	      <Dropdown options={options} onChange={onCategoryChange} value={defaultOption} placeholder="Select an option" />
         {reviewstate.map((review) =>
           <ArchiveReview
             key={review.id}
             reviewId={review.id}
             eatWhen={review.eatWhen}
-            restaurantId={review.restaurantId}
+            restaurantId={review.rest_name}
             score={review.score}
             content={review.content}
             photo={review.photo}

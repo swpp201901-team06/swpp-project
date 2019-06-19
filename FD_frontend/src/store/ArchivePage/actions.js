@@ -12,6 +12,9 @@ export const DELETE_REVIEW_SUCCESS = 'DELETE_REVIEW_SUCCESS'
 export const DELETE_REVIEW_FAILED = 'DELETE_REVIEW_FAILED'
 export const GOTO_GUEST_LOG = 'GOTO_GUEST_LOG'
 export const STORE_REVIEW_ID = 'STORE_REVIEW_ID'
+export const FOLLOW_ARCHIVE = 'FOLLOW_ARCHIVE'
+export const FOLLOWING = 'FOLLOWING'
+export const NOT_FOLLOWING = 'NOT_FOLLOWING'
 
 export const getReviewList = (sortOption, archiveOwnerNickname) => {
   return {
@@ -111,5 +114,24 @@ export const gotoGuestLog = (archiveOwnerNickname) => {
   return {
     type: GOTO_GUEST_LOG,
     archiveOwnerNickname,
+  }
+}
+
+export const followArchive = (archiveOwner) => {
+  return {
+    type: FOLLOW_ARCHIVE,
+    archiveOwner
+  }
+}
+
+export const following = () => {
+  return {
+    type: FOLLOWING,
+  }
+}
+
+export const notFollowing = () => {
+  return {
+    type: NOT_FOLLOWING,
   }
 }
