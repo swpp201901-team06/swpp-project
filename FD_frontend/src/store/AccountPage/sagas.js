@@ -13,6 +13,7 @@ export function* modifyAccountInfo({ nickname, publicStatus }) {
     const response = yield callUrl('PUT', userUrl+Id, { username: nickname, public_status: publicStatus })
     localStorage.setItem('nickname', JSON.stringify(nickname))
     yield put(push(`/${nickname}/account`))
+    window.location.reload()
   } catch(e) {
     console.error(e)
   }
