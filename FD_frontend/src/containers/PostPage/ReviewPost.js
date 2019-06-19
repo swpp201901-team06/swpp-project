@@ -28,11 +28,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actions.clearState())
     },
     onConfirmRest: (restName, address, latitude, longitude) => {
-      console.log('ReviewPost container onConfirmRest')
-      console.log(restName)
-      console.log(address)
-      console.log(latitude)
-      console.log(longitude)
       dispatch(actions.confirmRest(restName, address, latitude, longitude))
     },
   }
