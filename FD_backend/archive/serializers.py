@@ -17,3 +17,8 @@ class GuestCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.GuestComment
         fields = ('__all__')
+
+class ArchiveVisitorIPSerailizer(serializers.ModelSerializer):
+    class Meta:
+        model = models.ArchiveVisitorIP
+        fields = ('__all__')
