@@ -67,8 +67,6 @@ class ArchiveReviewList extends React.Component {
     else {
       followText = 'Follow'
     }
-
-    console.log(this.props.statefunction.ArchivePage.Follow)
     
     const reviewstate = this.props.statefunction.ArchivePage.reviews
 
