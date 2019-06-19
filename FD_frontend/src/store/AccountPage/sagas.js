@@ -3,9 +3,9 @@ import { push } from 'react-router-redux'
 import { callUrl, callUrlImg } from '../sagas'
 import * as actions from './actions'
 
-const backendUrl = 'http://127.0.0.1:8000/'
+const backendUrl = 'http://3.13.219.185:8000/'
 const userUrl = `${backendUrl}user/detail/`
-const pwChangeUrl = 'http://127.0.0.1:8000/account/password/change/'
+const pwChangeUrl = 'http://3.13.219.185:8000/account/password/change/'
 
 export function* modifyAccountInfo({ nickname, publicStatus }) {
   try {

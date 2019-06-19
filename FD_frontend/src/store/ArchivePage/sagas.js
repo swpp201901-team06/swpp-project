@@ -3,7 +3,7 @@ import { push } from 'react-router-redux'
 import { callUrl } from '../sagas'
 import * as actions from './actions'
 
-const backendUrl = 'http://127.0.0.1:8000'
+const backendUrl = 'http://3.13.219.185:8000'
 const myReviewListUrl = `${backendUrl}/review/list`
 const archiveDetailUrl = `${backendUrl}/archive/detail`
 const reviewDetailUrl = `${backendUrl}/review/detail`
@@ -164,7 +164,7 @@ export function* followArchiveSaga({ archiveOwner }) {
     console.log(e)
   }
 }
-  
+
 export function* watchDeleteReviewRequest() {
   yield takeEvery(actions.DELETE_REVIEW_REQUEST, deleteReviewSaga)
 }

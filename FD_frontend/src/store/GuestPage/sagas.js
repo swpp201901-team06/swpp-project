@@ -3,7 +3,7 @@ import { push } from 'react-router-redux'
 import { callUrl } from '../sagas'
 import * as actions from './actions'
 
-const backendUrl = 'http://127.0.0.1:8000/'
+const backendUrl = 'http://3.13.219.185:8000/'
 const rankingUrl = `${backendUrl}review/ranking`
 const recommendUrl = `${backendUrl}recommend/`
 
@@ -26,7 +26,7 @@ export function* getRankingReviews() {
     else {
       response = yield callUrl('GET', rankingUrl)
     }
-    
+
     const newResponse = response.map((review) => {
       const newReview = {
         ...review,
@@ -41,7 +41,7 @@ export function* getRankingReviews() {
       delete newReview.restaurant_id
       return newReview
     })
-    
+
     yield put(actions.getPopularReviewsSuccess(newResponse))
   } catch (err) {
     console.log(err)
