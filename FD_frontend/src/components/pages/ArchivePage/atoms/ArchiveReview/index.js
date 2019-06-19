@@ -35,7 +35,7 @@ class ArchiveReview extends React.Component {
       onReviewClick(reviewId, archiveOwnerNickname)
     }
 
-    const eatWhenDate = new Date(eatWhen).toLocaleString('ko-KR')
+    const eatWhenDate = new Date(eatWhen).toLocaleString('ko-KR', { timeZone: 'UTC' })
 
     if (photo) {
       return (

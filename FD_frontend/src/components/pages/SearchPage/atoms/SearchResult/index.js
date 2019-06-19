@@ -57,7 +57,7 @@ class SearchResult extends React.Component {
       onResultClick(resultId, archiveOwnerNickname)
     }
 
-    const eatWhenDate = new Date(eatWhen).toLocaleString('ko-KR')
+    const eatWhenDate = new Date(eatWhen).toLocaleString('ko-KR', { timeZone: 'UTC' })
 
     if (photo) {
       return (

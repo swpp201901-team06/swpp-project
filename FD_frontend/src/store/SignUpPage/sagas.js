@@ -1,5 +1,6 @@
 import { takeEvery, take, put, fork } from 'redux-saga/effects'
 import * as actions from './actions'
+import { push } from 'react-router-redux'
 import { requestSignIn } from '../SignInPage/actions'
 import { SIGN_IN_SUCCESS } from '../SignInPage/actionTypes'
 import { callUrl } from '../sagas'
@@ -82,6 +83,14 @@ export function* phoneAuthenticate({ input, code, phoneNumber }) {
   }
 }
 
+export function* cancelSignUpSaga() {
+  try {
+    yield put(push(`/signin`))
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 
 export function* watchDCRequest() {
   yield takeEvery(actions.DUPLICATE_CHECK_REQUEST, duplicateCheck)
@@ -95,9 +104,14 @@ export function* watchPhoneAuthRequest() {
   yield takeEvery(actions.PHONE_AUTH_REQUEST, phoneAuthenticate)
 }
 
+export function* watchCancelRequest() {
+  yield takeEvery(actions.CANCEL_SIGNUP, cancelSignUpSaga)
+}
+
 export default function* () {
   yield fork(watchSubmitRequest)
   yield fork(watchDCRequest)
   yield fork(watchPhoneRequest)
   yield fork(watchPhoneAuthRequest)
+  yield fork(watchCancelRequest)
 }
