@@ -16,10 +16,10 @@ export function* getPostReviewDetailSaga({ reviewId }) {
         null, null, false))
     } else { // edit existing review
       const reviewDetail = yield callUrl('GET', `${reviewDetailUrl}/${reviewId}`)
-      const { restaurant_id, eat_when, tags, score, content, photo, public_status } = reviewDetail
+      const { restaurant_id, eat_when, tags, score, content, photo, public_status, rest_name } = reviewDetail
       const photoLink = `${backendUrl}${photo}`
       yield put(actions.getPostReviewDetailSuccess(restaurant_id, eat_when, tags, score,
-        content, photoLink, public_status))
+        content, photoLink, public_status, rest_name))
     }
   } catch (err) {
     console.log(err)
@@ -82,7 +82,7 @@ export function* confirmRestSaga({ name, address, latitude, longitude }) {
     }
     // Get ID for the POSTed restaurant
     const response = yield callUrl('POST', restListUrl, data)
-    yield put(actions.confirmRestSuccess(response.id))
+    yield put(actions.confirmRestSuccess(response.id, name))
   } catch (err) {
     console.log(err)
     yield put(actions.confirmRestFailed())
