@@ -10,6 +10,17 @@ const Wrapper = styled.div`
   color: ${palette('grayscale', 0)};
 `
 
+const Review = styled.li`
+  background-color: #e0ba7c;
+  margin-bottom:1em;
+  padding : 1em;
+  &:hover, &:focus, &:active {
+    background-color: #ff8d06;
+  }
+  text-align : center;
+`
+
+
 class ArchiveReviewList extends React.Component {
   componentDidMount() {
     this.props.requestReviews('default', this.props.children)
@@ -63,7 +74,7 @@ class ArchiveReviewList extends React.Component {
 
     return (
       <div>
-        <h4><FollowButton onClick={onFollow}> {followText} </FollowButton> visitor: {visitorCount}{'    '}</h4>
+        <h4 style={{color:"#FFFFFF"}}><FollowButton onClick={onFollow} style={{marginRight:'50px'}}> {followText} </FollowButton> visitor: {visitorCount}{'    '}</h4>
 	      <Dropdown options={options} onChange={onCategoryChange} value={defaultOption} placeholder="Select an option" />
         {reviewstate.map((review) =>
           <ArchiveReview
