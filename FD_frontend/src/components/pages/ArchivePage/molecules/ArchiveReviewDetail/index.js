@@ -50,7 +50,7 @@ class ArchiveReviewDetail extends React.Component {
     if (this.props.reviewstate.selectedReviewObj) {
       const selectedReview = this.props.reviewstate.selectedReviewObj
 
-      const eatWhenDate = new Date(selectedReview.eatWhen).toLocaleString('ko-KR')
+      const eatWhenDate = new Date(selectedReview.eatWhen).toLocaleString('ko-KR', { timeZone: 'UTC' })
       
       if (selectedReview.photo) {
         const photoUrl = "http://localhost:8000"+selectedReview.photo
