@@ -74,14 +74,18 @@ export function* watchPostMeetingRequest() {
 
 export function* confirmRestSaga({ name, address, latitude, longitude }) {
   try {
+    console.log('confirmRestSaga')
     const data = {
       name,
       address,
       latitude,
       longitude,
     }
+    console.log(data)
     // Get ID for the POSTed restaurant
     const response = yield callUrl('POST', restListUrl, data)
+    console.log('confirmRestSaga')
+    console.log(response)
     yield put(actions.confirmRestSuccess(response.id))
   } catch (err) {
     console.log(err)
