@@ -1,8 +1,9 @@
 from rest_framework import generics, permissions
 from rest_framework.views import APIView
-from django.shortcuts import render
+from rest_framework.response import Response
 import json
 
+from review.serializers import ReviewSerializer
 from . import models
 from . import serializers
 
@@ -19,3 +20,20 @@ class RestaurantListView(generics.ListCreateAPIView):
 class RestaurantDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Restaurant.objects.all()
     serializer_class = serializers.RestaurantSerializer
+
+# get : restaurant에 다녀온 리뷰(조회수가 높은 순서)를 가져온다.
+class SearchedRestaurantListView(APIView):
+    def get(self, request, *args, **kwargs):
+        restaurants = models.Restaurant.objects.filter(reviews__public_status=True, name__iregex = r'.*%s.*' % kwargs['name'])
+        queryset = None
+        for restaurant in restaurants:
+            reviewset = restaurant.reviews.order_by('-hits')
+            if reviewset is not None:
+                print(reviewset)
+                if queryset is None:
+                    queryset = reviewset
+                else:
+                    queryset = queryset | reviewset
+
+        serializer = ReviewSerializer(queryset, many=True)
+        return Response(serializer.data)
