@@ -5,7 +5,7 @@ import { requestSignIn } from '../SignInPage/actions'
 import { SIGN_IN_SUCCESS } from '../SignInPage/actionTypes'
 import { callUrl } from '../sagas'
 
-const backendUrl = 'http://localhost:8000'
+const backendUrl = 'http://3.13.219.185:8000'
 const signUpUrl = `${backendUrl}/account/registration`
 const dcUrl = `${backendUrl}/user/exists`
 const archiveUrl = `${backendUrl}/archive/list`

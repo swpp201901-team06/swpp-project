@@ -19,6 +19,8 @@ urlpatterns = [
     # 조회수가 높은 상위 3개 리뷰 가져오기
     path('ranking', views.ReviewRankingView.as_view(), name = 'review_ranking'),
 
+    path('follow/<str:username>', views.FollowReviewView.as_view()),
+
     # for debugging
     path('force-increase/<int:pk>', views.ForceHitIncreaseView.as_view()),
     path('iplist', views.ReviewIPListView.as_view()),

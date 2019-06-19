@@ -4,7 +4,7 @@ import { callUrl } from '../sagas'
 import * as actions from './actions'
 import * as actions2 from '../ArchivePage/actions'
 
-const backendUrl = 'http://127.0.0.1:8000'
+const backendUrl = 'http://3.13.219.185:8000'
 const usernameUrl = `${backendUrl}/review/search`
 const tagUrl = `${backendUrl}/tag/filter`
 const restaurantUrl = `${backendUrl}/restaurant/search`

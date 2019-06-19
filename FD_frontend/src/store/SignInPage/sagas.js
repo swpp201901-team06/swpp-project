@@ -5,7 +5,7 @@ import * as actionTypes from './actionTypes'
 import { baseHistory } from '../../index'
 import { callUrl } from '../sagas'
 
-const backendUrl = 'http://localhost:8000'
+const backendUrl = 'http://3.13.219.185:8000'
 const checkIdUrl = `${backendUrl}/user/exists/email`
 const signInUrl = `${backendUrl}/account/login/`
 const getNicknameUrl = `${backendUrl}/user/username`

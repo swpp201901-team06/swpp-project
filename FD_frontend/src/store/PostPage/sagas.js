@@ -4,7 +4,7 @@ import { callUrl, callUrlImg } from '../sagas'
 import * as actions from './actions'
 // import { getReviewDetail } from '../ArchivePage/actions'
 
-const backendUrl = 'http://127.0.0.1:8000'
+const backendUrl = 'http://3.13.219.185:8000'
 const reviewListUrl = `${backendUrl}/review/list`
 const reviewDetailUrl = `${backendUrl}/review/detail`
 const restListUrl = `${backendUrl}/restaurant/list`

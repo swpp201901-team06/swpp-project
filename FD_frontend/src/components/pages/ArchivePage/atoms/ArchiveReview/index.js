@@ -6,7 +6,7 @@ const Styledli = styled.li`
   font-family: ${font('primary')};
 `
 
-const backendUrl = 'http://localhost:8000'
+const backendUrl = 'http://3.13.219.185:8000'
 
 const Review = styled.li`
   background-color: #e0ba7c;
@@ -59,7 +59,7 @@ class ArchiveReview extends React.Component {
             {'date: '}{eatWhenDate}{'   '}</h4>
           <h4>
             {'where: '}{restaurantId}{'   '}</h4>
-          
+
           <h4>
             {'score: '}{score}{'   '}
           </h4>

@@ -124,6 +124,13 @@ class ReviewRankingView(APIView):
         return Response(serializer.data)
 
 
+class FollowReviewView(APIView):
+    def get(self, request, username):
+        user = CustomUser.objects.get(username=username)
+        review_set = Review.objects.select_related('archive').select_related('archive__user').filter(archive__user__in=user.follows.all()).order_by('-post_time')
+        serializer = ReviewSerializer(review_set[:10], many=True)
+        return Response(serializer.data)
+
 # for debugging
 class DeleteAllReviewIP(APIView):
     def get(self, request, *args, **kwargs):
