@@ -67,8 +67,6 @@ class ArchiveReviewList extends React.Component {
     else {
       followText = 'Follow'
     }
-
-    console.log(this.props.statefunction.ArchivePage.Follow)
     
     const reviewstate = this.props.statefunction.ArchivePage.reviews
 
@@ -76,10 +74,20 @@ class ArchiveReviewList extends React.Component {
       console.log(this.props.children)
       this.props.doFollow(this.props.children)
     }
+    
+    let followButton
+    if(localStorage.hasOwnProperty('nickname') && JSON.parse(localStorage.getItem('nickname')) != this.props.children) {
+      followButton = (
+        <FollowButton onClick={onFollow} style={{marginRight:'50px'}}> {followText} </FollowButton>
+      )
+    }
+    else {
+      followButton = ' '
+    }
 
     return (
       <Wrapper>
-        <h4 style={{color:"#FFFFFF"}}><FollowButton onClick={onFollow} style={{marginRight:'50px'}}> {followText} </FollowButton> visitor: {visitorCount}{'    '}</h4>
+        <h4 style={{color:"#FFFFFF"}}>{followButton}{'   '} visitor: {visitorCount}{'    '}</h4>
 	      <Dropdown options={options} onChange={onCategoryChange} value={defaultOption} placeholder="Select an option" />
         {reviewstate.map((review) =>
           <ArchiveReview

@@ -56,6 +56,7 @@ class ReviewPostDetail extends React.Component {
     let contentText
     let tagText
     let restIdText
+    let restNameText
 
     // initialize publicStatus field
     if (this.props.statefunction.PostPage.publicStatus &&
@@ -81,6 +82,13 @@ class ReviewPostDetail extends React.Component {
       restIdText = this.props.statefunction.PostPage.restId
     } else {
       restIdText = ''
+    }
+
+    // initialize restaurant name field
+    if (this.props.statefunction.PostPage.restName) {
+      restNameText = this.props.statefunction.PostPage.restName
+    } else {
+      restNameText = ''
     }
 
     // initialize score field
@@ -124,12 +132,12 @@ class ReviewPostDetail extends React.Component {
     }
 
     const onClickPostSubmit = () => {
-      if (this.refs.restId.value && this.refs.date.value && this.refs.score.value &&
+      if (restIdText && this.refs.date.value && this.refs.score.value &&
         this.refs.content.value) {
         this.props.onPostSubmit(
           this.props.children,
           this.props.statefunction.PostPage.nickname,
-          this.refs.restId.value,
+          restIdText,
           this.refs.date.value,
           this.refs.tag.value,
           this.refs.score.value,
@@ -155,11 +163,11 @@ class ReviewPostDetail extends React.Component {
             />
           </div>
           <div style={padding}>
-            Restaurant ID{' '}
+            Restaurant Name{' '}
             <input
-              value={restIdText}
-              name="restId"
-              ref="restId"
+              value={restNameText}
+              name="restName"
+              ref="restName"
             />
           </div>
           <RowWrapper>

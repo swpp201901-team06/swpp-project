@@ -46,6 +46,7 @@ const postReducer = (state, action) => {
         publicStatus: bPublicStatus,
         eatWhen: action.eatWhen,
         content: action.content,
+        restName: action.restName
       }
 
     case actions.GET_POST_REVIEW_DETAIL_FAILED:
@@ -120,6 +121,7 @@ const postReducer = (state, action) => {
       return {
         ...nextState,
         restId: action.restId,
+        restName: action.restName
       }
 
     case actions.CONFIRM_REST_FAILED:
