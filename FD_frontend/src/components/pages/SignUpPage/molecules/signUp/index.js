@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router' 
 // import { font, palette } from 'styled-theme'
 // import Button from '../../atoms/Button'
 // import DCButton from '../../atoms/DCButton'
@@ -17,7 +18,7 @@ const browncolor = {
   color: '#e0ba7c',
 }
 
-export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handleChange, onPhoneAuthRequest, onPhoneAuthSubmit }) => {
+export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handleChange, onPhoneAuthRequest, onPhoneAuthSubmit, onSignUpCancel }) => {
   let email
   let pw
   let confirmpw
@@ -93,6 +94,10 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
     console.log(phoneNumber.value)
     onPhoneAuthSubmit(inputCode.value, statefunction.SignUpPage.code, phoneNumber.value)
   }
+  
+  const onCancel = () => {
+    onSignUpCancel()
+  }
 
   let phoneAuthComponent
   
@@ -166,6 +171,7 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
           <SubmitButton type="submit" onClick={onSubmit}>
             Submit
           </SubmitButton>
+          <SubmitButton onClick={onCancel}>Cancel</SubmitButton>
         </h4>
         
        <h4 style={browncolor}>
