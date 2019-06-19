@@ -4,9 +4,12 @@ import { font, palette } from 'styled-theme'
 import { Link } from 'react-router'
 import DetailButton from '../../atoms/DetailButton'
 
-const Wrapper = styled.div`
-  font-family: ${font('primary')};
-  color: ${palette('grayscale', 0)};
+const Review = styled.li`
+  background-color: #d0997c;
+  margin-bottom:1em;
+  padding : 1em;
+  text-align : center;
+  border: 3px solid white;
 `
 
 class ArchiveReviewDetail extends React.Component {
@@ -76,10 +79,10 @@ class ArchiveReviewDetail extends React.Component {
       reviewDetail = <h4>{' '}</h4>
     }
     return (
-      <div>
+      <Review>
         {ownerOption}
         {reviewDetail}
-      </div>
+      </Review>
     )
   }
 }

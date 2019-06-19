@@ -24,10 +24,20 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   flex-direction: column;
-  margin-top: 3em
+  margin-top: 1em
   margin-left: 0em
 `
 
+const RowWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex-direction:row;
+  margin-top: 0em
+  margin-left: 0em
+`
 const PostWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -50,27 +60,36 @@ class ArchivePage extends React.Component {
     if (userNickname === archiveOwnerNickname) {
       return (
         <div>
-          <SideBarWrapper>
-            <img src={require('../../../../../design_source/logo/logo.png')} style={logo} />
-            {this.props.params.nickname}'s archive page
-            <SideBar />
-          </SideBarWrapper>
-
-          <PostWrapper>
-            <Link to="/post/default">
-              <PostButton style={{ margin: '10px' }}>Post Review</PostButton>
-            </Link>
-          </PostWrapper> 
-
           <Wrapper>
-            <ArchiveReviewList style={{margin:'10px'}}>
-              {this.props.params.nickname}
-            </ArchiveReviewList>
-            <ArchiveReviewDetail />
+            <SideBarWrapper>
+              <img src={require('../../../../../design_source/logo/logo.png')} style={logo} />
+              {this.props.params.nickname}'s archive page
+              <SideBar />
+            </SideBarWrapper>
+
+            <RowWrapper>
+              <Wrapper>
+              <PostWrapper>
+                <Link to="/post/default">
+                  <PostButton style={{ margin: '10px' }}>Post Review</PostButton>
+                </Link>
+              </PostWrapper> 
+
+              <Wrapper>
+                <ArchiveReviewList style={{margin:'10px'}}>
+                  {this.props.params.nickname}
+                </ArchiveReviewList>
+                <ArchiveReviewDetail />
+              </Wrapper>
+              </Wrapper>
+              <ReviewMap />
+            </RowWrapper>
+            
+            
+            
+            
           </Wrapper>
           
-          
-          <ReviewMap />
           
           
         </div>
@@ -78,20 +97,25 @@ class ArchivePage extends React.Component {
     }
     return (
       <div>
-        <SideBarWrapper>
-          <img src={require('../../../../../design_source/logo/logo.png')} style={logo} />
-          {this.props.params.nickname}'s archive page
-          <SideBar />
-        </SideBarWrapper>
-
         <Wrapper>
-          <ArchiveReviewList>
-            {this.props.params.nickname}
-          </ArchiveReviewList>
-          <ArchiveReviewDetail />
+          <SideBarWrapper>
+            <img src={require('../../../../../design_source/logo/logo.png')} style={logo} />
+            {this.props.params.nickname}'s archive page
+            <SideBar />
+          </SideBarWrapper>
+
+          <RowWrapper>
+            <Wrapper>
+              <ArchiveReviewList>
+                {this.props.params.nickname}
+              </ArchiveReviewList>
+              <ArchiveReviewDetail />
+            </Wrapper>
+            <ReviewMap />
+          </RowWrapper>
           
         </Wrapper>
-        <ReviewMap />
+        
       </div>
     )
   }
