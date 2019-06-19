@@ -180,3 +180,6 @@ class RecommendationView(APIView):
         review_set = Review.objects.select_related('archive').select_related('archive__user').exclude(archive__user__username=username).filter(public_status=True).order_by('-hits')
         serializer = ReviewSerializer(review_set[:5], many = True)
         return Response(serializer.data)
+
+
+        
