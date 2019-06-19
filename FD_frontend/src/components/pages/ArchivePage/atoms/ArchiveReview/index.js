@@ -47,7 +47,9 @@ class ArchiveReview extends React.Component {
             {'view: '}{hits}{'   '}
             {'date: '}{eatWhen}{'   '}</h4>
           <h4>
-            {'where: '}{restaurantId}{'   '}
+            {'where: '}{restaurantId}{'   '}</h4>
+          <p/>
+          <h4>
             {'score: '}{score}{'   '}
           </h4>
         </h4>
