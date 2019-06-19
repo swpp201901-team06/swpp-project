@@ -72,6 +72,8 @@ const signUpReducer = (state = initialState, action) => {
         ...state,
         failText: 'Sign Up Failed.'
       }
+    case actions.CANCEL_SIGNUP:
+      return initialState
     default:
       return state
   }
