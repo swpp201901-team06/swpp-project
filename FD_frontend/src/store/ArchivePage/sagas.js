@@ -8,6 +8,7 @@ const myReviewListUrl = `${backendUrl}/review/list`
 const archiveDetailUrl = `${backendUrl}/archive/detail`
 const reviewDetailUrl = `${backendUrl}/review/detail`
 const restDetailUrl = `${backendUrl}/restaurant/detail`
+const followUrl = `${backendUrl}/user/follows`
 
 export function* getReviewListSaga({ sortOption, archiveOwnerNickname }) {
   try {
@@ -142,6 +143,28 @@ export function* deleteReviewSaga({ reviewId, archiveOwnerNickname }) {
   }
 }
 
+export function* followArchiveSaga({ archiveOwner }) {
+  try {
+    const userId = JSON.parse(localStorage.getItem('id'))
+    const targetResponse = yield callUrl('GET', `${backendUrl}/user/exists/username/${archiveOwner}`)
+    const ownerId = targetResponse.id
+    const response=yield callUrl('PUT', `${followUrl}/${userId}`, {follows:[ownerId]})
+    const followerResponse = yield callUrl('GET', `${followUrl}/${userId}`)
+    console.log(followerResponse)
+
+    if (followerResponse.follows.includes(ownerId)) {
+      console.log('following')
+      yield put(actions.following())
+    }
+    else {
+      console.log('not following')
+      yield put(actions.notFollowing())
+    }
+  } catch(e) {
+    console.log(e)
+  }
+}
+  
 export function* watchDeleteReviewRequest() {
   yield takeEvery(actions.DELETE_REVIEW_REQUEST, deleteReviewSaga)
 }
@@ -154,10 +177,15 @@ export function* watchGotoGuestLog() {
   }
 }
 
+export function* watchFollowArchive() {
+  yield takeEvery(actions.FOLLOW_ARCHIVE, followArchiveSaga)
+}
+
 export default function* () {
   yield fork(watchGetReviewListRequest)
   yield fork(watchGetReviewDetailRequest)
   yield fork(watchUpdateSortMethodRequest)
   yield fork(watchDeleteReviewRequest)
   yield fork(watchGotoGuestLog)
+  yield fork(watchFollowArchive)
 }

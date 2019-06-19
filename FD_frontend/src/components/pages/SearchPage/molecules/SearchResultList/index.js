@@ -29,7 +29,7 @@ class SearchResultList extends React.Component {
             key={result.id}
             reviewId={result.id}
             eatWhen={result.eatWhen}
-            restaurantId={result.restaurantId}
+            restaurantId={result.rest_name}
             score={result.score}
             content={result.content}
             photo={result.photo}
