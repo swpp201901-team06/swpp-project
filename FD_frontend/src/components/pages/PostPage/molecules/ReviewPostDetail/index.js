@@ -57,13 +57,16 @@ class ReviewPostDetail extends React.Component {
     let tagText
     let restIdText
     let restNameText
+    let publicStatus
 
     // initialize publicStatus field
     if (this.props.statefunction.PostPage.publicStatus &&
-      this.props.statefunction.PostPage.publicStatus === 'True') {
-      publicStatusText = 'Public'
-    } else {
+      this.props.statefunction.PostPage.publicStatus == 'False') {
       publicStatusText = 'Private'
+      publicStatus = 'False'
+    } else {
+      publicStatusText = 'Public'
+      publicStatus = 'True'
     }
 
     // initialize eatWhen field
@@ -127,7 +130,7 @@ class ReviewPostDetail extends React.Component {
       if (this.props.statefunction.PostPage.publicStatus) {
         this.props.PubStatusChange(this.props.statefunction.PostPage.publicStatus)
       } else {
-        this.props.PubStatusChange('False')
+        this.props.PubStatusChange('True')
       }
     }
 
@@ -175,8 +178,9 @@ class ReviewPostDetail extends React.Component {
             <ImageUpload imageUrl={imgUrlText} style={padding}/>
           </RowWrapper>
           <div style={padding}>
-            Score{' '}
+            Score (0~10){' '}
             <input
+              type="number" min="0" max="10"
               value={scoreText}
               onChange={(e) => onInputChange(e)}
               name="score"
