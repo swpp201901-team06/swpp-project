@@ -99,14 +99,14 @@ class SortedReviewListView(APIView):
             serializer = ReviewSerializer(review_set, many = True)
             return Response(serializer.data)
 
-        review_set = archive.reviews.filter(public_status = True).order_by(kwargs['sortopt'])
+        review_set = archive.reviews.filter(user__public_status = True).order_by(kwargs['sortopt'])
         serializer = ReviewSerializer(review_set, many = True)
         return Response(serializer.data)
 
 # get : username과 유사한 이름을 가지는 유저들의 대표 리뷰(조회수가 가장 높은 리뷰)를 가져온다.
 class SearchedReviewListView(APIView):
     def get(self, request, *args, **kwargs):
-        archives = Archive.objects.select_related('user').filter(user__username__iregex = r'.*%s.*' % kwargs['username'])
+        archives = Archive.objects.select_related('user').filter(user__public_status=True, user__username__iregex = r'.*%s.*' % kwargs['username'])
         review_list = []
         for archive in archives:
             review = archive.reviews.filter(public_status = True).order_by('-hits').first()
@@ -119,13 +119,9 @@ class SearchedReviewListView(APIView):
 # get : 조회수가 가장 높은 3개의 리뷰를 가져온다.
 class ReviewRankingView(APIView):
     def get(self, request, *args, **kwargs):
-        review_set = Review.objects.select_related('archive').select_related('archive__user').filter(public_status=True).order_by('-hits')
+        review_set = Review.objects.select_related('archive').select_related('archive__user').filter(archive__user__public_status=True, public_status=True).order_by('-hits')
         serializer = ReviewSerializer(review_set[:3], many = True)
         return Response(serializer.data)
-
-
-
-
 
 
 # for debugging

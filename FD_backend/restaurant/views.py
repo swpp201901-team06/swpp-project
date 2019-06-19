@@ -27,7 +27,7 @@ class SearchedRestaurantListView(APIView):
         restaurants = models.Restaurant.objects.filter(reviews__public_status=True, name__iregex = r'.*%s.*' % kwargs['name'])
         queryset = None
         for restaurant in restaurants:
-            reviewset = restaurant.reviews.filter(public_status=True).order_by('-hits')
+            reviewset = restaurant.reviews.order_by('-hits')
             if reviewset is not None:
                 print(reviewset)
                 if queryset is None:
