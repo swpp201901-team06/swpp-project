@@ -13,7 +13,7 @@ SECRET_KEY = '!)n5ub0qljn+2ojwjy&l_1lz(=@w)abg7t$jfnpyq@3z9$g980'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['3.13.219.185', 'ec2-3-13-219-185.us-east-2.compute.amazonaws.com' ]
 
 
 # Application definition
@@ -73,12 +73,14 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-INTERNAL_IPS = ('127.0.0.1',)
+INTERNAL_IPS = ('127.0.0.1','ec2-3-13-219-185.us-east-2.compute.amazonaws.com', '3.13.219.185',)
 
 CORS_ORIGIN_WHITELIST = [
     'localhost:80',
     'localhost:8000',
-    '127.0.0.1:8000'
+    '127.0.0.1:8000',
+    'ec2-3-13-219-185.us-east-2.compute.amazonaws.com:8000',
+    '3.13.219.185:8000'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -152,9 +154,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/api/accounts/logout/'
-ACCOUNT_LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/api/accounts/login/'
 
 AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
