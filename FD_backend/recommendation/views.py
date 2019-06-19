@@ -95,7 +95,7 @@ def getRecommendation (data, person):
         return []
     for key in score_dic:
         score_dic[key] = score_dic[key]/sim_dic[key] # 평점 총합/ 유사도 총합
-        if score_dic[key] > 5.0:
+        if score_dic[key] > 7.0:
             li.append((score_dic[key],(key, user_dic[key]["user"]))) # (식당 id, 유저 id) 튜플 리스트를 리턴함
     li.sort()
     li.reverse()
