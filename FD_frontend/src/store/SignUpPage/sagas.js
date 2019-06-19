@@ -60,7 +60,6 @@ export function* phoneAuthentication({ number }) {
       yield put(actions.phoneDuplicate())
     }
     else {
-      console.log(response)
       yield put(actions.phoneSent(response))
     }
   } catch(e) {

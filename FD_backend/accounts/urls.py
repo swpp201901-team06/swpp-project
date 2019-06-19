@@ -12,6 +12,6 @@ urlpatterns = [
 
 
     path('message/send/<str:number>', views.MessageSendView.as_view()),
-    path('message/save', views.PhoneNumberSaveView.as_view())
-
+    path('message/save', views.PhoneNumberSaveView.as_view()),
+    path('message/delete/<str:pk>', views.PhoneNumberDeleteView.as_view())
 ]

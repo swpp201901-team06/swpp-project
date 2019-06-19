@@ -29,7 +29,7 @@ def send_message(number, key):
     params['type'] = 'sms' # Message type ( sms, lms, mms, ata )
     params['to'] = number # Recipients Number '01000000000,01000000001'
     params['from'] = '01077213599' # Sender number
-    params['text'] = "key : " + key # Message
+    params['text'] = "[FooDa] \n Your verification Code is " + key # Message
     print(params)
     cool = Message(api_key, api_secret)
     try:
@@ -64,9 +64,12 @@ class MessageSendView(generics.RetrieveAPIView):
         for i in range(8):
             key += random.choice(string_pool)
         print(key)
-#        send_message(number, key)
+        send_message(number, key)
         return Response(key)
 
+class PhoneNumberDeleteView(generics.RetrieveUpdateDestroyAPIView): 
+    queryset = models.PhoneNumber.objects.all()
+    serializer_class = serializers.PhoneSerailizer
 
 class PhoneNumberSaveView(generics.ListCreateAPIView):
     queryset = models.PhoneNumber.objects.all()

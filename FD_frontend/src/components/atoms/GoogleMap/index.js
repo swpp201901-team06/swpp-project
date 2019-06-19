@@ -9,7 +9,7 @@ const Wrapper = styled.main`
 `;
 
 const GoogleMap = ({ children, ...props }) => (
-  <Wrapper style={{height:'50vh',width:'50%'}}>
+  <Wrapper style={{height:'50vh',width:'70%'}}>
     <GoogleMapReact
       bootstrapURLKeys={{
         key: 'AIzaSyBBUBM1s37lF0M2Wbkkv6Yl5tdOhF3YBfM'
