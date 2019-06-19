@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
-import Search from '../../components/molecules/ReviewMap/index'
-// TODO: fix import path
+import ReviewMap from '../../components/molecules/ReviewMap'
 
 const mapStateToProps = (state) => {
   return {
@@ -12,4 +11,4 @@ const mapDispatchToProps = (dispatch) => {
   return {}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewMap)

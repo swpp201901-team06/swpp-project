@@ -8,7 +8,6 @@ import SearchBox from '../../atoms/SearchBox';
 class ReviewMap extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       mapApiLoaded: false,
       mapInstance: null,
@@ -26,20 +25,18 @@ class ReviewMap extends Component {
   }
 
   addPlace = (place) => {
-    console.log('Search addPlace')
-    console.log(place)
     this.setState({ places: place })
-    console.log('Search addPlace after setState')
-    console.log(this.state)
   }
 
   render() {
+
     const {
       places, mapApiLoaded, mapInstance, mapApi,
     } = this.state
+    const selectedReviewObj = this.props.reviewstate.selectedReviewObj
     return (
       <div>
-        {mapApiLoaded && <SearchBox map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />}
+        {/*mapApiLoaded && <SearchBox map={mapInstance} mapApi={mapApi} />*/}
         <GoogleMap
           defaultZoom={17}
           defaultCenter={[37.4812, 126.9527]}
@@ -50,14 +47,15 @@ class ReviewMap extends Component {
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={({ map, maps }) => this.apiHasLoaded(map, maps)}
         >
-          {places.map(place => {
-            return <Marker
-              key={place.id}
-              text={place.name}
-              lat={place.geometry.location.lat()}
-              lng={place.geometry.location.lng()}
-            />
-          })}
+          {
+            selectedReviewObj ? (
+              <Marker
+                text={selectedReviewObj.restName}
+                lat={selectedReviewObj.restLat}
+                lng={selectedReviewObj.restLong}
+              />
+            ) : null
+          }
         </GoogleMap>
       </div>
     )
