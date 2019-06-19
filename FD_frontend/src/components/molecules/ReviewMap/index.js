@@ -45,6 +45,7 @@ class ReviewMap extends Component {
       places, mapApiLoaded, mapInstance, mapApi,
     } = this.state
     const selectedReviewObj = this.props.reviewstate.selectedReviewObj
+
     return (
       <Wrapper>
         {/*mapApiLoaded && <SearchBox map={mapInstance} mapApi={mapApi} />*/}
@@ -60,6 +61,7 @@ class ReviewMap extends Component {
         >
           {
             selectedReviewObj ? (
+              console.log(selectedReviewObj.restLat),
               <Marker
                 text={selectedReviewObj.restName}
                 lat={selectedReviewObj.restLat}

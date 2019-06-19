@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   flex-direction: column;
-  margin-top: 1em
+  margin-top: 0em
   margin-left: 0em
 `
 
@@ -60,7 +60,7 @@ class ArchivePage extends React.Component {
     if (userNickname === archiveOwnerNickname) {
       return (
         <div>
-          <Wrapper>
+          
             <SideBarWrapper>
               <img src={require('../../../../../design_source/logo/logo.png')} style={logo} />
               {this.props.params.nickname}'s archive page
@@ -88,7 +88,7 @@ class ArchivePage extends React.Component {
             
             
             
-          </Wrapper>
+          
           
           
           
