@@ -8,6 +8,16 @@ const Styledli = styled.li`
 
 const backendUrl = 'http://localhost:8000'
 
+const Review = styled.li`
+  background-color: #e0ba7c;
+  margin-bottom:1em;
+  padding : 1em;
+  &:hover, &:focus, &:active {
+    background-color: #ff8d06;
+  }
+  text-align : center;
+`
+
 class ArchiveReview extends React.Component {
   render() {
     const reviewId = this.props.reviewId
@@ -26,7 +36,7 @@ class ArchiveReview extends React.Component {
 
     if (photo) {
       return (
-        <div onClick={() => { onClickThis() }}>
+        <Review onClick={() => { onClickThis() }}>
           <h4>
             {'date: '}{eatWhen}{'   '}</h4>
           <h4>
@@ -34,7 +44,7 @@ class ArchiveReview extends React.Component {
             {'score: '}{score}{'   '}
           </h4>
           <img src={`${backendUrl}${photo}`} width="100" height="100" />
-        </div>
+        </Review>
       )
     }
 
@@ -45,7 +55,7 @@ class ArchiveReview extends React.Component {
             {'date: '}{eatWhen}{'   '}</h4>
           <h4>
             {'where: '}{restaurantId}{'   '}</h4>
-          <p/>
+          
           <h4>
             {'score: '}{score}{'   '}
           </h4>

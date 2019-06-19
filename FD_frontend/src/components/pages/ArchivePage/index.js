@@ -43,11 +43,6 @@ const logo = {
   width: 100,
 }
 
-
-// const align = {
-//   alignItems : center
-// }
-
 class ArchivePage extends React.Component {
   render() {
     const userNickname = JSON.parse(localStorage.getItem('nickname'))
@@ -74,8 +69,9 @@ class ArchivePage extends React.Component {
             <ArchiveReviewDetail />
           </Wrapper>
           
-         
+          
           <ReviewMap />
+          
           
         </div>
       )

@@ -7,8 +7,14 @@ import SearchButton from '../../atoms/SearchButton'
 /*import 'react-dropdown/style.css'*/
 
 const Wrapper = styled.div`
-  font-family: ${font('primary')};
-  color: ${palette('grayscale', 0)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  margin-top: 0em
+  margin-left: 0em
 `
 
 export class GuestSearch extends React.Component {
@@ -41,14 +47,14 @@ export class GuestSearch extends React.Component {
     }
     
     return (
-      <div>
+      <Wrapper>
          <h4><Dropdown options={options} onChange={this.onCategoryChange} value={defaultOption} placeholder="Select an option" />
 	      <input onChange={(e) => this.onValueChange(e)} />{'    '}
         <Link to={"/search/"+this.state.searchKey+"/"+this.state.searchValue}>
           <SearchButton>Search</SearchButton>
         </Link>
         </h4>
-      </div>
+      </Wrapper>
     )
   }
 }

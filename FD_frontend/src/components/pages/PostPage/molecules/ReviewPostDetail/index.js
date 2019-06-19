@@ -206,6 +206,7 @@ class ReviewPostDetail extends React.Component {
               Submit
             </PostSubmitButton>
           </div>
+          
         </Wrapper>
         <Search onConfirmRest={this.props.onConfirmRest} />
       </div>

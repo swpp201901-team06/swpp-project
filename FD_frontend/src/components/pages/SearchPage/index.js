@@ -14,6 +14,17 @@ const SideBarWrapper = styled.div`
   background : #e0ba7c;
   color : #ffffff;
 `
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  margin-top: 0em
+  margin-left: 0em
+`
+
 const logo = {
   height: 40,
   width: 100,
@@ -27,11 +38,16 @@ class SearchPage extends React.Component {
           <img src={require('../../../../../design_source/logo/logo.png')} style={logo} />
           <SideBar />
         </SideBarWrapper>
-        <GuestSearch />
-        <SearchResultList >
-          {this.props.params.method}
-          {this.props.params.keyword}
-        </SearchResultList>
+        <Wrapper>
+          <GuestSearch />
+          </Wrapper>
+          <Wrapper>
+          <SearchResultList >
+            {this.props.params.method}
+            {this.props.params.keyword}
+          </SearchResultList>
+        </Wrapper>
+    
       </div>
     )
   }
