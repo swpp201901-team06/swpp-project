@@ -37,11 +37,8 @@ class Search extends Component {
   }
 
   addPlace = (place) => {
-    console.log('Searchbox addPlace')
-    console.log(place)
     this.setState({ placesList: place })
     let newPlacesDict = {}
-    console.log(this.state.placesList)
     this.state.placesList.map(place => {
       newPlacesDict[place.id] = place
       return null
@@ -52,9 +49,6 @@ class Search extends Component {
   confirmRest = (id) => {
     const onConfirmRest = this.props.onConfirmRest
     const place = this.state.placesDict[id]
-    console.log('Searchbox confirmRest')
-    console.log(id)
-    console.log(place)
     const restName = place.name
     const address = place.formatted_address
     const latitude = place.geometry.location.lat()
@@ -84,8 +78,6 @@ class Search extends Component {
               const onClickMarker = () => {
                 this.confirmRest(place.id)
               }
-              console.log('Searchbox render places map')
-              console.log(place)
               return (<Marker
                 key={place.id}
                 text={place.name}
