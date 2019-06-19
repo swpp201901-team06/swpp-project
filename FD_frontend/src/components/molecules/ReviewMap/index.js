@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   height: 100%;
   flex-direction: column;
   text-align:center;
+  margin-top:5%;
 `
 
 class ReviewMap extends Component {
@@ -45,6 +46,7 @@ class ReviewMap extends Component {
       places, mapApiLoaded, mapInstance, mapApi,
     } = this.state
     const selectedReviewObj = this.props.reviewstate.selectedReviewObj
+
     return (
       <Wrapper>
         {/*mapApiLoaded && <SearchBox map={mapInstance} mapApi={mapApi} />*/}

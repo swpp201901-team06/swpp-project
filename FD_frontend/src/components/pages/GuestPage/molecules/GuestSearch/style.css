@@ -1,0 +1,12 @@
+.arrow-closed {
+    top: 10px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+  
+.arrow-open {
+    top: 14px;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+ }
+  

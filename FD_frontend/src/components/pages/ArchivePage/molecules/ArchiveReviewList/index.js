@@ -6,9 +6,25 @@ import FollowButton from '../../atoms/FollowButton'
 import Dropdown from 'react-dropdown'
 
 const Wrapper = styled.div`
-  font-family: ${font('primary')};
-  color: ${palette('grayscale', 0)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  margin-top: 0em
+  margin-left: 0em
 `
+const Review = styled.li`
+  background-color: #e0ba7c;
+  margin-bottom:1em;
+  padding : 1em;
+  &:hover, &:focus, &:active {
+    background-color: #ff8d06;
+  }
+  text-align : center;
+`
+
 
 class ArchiveReviewList extends React.Component {
   componentDidMount() {
@@ -51,8 +67,6 @@ class ArchiveReviewList extends React.Component {
     else {
       followText = 'Follow'
     }
-
-    console.log(this.props.statefunction.ArchivePage.Follow)
     
     const reviewstate = this.props.statefunction.ArchivePage.reviews
 
@@ -60,10 +74,20 @@ class ArchiveReviewList extends React.Component {
       console.log(this.props.children)
       this.props.doFollow(this.props.children)
     }
+    
+    let followButton
+    if(localStorage.hasOwnProperty('nickname') && JSON.parse(localStorage.getItem('nickname')) != this.props.children) {
+      followButton = (
+        <FollowButton onClick={onFollow} style={{marginRight:'50px'}}> {followText} </FollowButton>
+      )
+    }
+    else {
+      followButton = ' '
+    }
 
     return (
-      <div>
-        <h4><FollowButton onClick={onFollow}> {followText} </FollowButton> visitor: {visitorCount}{'    '}</h4>
+      <Wrapper>
+        <h4 style={{color:"#FFFFFF"}}>{followButton}{'   '} visitor: {visitorCount}{'    '}</h4>
 	      <Dropdown options={options} onChange={onCategoryChange} value={defaultOption} placeholder="Select an option" />
         {reviewstate.map((review) =>
           <ArchiveReview
@@ -80,7 +104,7 @@ class ArchiveReviewList extends React.Component {
             archiveOwnerNickname={review.archive}
           />
         )}
-      </div>
+      </Wrapper>
     )
   }
 }

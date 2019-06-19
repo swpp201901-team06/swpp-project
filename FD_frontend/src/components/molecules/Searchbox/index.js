@@ -23,7 +23,8 @@ class Search extends Component {
       mapApiLoaded: false,
       mapInstance: null,
       mapApi: null,
-      places: [],
+      placesList: [],
+      placesDict: {},
     }
   }
 
@@ -36,12 +37,18 @@ class Search extends Component {
   }
 
   addPlace = (place) => {
-    this.setState({ places: place })
+    this.setState({ placesList: place })
+    let newPlacesDict = {}
+    this.state.placesList.map(place => {
+      newPlacesDict[place.id] = place
+      return null
+    })
+    this.setState({ placesDict: newPlacesDict })
   }
 
-  confirmRest = () => {
+  confirmRest = (id) => {
     const onConfirmRest = this.props.onConfirmRest
-    const place = this.state.places[0]
+    const place = this.state.placesDict[id]
     const restName = place.name
     const address = place.formatted_address
     const latitude = place.geometry.location.lat()
@@ -51,7 +58,7 @@ class Search extends Component {
 
   render() {
     const {
-      places, mapApiLoaded, mapInstance, mapApi,
+      placesList, mapApiLoaded, mapInstance, mapApi,
     } = this.state
     return (
       <div>
@@ -67,18 +74,20 @@ class Search extends Component {
             yesIWantToUseGoogleMapApiInternals
             onGoogleApiLoaded={({ map, maps }) => this.apiHasLoaded(map, maps)}
           >
-            {places.map(place => {
-              return <Marker
+            {placesList.map(place => {
+              const onClickMarker = () => {
+                this.confirmRest(place.id)
+              }
+              return (<Marker
                 key={place.id}
                 text={place.name}
                 lat={place.geometry.location.lat()}
                 lng={place.geometry.location.lng()}
-                onClick={this.confirmRest}
-              />
+                onClick={onClickMarker}
+              />)
             })}
           </GoogleMap>
         </Wrapper>
-        
       </div>
     )
   }

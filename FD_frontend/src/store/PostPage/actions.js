@@ -20,7 +20,7 @@ export const getPostReviewDetail = (reviewId) => {
 }
 
 export const getPostReviewDetailSuccess = (restId, eatWhen, tags, score,
-  content, photo, publicStatus) => {
+  content, photo, publicStatus, restName) => {
   return {
     type: GET_POST_REVIEW_DETAIL_SUCCESS,
     restId,
@@ -30,6 +30,7 @@ export const getPostReviewDetailSuccess = (restId, eatWhen, tags, score,
     content,
     photo,
     publicStatus,
+    restName
   }
 }
 
@@ -105,10 +106,11 @@ export const confirmRest = (restName, address, latitude, longitude) => {
   }
 }
 
-export const confirmRestSuccess = (restId) => {
+export const confirmRestSuccess = (restId, restName) => {
   return {
     type: CONFIRM_REST_SUCCESS,
     restId,
+    restName
   }
 }
 
