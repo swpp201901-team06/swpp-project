@@ -19,7 +19,6 @@ const Wrapper = styled.div`
 class ReviewMap extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       mapApiLoaded: false,
       mapInstance: null,
@@ -37,41 +36,38 @@ class ReviewMap extends Component {
   }
 
   addPlace = (place) => {
-    console.log('Search addPlace')
-    console.log(place)
     this.setState({ places: place })
-    console.log('Search addPlace after setState')
-    console.log(this.state)
   }
 
   render() {
+
     const {
       places, mapApiLoaded, mapInstance, mapApi,
     } = this.state
+    const selectedReviewObj = this.props.reviewstate.selectedReviewObj
     return (
       <div>
-        <Wrapper>
-          {mapApiLoaded && <SearchBox map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />}
-          <GoogleMap
-            defaultZoom={17}
-            defaultCenter={[37.4812, 126.9527]}
-            bootstrapURLKeys={{
-              key: 'AIzaSyBBUBM1s37lF0M2Wbkkv6Yl5tdOhF3YBfM',
-              libraries: ['places', 'geometry'],
-            }}
-            yesIWantToUseGoogleMapApiInternals
-            onGoogleApiLoaded={({ map, maps }) => this.apiHasLoaded(map, maps)}
-          >
-            {places.map(place => {
-              return <Marker
-                key={place.id}
-                text={place.name}
-                lat={place.geometry.location.lat()}
-                lng={place.geometry.location.lng()}
+        {/*mapApiLoaded && <SearchBox map={mapInstance} mapApi={mapApi} />*/}
+        <GoogleMap
+          defaultZoom={17}
+          defaultCenter={[37.4812, 126.9527]}
+          bootstrapURLKeys={{
+            key: 'AIzaSyBBUBM1s37lF0M2Wbkkv6Yl5tdOhF3YBfM',
+            libraries: ['places', 'geometry'],
+          }}
+          yesIWantToUseGoogleMapApiInternals
+          onGoogleApiLoaded={({ map, maps }) => this.apiHasLoaded(map, maps)}
+        >
+          {
+            selectedReviewObj ? (
+              <Marker
+                text={selectedReviewObj.restName}
+                lat={selectedReviewObj.restLat}
+                lng={selectedReviewObj.restLong}
               />
-            })}
-          </GoogleMap>
-        </Wrapper>
+            ) : null
+          }
+        </GoogleMap>
       </div>
     )
   }
