@@ -64,6 +64,7 @@ class Search extends Component {
       <div>
         <Wrapper>
           {mapApiLoaded && <SearchBox map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />}
+          {this.state.placesList.length > 0 ? 'Please select the marker' : ''}
           <GoogleMap
             defaultZoom={17}
             defaultCenter={[37.4812, 126.9527]}
