@@ -36,7 +36,7 @@ const PostWrapper = styled.div`
   height: 100%;
   flex-direction: column;
   margin-left: 0em
-  margin-top: 3em
+  margin-top: 1em
 `
 const logo = {
   height: 40,
@@ -60,14 +60,14 @@ class ArchivePage extends React.Component {
             {this.props.params.nickname}'s archive page
             <SideBar />
           </SideBarWrapper>
-         <PostWrapper>
-         <Link to="/post/default">
-                <PostButton style={{ margin: '10px' }}>Post Review</PostButton>
+
+          <PostWrapper>
+            <Link to="/post/default">
+              <PostButton style={{ margin: '10px' }}>Post Review</PostButton>
             </Link>
-              </PostWrapper> 
+          </PostWrapper> 
+
           <Wrapper>
-            
-            
             <ArchiveReviewList style={{margin:'10px'}}>
               {this.props.params.nickname}
             </ArchiveReviewList>
