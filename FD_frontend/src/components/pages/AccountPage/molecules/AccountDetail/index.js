@@ -99,7 +99,7 @@ export class AccountDetail extends React.Component {
     return (
       <div>
         <Wrapper>
-          <h4>Change Account Info</h4>
+          <h3 style={{color:'#FFFFFF'}}>Change Account Info</h3>
 
           <h4 style={browncolor}>
             Nickname
@@ -122,7 +122,7 @@ export class AccountDetail extends React.Component {
           </h4>
 
 
-          <h4>Change Password</h4>
+          <h3 style={{color:'#FFFFFF'}}> Change Password </h3>
 
           <h4 style={browncolor}>
             Password
