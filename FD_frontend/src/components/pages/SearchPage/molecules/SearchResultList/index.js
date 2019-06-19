@@ -5,10 +5,15 @@ import SearchResult from '../../atoms/SearchResult'
 import Dropdown from 'react-dropdown'
 
 const Wrapper = styled.div`
-  font-family: ${font('primary')};
-  color: ${palette('grayscale', 0)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  margin-top: 0em
+  margin-left: 0em
 `
-
 class SearchResultList extends React.Component {
   componentDidMount() {
     this.props.requestResults(this.props.children[0], this.props.children[1])
@@ -18,22 +23,24 @@ class SearchResultList extends React.Component {
     const searchstate = this.props.statefunction.SearchPage.results
 
     return (
-      <div>
+      <Wrapper>
         {searchstate.map((result) =>
-          <SearchResult
-            key={result.hits}
-            resultId={result.id}
+          <SearchResult style={{marginbottom:'1em'}}
+            key={result.id}
+            reviewId={result.id}
             eatWhen={result.eatWhen}
             restaurantId={result.restaurantId}
             score={result.score}
             content={result.content}
             photo={result.photo}
+            hits={result.hits}
             onResultClick={this.props.onResultClick}
             sendResultIdFunc={this.props.sendResultId}
             archiveOwnerNickname={result.archive}
           />
         )}
-      </div>
+        <h1></h1>
+      </Wrapper>
     )
   }
 }

@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 import PostButton from './atoms/PostButton'
 import ArchiveReviewList from '../../../containers/ArchivePage/ReviewList'
 import ArchiveReviewDetail from '../../../containers/ArchivePage/ReviewDetail'
-import ReviewMap from '../../molecules/ReviewMap'
+import ReviewMap from '../../../containers/ArchivePage/ReviewMap'
 
 const SideBarWrapper = styled.div`
   display: flex;
@@ -43,11 +43,6 @@ const logo = {
   width: 100,
 }
 
-
-// const align = {
-//   alignItems : center
-// }
-
 class ArchivePage extends React.Component {
   render() {
     const userNickname = JSON.parse(localStorage.getItem('nickname'))
@@ -74,8 +69,9 @@ class ArchivePage extends React.Component {
             <ArchiveReviewDetail />
           </Wrapper>
           
-         
+          
           <ReviewMap />
+          
           
         </div>
       )

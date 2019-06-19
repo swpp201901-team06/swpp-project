@@ -30,6 +30,7 @@ const archiveReducer = (state, action) => {
       return {
         ...nextState,
         reviews: action.reviewList,
+        visitorCount: action.archive.visitor_count
       }
 
     case actions.GET_REVIEW_LIST_FAILED:
