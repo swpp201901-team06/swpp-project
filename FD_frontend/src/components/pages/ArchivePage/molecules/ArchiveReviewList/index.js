@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router' 
 import { font, palette } from 'styled-theme'
 import ArchiveReview from '../../atoms/ArchiveReview'
 import FollowButton from '../../atoms/FollowButton'
@@ -85,9 +86,22 @@ class ArchiveReviewList extends React.Component {
       followButton = ' '
     }
 
+    let followerReviewButton
+    if(localStorage.hasOwnProperty('nickname') && JSON.parse(localStorage.getItem('nickname')) == this.props.children) {
+      const followLink = `/search/follow/${this.props.children}`
+      followerReviewButton = (
+        <Link to={followLink}>
+          <FollowButton>Followed Reviews</FollowButton>
+        </Link>
+      )
+    }
+    else {
+      followerReviewButton = ' '
+    }
+
     return (
       <Wrapper>
-        <h4 style={{color:"#FFFFFF"}}>{followButton}{'   '} visitor: {visitorCount}{'    '}</h4>
+        <h4 style={{color:"#FFFFFF"}}>{followButton}{'   '} visitor: {visitorCount}{'    '}{followerReviewButton}</h4>
 	      <Dropdown options={options} onChange={onCategoryChange} value={defaultOption} placeholder="Select an option" />
         {reviewstate.map((review) =>
           <ArchiveReview

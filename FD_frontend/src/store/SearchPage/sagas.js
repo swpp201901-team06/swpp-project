@@ -8,6 +8,7 @@ const backendUrl = 'http://127.0.0.1:8000'
 const usernameUrl = `${backendUrl}/review/search`
 const tagUrl = `${backendUrl}/tag/filter`
 const restaurantUrl = `${backendUrl}/restaurant/search`
+const followUrl = `${backendUrl}/review/follow`
 
 export function* getResultsSaga({ key, value }) {
   try {
@@ -16,9 +17,13 @@ export function* getResultsSaga({ key, value }) {
       response = yield callUrl('GET', `${usernameUrl}/${value}`)
     } else if (key == 'tag') {
       response = yield callUrl('GET', `${tagUrl}/${value}`)
-    } else {
+    } else if (key == 'restaurant') {
       response = yield callUrl('GET', `${restaurantUrl}/${value}`)
+    } else {
+      const username = JSON.parse(localStorage.getItem('nickname'))
+      response = yield callUrl('GET', `${followUrl}/${username}`)
     }
+    
     const newResponse = response.map((review) => {
       const newReview = {
         ...review,
