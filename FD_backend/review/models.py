@@ -14,6 +14,7 @@ class Review(models.Model):
     public_status = models.BooleanField(default = False)
     score = models.IntegerField(blank = True,)
     restaurant_id = models.ForeignKey(Restaurant, related_name='reviews', on_delete = models.CASCADE)
+    rest_name = models.TextField(default="default")
     archive = models.ForeignKey(Archive, related_name = 'reviews', on_delete = models.CASCADE)
     hits = models.IntegerField(default = 0)
     photo = models.ImageField(blank = True, null = True)
