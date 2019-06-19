@@ -18,7 +18,7 @@ const browncolor = {
   color: '#e0ba7c',
 }
 
-export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handleChange, onPhoneAuthRequest, onPhoneAuthSubmit }) => {
+export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handleChange, onPhoneAuthRequest, onPhoneAuthSubmit, onSignUpCancel }) => {
   let email
   let pw
   let confirmpw
@@ -94,6 +94,10 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
     console.log(phoneNumber.value)
     onPhoneAuthSubmit(inputCode.value, statefunction.SignUpPage.code, phoneNumber.value)
   }
+  
+  const onCancel = () => {
+    onSignUpCancel()
+  }
 
   let phoneAuthComponent
   
@@ -167,9 +171,7 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
           <SubmitButton type="submit" onClick={onSubmit}>
             Submit
           </SubmitButton>
-	        <Link to="/signin">
-		        <SubmitButton>Cancel</SubmitButton>
-	        </Link>
+          <SubmitButton onClick={onCancel}>Cancel</SubmitButton>
         </h4>
         
        <h4 style={browncolor}>
