@@ -28,9 +28,14 @@ export const SideBar = ({ statefunction, onLogout, onClickMyArchive, onClickMyAc
     </div>
   )
   const notLoggedInDisplay = (
-    <Link to="/signin">
-      <SideBarButton>Sign In</SideBarButton>
-    </Link>
+    <div>
+      <Link to="/guest">
+        <SideBarButton>Guest Page</SideBarButton>
+      </Link>
+      <Link to="/signin">
+        <SideBarButton>Sign In</SideBarButton>
+      </Link>
+    </div>
   )
   return (
     statefunction.SignInPage.isLoggedIn ? loggedInDisplay : notLoggedInDisplay

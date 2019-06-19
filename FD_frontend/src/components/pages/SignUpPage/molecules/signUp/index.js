@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router' 
 // import { font, palette } from 'styled-theme'
 // import Button from '../../atoms/Button'
 // import DCButton from '../../atoms/DCButton'
@@ -166,6 +167,9 @@ export const signUp = ({ statefunction, onDuplicateCheck, onSignUpSubmit, handle
           <SubmitButton type="submit" onClick={onSubmit}>
             Submit
           </SubmitButton>
+	        <Link to="/signin">
+		        <SubmitButton>Cancel</SubmitButton>
+	        </Link>
         </h4>
         
        <h4 style={browncolor}>

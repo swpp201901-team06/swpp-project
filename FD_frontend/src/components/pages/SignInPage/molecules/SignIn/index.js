@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router'
 
 const Wrapper = styled.div`
   display: flex;
@@ -59,6 +60,9 @@ const SignIn = ({ isLoggedIn, signInFailed, nickname,
           <button type="submit" onClick={onClickSignUpButton}>Sign Up</button>
           <button type="submit" onClick={onClickSignInButton}>Sign In</button>
           <br />
+          <Link to="/">
+            <button>Cancel</button>
+          </Link>
         </div>
         <div>
           {signInFailed ? 'Sign In Failed' : ''}
