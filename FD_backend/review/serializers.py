@@ -10,6 +10,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     archive = serializers.ReadOnlyField(source='archive.user.username') #source?
     hits = serializers.ReadOnlyField() #source?
     photo = serializers.ImageField(use_url = True, allow_empty_file = True, required = False)
+    rest_name = serializers.ReadOnlyField(source='restaurant_id.name')
 
     class Meta:
         model = models.Review

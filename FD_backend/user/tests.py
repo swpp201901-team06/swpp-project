@@ -106,8 +106,8 @@ class CustomUserModelTests(TestCase):
         test_user_two_id = self.get_exist_username("Utestuser2", "true")
         self.get_exist_username("NotExistName", "false")
 
-        self.get_detail("Utestuser1", test_user_one_id, False)
-        self.get_detail("Utestuser2", test_user_two_id, False)
+        self.get_detail("Utestuser1", test_user_one_id, True)
+        self.get_detail("Utestuser2", test_user_two_id, True)
 
 
         self.update_user("Utestuser1", test_user_one_id)
