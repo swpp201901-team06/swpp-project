@@ -49,14 +49,16 @@ class ArchiveReviewDetail extends React.Component {
     let reviewDetail
     if (this.props.reviewstate.selectedReviewObj) {
       const selectedReview = this.props.reviewstate.selectedReviewObj
-	    console.log(selectedReview)
+
+      const eatWhenDate = new Date(selectedReview.eatWhen).toLocaleString('ko-KR')
+      
       if (selectedReview.photo) {
         const photoUrl = "http://localhost:8000"+selectedReview.photo
         reviewDetail = (
           <div>
             <h4>Restaurant: {selectedReview.restName}</h4>
             <h4>Address: {selectedReview.restAddr}</h4>
-            <h4>Date: {selectedReview.eatWhen}</h4>
+            <h4>Date: {eatWhenDate}</h4>
             <img src={photoUrl} width="400" height="400" />
             <h4>Content: {selectedReview.content}</h4>
             <h4>Score: {selectedReview.score}</h4>
@@ -68,7 +70,7 @@ class ArchiveReviewDetail extends React.Component {
           <div>
             <h4>Restaurant: {selectedReview.restName}</h4>
             <h4>Address: {selectedReview.restAddr}</h4>
-            <h4>Date: {selectedReview.eatWhen}</h4>
+            <h4>Date: {eatWhenDate}</h4>
             <h4>Content: {selectedReview.content}</h4>
             <h4>Score: {selectedReview.score}</h4>
             <h4>Tags: {selectedReview.tags}</h4>

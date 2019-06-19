@@ -36,12 +36,14 @@ class ArchiveReview extends React.Component {
       onReviewClick(reviewId, archiveOwnerNickname)
     }
 
+    const eatWhenDate = new Date(eatWhen).toLocaleString('ko-KR')
+
     if (photo) {
       return (
         <Review onClick={() => { onClickThis() }}>
           <h4>
             {'view: '}{hits}{'   '}
-            {'date: '}{eatWhen}{'   '}</h4>
+            {'date: '}{eatWhenDate}{'   '}</h4>
           <h4>
             {'where: '}{restaurantId}{'   '}
             {'score: '}{score}{'   '}
@@ -55,7 +57,7 @@ class ArchiveReview extends React.Component {
       <Review onClick={() => { onClickThis() }}>
           <h4>
             {'view: '}{hits}{'   '}
-            {'date: '}{eatWhen}{'   '}</h4>
+            {'date: '}{eatWhenDate}{'   '}</h4>
           <h4>
             {'where: '}{restaurantId}{'   '}</h4>
           

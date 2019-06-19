@@ -57,6 +57,8 @@ class SearchResult extends React.Component {
       onResultClick(resultId, archiveOwnerNickname)
     }
 
+    const eatWhenDate = new Date(eatWhen).toLocaleString('ko-KR')
+
     if (photo) {
       return (
         <Review onClick={() => { onClickThis() }}>
@@ -65,7 +67,7 @@ class SearchResult extends React.Component {
             {'view: '}{hits}{'   '}
           </h4>
           <h4>
-            {'date: '}{eatWhen}{'   '}</h4>
+            {'date: '}{eatWhenDate}{'   '}</h4>
           <h4>
             {'where: '}{restaurantId}{'   '}
             {'score: '}{score}{'   '}
@@ -83,7 +85,7 @@ class SearchResult extends React.Component {
             {'view: '}{hits}{'   '}
           </h4>
           <h4>
-            {'date: '}{eatWhen}{'   '}</h4>
+            {'date: '}{eatWhenDate}{'   '}</h4>
           <h4>
             {'where: '}{restaurantId}{'   '}
             {'score: '}{score}{'   '}
