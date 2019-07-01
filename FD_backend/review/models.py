@@ -13,7 +13,7 @@ class Review(models.Model):
     post_time = models.DateTimeField(auto_now_add = True)
     public_status = models.BooleanField(default = False)
     score = models.IntegerField(blank = True,)
-    restaurant_id = models.ForeignKey(Restaurant, on_delete = models.CASCADE)
+    restaurant_id = models.ForeignKey(Restaurant, related_name='reviews', on_delete = models.CASCADE)
     archive = models.ForeignKey(Archive, related_name = 'reviews', on_delete = models.CASCADE)
     hits = models.IntegerField(default = 0)
     photo = models.ImageField(blank = True, null = True)

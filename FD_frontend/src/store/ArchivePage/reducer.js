@@ -38,7 +38,13 @@ const archiveReducer = (state, action) => {
     case actions.GET_REVIEW_DETAIL_SUCCESS:
       return {
         ...nextState,
-        selectedReviewObj: action.reviewDetail,
+        selectedReviewObj: {
+          ...action.reviewDetail,
+          restName: action.restObj.name,
+          restAddr: action.restObj.address,
+          restLat: action.restObj.latitude,
+          restLong: action.restObj.longitude,
+        },
       }
 
     case actions.GET_REVIEW_DETAIL_FAILED:

@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+
+import Search from '../../molecules/Searchbox'
 import SideBar from '../../../containers/SideBar/SideBar'
 import ReviewPostDetail from '../../../containers/PostPage/ReviewPost'
 
@@ -54,6 +56,8 @@ class PostPage extends React.Component {
             {review}
           </ReviewPostDetail>
         </Wrapper>
+
+        <Search />
       </div>
     )
   }
