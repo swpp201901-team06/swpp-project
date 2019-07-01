@@ -18,7 +18,6 @@ export function* getReviewListSaga({ sortOption, archiveOwnerNickname }) {
     } else {
       response = yield callUrl('GET', `${myReviewListUrl}/${archiveOwnerNickname}/${sortOption}`)
     }
-    console.log(response)
     const archiveResponse = yield callUrl('GET', `${archiveDetailUrl}/${archiveOwnerNickname}`)
     response = response.map((review) => {
       const newReview = {
@@ -28,7 +27,6 @@ export function* getReviewListSaga({ sortOption, archiveOwnerNickname }) {
         publicStatus: review.public_status,
         restaurantId: review.restaurant_id,
       }
-      console.log(newReview.restaurant_id)
       delete newReview.eat_when
       delete newReview.post_time
       delete newReview.public_status
@@ -63,9 +61,7 @@ export function* getReviewDetailSaga({ reviewId }) {
     delete newResponse.post_time
     delete newResponse.public_status
     delete newResponse.restaurant_id
-
-    const restDetailResponse = yield callUrl('GET', `${restDetailUrl}/${reviewId}`)
-
+    const restDetailResponse = yield callUrl('GET', `${restDetailUrl}/${response.restaurant_id}`)
     yield put(actions.getReviewDetailSuccess(newResponse, restDetailResponse))
   } catch (err) {
     console.log(err)

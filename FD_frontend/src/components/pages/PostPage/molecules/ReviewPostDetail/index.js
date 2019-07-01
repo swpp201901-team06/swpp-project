@@ -132,12 +132,12 @@ class ReviewPostDetail extends React.Component {
     }
 
     const onClickPostSubmit = () => {
-      if (this.refs.restId.value && this.refs.date.value && this.refs.score.value &&
+      if (restIdText && this.refs.date.value && this.refs.score.value &&
         this.refs.content.value) {
         this.props.onPostSubmit(
           this.props.children,
           this.props.statefunction.PostPage.nickname,
-          this.refs.restId.value,
+          restIdText,
           this.refs.date.value,
           this.refs.tag.value,
           this.refs.score.value,
@@ -160,14 +160,6 @@ class ReviewPostDetail extends React.Component {
               name="date"
               ref="date"
               style={{paddingleft:"100px"}}
-            />
-          </div>
-          <div style={padding}>
-            Restaurant ID{' '}
-            <input
-              value={restIdText}
-              name="restId"
-              ref="restId"
             />
           </div>
           <div style={padding}>
