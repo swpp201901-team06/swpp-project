@@ -26,10 +26,12 @@ class ArchiveReview extends React.Component {
     const score = this.props.score
     const content = this.props.content
     const photo = this.props.photo
+    const hits = this.props.hits
     const onReviewClick = this.props.onReviewClick
     const sendReviewId = this.props.sendReviewIdFunc
     const archiveOwnerNickname = this.props.archiveOwnerNickname
     const onClickThis = () => {
+      console.log(restaurantId)
       sendReviewId(reviewId)
       onReviewClick(reviewId, archiveOwnerNickname)
     }
@@ -38,6 +40,7 @@ class ArchiveReview extends React.Component {
       return (
         <Review onClick={() => { onClickThis() }}>
           <h4>
+            {'view: '}{hits}{'   '}
             {'date: '}{eatWhen}{'   '}</h4>
           <h4>
             {'where: '}{restaurantId}{'   '}
@@ -52,6 +55,7 @@ class ArchiveReview extends React.Component {
       <div onClick={() => { onClickThis() }}>
         <h4>
           <h4>
+            {'view: '}{hits}{'   '}
             {'date: '}{eatWhen}{'   '}</h4>
           <h4>
             {'where: '}{restaurantId}{'   '}</h4>
