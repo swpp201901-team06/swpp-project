@@ -64,7 +64,7 @@ class MessageSendView(generics.RetrieveAPIView):
         for i in range(8):
             key += random.choice(string_pool)
 
-#        send_message(number, key)
+        send_message(number, key)
         return Response(key)
 
 

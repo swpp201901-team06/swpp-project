@@ -11,6 +11,9 @@ export const PHONE_AUTH_FAILED = 'PHONE_AUTH_FAILED'
 export const PHONE_FAIL = 'PHONE_FAIL'
 export const PHONE_REQUEST = 'PHONE_REQUEST'
 export const PHONE_AUTH_REQUEST = 'PHONE_AUTH_REQUEST'
+export const PHONE_AUTH_SUCCESS = 'PHONE_AUTH_SUCCESS'
+export const MUST_AUTH = 'MUST_AUTH'
+export const SIGNUP_FAILED = 'SIGNUP_FAILED'
 
 
 export const duplicateCheck = (key, value) => {
@@ -21,13 +24,14 @@ export const duplicateCheck = (key, value) => {
   }
 }
 
-export const signUpSubmit = (email, pw, confirmpw, nickname) => {
+export const signUpSubmit = (email, pw, confirmpw, nickname, phoneNumber) => {
   return {
     type: SIGNUP_SUBMIT_REQUEST,
     email,
     pw,
     confirmpw,
     nickname,
+    phoneNumber
   }
 }
 
@@ -52,15 +56,17 @@ export const phoneDuplicate = () => {
 }
 
 export const phoneSent = (code) => {
+  console.log(code)
   return {
     type: PHONE_SENT,
     code
   }
 }
 
-export const phoneAuthSuccess = () => {
+export const phoneAuthSuccess = (phoneNumber) => {
   return {
     type: PHONE_AUTH_SUCCESS,
+    phoneNumber
   }
 }
 
@@ -89,5 +95,17 @@ export const phoneAuthRequest = (input, code, phoneNumber) => {
     input,
     code,
     phoneNumber
+  }
+}
+
+export const mustPhoneAuth = () => {
+  return {
+    type: MUST_AUTH,
+  }
+}
+
+export const signUpFailed = () => {
+  return {
+    type: SIGNUP_FAILED,
   }
 }
