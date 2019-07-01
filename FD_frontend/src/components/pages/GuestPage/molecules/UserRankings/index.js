@@ -4,8 +4,13 @@ import SearchResult from '../../../SearchPage/atoms/SearchResult'
 import { font, palette } from 'styled-theme'
 
 const Wrapper = styled.div`
-  font-family: ${font('primary')};
-  color: ${palette('grayscale', 0)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  text-align:center;
 `
 
 export class UserRankings extends React.Component {
@@ -20,7 +25,7 @@ export class UserRankings extends React.Component {
   render() {
     let rankingstate = this.props.statefunction.GuestPage.rankedReviews
     return (
-      <div>
+      <Wrapper>
         {rankingstate.map((result) =>
             <SearchResult
               key={result.id}
@@ -36,7 +41,7 @@ export class UserRankings extends React.Component {
               archiveOwnerNickname={result.archive}
             />
       	)}
-      </div>
+      </Wrapper>
     )
   }
 }
