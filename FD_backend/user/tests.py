@@ -82,11 +82,10 @@ class CustomUserModelTests(TestCase):
             return -1
 
     # 유저 정보 수정 - public_status True로 update (Put)
-    def update_user(self, username, id, email):
+    def update_user(self, username, id):
         link = "/user/detail/" + str(id)
         data = {
             "username": username,
-            "email": email,
             "public_status": True,
             "Archive": username
         }
@@ -107,11 +106,11 @@ class CustomUserModelTests(TestCase):
         test_user_two_id = self.get_exist_username("Utestuser2", "true")
         self.get_exist_username("NotExistName", "false")
 
-        self.get_detail("Utestuser1", test_user_one_id, False)
-        self.get_detail("Utestuser2", test_user_two_id, False)
+        self.get_detail("Utestuser1", test_user_one_id, True)
+        self.get_detail("Utestuser2", test_user_two_id, True)
 
 
-        self.update_user("Utestuser1", test_user_one_id, "Utestemail1@test.com")
+        self.update_user("Utestuser1", test_user_one_id)
         self.get_detail("Utestuser1", test_user_one_id, True)
 
         self.delete_user("Utestuser2", test_user_two_id)

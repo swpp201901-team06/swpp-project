@@ -7,12 +7,17 @@ from django.shortcuts import get_object_or_404
 
 from archive.models import Archive
 from .models import Review
+from .models import ReviewIP
 from user.models import CustomUser
 from .serializers import ReviewSerializer
+from .serializers import ReviewIPSerializer
+
 from archive.serializers import ArchiveSerializer
 from user.serializers import UserSerializer
 
 from .permissions import IsOwnerOrReadOnly
+from ipware.ip import get_ip
+
 
 # get : 전체 review list를 가져옴(디버깅용, 추후 삭제할 예정)
 # post : review를 create한다.
@@ -38,11 +43,24 @@ class ReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get(self, request, *args, **kwargs):
         review = self.queryset.get(id = kwargs['pk'])
-        review.hits += 1
-        review.save()
+
+        ip = get_ip(request)
+        if ip is not None:
+            check_ip = review.ip_list.filter(review=review, ip=ip)
+            if not check_ip.exists():
+                new_ip = ReviewIP.objects.create(review=review, ip=ip)
+                new_ip.save()
+                review.hits += 1
+                review.save()
+        else:
+            print("error in review hit increase view - there is no ip")
 
         serializer = ReviewSerializer(review)
         return Response(serializer.data)
+
+
+
+
 
 # get : review list를 get 한다. archive에 저장된 sort option에 따라 정렬된 list를 가져오며, 본인의 review일 경우에만 publicStatus가 false인 review를 가져갈 수 있다.
 class ReviewListView(APIView):
@@ -81,14 +99,14 @@ class SortedReviewListView(APIView):
             serializer = ReviewSerializer(review_set, many = True)
             return Response(serializer.data)
 
-        review_set = archive.reviews.filter(public_status = True).order_by(kwargs['sortopt'])
+        review_set = archive.reviews.filter(user__public_status = True).order_by(kwargs['sortopt'])
         serializer = ReviewSerializer(review_set, many = True)
         return Response(serializer.data)
 
 # get : username과 유사한 이름을 가지는 유저들의 대표 리뷰(조회수가 가장 높은 리뷰)를 가져온다.
 class SearchedReviewListView(APIView):
     def get(self, request, *args, **kwargs):
-        archives = Archive.objects.select_related('user').filter(user__username__iregex = r'.*%s.*' % kwargs['username'])
+        archives = Archive.objects.select_related('user').filter(user__public_status=True, user__username__iregex = r'.*%s.*' % kwargs['username'])
         review_list = []
         for archive in archives:
             review = archive.reviews.filter(public_status = True).order_by('-hits').first()
@@ -101,6 +119,36 @@ class SearchedReviewListView(APIView):
 # get : 조회수가 가장 높은 3개의 리뷰를 가져온다.
 class ReviewRankingView(APIView):
     def get(self, request, *args, **kwargs):
-        review_set = Review.objects.select_related('archive').select_related('archive__user').all().order_by('-hits')
+        review_set = Review.objects.select_related('archive').select_related('archive__user').filter(archive__user__public_status=True, public_status=True).order_by('-hits')
         serializer = ReviewSerializer(review_set[:3], many = True)
+        return Response(serializer.data)
+
+
+# for debugging
+class DeleteAllReviewIP(APIView):
+    def get(self, request, *args, **kwargs):
+        queryset = ReviewIP.objects.all()
+        serializer = ReviewIPSerializer(queryset, many=True)
+        data = serializer.data
+        queryset.delete()
+        return Response(data)
+
+# for debugging
+class ReviewIPListView(generics.ListCreateAPIView):
+    queryset = ReviewIP.objects.all()
+    serializer_class = ReviewIPSerializer
+
+# for debugging
+class ReviewIPDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ReviewIP.objects.all()
+    serializer_class = ReviewIPSerializer
+
+# for test
+class ForceHitIncreaseView(APIView):
+    def get(self, request, *args, **kwargs):
+        review = Review.objects.get(id = kwargs['pk'])
+        review.hits += 1
+        review.save()
+
+        serializer = ReviewSerializer(review)
         return Response(serializer.data)

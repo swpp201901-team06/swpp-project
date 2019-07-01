@@ -1,8 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import RestConfirmButton from '.'
+import SubmitButton from '.'
 
-const wrap = (props = {}) => shallow(<RestConfirmButton {...props} />).dive()
+const wrap = (props = {}) => shallow(<SubmitButton {...props} />).dive()
 
 it('renders with different combination of props', () => {
   wrap({ disabled: true })
@@ -35,14 +35,15 @@ it('renders Link when to is passed in', () => {
   expect(wrapper.find('Link')).toHaveLength(1)
 })
 
-describe('<RestConfirmButton />', () => {
+describe('<SubmitButton />', () => {
   describe('onClick()', () => {
     test('succesfully calls the onClick handler', () => {
       const mockOnClick = jest.fn();
-      const wrapper = shallow(<RestConfirmButton onClick = {mockOnClick} />);
+      const wrapper = shallow(<SubmitButton onClick = {mockOnClick} />);
       const component = wrapper.dive();
       component.find('button').simulate('click');
       expect(mockOnClick.mock.calls.length).toEqual(1);
     });
   });
 });
+

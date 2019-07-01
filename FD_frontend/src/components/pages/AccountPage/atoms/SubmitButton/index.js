@@ -33,7 +33,7 @@ const styles = css`
   pointer-events: ${ifProp('disabled', 'none', 'auto')};
   transition: background-color 250ms ease-out, color 250ms ease-out, border-color 250ms ease-out;
   background-color: #ff8d06;
-  color: #FFFFFF;  
+  color: #ffffff;
 
   &:hover, &:focus, &:active {
     background-color: ${hoverBackgroundColor};
@@ -51,7 +51,7 @@ const StyledLink = styled(({ disabled, transparent, reverse, palette, height, th
 const Anchor = styled.a`${styles}`
 const StyledButton = styled.button`${styles}`
 
-const RestConfirmButton = ({ type, ...props }) => {
+const SubmitButton = ({ type, ...props }) => {
   if (props.to) {
     return <StyledLink {...props} />
   } else if (props.href) {
@@ -60,7 +60,7 @@ const RestConfirmButton = ({ type, ...props }) => {
   return <StyledButton {...props} type={type} />
 }
 
-RestConfirmButton.propTypes = {
+SubmitButton.propTypes = {
   disabled: PropTypes.bool,
   palette: PropTypes.string,
   transparent: PropTypes.bool,
@@ -71,10 +71,10 @@ RestConfirmButton.propTypes = {
   href: PropTypes.string,
 }
 
-RestConfirmButton.defaultProps = {
+SubmitButton.defaultProps = {
   palette: 'primary',
   type: 'button',
   height: 40,
 }
 
-export default RestConfirmButton
+export default SubmitButton

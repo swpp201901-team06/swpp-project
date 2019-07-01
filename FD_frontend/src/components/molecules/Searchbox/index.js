@@ -36,24 +36,16 @@ class Search extends Component {
   }
 
   addPlace = (place) => {
-    console.log('Search addPlace')
-    console.log(place)
     this.setState({ places: place })
-    console.log('Search addPlace after setState')
-    console.log(this.state)
   }
 
   confirmRest = () => {
-    console.log('Search confirmRest')
-    console.log(this.state.places)
     const onConfirmRest = this.props.onConfirmRest
     const place = this.state.places[0]
-    console.log(place)
     const restName = place.name
     const address = place.formatted_address
     const latitude = place.geometry.location.lat()
     const longitude = place.geometry.location.lng()
-    console.log({ restName, address, latitude, longitude })
     onConfirmRest(restName, address, latitude, longitude)
   }
 

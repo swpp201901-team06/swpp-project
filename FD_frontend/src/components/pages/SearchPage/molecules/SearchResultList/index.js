@@ -33,9 +33,9 @@ class SearchResultList extends React.Component {
             score={result.score}
             content={result.content}
             photo={result.photo}
-            onReviewClick={this.props.onReviewClick}
-            sendReviewIdFunc={this.props.sendReviewId}
-            archiveOwnerNickname={this.props.statefunction.ArchivePage.archiveOwnerNickname}
+            onResultClick={this.props.onResultClick}
+            sendResultIdFunc={this.props.sendResultId}
+            archiveOwnerNickname={result.archive}
           />
         )}
         <h1></h1>

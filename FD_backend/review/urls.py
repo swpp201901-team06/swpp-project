@@ -18,4 +18,10 @@ urlpatterns = [
     path('search/<str:username>', views.SearchedReviewListView.as_view(), name = 'review_search'),
     # 조회수가 높은 상위 3개 리뷰 가져오기
     path('ranking', views.ReviewRankingView.as_view(), name = 'review_ranking'),
+
+    # for debugging
+    path('force-increase/<int:pk>', views.ForceHitIncreaseView.as_view()),
+    path('iplist', views.ReviewIPListView.as_view()),
+    path('iplist/<int:pk>', views.ReviewIPDetailView.as_view()),
+    path('iplist/delete', views.DeleteAllReviewIP.as_view()),
 ]

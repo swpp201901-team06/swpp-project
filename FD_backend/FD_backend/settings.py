@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'restaurant',
     'review',
     'tag',
+    'recommendation',
 
-    'hitcount',
     'tagging.apps.TaggingConfig',
     'debug_toolbar',
 ]
